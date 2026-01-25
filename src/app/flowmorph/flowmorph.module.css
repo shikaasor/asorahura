@@ -163,21 +163,73 @@
 }
 
 .services {
-    padding: 8rem 0;
+    padding: 10rem 0;
+    background: white;
+    border-top: 1px solid var(--border);
 }
 
-.serviceList {
-    list-style: none;
+.servicesGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
 }
 
-.serviceList li {
-    font-size: 1.5rem;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid var(--border);
+.serviceCard {
+    padding: 3rem;
+    border: 1px solid var(--border);
+}
+
+.serviceCard h3 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
     font-family: var(--font-serif);
+}
+
+.serviceCard p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--muted);
+}
+
+.audience {
+    padding: 10rem 0;
+    background: #f9fafb;
+    border-top: 1px solid var(--border);
+}
+
+.audienceGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+.audienceCard {
+    text-align: center;
+    padding: 2rem;
+}
+
+.audienceCard h4 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    font-family: var(--font-serif);
+}
+
+.audienceCard p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--muted);
+}
+
+.audienceFilter {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    border-left: 3px solid var(--foreground);
+    background: white;
+    color: var(--muted);
 }
 
 .ctaSection {
@@ -200,8 +252,21 @@
     color: var(--muted);
 }
 
+@media (max-width: 1024px) {
+    .engagementGrid,
+    .servicesGrid,
+    .audienceGrid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
 @media (max-width: 768px) {
     .headline {
         font-size: 2.5rem;
+    }
+
+    .nav {
+        padding: 1.5rem 2rem;
     }
 }

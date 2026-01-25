@@ -104,15 +104,49 @@ export default function FlowmorphPage() {
 
             <section className={styles.services}>
                 <div className="container">
-                    <h2 className={styles.sectionTitle}>Capabilities</h2>
-                    <ul className={styles.serviceList}>
-                        <li>Intelligent Document Processing</li>
-                        <li>High-volume Workflow Automation</li>
-                        <li>AI Agent System Design</li>
-                        <li>Compliance-first Automation</li>
-                        <li>SaaS System Integration</li>
-                        <li>End-to-end Process Elimination</li>
-                    </ul>
+                    <h2 className={styles.sectionTitle}>Core Services</h2>
+                    <div className={styles.servicesGrid}>
+                        <div className={styles.serviceCard}>
+                            <h3>Intelligent Document Processing</h3>
+                            <p>Extract, classify, and route unstructured documents at scale. Transform PDFs, emails, and scans into structured, actionable data.</p>
+                        </div>
+                        <div className={styles.serviceCard}>
+                            <h3>AI Agent Systems</h3>
+                            <p>Autonomous agents that execute complex multi-step workflows, make decisions, and adapt to edge cases without human intervention.</p>
+                        </div>
+                        <div className={styles.serviceCard}>
+                            <h3>High-Volume Automation</h3>
+                            <p>Systems built to handle millions of transactions. From compliance workflows to customer operations.</p>
+                        </div>
+                        <div className={styles.serviceCard}>
+                            <h3>Process Orchestration</h3>
+                            <p>End-to-end workflow automation that eliminates handoffs and integrates across your entire stack.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className={styles.audience}>
+                <div className="container">
+                    <h2 className={styles.sectionTitle}>Who Flowmorph Is For</h2>
+                    <div className={styles.audienceGrid}>
+                        <div className={styles.audienceCard}>
+                            <h4>High-Volume Operations</h4>
+                            <p>Companies processing thousands of documents, transactions, or workflows per day.</p>
+                        </div>
+                        <div className={styles.audienceCard}>
+                            <h4>Scaling Startups</h4>
+                            <p>Fast-growing companies where manual processes are breaking under growth pressure.</p>
+                        </div>
+                        <div className={styles.audienceCard}>
+                            <h4>Regulated Industries</h4>
+                            <p>Organizations requiring compliance-first automation with full audit trails.</p>
+                        </div>
+                    </div>
+                    <p className={styles.audienceFilter}>
+                        If you're looking for off-the-shelf SaaS or simple integrations, we're not the right fit.
+                        We build custom automation systems for complex, high-stakes operations.
+                    </p>
                 </div>
             </section>
 
