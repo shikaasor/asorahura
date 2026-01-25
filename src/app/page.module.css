@@ -120,9 +120,33 @@
     color: var(--muted);
 }
 
-.signals {
+.whatIDo {
     padding: 10rem 0;
     background: white;
+    border-top: 1px solid var(--border);
+}
+
+.whatIDoGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+}
+
+.whatIDoItem h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-serif);
+}
+
+.whatIDoItem p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--muted);
+}
+
+.signals {
+    padding: 10rem 0;
+    background: #f9fafb;
     border-top: 1px solid var(--border);
 }
 
@@ -186,7 +210,8 @@
 
     .philosophyGrid,
     .signalsGrid,
-    .problemGrid {
+    .problemGrid,
+    .whatIDoGrid {
         grid-template-columns: 1fr;
         gap: 3rem;
     }

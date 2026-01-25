@@ -77,6 +77,26 @@ export default function Home() {
                 </div>
             </section>
 
+            <section className={styles.whatIDo}>
+                <div className="container">
+                    <h2 className={styles.sectionTitle}>What I Do</h2>
+                    <div className={styles.whatIDoGrid}>
+                        <div className={styles.whatIDoItem}>
+                            <h3>AI Automation Architecture</h3>
+                            <p>I design intelligent systems that understand, process, and act on unstructured data. From document intelligence to autonomous agents, I build the nervous system of modern operations.</p>
+                        </div>
+                        <div className={styles.whatIDoItem}>
+                            <h3>Compliance-First Automation</h3>
+                            <p>Automation in regulated industries requires precision. I architect systems that not only automate workflows but create auditable, compliant digital trails.</p>
+                        </div>
+                        <div className={styles.whatIDoItem}>
+                            <h3>Process Orchestration</h3>
+                            <p>Beyond point solutions, I build orchestration layers that connect disparate systems, eliminate handoffs, and create seamless operational flow.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section className={styles.signals}>
                 <div className="container">
                     <h2 className={styles.sectionTitle}>Proof of Capability</h2>
