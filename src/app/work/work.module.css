@@ -43,6 +43,25 @@
     font-size: 1.25rem;
     color: var(--muted);
     max-width: 600px;
+    margin-bottom: 3rem;
+}
+
+.disclaimer {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: #f9fafb;
+    border-left: 3px solid var(--muted);
+    max-width: 800px;
+}
+
+.disclaimer p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--muted);
+}
+
+.disclaimer strong {
+    color: var(--foreground);
 }
 
 .systemEntry {
@@ -91,6 +110,37 @@
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: black;
+    margin-bottom: 2rem;
+}
+
+.caseStudy {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: #f9fafb;
+    border-left: 2px solid var(--foreground);
+}
+
+.caseStudy h4 {
+    font-size: 1rem;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+    color: var(--foreground);
+}
+
+.caseStudyItem {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--muted);
+}
+
+.caseStudyItem strong {
+    color: var(--foreground);
+    font-weight: 600;
+    display: inline-block;
+    min-width: 100px;
 }
 
 .systemDiagram {

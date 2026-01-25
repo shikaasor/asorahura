@@ -11,24 +11,48 @@ const systems = [
         description: "Enterprise-scale extraction and reasoning from unstructured data.",
         metrics: "99.2% Accuracy | 10k docs/hr",
         toolchain: "LLM Orchestration + OCR Pipelines + Vector Stores",
+        caseStudy: {
+            context: "Financial services company processing 5,000+ loan applications per week",
+            bottleneck: "Manual document review creating 72-hour processing delays",
+            approach: "Multi-stage extraction pipeline with confidence scoring and human-in-the-loop fallback",
+            outcome: "Reduced processing time to 4 hours, 99.2% accuracy, zero compliance violations"
+        }
     },
     {
         title: "Process Orchestration",
         description: "Dynamic workflow adaptation based on real-time business signals.",
         metrics: "40% Friction Reduction | 24/7 Autonomy",
         toolchain: "State Machines + Event-driven Streams + API Mesh",
+        caseStudy: {
+            context: "B2B SaaS company with complex multi-step customer onboarding",
+            bottleneck: "Manual handoffs between teams causing 40% drop-off rate",
+            approach: "Event-driven orchestration layer connecting CRM, billing, and provisioning systems",
+            outcome: "Fully automated onboarding, 85% reduction in time-to-value, 12% increase in activation"
+        }
     },
     {
         title: "AI Agent Architectures",
         description: "Multi-agent systems designed for autonomous task completion with safety guardrails.",
         metrics: "Sub-second Reasoning Latency | Multi-modal Support",
         toolchain: "LangGraph + Custom Agent Runtimes + Self-Correction Loops",
+        caseStudy: {
+            context: "Healthcare provider managing patient intake and triage workflows",
+            bottleneck: "High-volume intake forms requiring clinical judgment for routing",
+            approach: "Multi-agent system with specialized routing, validation, and escalation agents",
+            outcome: "80% of cases auto-routed correctly, 60% faster triage, maintained quality standards"
+        }
     },
     {
         title: "Compliance Automation",
         description: "Automated auditing and regulatory adherence at the speed of code.",
         metrics: "Zero-error Audit Logs | Real-time Governance",
         toolchain: "Policy-as-Code + Automated Verification + Immutable Logs",
+        caseStudy: {
+            context: "Fintech startup requiring SOC 2 compliance for enterprise sales",
+            bottleneck: "Manual audit preparation consuming weeks of engineering time quarterly",
+            approach: "Automated policy enforcement with real-time monitoring and immutable audit trails",
+            outcome: "Continuous compliance posture, 90% reduction in audit prep time, zero findings"
+        }
     },
 ];
 
@@ -42,6 +66,9 @@ export default function WorkPage() {
                         Architecture over tools. Flow over optimization.
                         Precision engineering for high-stakes operational environments.
                     </p>
+                    <div className={styles.disclaimer}>
+                        <p><strong>Note:</strong> All case studies presented here are abstracted and anonymized to protect client confidentiality. Specific metrics and contexts have been generalized while preserving the technical essence and business impact of the work.</p>
+                    </div>
                 </div>
             </section>
 
@@ -56,6 +83,22 @@ export default function WorkPage() {
                                     <span>Stack: </span>{system.toolchain}
                                 </div>
                                 <div className={styles.metrics}>{system.metrics}</div>
+
+                                <div className={styles.caseStudy}>
+                                    <h4>Case Study</h4>
+                                    <div className={styles.caseStudyItem}>
+                                        <strong>Context:</strong> {system.caseStudy.context}
+                                    </div>
+                                    <div className={styles.caseStudyItem}>
+                                        <strong>Bottleneck:</strong> {system.caseStudy.bottleneck}
+                                    </div>
+                                    <div className={styles.caseStudyItem}>
+                                        <strong>Approach:</strong> {system.caseStudy.approach}
+                                    </div>
+                                    <div className={styles.caseStudyItem}>
+                                        <strong>Outcome:</strong> {system.caseStudy.outcome}
+                                    </div>
+                                </div>
                             </div>
                             <div className={styles.systemDiagram}>
                                 <motion.div
