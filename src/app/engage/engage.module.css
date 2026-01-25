@@ -1,6 +1,7 @@
 .main {
     min-height: 100vh;
     background: #ffffff;
+    padding-top: 8rem;
 }
 
 .nav {
@@ -22,9 +23,9 @@
 }
 
 .content {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 6rem 0;
+    padding: 4rem 2rem 6rem;
 }
 
 .header {
@@ -72,6 +73,90 @@
     content: "• ";
     color: black;
     font-weight: bold;
+}
+
+.filterSection p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.filterNote {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Background Narrative Section */
+.backgroundSection {
+    margin-bottom: 6rem;
+}
+
+.backgroundSection h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.backgroundContent {
+    display: grid;
+    gap: 2rem;
+}
+
+.backgroundBlock {
+    padding: 2rem;
+    background: #fafafa;
+    border-left: 3px solid var(--foreground);
+}
+
+.backgroundBlock h3 {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+}
+
+.backgroundBlock p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* Who I Work With Section */
+.whoIWorkWith {
+    margin-bottom: 6rem;
+}
+
+.whoIWorkWith h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.audienceGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.audienceCard {
+    padding: 2rem;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s;
+}
+
+.audienceCard:hover {
+    border-color: var(--foreground);
+}
+
+.audienceCard h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.audienceCard p {
+    color: var(--muted);
+    line-height: 1.6;
+    font-size: 0.95rem;
 }
 
 .formWrapper {
@@ -124,18 +209,27 @@
 }
 
 .inputGroup input,
-.inputGroup textarea {
+.inputGroup textarea,
+.inputGroup select {
     padding: 1.25rem;
     border: 1px solid var(--border);
     font-family: inherit;
     font-size: 1rem;
     border-radius: 0;
+    background: white;
 }
 
 .inputGroup input:focus,
-.inputGroup textarea:focus {
+.inputGroup textarea:focus,
+.inputGroup select:focus {
     outline: none;
     border-color: black;
+}
+
+.formRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
 }
 
 .submitBtn {
@@ -159,7 +253,21 @@
     color: var(--muted);
 }
 
+@media (max-width: 1024px) {
+    .audienceGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 768px) {
+    .main {
+        padding-top: 6rem;
+    }
+
+    .headline {
+        font-size: 2.5rem;
+    }
+
     .filtering {
         grid-template-columns: 1fr;
         padding: 2rem;
@@ -167,5 +275,14 @@
 
     .formWrapper {
         padding: 2rem;
+    }
+
+    .formRow {
+        grid-template-columns: 1fr;
+    }
+
+    .backgroundSection h2,
+    .whoIWorkWith h2 {
+        font-size: 2rem;
     }
 }
