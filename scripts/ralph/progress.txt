@@ -1,5 +1,18 @@
 # Ralph Progress Log
 Started: Sun Jan 25 12:27:56 WAT 2026
+
+## Codebase Patterns
+- Use `npx tsc --noEmit` for typecheck validation (not `npm run build`)
+- CSS modules pattern: Import as `styles` and apply via `className={styles.name}`
+- Client components: Add `"use client"` directive when using framer-motion, hooks, or browser APIs
+- Animation pattern: framer-motion with `motion.div` + `initial/animate/transition` props
+- Typography: Playfair Display (serif) for headlines/h tags, Inter (sans-serif) for body/UI
+- Design tokens: CSS custom properties defined in globals.css (--foreground, --background, --muted, etc.)
+- Page sections: Wrapper with className + nested .container div for consistent max-width
+- Grid layouts: 3 columns desktop (repeat(3, 1fr)), collapse to 1 column at 1024px breakpoint
+- Section spacing: 10rem vertical padding, alternating backgrounds (white, #f9fafb)
+- Fixed navigation requires pages to have top padding (currently 15rem on hero sections)
+- Active link detection: Use `usePathname()` hook and conditional className comparison
 ---
 ## 2026-01-25 16:15 - US-001
 - Verified all acceptance criteria for Project Setup & Infrastructure
@@ -19,4 +32,102 @@ Started: Sun Jan 25 12:27:56 WAT 2026
   - Font loading pattern: Next.js font optimization with variable assignment in layout.tsx
   - MDX is configured via next.config.mjs with @next/mdx wrapper
   - Quality checks: Use `npx tsc --noEmit` for typecheck validation
+---
+
+## 2026-01-25 16:20 - US-002
+- Verified Global Navigation & Layout implementation
+- Navigation component already exists and meets all requirements
+- Files reviewed:
+  - src/components/Navigation.tsx: Client component with framer-motion animations
+  - src/components/Navigation.module.css: Responsive styling with mobile breakpoint
+  - All route pages exist: /, /work, /flowmorph, /engage
+- Features verified:
+  - Fixed navigation with backdrop blur for modern aesthetic
+  - Active state highlighting using usePathname hook
+  - Serif font for logo (brand consistency)
+  - CTA styling for "Engage" link
+  - Mobile responsive (768px breakpoint)
+- Typecheck validation: npx tsc --noEmit passes successfully
+- **Learnings for future iterations:**
+  - Navigation uses "use client" directive for framer-motion and usePathname
+  - Active link detection pattern: pathname comparison with conditional className
+  - CSS module pattern: Import styles and apply via className={styles.name}
+  - Animation pattern: framer-motion's motion.div with initial/animate/transition props
+  - Fixed nav requires body padding-top adjustment (check if pages account for this)
+  - The navigation is globally included in layout.tsx
+---
+## 2026-01-25 16:30 - US-003
+- Completed Home Page - Authority Hub by adding missing "What I Do" section
+- Files modified:
+  - src/app/page.tsx: Added whatIDo section with three items
+  - src/app/page.module.css: Added .whatIDo, .whatIDoGrid, .whatIDoItem styles
+- Section content:
+  - AI Automation Architecture: Unstructured data processing and autonomous agents
+  - Compliance-First Automation: Auditable systems for regulated industries
+  - Process Orchestration: System integration and workflow automation
+- All existing sections verified:
+  - Hero: "Transforming Work into Flow" with CTAs
+  - Problem: Operational Friction, Cognitive Overload, Scaling Debt
+  - Philosophy: Systems > Tools, Flow > Optimization, Automation = Liberation
+  - Proof Signals: Technical Artifacts, SaaS Demos, GitHub References
+  - Bridge: Link to Flowmorph
+- Typecheck validation: npx tsc --noEmit passes successfully
+- **Learnings for future iterations:**
+  - Page sections follow consistent pattern: section wrapper with container inside
+  - Grid layouts use 3-column desktop, 1-column mobile pattern
+  - Section backgrounds alternate: white, #f9fafb for visual rhythm
+  - All sections use 10rem vertical padding for consistent spacing
+  - Media queries at 1024px collapse grids to single column
+  - Typography: h3 uses serif font at 1.5rem, paragraphs use muted color
+---
+
+## 2026-01-25 16:45 - US-004
+- Enhanced Flowmorph Page - Agency Engine with missing sections
+- Files modified:
+  - src/app/flowmorph/page.tsx: Added audience section, refactored services
+  - src/app/flowmorph/flowmorph.module.css: Added styles for new sections
+- Changes made:
+  - Refactored Services section from list to card grid with detailed descriptions
+  - Added "Who Flowmorph Is For" section with target audience criteria
+  - Enhanced service cards: IDP, AI Agent Systems, High-Volume, Process Orchestration
+  - Audience filter includes: High-volume ops, Scaling startups, Regulated industries
+  - Clear positioning statement filtering out off-the-shelf SaaS seekers
+- Verified existing sections:
+  - Hero with distinct Flowmorph branding and logo
+  - Philosophy cards: Automation ≠ scripts, Systems > Tools, Humans create/machines execute
+  - Methodology: 4-step engagement model (Diagnosis -> Design -> Deployment -> Optimization)
+  - CTA section with "High-value, limited engagements only"
+- Typecheck validation: npx tsc --noEmit passes successfully
+- **Learnings for future iterations:**
+  - Flowmorph page has its own nav (not using global Navigation component)
+  - Services can be displayed as grid cards (2-column) instead of list for better UX
+  - Audience filtering is explicit: helps qualify leads before contact
+  - Border-left pattern for emphasis blocks (.audienceFilter)
+  - 2-column service grid collapses to 1-column at 1024px
+---
+
+## 2026-01-25 17:00 - US-005
+- Enhanced Work / Systems Page with case studies and disclaimer
+- Files modified:
+  - src/app/work/page.tsx: Added case study data structure and display, disclaimer
+  - src/app/work/work.module.css: Added styles for case studies and disclaimer
+- Changes made:
+  - Added caseStudy property to each system with 4-part structure
+  - Implemented Context -> Bottleneck -> Approach -> Outcome format
+  - Created disclaimer component in hero section about anonymized work
+  - Styled case studies with background box and left border accent
+  - Each system entry now shows: title, description, toolchain, metrics, case study
+- Case studies cover:
+  - Document Intelligence: Loan processing (99.2% accuracy, 4hr vs 72hr)
+  - Process Orchestration: SaaS onboarding (85% reduction in time-to-value)
+  - AI Agent Architectures: Healthcare triage (80% auto-routed, 60% faster)
+  - Compliance Automation: SOC 2 continuous compliance (90% reduction in audit prep)
+- Typecheck validation: npx tsc --noEmit passes successfully
+- **Learnings for future iterations:**
+  - Case study pattern: Context/Bottleneck/Approach/Outcome is effective structure
+  - Disclaimer placement: In hero section for immediate visibility
+  - Border-left accent pattern works well for emphasis (.disclaimer, .caseStudy)
+  - Strong tags within text for field labels (Context:, Bottleneck:, etc.)
+  - System entries maintain flex layout with diagram on right side
+  - Case studies add credibility while protecting client confidentiality
 ---
