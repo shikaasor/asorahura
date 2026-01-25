@@ -1,0 +1,90 @@
+.feed {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 2rem;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: #0a66c2;
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border-radius: 4px;
+}
+
+.label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 500;
+}
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.post {
+    display: block;
+    padding: 1.25rem;
+    background: #f9fafb;
+    border: 1px solid transparent;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.post:hover {
+    border-color: var(--border);
+    transform: translateX(4px);
+    opacity: 1;
+}
+
+.postTitle {
+    font-size: 1.1rem;
+    font-family: var(--font-serif);
+    margin-bottom: 0.5rem;
+    color: var(--foreground);
+}
+
+.postExcerpt {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+}
+
+.postDate {
+    font-size: 0.8rem;
+    color: var(--muted);
+    opacity: 0.7;
+}
+
+.viewAll {
+    display: block;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem;
+    color: var(--muted);
+    text-align: center;
+}
+
+.viewAll:hover {
+    color: var(--foreground);
+    opacity: 1;
+}

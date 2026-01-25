@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import styles from "./page.module.css";
+import LinkedInFeed from "@/components/LinkedInFeed";
+import YouTubeFeed from "@/components/YouTubeFeed";
+import SaasShowcase from "@/components/SaasShowcase";
 
 export default function Home() {
     return (
@@ -116,6 +119,20 @@ export default function Home() {
                             <h4>GitHub References</h4>
                             <p>Open-source contributions to AI infrastructure.</p>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className={styles.activity}>
+                <div className="container">
+                    <h2 className={styles.sectionTitle}>Recent Activity</h2>
+                    <p className={styles.activitySubtitle}>
+                        Stay connected with the latest insights, videos, and live systems.
+                    </p>
+                    <div className={styles.activityGrid}>
+                        <LinkedInFeed />
+                        <YouTubeFeed />
+                        <SaasShowcase />
                     </div>
                 </div>
             </section>

@@ -186,6 +186,27 @@
     line-height: 1.6;
 }
 
+.activity {
+    padding: 10rem 0;
+    background: white;
+    border-top: 1px solid var(--border);
+}
+
+.activitySubtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-bottom: 4rem;
+    margin-top: -3rem;
+}
+
+.activityGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    align-items: start;
+}
+
 .bridge {
     padding: 8rem 0;
     border-top: 1px solid var(--border);
@@ -211,7 +232,8 @@
     .philosophyGrid,
     .signalsGrid,
     .problemGrid,
-    .whatIDoGrid {
+    .whatIDoGrid,
+    .activityGrid {
         grid-template-columns: 1fr;
         gap: 3rem;
     }

@@ -1,0 +1,126 @@
+.feed {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 2rem;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: #ff0000;
+    color: white;
+    font-size: 0.7rem;
+    border-radius: 4px;
+}
+
+.label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 500;
+}
+
+.videos {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.video {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f9fafb;
+    border: 1px solid transparent;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.video:hover {
+    border-color: var(--border);
+    transform: translateX(4px);
+    opacity: 1;
+}
+
+.thumbnail {
+    position: relative;
+    width: 120px;
+    min-width: 120px;
+    height: 68px;
+    background: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.thumbnailPlaceholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+}
+
+.playIcon {
+    color: white;
+    font-size: 1.5rem;
+    opacity: 0.8;
+}
+
+.duration {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 4px;
+    border-radius: 2px;
+}
+
+.videoInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.videoTitle {
+    font-size: 0.95rem;
+    font-family: var(--font-serif);
+    color: var(--foreground);
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+}
+
+.videoMeta {
+    font-size: 0.8rem;
+    color: var(--muted);
+    opacity: 0.7;
+}
+
+.viewAll {
+    display: block;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem;
+    color: var(--muted);
+    text-align: center;
+}
+
+.viewAll:hover {
+    color: var(--foreground);
+    opacity: 1;
+}
