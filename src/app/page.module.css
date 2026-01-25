@@ -1,0 +1,199 @@
+.main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 15rem;
+    padding-bottom: 10rem;
+}
+
+.headline {
+    font-size: 5.5rem;
+    line-height: 0.95;
+    margin-bottom: 2.5rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.subhead {
+    font-size: 1.5rem;
+    line-height: 1.5;
+    max-width: 700px;
+    margin: 0 auto 4rem;
+    color: var(--muted);
+}
+
+.problem {
+    padding: 10rem 0;
+    border-top: 1px solid var(--border);
+    background: white;
+}
+
+.problemGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+}
+
+.problemItem h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-serif);
+}
+
+.problemItem p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--muted);
+}
+
+.actions {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.primaryBtn {
+    background: var(--foreground);
+    color: var(--background);
+    padding: 1.25rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 2px;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.primaryBtn:hover {
+    transform: translateY(-2px);
+    background: #333;
+}
+
+.secondaryBtn {
+    border: 1px solid var(--border);
+    padding: 1.25rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 2px;
+    transition: background 0.2s;
+}
+
+.secondaryBtn:hover {
+    background: #f9f9f9;
+}
+
+.philosophy {
+    padding: 10rem 0;
+    background: #f9fafb;
+    border-top: 1px solid var(--border);
+}
+
+.sectionTitle {
+    font-size: 2.5rem;
+    margin-bottom: 5rem;
+    text-align: center;
+}
+
+.philosophyGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+}
+
+.philosophyItem h3 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    font-family: var(--font-serif);
+}
+
+.philosophyItem p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--muted);
+}
+
+.signals {
+    padding: 10rem 0;
+    background: white;
+    border-top: 1px solid var(--border);
+}
+
+.signalsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.signalCard {
+    padding: 3rem;
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.signalCard:hover {
+    transform: translateY(-5px);
+}
+
+.signalIcon {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.signalCard h4 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.signalCard p {
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.bridge {
+    padding: 8rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    background: #fafafa;
+}
+
+.bridgeText {
+    font-size: 1.25rem;
+    color: var(--muted);
+}
+
+.footer {
+    padding: 4rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
+@media (max-width: 1024px) {
+
+    .philosophyGrid,
+    .signalsGrid,
+    .problemGrid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .headline {
+        font-size: 3.5rem;
+    }
+}

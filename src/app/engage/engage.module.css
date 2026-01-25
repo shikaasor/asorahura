@@ -1,0 +1,171 @@
+.main {
+    min-height: 100vh;
+    background: #ffffff;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4rem;
+}
+
+.logo {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    letter-spacing: -0.05em;
+}
+
+.backLink {
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 6rem 0;
+}
+
+.header {
+    margin-bottom: 6rem;
+    text-align: center;
+}
+
+.headline {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+}
+
+.subhead {
+    font-size: 1.3rem;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.filtering {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 8rem;
+    padding: 4rem;
+    background: #fafafa;
+    border: 1px solid var(--border);
+}
+
+.filterSection h3 {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+}
+
+.filterSection ul {
+    list-style: none;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--muted);
+}
+
+.filterSection li::before {
+    content: "• ";
+    color: black;
+    font-weight: bold;
+}
+
+.formWrapper {
+    padding: 4rem;
+    border: 1px solid var(--border);
+}
+
+.successMessage {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.successMessage h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--foreground);
+}
+
+.successMessage p {
+    color: var(--muted);
+}
+
+.errorMessage {
+    color: #ef4444;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.formTitle {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.form {
+    display: grid;
+    gap: 2rem;
+}
+
+.inputGroup {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.inputGroup label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.inputGroup input,
+.inputGroup textarea {
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+    font-family: inherit;
+    font-size: 1rem;
+    border-radius: 0;
+}
+
+.inputGroup input:focus,
+.inputGroup textarea:focus {
+    outline: none;
+    border-color: black;
+}
+
+.submitBtn {
+    background: black;
+    color: white;
+    padding: 1.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.submitBtn:hover {
+    opacity: 0.9;
+}
+
+.footer {
+    padding: 4rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
+@media (max-width: 768px) {
+    .filtering {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+    }
+
+    .formWrapper {
+        padding: 2rem;
+    }
+}
