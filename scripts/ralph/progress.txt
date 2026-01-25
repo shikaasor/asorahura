@@ -15,6 +15,8 @@ Started: Sun Jan 25 12:27:56 WAT 2026
 - Active link detection: Use `usePathname()` hook and conditional className comparison
 - Server Actions: Use `"use server"` directive, typed interfaces for form data, async functions
 - Form patterns: Use dropdowns (select) for qualification fields, .formRow for 2-column layout
+- Dynamic content components: Use data arrays for easy content updates (LinkedInFeed, YouTubeFeed, SaasShowcase)
+- Feed component pattern: Header with icon/label, content list, "view all" footer link
 ---
 ## 2026-01-25 16:15 - US-001
 - Verified all acceptance criteria for Project Setup & Infrastructure
@@ -164,4 +166,34 @@ Started: Sun Jan 25 12:27:56 WAT 2026
   - Engage page uses 8rem top padding for fixed nav (slightly less than other pages)
   - Background narrative adds trust by explaining the "why" behind capabilities
   - Budget qualification upfront helps filter leads before form submission
+---
+
+## 2026-01-25 18:00 - US-007
+- Implemented Dynamic Content Integration for signaling site activity
+- Files created:
+  - src/components/LinkedInFeed.tsx: Recent LinkedIn posts placeholder
+  - src/components/LinkedInFeed.module.css: LinkedIn feed styling
+  - src/components/YouTubeFeed.tsx: Latest YouTube videos placeholder
+  - src/components/YouTubeFeed.module.css: YouTube feed styling
+  - src/components/SaasShowcase.tsx: External SaaS links/demos structure
+  - src/components/SaasShowcase.module.css: SaaS showcase styling
+- Files modified:
+  - src/app/page.tsx: Added "Recent Activity" section with all 3 components
+  - src/app/page.module.css: Added .activity, .activitySubtitle, .activityGrid styles
+- Component features:
+  - LinkedInFeed: 3 placeholder posts with title, excerpt, date, external link
+  - YouTubeFeed: 3 placeholder videos with thumbnail placeholder, duration, title, views
+  - SaasShowcase: 3 products with icons, status badges (Live/Beta/Coming Soon), descriptions
+  - All components use easily updatable data arrays at top of file
+  - framer-motion animations for staggered entry effects
+  - Consistent hover effects (translateX, border highlight)
+- Layout: 3-column grid on desktop, 1-column on mobile (1024px breakpoint)
+- Typecheck validation: npx tsc --noEmit passes successfully
+- **Learnings for future iterations:**
+  - Placeholder data pattern: Use const arrays at top of component for easy updates
+  - Feed components have consistent structure: header (icon + label), items list, footer CTA
+  - Status badges: Use conditional classNames for different states (statusLive, statusBeta, statusSoon)
+  - Thumbnail placeholders: Use gradient backgrounds when no actual images available
+  - align-items: start on activity grid keeps cards top-aligned when heights differ
+  - Components are reusable and can be placed on any page that needs activity signals
 ---
