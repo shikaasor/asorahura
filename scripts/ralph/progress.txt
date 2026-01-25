@@ -1,3 +1,22 @@
 # Ralph Progress Log
 Started: Sun Jan 25 12:27:56 WAT 2026
 ---
+## 2026-01-25 16:15 - US-001
+- Verified all acceptance criteria for Project Setup & Infrastructure
+- All infrastructure components already in place and functional
+- Files verified:
+  - package.json: Next.js, React, MDX dependencies configured
+  - tsconfig.json: TypeScript with strict mode enabled
+  - .eslintrc.json: ESLint with Next.js config
+  - next.config.mjs: MDX integration configured
+  - src/app/globals.css: Design tokens and typography defined
+  - src/app/layout.tsx: Google Fonts (Inter & Playfair Display) loaded
+- Typecheck validation: npx tsc --noEmit passes successfully
+- **Learnings for future iterations:**
+  - The project uses CSS custom properties (CSS variables) for design tokens in globals.css
+  - Typography setup: Playfair Display for headlines (serif), Inter for UI/body (sans-serif)
+  - Color palette: High-contrast light theme with subtle grid background for lab aesthetic
+  - Font loading pattern: Next.js font optimization with variable assignment in layout.tsx
+  - MDX is configured via next.config.mjs with @next/mdx wrapper
+  - Quality checks: Use `npx tsc --noEmit` for typecheck validation
+---
