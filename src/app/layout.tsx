@@ -8,6 +8,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif" });
 
 export const metadata: Metadata = {
+    metadataBase: new URL("https://asorahura.vercel.app"),
     title: "Asor Ahura | AI Automation Authority",
     description: "Transforming Work into Flow. AI-powered automation systems that eliminate operational drag.",
     openGraph: {

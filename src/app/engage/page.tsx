@@ -9,46 +9,20 @@ export default function EngagePage() {
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
     const [message, setMessage] = useState("");
 
-    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         setStatus("loading");
 
         const formData = new FormData(e.currentTarget);
-        
-        const name = formData.get("name") as string;
-        const email = formData.get("email") as string;
-        const company = formData.get("company") as string;
-        const role = formData.get("role") as string;
-        const companySize = formData.get("companySize") as string;
-        const operationalVolume = formData.get("operationalVolume") as string;
-        const challenge = formData.get("challenge") as string;
-        const timeline = formData.get("timeline") as string;
-        const budget = formData.get("budget") as string;
-        const context = formData.get("context") as string;
+        const result = await submitInquiry(formData);
 
-        const subject = `Inquiry: ${name} from ${company}`;
-        const body = `
-Name: ${name}
-Email: ${email}
-Role: ${role}
-Company: ${company} (${companySize})
-Volume: ${operationalVolume}
-
-Challenge:
-${challenge}
-
-Timeline: ${timeline}
-Budget: ${budget}
-
-Context:
-${context}
-        `.trim();
-
-        // Redirect to mailto
-        window.location.href = `mailto:asorahura@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        
-        setStatus("success");
-        setMessage("Opening your email client to send the inquiry...");
+        if (result.success) {
+            setStatus("success");
+            setMessage(result.message);
+        } else {
+            setStatus("error");
+            setMessage(result.message);
+        }
     }
 
     return (
@@ -96,7 +70,6 @@ ${context}
                         {status === "success" ? (
                             <div className={styles.successMessage}>
                                 <h3>{message}</h3>
-                                <p>We've received your inquiry and will review it shortly.</p>
                             </div>
                         ) : (
                             <form className={styles.form} onSubmit={handleSubmit}>
