@@ -15,7 +15,7 @@ export default function FlowmorphPage() {
                     animate={{ opacity: 1, scale: 1 }}
                     className={styles.logoWrapper}
                 >
-                    <Image src="/logo.png" alt="Flowmorph Logo" width={60} height={60} />
+                    <Image src="/flowmorphlogo.png" alt="Flowmorph Logo" width={60} height={60} />
                     <span className={styles.logoText}>Flowmorph</span>
                 </motion.div>
                 <Link href="/engage" className={styles.ctaSmall}>Engage</Link>
@@ -41,7 +41,7 @@ export default function FlowmorphPage() {
                     className={styles.diagramImageWrapper}
                 >
                     <Image
-                        src="/diagram.png"
+                        src="/flowmorphlogo.png"
                         alt="Flowmorph System Architecture"
                         width={400}
                         height={300}

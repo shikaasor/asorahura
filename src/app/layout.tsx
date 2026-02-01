@@ -9,6 +9,25 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif"
 export const metadata: Metadata = {
     title: "Asor Ahura | AI Automation Authority",
     description: "Transforming Work into Flow. AI-powered automation systems that eliminate operational drag.",
+    openGraph: {
+        title: "Asor Ahura | AI Automation Authority",
+        description: "Transforming Work into Flow. AI-powered automation systems that eliminate operational drag.",
+        images: [
+            {
+                url: "/banner1.png",
+                width: 1000,
+                height: 400,
+                alt: "Asor Ahura Banner",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        images: ["/banner1.png"],
+    },
+    icons: {
+        icon: "/logo.png",
+    },
 };
 
 export default function RootLayout({

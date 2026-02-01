@@ -7,27 +7,19 @@ import styles from "./SaasShowcase.module.css";
 const saasLinks = [
     {
         id: "1",
-        name: "DocFlow AI",
-        description: "Intelligent document processing demo",
+        name: "AI Resume Review",
+        description: "Intelligent document analysis & feedback system",
         status: "Live Demo",
-        url: "#",
+        url: "https://airesumereview-rewm52mul6i5jt9ynxc32c.streamlit.app/",
         icon: "📄",
     },
     {
         id: "2",
-        name: "AgentHub",
-        description: "AI agent orchestration platform",
-        status: "Beta",
-        url: "#",
-        icon: "🤖",
-    },
-    {
-        id: "3",
-        name: "ComplianceOS",
-        description: "Automated compliance monitoring",
-        status: "Coming Soon",
-        url: "#",
-        icon: "🛡️",
+        name: "Automation System Demo",
+        description: "Walkthrough of autonomous agent architecture",
+        status: "Live Demo",
+        url: "https://www.loom.com/share/ba14e20cd1544518b824439557f9d1db",
+        icon: "🎥",
     },
 ];
 

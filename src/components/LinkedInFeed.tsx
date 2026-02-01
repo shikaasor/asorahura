@@ -7,24 +7,24 @@ import styles from "./LinkedInFeed.module.css";
 const linkedInPosts = [
     {
         id: "1",
-        title: "The Future of AI Automation",
-        excerpt: "Why intelligent document processing is replacing manual data entry...",
-        date: "2 days ago",
-        url: "#",
+        title: "Good news for AI Engineers: You can run...",
+        excerpt: "Check out the latest update on running local models...",
+        date: "Recent",
+        url: "https://www.linkedin.com/posts/aahura_goodnews-for-ai-engineers-you-can-run-activity-7416564506623029248-SX89",
     },
     {
         id: "2",
-        title: "Systems Thinking in Operations",
-        excerpt: "The difference between adding tools and architecting systems...",
-        date: "1 week ago",
-        url: "#",
+        title: "Your Accounting Team is Probably Doing This",
+        excerpt: "Inefficiencies in financial workflows are costing you...",
+        date: "Recent",
+        url: "https://www.linkedin.com/posts/aahura_your-accounting-team-is-probably-doing-this-activity-7412513971213197312-OvEh",
     },
     {
         id: "3",
-        title: "Compliance-First Automation",
-        excerpt: "How to build audit trails into your automation from day one...",
-        date: "2 weeks ago",
-        url: "#",
+        title: "Most Founders Don't Know Their Business Is...",
+        excerpt: "Operational blindness is the silent killer of scale...",
+        date: "Recent",
+        url: "https://www.linkedin.com/posts/aahura_most-founders-dont-know-their-business-is-activity-7409697338270752768-hNt0",
     },
 ];
 
@@ -54,7 +54,7 @@ export default function LinkedInFeed() {
                 ))}
             </div>
             <a
-                href="https://linkedin.com/in/asorahura"
+                href="https://www.linkedin.com/in/aahura"
                 className={styles.viewAll}
                 target="_blank"
                 rel="noopener noreferrer"

@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import styles from "./page.module.css";
+import { Linkedin, Youtube, ArrowRight, Layers, Cpu, Globe, CheckCircle, Award, ShieldCheck, Database, Cloud } from "lucide-react";
 import LinkedInFeed from "@/components/LinkedInFeed";
 import YouTubeFeed from "@/components/YouTubeFeed";
 import SaasShowcase from "@/components/SaasShowcase";
@@ -10,126 +12,173 @@ import SaasShowcase from "@/components/SaasShowcase";
 export default function Home() {
     return (
         <main className={styles.main}>
+            {/* Hero Section */}
             <section className={styles.hero}>
-                <div className="container">
-                    <motion.h1
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        className={styles.headline}
-                    >
-                        Transforming Work into Flow.
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-                        className={styles.subhead}
-                    >
-                        I design AI-powered automation systems that eliminate operational drag,
-                        freeing human creativity and accelerating business growth.
-                    </motion.p>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-                        className={styles.actions}
-                    >
-                        <Link href="/engage" className={styles.primaryBtn}>Work With Me</Link>
-                        <Link href="/flowmorph" className={styles.secondaryBtn}>Explore Flowmorph &rarr;</Link>
-                    </motion.div>
-                </div>
-            </section>
+                <div className={styles.container}>
+                    <div className={styles.heroContent}>
+                        <motion.div 
+                            className={styles.heroText}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            <h1 className={styles.headline}>
+                                <span style={{ color: "#64748b" }}>AI Automation</span> <br />
+                                Made Simple.
+                            </h1>
+                            <p className={styles.subhead}>
+                                My name is Asor. I am an Applied AI Engineer with 6+ years of experience. I help businesses master AI agents, build automations,
+                                and turn complex workflows into smooth operations.
+                            </p>
+                            <div className={styles.actions}>
+                                <Link href="/engage" className={styles.primaryBtn}>
+                                    Work With Me
+                                </Link>
+                                <Link href="/flowmorph" className={styles.secondaryBtn}>
+                                    Explore Flowmorph
+                                </Link>
+                            </div>
+                        </motion.div>
 
-            <section className={styles.problem}>
-                <div className="container">
-                    <div className={styles.problemGrid}>
-                        <div className={styles.problemItem}>
-                            <h3>Operational Friction</h3>
-                            <p>Manual processes that drain team energy and introduce risk.</p>
-                        </div>
-                        <div className={styles.problemItem}>
-                            <h3>Cognitive Overload</h3>
-                            <p>Founders stuck in "the machine" instead of building the future.</p>
-                        </div>
-                        <div className={styles.problemItem}>
-                            <h3>Scaling Debt</h3>
-                            <p>Systems that break under growth instead of enabling it.</p>
-                        </div>
+                        <motion.div 
+                            className={styles.heroImageContainer}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                        >
+                            <Image
+                                src="/headshot1.png"
+                                alt="Asor Ahura"
+                                width={800}
+                                height={600}
+                                style={{ width: "100%", height: "auto", display: "block" }}
+                                priority
+                            />
+                        </motion.div>
                     </div>
                 </div>
             </section>
 
-            <section className={styles.philosophy}>
-                <div className="container">
-                    <h2 className={styles.sectionTitle}>Philosophy</h2>
-                    <div className={styles.philosophyGrid}>
-                        <div className={styles.philosophyItem}>
-                            <h3>Systems {'>'} Tools</h3>
-                            <p>We don't just add tools; we architect systems that redefine operations.</p>
-                        </div>
-                        <div className={styles.philosophyItem}>
-                            <h3>Flow {'>'} Optimization</h3>
-                            <p>Removing friction is more powerful than optimizing a broken process.</p>
-                        </div>
-                        <div className={styles.philosophyItem}>
-                            <h3>Automation = Liberation</h3>
-                            <p>We automate the mechanical to liberate the creative.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section className={styles.whatIDo}>
-                <div className="container">
-                    <h2 className={styles.sectionTitle}>What I Do</h2>
-                    <div className={styles.whatIDoGrid}>
-                        <div className={styles.whatIDoItem}>
-                            <h3>AI Automation Architecture</h3>
-                            <p>I design intelligent systems that understand, process, and act on unstructured data. From document intelligence to autonomous agents, I build the nervous system of modern operations.</p>
-                        </div>
-                        <div className={styles.whatIDoItem}>
-                            <h3>Compliance-First Automation</h3>
-                            <p>Automation in regulated industries requires precision. I architect systems that not only automate workflows but create auditable, compliant digital trails.</p>
-                        </div>
-                        <div className={styles.whatIDoItem}>
-                            <h3>Process Orchestration</h3>
-                            <p>Beyond point solutions, I build orchestration layers that connect disparate systems, eliminate handoffs, and create seamless operational flow.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
+            {/* Trusted By / Signals */}
             <section className={styles.signals}>
-                <div className="container">
-                    <h2 className={styles.sectionTitle}>Proof of Capability</h2>
-                    <div className={styles.signalsGrid}>
-                        <div className={styles.signalCard}>
-                            <div className={styles.signalIcon}>🧪</div>
-                            <h4>Technical Artifacts</h4>
-                            <p>Rigorous research and system blueprints.</p>
+                <div className={styles.signalsScroll}>
+                    {/* Doubled for seamless loop */}
+                    {[...Array(2)].map((_, i) => (
+                        <div key={i} style={{ display: "flex", gap: "4rem" }}>
+                            <div className={styles.signalItem}>
+                                <Cpu size={32} />
+                                <span>Python</span>
+                            </div>
+                            <div className={styles.signalItem}>
+                                <Layers size={32} />
+                                <span>n8n</span>
+                            </div>
+                            <div className={styles.signalItem}>
+                                <Globe size={32} />
+                                <span>LangChain</span>
+                            </div>
+                            <div className={styles.signalItem}>
+                                <Cloud size={32} />
+                                <span>AWS & Oracle</span>
+                            </div>
+                             <div className={styles.signalItem}>
+                                <Database size={32} />
+                                <span>RAG Pipelines</span>
+                            </div>
+                            <div className={styles.signalItem}>
+                                <CheckCircle size={32} />
+                                <span>Voiceflow</span>
+                            </div>
+                            <div className={styles.signalItem}>
+                                <Cpu size={32} />
+                                <span>FastAPI</span>
+                            </div>
+                             <div className={styles.signalItem}>
+                                <Layers size={32} />
+                                <span>Docker</span>
+                            </div>
                         </div>
-                        <div className={styles.signalCard}>
-                            <div className={styles.signalIcon}>💻</div>
-                            <h4>SaaS Demos</h4>
-                            <p>Live demonstrations of autonomous agents.</p>
+                    ))}
+                </div>
+            </section>
+
+            {/* What I Do */}
+            <section className={styles.whatIDo}>
+                <div className={styles.container}>
+                    <h2 className={styles.sectionTitle}>How I Can Help</h2>
+                    <div className={styles.cardGrid}>
+                        <div className={styles.card}>
+                            <div className={styles.cardIcon}>
+                                <Cpu size={24} />
+                            </div>
+                            <h3 className={styles.cardTitle}>Build AI Agents</h3>
+                            <p className={styles.cardText}>
+                                Utilizing LangChain, RAG, and LLMs, I build intelligent agents that handle complex tasks—like legal docs or support tickets—acting as a digital workforce.
+                            </p>
                         </div>
-                        <div className={styles.signalCard}>
-                            <div className={styles.signalIcon}>🐙</div>
-                            <h4>GitHub References</h4>
-                            <p>Open-source contributions to AI infrastructure.</p>
+                        <div className={styles.card}>
+                            <div className={styles.cardIcon}>
+                                <Layers size={24} />
+                            </div>
+                            <h3 className={styles.cardTitle}>Connect Systems</h3>
+                            <p className={styles.cardText}>
+                                Expert in n8n and API integration. I connect disparate apps (CRM, EMR, Databases) to create seamless, automated workflows that run on autopilot.
+                            </p>
+                        </div>
+                        <div className={styles.card}>
+                            <div className={styles.cardIcon}>
+                                <CheckCircle size={24} />
+                            </div>
+                            <h3 className={styles.cardTitle}>Scale Operations</h3>
+                            <p className={styles.cardText}>
+                                Proven track record of automating over 7,200 annual support hours and maintaining 98% system uptime. I build robust systems that grow with you.
+                            </p>
                         </div>
                     </div>
                 </div>
             </section>
 
+             {/* Certifications Section */}
+             <section className={styles.whatIDo} style={{ background: "#f8fafc" }}>
+                <div className={styles.container}>
+                    <h2 className={styles.sectionTitle}>Certifications & Expertise</h2>
+                    <div className={styles.cardGrid} style={{ gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))" }}>
+                        <div className={styles.card}>
+                            <div className={styles.cardIcon} style={{ color: "#d97706", background: "#fffbeb" }}>
+                                <Award size={24} />
+                            </div>
+                            <h3 className={styles.cardTitle}>Oracle AI & GenAI</h3>
+                            <p className={styles.cardText}>
+                                Certified Professional in AI Vector Search and Generative AI (2024/2025). Expert in RAG and semantic search.
+                            </p>
+                        </div>
+                         <div className={styles.card}>
+                            <div className={styles.cardIcon} style={{ color: "#059669", background: "#ecfdf5" }}>
+                                <ShieldCheck size={24} />
+                            </div>
+                            <h3 className={styles.cardTitle}>Cybersecurity (CC)</h3>
+                            <p className={styles.cardText}>
+                                Certified in Cybersecurity by ISC². I prioritize data privacy, compliance (GDPR/HIPAA), and secure architecture.
+                            </p>
+                        </div>
+                        <div className={styles.card}>
+                            <div className={styles.cardIcon} style={{ color: "#2563eb", background: "#eff6ff" }}>
+                                <Cloud size={24} />
+                            </div>
+                            <h3 className={styles.cardTitle}>Cloud Architecture</h3>
+                            <p className={styles.cardText}>
+                                Oracle APEX Cloud Developer & OCI Data Science Professional. Experienced in deploying scalable solutions on AWS & Cloud.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            {/* Activity / Connect */}
             <section className={styles.activity}>
-                <div className="container">
-                    <h2 className={styles.sectionTitle}>Recent Activity</h2>
-                    <p className={styles.activitySubtitle}>
-                        Stay connected with the latest insights, videos, and live systems.
-                    </p>
-                    <div className={styles.activityGrid}>
+                <div className={styles.container}>
+                    <h2 className={styles.sectionTitle}>Connect & Learn</h2>
+                    <div className={styles.feedGrid}>
                         <LinkedInFeed />
                         <YouTubeFeed />
                         <SaasShowcase />
@@ -137,18 +186,45 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className={styles.bridge}>
-                <div className="container">
-                    <p className={styles.bridgeText}>
-                        For companies seeking deep operational transformation &rarr;
-                        <Link href="/flowmorph"><strong>Flowmorph</strong></Link>
-                    </p>
-                </div>
-            </section>
+            {/* About Section */}
+             <section id="about" className={styles.about}>
+                 <div className={styles.container}>
+                     <div className={styles.aboutContent}>
+                         <h2 className={styles.aboutTitle}>About Me</h2>
+                         <div className={styles.aboutText}>
+                             <p>
+                                 Hi, I'm Asor. I'm an Applied AI Engineer and Health Informatics specialist with over 6 years of experience designing and deploying digital solutions.
+                             </p>
+                             <br />
+                             <p>
+                                 From overseeing EMR systems for 43 health facilities to building AI agents that automate thousands of support hours at ParsLabs, my career has been defined by one mission: using technology to solve real-world problems.
+                             </p>
+                             <br />
+                             <p>
+                                 I believe that removing friction is more powerful than optimizing a broken process.
+                                 Whether it's building a local AI platform like Localens or orchestrating multi-agent workflows, I build systems that redefine operations.
+                             </p>
+                         </div>
+                         <Link href="/engage" className={styles.secondaryBtn} style={{ background: "white", color: "#0f172a", border: "none" }}>
+                             Work With Me
+                         </Link>
+                     </div>
+                 </div>
+             </section>
 
+            
+            {/* Footer */}
             <footer className={styles.footer}>
-                <div className="container">
-                    <p>&copy; {new Date().getFullYear()} Asor Ahura. Elite AI Automation Authority.</p>
+                <div className={styles.container}>
+                    <div className={styles.footerSocials}>
+                        <a href="https://www.youtube.com/@asorahura" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>
+                            <Youtube size={20} /> YouTube
+                        </a>
+                        <a href="https://www.linkedin.com/in/aahura/" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>
+                            <Linkedin size={20} /> LinkedIn
+                        </a>
+                    </div>
+                    <p>&copy; {new Date().getFullYear()} Asor Ahura. All rights reserved.</p>
                 </div>
             </footer>
         </main>

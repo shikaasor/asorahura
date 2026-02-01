@@ -7,27 +7,27 @@ import styles from "./YouTubeFeed.module.css";
 const youtubeVideos = [
     {
         id: "1",
-        title: "Building AI Document Processing Pipelines",
-        thumbnail: "/thumbnails/video-1.jpg",
-        duration: "12:34",
-        views: "2.4K views",
-        url: "#",
+        title: "AI Automation with n8n & DeepSeek R1",
+        thumbnail: "/thumbnails/n8n thumbnail.jpg",
+        duration: "Watch",
+        views: "Latest",
+        url: "https://youtu.be/Uz-HJe-sK28",
     },
     {
         id: "2",
-        title: "From Manual to Autonomous: A Transformation Story",
-        thumbnail: "/thumbnails/video-2.jpg",
-        duration: "18:22",
-        views: "1.8K views",
-        url: "#",
+        title: "Local AI Integration Strategy",
+        thumbnail: "/thumbnails/local AI.png",
+        duration: "Watch",
+        views: "Popular",
+        url: "https://youtu.be/PVkXHyQDHsM",
     },
     {
         id: "3",
-        title: "Compliance Automation Deep Dive",
-        thumbnail: "/thumbnails/video-3.jpg",
-        duration: "24:15",
-        views: "3.1K views",
-        url: "#",
+        title: "The Anti-Gravity of Operations",
+        thumbnail: "/thumbnails/antigravity copy.png",
+        duration: "Watch",
+        views: "Insight",
+        url: "https://youtu.be/jZBm3YJp3C8",
     },
 ];
 
@@ -64,7 +64,7 @@ export default function YouTubeFeed() {
                 ))}
             </div>
             <a
-                href="https://youtube.com/@asorahura"
+                href="https://www.youtube.com/channel/UCua5vXRbyWhuZnOAKQgFmhQ"
                 className={styles.viewAll}
                 target="_blank"
                 rel="noopener noreferrer"

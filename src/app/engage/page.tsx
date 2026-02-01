@@ -3,25 +3,52 @@
 import { useState } from "react";
 import { submitInquiry } from "./actions";
 import styles from "./engage.module.css";
+import Testimonials from "@/components/Testimonials";
 
 export default function EngagePage() {
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
     const [message, setMessage] = useState("");
 
-    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         setStatus("loading");
 
         const formData = new FormData(e.currentTarget);
-        const result = await submitInquiry(formData);
+        
+        const name = formData.get("name") as string;
+        const email = formData.get("email") as string;
+        const company = formData.get("company") as string;
+        const role = formData.get("role") as string;
+        const companySize = formData.get("companySize") as string;
+        const operationalVolume = formData.get("operationalVolume") as string;
+        const challenge = formData.get("challenge") as string;
+        const timeline = formData.get("timeline") as string;
+        const budget = formData.get("budget") as string;
+        const context = formData.get("context") as string;
 
-        if (result.success) {
-            setStatus("success");
-            setMessage(result.message);
-        } else {
-            setStatus("error");
-            setMessage("Something went wrong. Please try again.");
-        }
+        const subject = `Inquiry: ${name} from ${company}`;
+        const body = `
+Name: ${name}
+Email: ${email}
+Role: ${role}
+Company: ${company} (${companySize})
+Volume: ${operationalVolume}
+
+Challenge:
+${challenge}
+
+Timeline: ${timeline}
+Budget: ${budget}
+
+Context:
+${context}
+        `.trim();
+
+        // Redirect to mailto
+        window.location.href = `mailto:asorahura@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        
+        setStatus("success");
+        setMessage("Opening your email client to send the inquiry...");
     }
 
     return (
@@ -29,113 +56,47 @@ export default function EngagePage() {
             <div className="container">
                 <section className={styles.content}>
                     <div className={styles.header}>
-                        <h1 className={styles.headline}>Selective Engagement.</h1>
+                        <h1 className={styles.headline}>Let's Build Something Great.</h1>
                         <p className={styles.subhead}>
-                            I only partner with founders and organizations where my systems can
-                            generate 10x-100x leverage. This is not for everyone.
+                            Whether you're a startup looking to scale or an enterprise needing operational efficiency, 
+                            I'm here to help you architect the right solution.
                         </p>
                     </div>
 
-                    {/* Background Narrative Section */}
-                    <div className={styles.backgroundSection}>
-                        <h2>The Architect Behind the Systems</h2>
-                        <div className={styles.backgroundContent}>
-                            <div className={styles.backgroundBlock}>
-                                <h3>Corporate Foundation</h3>
-                                <p>
-                                    Years in enterprise environments taught me that most operational
-                                    inefficiencies aren't technical problems—they're systems problems.
-                                    I've witnessed organizations drown in manual processes while
-                                    sitting on powerful tools they never properly architected.
-                                </p>
-                            </div>
-                            <div className={styles.backgroundBlock}>
-                                <h3>Software Engineering Roots</h3>
-                                <p>
-                                    My software engineering background gives me the rare ability to
-                                    see both the forest and the trees. I don't just recommend
-                                    solutions—I build them. From AI agent architectures to
-                                    compliance-first automation pipelines, every system I design
-                                    is grounded in production-grade engineering.
-                                </p>
-                            </div>
-                            <div className={styles.backgroundBlock}>
-                                <h3>The Synthesis</h3>
-                                <p>
-                                    This dual perspective—corporate operations meets software
-                                    architecture—is what enables the transformations I deliver.
-                                    I understand the business context, speak the language of
-                                    stakeholders, and possess the technical depth to execute.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Who I Work With Section */}
+                    {/* Who I Work With Section - Softened */}
                     <div className={styles.whoIWorkWith}>
-                        <h2>Who I Work With</h2>
+                        <h2>How I Can Help</h2>
                         <div className={styles.audienceGrid}>
                             <div className={styles.audienceCard}>
                                 <h3>Founders & Executives</h3>
                                 <p>
-                                    Leaders who understand that operational leverage is their
-                                    competitive moat. You're not looking for incremental improvements—
-                                    you want order-of-magnitude transformations.
+                                    Unlock operational leverage and focus on strategy while your systems handle the execution.
                                 </p>
                             </div>
                             <div className={styles.audienceCard}>
                                 <h3>Operations Leaders</h3>
                                 <p>
-                                    COOs and Ops Directors drowning in manual processes, reconciliation
-                                    nightmares, and scaling bottlenecks. You need systems that grow
-                                    with your volume, not headcount.
+                                    Eliminate bottlenecks and manual data entry. Build workflows that scale with your growth.
                                 </p>
                             </div>
                             <div className={styles.audienceCard}>
                                 <h3>Compliance & Risk</h3>
                                 <p>
-                                    Teams in regulated industries who need automation that doesn't
-                                    compromise auditability. SOC 2, HIPAA, financial services—
-                                    compliance-first is non-negotiable.
+                                    Automate with confidence. Create auditable, secure, and compliant digital trails.
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    {/* Engagement Thresholds */}
-                    <div className={styles.filtering}>
-                        <div className={styles.filterSection}>
-                            <h3>Engagement Criteria</h3>
-                            <ul>
-                                <li>High-volume operational complexity (1000+ documents/month or equivalent)</li>
-                                <li>Scaling startups (Series A+) or established enterprises</li>
-                                <li>Data-heavy or compliance-sensitive workflows</li>
-                                <li>Founders who value leverage over activity</li>
-                                <li>Willingness to invest in proper architecture, not quick fixes</li>
-                            </ul>
-                        </div>
-
-                        <div className={styles.filterSection}>
-                            <h3>Investment Threshold</h3>
-                            <p>
-                                Minimum engagement starts at <strong>$15,000/month</strong> for
-                                ongoing advisory and implementation, or project-based models
-                                with equity/performance components for the right fit.
-                            </p>
-                            <p className={styles.filterNote}>
-                                If this feels expensive, we're likely not the right match.
-                                The ROI on properly architected systems is measured in multiples, not percentages.
-                            </p>
-                        </div>
-                    </div>
+                    <Testimonials />
 
                     {/* Contact Form */}
-                    <div className={styles.formWrapper}>
-                        <h2 className={styles.formTitle}>Initiate Inquiry</h2>
+                    <div className={styles.formWrapper} style={{ marginTop: "4rem" }}>
+                        <h2 className={styles.formTitle}>Tell me about your project</h2>
                         {status === "success" ? (
                             <div className={styles.successMessage}>
                                 <h3>{message}</h3>
-                                <p>We've received your inquiry and will review it against our current availability.</p>
+                                <p>We've received your inquiry and will review it shortly.</p>
                             </div>
                         ) : (
                             <form className={styles.form} onSubmit={handleSubmit}>
@@ -204,7 +165,7 @@ export default function EngagePage() {
                                     <label htmlFor="budget">Budget Alignment</label>
                                     <select id="budget" name="budget" required>
                                         <option value="">Select budget range...</option>
-                                        <option value="under-15k">Under $15k/month (may not be a fit)</option>
+                                        <option value="under-15k">Under $15k/month</option>
                                         <option value="15k-30k">$15k - $30k/month</option>
                                         <option value="30k-50k">$30k - $50k/month</option>
                                         <option value="50k+">$50k+/month or project-based</option>
