@@ -100,6 +100,16 @@
     background: #f1f5f9;
 }
 
+.heroImageCaption {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #0f172a;
+}
+
 /* Sections General */
 .sectionTitle {
     font-size: 2.25rem;
@@ -112,48 +122,30 @@
 
 /* Trusted By / Signals */
 .signals {
+    --gap: 4rem;
     padding: 4rem 0;
     border-top: 1px solid #f1f5f9;
     border-bottom: 1px solid #f1f5f9;
     background: #f8fafc;
     overflow: hidden;
-}
-
-.signalsScroll {
     display: flex;
-    gap: 4rem;
-    animation: scroll 30s linear infinite;
-    white-space: nowrap;
+    gap: var(--gap);
 }
 
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-.signalItem {
+.tickerContent {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    opacity: 0.6;
-    filter: grayscale(100%);
-    transition: all 0.3s;
+    gap: var(--gap);
+    flex-shrink: 0;
+    min-width: 100%;
+    animation: ticker 30s linear infinite;
 }
 
-.signalItem:hover {
-    opacity: 1;
-    filter: grayscale(0%);
+@keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-100% - var(--gap))); }
 }
 
-.signalItem span {
-    font-weight: 700;
-    font-size: 1.25rem;
-    color: #334155;
-}
 
 /* What I Do / Cards */
 .whatIDo {

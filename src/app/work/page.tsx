@@ -7,51 +7,55 @@ import styles from "./work.module.css";
 
 const systems = [
     {
-        title: "Document Intelligence",
-        description: "Enterprise-scale extraction and reasoning from unstructured data.",
-        metrics: "99.2% Accuracy | 10k docs/hr",
-        toolchain: "LLM Orchestration + OCR Pipelines + Vector Stores",
+        slug: "cervical-cancer-screening-tool",
+        title: "AI-Powered Cervical Cancer Screening",
+        description: "Offline-first diagnostic tool deployed across 39+ health facilities in Kano State, Nigeria. Built for frontline health workers with zero cloud dependency.",
+        metrics: "39+ Facilities Deployed | EU HORIZON €2.25M | Zero Cloud Dependency",
+        toolchain: "YOLOv8 + Streamlit + Supabase + Python/Pillow + Offline Queue",
         caseStudy: {
-            context: "Financial services company processing 5,000+ loan applications per week",
-            bottleneck: "Manual document review creating 72-hour processing delays",
-            approach: "Multi-stage extraction pipeline with confidence scoring and human-in-the-loop fallback",
-            outcome: "Reduced processing time to 4 hours, 99.2% accuracy, zero compliance violations"
+            context: "Rural health facilities in Kano State with no reliable internet and no nearby specialists",
+            bottleneck: "Existing AI models trained on Caucasian data — clinically unsafe for African populations; no offline inference capability",
+            approach: "Local YOLOv8 inference with in-memory EXIF stripping, confidence-based clinical escalation, blind review protocol, and automated retraining data flywheel",
+            outcome: "Live across 39+ facilities; zero patient PII leaving the clinic; actively positioned for EU HORIZON grant up to €2.25M"
         }
     },
     {
-        title: "Process Orchestration",
-        description: "Dynamic workflow adaptation based on real-time business signals.",
-        metrics: "40% Friction Reduction | 24/7 Autonomy",
-        toolchain: "State Machines + Event-driven Streams + API Mesh",
+        slug: "lloyds-list-ocr-pipeline",
+        title: "Historical Document Digitization Pipeline",
+        description: "Digitized 7,826 pages of 18th-century Lloyd's List maritime records for a European research institution — 260 years of shipping history made searchable.",
+        metrics: "43,103 Records Extracted | 7,826 Pages | 260 Years of History",
+        toolchain: "Chandra OCR + Gemini API + Python + Three-Stage Verification Workflow",
         caseStudy: {
-            context: "B2B SaaS company with complex multi-step customer onboarding",
-            bottleneck: "Manual handoffs between teams causing 40% drop-off rate",
-            approach: "Event-driven orchestration layer connecting CRM, billing, and provisioning systems",
-            outcome: "Fully automated onboarding, 85% reduction in time-to-value, 12% increase in activation"
+            context: "European research institution with 20 bound editions of Lloyd's List (1762–1826) locked in archaic handwritten typography",
+            bottleneck: "Multi-column layouts, ditto marks, pre-modern typography, and zero standardization made off-the-shelf OCR unviable",
+            approach: "Two-model pipeline: Chandra OCR for structure-preserving markdown, Gemini for JSON extraction with 25KB of precision prompt rules and a three-stage extractor/verifier/corrector loop",
+            outcome: "43,103 marine incident records delivered — verbatim accuracy enforced, fully auditable, research-grade"
         }
     },
     {
-        title: "AI Agent Architectures",
-        description: "Multi-agent systems designed for autonomous task completion with safety guardrails.",
-        metrics: "Sub-second Reasoning Latency | Multi-modal Support",
-        toolchain: "LangGraph + Custom Agent Runtimes + Self-Correction Loops",
+        slug: "ai-resume-reviewer",
+        title: "Multi-LLM Resume Screening Platform",
+        description: "Open-source AI hiring platform supporting Claude, GPT-4, Gemini, Groq, and local Ollama — switchable from a sidebar with no code changes.",
+        metrics: "2,000+ Resumes Reviewed | 3 HR Departments | 5 AI Providers",
+        toolchain: "Streamlit + PyPDF2 + Chandra OCR + Multi-provider LLM Dispatch + OpenPyXL",
         caseStudy: {
-            context: "Healthcare provider managing patient intake and triage workflows",
-            bottleneck: "High-volume intake forms requiring clinical judgment for routing",
-            approach: "Multi-agent system with specialized routing, validation, and escalation agents",
-            outcome: "80% of cases auto-routed correctly, 60% faster triage, maintained quality standards"
+            context: "HR departments manually screening 100–150+ resumes per hiring cycle with no structured evaluation framework",
+            bottleneck: "Reviewer fatigue, inconsistent scoring, and single-vendor LLM dependency creating operational and privacy risk",
+            approach: "Provider-agnostic LLM dispatch layer with three domain-specific scorecards (AI Advisor, General, STL Consultant), evidence-anchored 1-5 scoring, and color-coded Excel batch exports",
+            outcome: "2,000+ resumes processed across 3 active HR departments; fully local operation via Ollama for data-sensitive environments; MIT-licensed on GitHub"
         }
     },
     {
-        title: "Compliance Automation",
-        description: "Automated auditing and regulatory adherence at the speed of code.",
-        metrics: "Zero-error Audit Logs | Real-time Governance",
-        toolchain: "Policy-as-Code + Automated Verification + Immutable Logs",
+        slug: "chatbotly-nlp-analytics",
+        title: "Chatbot NLP Analytics Pipeline",
+        description: "Analyzed 16,454 chatbot conversation logs for a Swiss insurance company to surface knowledge gaps, escalation drivers, and engagement patterns.",
+        metrics: "16,454 Conversations Analyzed | 15 Topic Categories | 3 Languages",
+        toolchain: "GPT-4 + Gemini + Python + Multi-provider LLM Dispatch + Excel Reporting",
         caseStudy: {
-            context: "Fintech startup requiring SOC 2 compliance for enterprise sales",
-            bottleneck: "Manual audit preparation consuming weeks of engineering time quarterly",
-            approach: "Automated policy enforcement with real-time monitoring and immutable audit trails",
-            outcome: "Continuous compliance posture, 90% reduction in audit prep time, zero findings"
+            context: "Swiss pet insurance company with a deployed multilingual chatbot (German, French, Spanish) experiencing unexpectedly high human escalation rates",
+            bottleneck: "No visibility into which topics were failing, why customers escalated, or what the knowledge base was missing",
+            approach: "LLM-based multi-dimensional classification across topic category, knowledge gap detection, escalation detection, and engagement patterns — with abstracted provider dispatch for GPT-4 and Gemini",
+            outcome: "Revealed that escalations directly tracked knowledge gaps in claims and coverage topics; surfaced operational blindness the client had no metrics for; delivered actionable knowledge base expansion roadmap"
         }
     },
 ];
@@ -99,6 +103,10 @@ export default function WorkPage() {
                                         <strong>Outcome:</strong> {system.caseStudy.outcome}
                                     </div>
                                 </div>
+
+                                <Link href={`/articles/${system.slug}`} className={styles.articleLink}>
+                                    Read Full Article →
+                                </Link>
                             </div>
                             <div className={styles.systemDiagram}>
                                 <motion.div

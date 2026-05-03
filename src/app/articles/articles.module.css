@@ -1,0 +1,159 @@
+.main {
+    min-height: 100vh;
+    background: #ffffff;
+    padding-top: 10rem;
+}
+
+/* Hero */
+.hero {
+    padding: 6rem 0 4rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-bottom: 1rem;
+}
+
+.headline {
+    font-size: 3.5rem;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    max-width: 700px;
+}
+
+.subhead {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 580px;
+    line-height: 1.7;
+}
+
+/* Grid */
+.grid {
+    padding: 5rem 0;
+}
+
+.card {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 2.5rem;
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+}
+
+.card:last-child {
+    border-bottom: none;
+}
+
+.cardNumber {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    padding-top: 0.4rem;
+    font-family: var(--font-sans);
+}
+
+.cardBody {
+    flex: 1;
+}
+
+.cardMeta {
+    margin-bottom: 0.75rem;
+}
+
+.metrics {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--foreground);
+    background: #f1f5f9;
+    padding: 0.3rem 0.75rem;
+    display: inline-block;
+}
+
+.cardTitle {
+    font-size: 1.6rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    max-width: 680px;
+}
+
+.cardDesc {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 640px;
+    margin-bottom: 1.5rem;
+}
+
+.cardTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag {
+    font-size: 0.72rem;
+    color: var(--muted);
+    background: #f9fafb;
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.6rem;
+}
+
+.cardAction {
+    padding-top: 0.5rem;
+    flex-shrink: 0;
+}
+
+.readLink {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--foreground);
+    white-space: nowrap;
+    border-bottom: 1px solid var(--foreground);
+    padding-bottom: 0.15rem;
+    transition: opacity 0.2s ease;
+}
+
+.readLink:hover {
+    opacity: 0.6;
+}
+
+/* Footer */
+.footer {
+    padding: 4rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+}
+
+@media (max-width: 768px) {
+    .headline {
+        font-size: 2.2rem;
+    }
+
+    .card {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .cardNumber {
+        padding-top: 0;
+    }
+
+    .cardTitle {
+        font-size: 1.3rem;
+    }
+}

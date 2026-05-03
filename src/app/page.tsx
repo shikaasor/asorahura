@@ -4,10 +4,24 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import styles from "./page.module.css";
-import { Linkedin, Youtube, ArrowRight, Layers, Cpu, Globe, CheckCircle, Award, ShieldCheck, Database, Cloud } from "lucide-react";
+import { Linkedin, Youtube, Cpu, Layers, CheckCircle, Award, ShieldCheck, Cloud } from "lucide-react";
 import LinkedInFeed from "@/components/LinkedInFeed";
 import YouTubeFeed from "@/components/YouTubeFeed";
 import SaasShowcase from "@/components/SaasShowcase";
+
+const logos = [
+    { src: "/logos/python-logo.webp",       alt: "Python",       label: "Python",    w: 32,  h: 32  },
+    { src: "/logos/n8n-logo.webp",          alt: "n8n",                              w: 80,  h: 32  },
+    { src: "/logos/langchain-logo.webp",    alt: "LangChain",    label: "LangChain", w: 32,  h: 32  },
+    { src: "/logos/gcp-logo.webp",          alt: "Google Cloud",                     w: 220, h: 110 },
+    { src: "/logos/Oracle-Logo.webp",       alt: "Oracle",                           w: 180, h: 88  },
+    { src: "/logos/voiceflow-logo.webp",    alt: "Voiceflow",    label: "Voiceflow", w: 32,  h: 32  },
+    { src: "/logos/fastapi-logo.webp",      alt: "FastAPI",      label: "FastAPI",   w: 32,  h: 32  },
+    { src: "/logos/docker-logo.webp",       alt: "Docker",       label: "Docker",    w: 32,  h: 32  },
+    { src: "/logos/claude-code-logo.webp",  alt: "Claude Code",                      w: 140, h: 44  },
+    { src: "/logos/hostinger-logo.webp",    alt: "Hostinger",                        w: 80,  h: 80  },
+    { src: "/logos/huggingface-logo.webp",  alt: "Hugging Face",                     w: 320, h: 210 },
+];
 
 export default function Home() {
     return (
@@ -40,20 +54,22 @@ export default function Home() {
                             </div>
                         </motion.div>
 
-                        <motion.div 
-                            className={styles.heroImageContainer}
+                        <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
                         >
-                            <Image
-                                src="/headshot1.png"
-                                alt="Asor Ahura"
-                                width={800}
-                                height={600}
-                                style={{ width: "100%", height: "auto", display: "block" }}
-                                priority
-                            />
+                            <div className={styles.heroImageContainer}>
+                                <Image
+                                    src="/headshot1.png"
+                                    alt="Asor Ahura"
+                                    width={800}
+                                    height={600}
+                                    style={{ width: "100%", height: "auto", display: "block" }}
+                                    priority
+                                />
+                            </div>
+                            <p className={styles.heroImageCaption}>Oracle Certified Generative AI Professional</p>
                         </motion.div>
                     </div>
                 </div>
@@ -61,45 +77,25 @@ export default function Home() {
 
             {/* Trusted By / Signals */}
             <section className={styles.signals}>
-                <div className={styles.signalsScroll}>
-                    {/* Doubled for seamless loop */}
-                    {[...Array(2)].map((_, i) => (
-                        <div key={i} style={{ display: "flex", gap: "4rem" }}>
-                            <div className={styles.signalItem}>
-                                <Cpu size={32} />
-                                <span>Python</span>
+                {[0, 1].map((copyIdx) => (
+                    <div key={copyIdx} className={styles.tickerContent} aria-hidden={copyIdx === 1}>
+                        {logos.map((logo) => (
+                            <div
+                                key={logo.alt}
+                                style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexShrink: 0, opacity: 0.85 }}
+                            >
+                                <Image
+                                    src={logo.src}
+                                    alt={logo.alt}
+                                    width={logo.w}
+                                    height={logo.h}
+                                    style={{ objectFit: "contain" }}
+                                />
+                                {"label" in logo && <span style={{ fontWeight: 700, fontSize: "1.1rem", color: "#334155" }}>{logo.label}</span>}
                             </div>
-                            <div className={styles.signalItem}>
-                                <Layers size={32} />
-                                <span>n8n</span>
-                            </div>
-                            <div className={styles.signalItem}>
-                                <Globe size={32} />
-                                <span>LangChain</span>
-                            </div>
-                            <div className={styles.signalItem}>
-                                <Cloud size={32} />
-                                <span>AWS & Oracle</span>
-                            </div>
-                             <div className={styles.signalItem}>
-                                <Database size={32} />
-                                <span>RAG Pipelines</span>
-                            </div>
-                            <div className={styles.signalItem}>
-                                <CheckCircle size={32} />
-                                <span>Voiceflow</span>
-                            </div>
-                            <div className={styles.signalItem}>
-                                <Cpu size={32} />
-                                <span>FastAPI</span>
-                            </div>
-                             <div className={styles.signalItem}>
-                                <Layers size={32} />
-                                <span>Docker</span>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                        ))}
+                    </div>
+                ))}
             </section>
 
             {/* What I Do */}

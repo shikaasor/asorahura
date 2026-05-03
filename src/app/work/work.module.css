@@ -175,6 +175,23 @@
     animation: flow 4s infinite ease-in-out;
 }
 
+.articleLink {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--foreground);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid var(--foreground);
+    padding-bottom: 0.15rem;
+    transition: opacity 0.2s ease;
+}
+
+.articleLink:hover {
+    opacity: 0.5;
+}
+
 .footer {
     padding: 4rem 0;
     text-align: center;

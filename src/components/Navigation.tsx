@@ -40,6 +40,9 @@ export default function Navigation() {
                     <Link href="/work" className={pathname === "/work" ? styles.active : ""}>
                         Work
                     </Link>
+                    <Link href="/articles" className={pathname.startsWith("/articles") ? styles.active : ""}>
+                        Articles
+                    </Link>
                     <Link href="/flowmorph" className={pathname === "/flowmorph" ? styles.active : ""}>
                         Flowmorph
                     </Link>
