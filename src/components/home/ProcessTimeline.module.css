@@ -1,0 +1,106 @@
+.section {
+  padding: 6rem 0;
+  background: #ffffff;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  width: 100%;
+}
+
+.heading {
+  font-size: 2.25rem;
+  font-weight: 800;
+  text-align: center;
+  color: #0f172a;
+  margin-bottom: 3.5rem;
+  letter-spacing: -0.02em;
+}
+
+.timeline {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  position: relative;
+}
+
+.step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding: 0 1rem;
+}
+
+.badge {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: #0f172a;
+  color: #ffffff;
+  font-size: 1.125rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-bottom: 1.25rem;
+  z-index: 1;
+  position: relative;
+}
+
+.connector {
+  position: absolute;
+  top: 1.5rem;
+  left: 50%;
+  right: -50%;
+  height: 2px;
+  background: #e2e8f0;
+  z-index: 0;
+}
+
+.content {
+  flex: 1;
+}
+
+.stepName {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+.stepDesc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #64748b;
+}
+
+@media (max-width: 768px) {
+  .timeline {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .step {
+    flex-direction: row;
+    text-align: left;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 0;
+    width: 100%;
+  }
+
+  .badge {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .connector {
+    display: none;
+  }
+}
