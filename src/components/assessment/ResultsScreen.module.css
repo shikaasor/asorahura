@@ -1,0 +1,209 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Score */
+.scoreBlock {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  background: #0a0a0a;
+  border-radius: 1rem;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.scoreLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9ca3af;
+}
+
+.scoreNumber {
+  font-size: clamp(4rem, 12vw, 6rem);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  color: #fff;
+}
+
+.scoreMax {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #6b7280;
+  margin-left: 0.1em;
+}
+
+.tier {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #d1d5db;
+  margin-top: 0.25rem;
+}
+
+/* Description */
+.description {
+  background: #f9fafb;
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  font-size: 0.975rem;
+  color: #374151;
+  line-height: 1.7;
+  border: 1px solid #e5e7eb;
+}
+
+/* Bullets */
+.opportunities {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.oppTitle {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+
+.bullet {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.875rem 1rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 0.625rem;
+  background: #fff;
+}
+
+.bulletDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #0a0a0a;
+  flex-shrink: 0;
+  margin-top: 0.45rem;
+}
+
+.bulletText {
+  font-size: 0.9rem;
+  color: #374151;
+  line-height: 1.5;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 0.5rem 0;
+}
+
+/* Email banner */
+.emailBanner {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+}
+
+.emailCheck {
+  font-size: 1rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.emailBannerTitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #15803d;
+}
+
+.emailBannerSub {
+  font-size: 0.825rem;
+  color: #166534;
+  margin-top: 0.2rem;
+  line-height: 1.5;
+}
+
+/* PDF download */
+.pdfBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 0.75rem;
+  background: #f9fafb;
+}
+
+.pdfTitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0a0a0a;
+}
+
+.pdfSub {
+  font-size: 0.825rem;
+  color: #6b7280;
+  margin-top: 0.15rem;
+}
+
+.pdfLink {
+  display: inline-block;
+  align-self: flex-start;
+  background: #0a0a0a;
+  color: #fff;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background 0.15s ease;
+}
+
+.pdfLink:hover {
+  background: #1f1f1f;
+  opacity: 1;
+}
+
+/* CTA */
+.cta {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ctaHint {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+.ctaBtn {
+  display: inline-block;
+  border: 2px solid #0a0a0a;
+  color: #0a0a0a;
+  padding: 0.875rem 2rem;
+  border-radius: 0.625rem;
+  font-size: 0.975rem;
+  font-weight: 700;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.ctaBtn:hover {
+  background: #0a0a0a;
+  color: #fff;
+  opacity: 1;
+}

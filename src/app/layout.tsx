@@ -42,7 +42,9 @@ export default function RootLayout({
             <body className={`${inter.variable} ${playfair.variable}`}>
                 <ParticleWave />
                 <Navigation />
-                {children}
+                <div style={{ paddingTop: "88px" }}>
+                    {children}
+                </div>
             </body>
         </html>
     );

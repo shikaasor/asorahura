@@ -1,5 +1,9 @@
 "use client";
 
+import styles from "./QuestionCard.module.css";
+
+const LETTERS = ["A", "B", "C", "D", "E"];
+
 interface Props {
   question: { id: number; text: string };
   options: string[];
@@ -7,29 +11,19 @@ interface Props {
   onAnswer: (answer: string) => void;
 }
 
-export function QuestionCard({
-  question,
-  options,
-  selectedAnswer,
-  onAnswer,
-}: Props) {
+export function QuestionCard({ question, options, selectedAnswer, onAnswer }: Props) {
   return (
-    <div className="space-y-8">
-      <div className="mb-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">{question.text}</h2>
-      </div>
-      <div className="space-y-4">
-        {options.map((option) => (
+    <div className={styles.wrap}>
+      <h2 className={styles.question}>{question.text}</h2>
+      <div className={styles.options}>
+        {options.map((option, i) => (
           <button
             key={option}
             onClick={() => onAnswer(option)}
-            className={`w-full text-left px-6 py-5 rounded-xl border-2 transition-all font-medium text-lg ${
-              selectedAnswer === option
-                ? "border-gray-900 bg-gray-900 text-white shadow-lg"
-                : "border-gray-200 bg-white hover:border-gray-400 hover:bg-gray-50 text-gray-800"
-            }`}
+            className={`${styles.option} ${selectedAnswer === option ? styles.selected : ""}`}
           >
-            {option}
+            <span className={styles.letter}>{LETTERS[i]}</span>
+            <span className={styles.optionText}>{option}</span>
           </button>
         ))}
       </div>

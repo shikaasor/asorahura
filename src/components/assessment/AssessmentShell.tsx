@@ -12,15 +12,16 @@ import {
 } from "@/lib/assessment";
 import { submitAssessmentForEmail } from "@/app/assessment/actions";
 import type { EmailGateInput } from "@/lib/validation";
+import styles from "./AssessmentShell.module.css";
 
 type Step = "intro" | "questions" | "email-gate" | "results";
 
 const STORAGE_KEY = "asor_assessment_answers";
-const TOTAL_QUESTIONS = assessmentQuestions.length; // 8
+const TOTAL_QUESTIONS = assessmentQuestions.length;
 
 export function AssessmentShell() {
   const [step, setStep] = useState<Step>("intro");
-  const [currentQ, setCurrentQ] = useState(0); // index into assessmentQuestions
+  const [currentQ, setCurrentQ] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [result, setResult] = useState<{
     score: number;
@@ -30,7 +31,6 @@ export function AssessmentShell() {
   const [isLoading, setIsLoading] = useState(false);
   const [emailError, setEmailError] = useState<string | undefined>();
 
-  // Restore from localStorage on mount
   useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
@@ -51,7 +51,6 @@ export function AssessmentShell() {
     }
   }, []);
 
-  // Persist to localStorage when answering questions
   useEffect(() => {
     if (step === "questions") {
       localStorage.setItem(
@@ -69,7 +68,6 @@ export function AssessmentShell() {
     if (currentQ < assessmentQuestions.length - 1) {
       setCurrentQ(currentQ + 1);
     } else {
-      // All questions done — show email gate
       setStep("email-gate");
       localStorage.removeItem(STORAGE_KEY);
     }
@@ -100,36 +98,26 @@ export function AssessmentShell() {
 
   const q = assessmentQuestions[currentQ];
   const role = (answers[1] as Role) || "Other";
-  const displayQuestionNumber = currentQ + 1; // 1-based for display
+  const displayQuestionNumber = currentQ + 1;
 
   if (step === "intro") {
     return (
-      <div className="text-center space-y-8">
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-          Ready to find your score?
-        </h2>
-        <p className="text-gray-600 text-xl">
+      <div className={styles.intro}>
+        <h2 className={styles.introTitle}>Ready to find your score?</h2>
+        <p className={styles.introSub}>
           8 questions · takes about 4 minutes · personalized score at the end
         </p>
-        <div>
-          <button
-            onClick={() => setStep("questions")}
-            className="bg-black text-white px-10 py-4 rounded-lg text-lg font-bold hover:bg-gray-800 transition-colors shadow-lg"
-          >
-            Start Assessment
-          </button>
-        </div>
+        <button className={styles.startBtn} onClick={() => setStep("questions")}>
+          Start Assessment
+        </button>
       </div>
     );
   }
 
   if (step === "questions") {
     return (
-      <div className="space-y-8">
-        <ProgressBar
-          current={displayQuestionNumber}
-          total={TOTAL_QUESTIONS}
-        />
+      <div className={styles.questionWrap}>
+        <ProgressBar current={displayQuestionNumber} total={TOTAL_QUESTIONS} />
         <QuestionCard
           question={q}
           options={getQuestionOptions(q.id, role)}

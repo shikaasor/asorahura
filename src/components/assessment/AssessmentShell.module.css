@@ -1,0 +1,49 @@
+/* Intro */
+.intro {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.introTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0a0a0a;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.introSub {
+  font-size: 1rem;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.startBtn {
+  display: inline-block;
+  background: #0a0a0a;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 1rem 2.5rem;
+  border-radius: 0.625rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+  letter-spacing: -0.01em;
+  margin-top: 0.5rem;
+}
+
+.startBtn:hover {
+  background: #1f1f1f;
+  transform: translateY(-1px);
+}
+
+/* Questions */
+.questionWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}

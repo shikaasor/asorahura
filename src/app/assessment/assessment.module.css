@@ -1,0 +1,68 @@
+.page {
+  min-height: 100vh;
+  background: #fff;
+}
+
+.hero {
+  background: #0a0a0a;
+  color: #fff;
+  padding: 5rem 2rem 4rem;
+}
+
+.heroInner {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.heroTitle {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.heroSub {
+  font-size: 1.1rem;
+  color: #9ca3af;
+  line-height: 1.6;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.trustPills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.pill {
+  border: 1px solid #374151;
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
+  font-size: 0.8rem;
+  color: #9ca3af;
+  letter-spacing: 0.01em;
+}
+
+.shell {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 4rem 2rem 6rem;
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 3rem 1.25rem 2.5rem;
+  }
+
+  .shell {
+    padding: 2.5rem 1.25rem 4rem;
+  }
+}
