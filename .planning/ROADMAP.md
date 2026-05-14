@@ -26,6 +26,14 @@
 6. **Mobile responsive** across all three journeys (homepage → assessment → checkout)
 7. **Trust signal visible** below homepage CTAs (Oracle Certified, 7,200+ hours, 3 continents)
 
+**Plans:** 4 plans across 2 waves
+
+Plans:
+- [ ] 01-1a-homepage.md — Build all 11 homepage sections (hero, pain, services, social proof, timeline, about, lead magnet strip, footer)
+- [ ] 01-1b-assessment.md — Build 8-question role-branching assessment with email gate, scoring, results screen, PDF generation, and Resend delivery
+- [ ] 01-1c-checkout.md — Build Paddle inline checkout with 4-tier pricing, order summary, and trust badges
+- [ ] 01-2-integration.md — Integration pass: fix layout/config, cross-page consistency audit, full end-to-end verification
+
 **Estimated:** 1.5 weeks
 **Dependencies:** None (phase 1 is foundation)
 
