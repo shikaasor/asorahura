@@ -21,14 +21,9 @@ export default function HeroSection() {
               <Link href="/assessment" className={styles.primaryBtn}>
                 Take the Free AI Readiness Assessment
               </Link>
-              <a
-                href="https://calendly.com/asorahura"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.secondaryBtn}
-              >
-                Book a Strategy Call
-              </a>
+              <Link href="/checkout" className={styles.secondaryBtn}>
+                Book a Discovery Call
+              </Link>
             </div>
             <TrustSignals />
           </div>
