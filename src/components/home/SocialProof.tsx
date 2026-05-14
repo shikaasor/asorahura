@@ -9,9 +9,9 @@ const testimonials = [
   },
   {
     quote:
-      "After reviewing over 2,000 resumes and repositioning my profile, I landed three senior offers in 6 weeks. The AI-driven approach cut my job search time by more than half.",
-    name: "J.A.",
-    role: "Senior Product Manager",
+      "Asor mapped our entire client delivery process and identified three workflows we were doing manually every week. Within 60 days those were fully automated. Our team now handles 40% more clients without adding headcount.",
+    name: "T.N.",
+    role: "Founder, Professional Services",
   },
   {
     quote:
