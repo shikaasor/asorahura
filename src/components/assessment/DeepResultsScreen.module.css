@@ -4,7 +4,6 @@
   gap: 2rem;
 }
 
-/* Score */
 .scoreBlock {
   text-align: center;
   padding: 2.5rem 1.5rem;
@@ -30,7 +29,6 @@
   font-weight: 900;
   letter-spacing: -0.05em;
   line-height: 1;
-  color: #fff;
 }
 
 .scoreMax {
@@ -47,7 +45,6 @@
   margin-top: 0.25rem;
 }
 
-/* Description */
 .description {
   background: #f9fafb;
   border-radius: 0.75rem;
@@ -58,55 +55,96 @@
   border: 1px solid #e5e7eb;
 }
 
-/* Bullets */
-.opportunities {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.oppTitle {
+.sectionTitle {
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: #6b7280;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 
-.bullet {
+.dimensions {
   display: flex;
+  flex-direction: column;
   gap: 0.75rem;
-  align-items: flex-start;
-  padding: 0.875rem 1rem;
+}
+
+.dimCard {
   border: 1.5px solid #e5e7eb;
-  border-radius: 0.625rem;
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
   background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.bulletDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
+.dimCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.dimCardLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.dimCode {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.25rem;
   background: #0a0a0a;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
   flex-shrink: 0;
-  margin-top: 0.45rem;
 }
 
-.bulletText {
+.dimName {
   font-size: 0.9rem;
-  color: #374151;
+  font-weight: 700;
+  color: #0a0a0a;
+}
+
+.dimScore {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #0a0a0a;
+  white-space: nowrap;
+}
+
+.dimBar {
+  height: 4px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.dimFill {
+  height: 100%;
+  background: #0a0a0a;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.dimInterpret {
+  font-size: 0.8rem;
+  color: #6b7280;
   line-height: 1.5;
 }
 
-/* Divider */
 .divider {
   height: 1px;
   background: #e5e7eb;
-  margin: 0.5rem 0;
 }
 
-/* Email banner */
 .emailBanner {
   display: flex;
   gap: 0.75rem;
@@ -119,7 +157,6 @@
 
 .emailCheck {
   font-size: 1rem;
-  line-height: 1;
   flex-shrink: 0;
   margin-top: 0.1rem;
 }
@@ -137,42 +174,6 @@
   line-height: 1.5;
 }
 
-/* Deeper path */
-.deeper {
-  border: 1.5px solid #e5e7eb;
-  border-radius: 0.75rem;
-  padding: 1.25rem 1.5rem;
-  background: #f9fafb;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.deeperTitle {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: #0a0a0a;
-}
-
-.deeperSub {
-  font-size: 0.825rem;
-  color: #6b7280;
-  line-height: 1.6;
-}
-
-.deeperLink {
-  font-size: 0.875rem;
-  font-weight: 700;
-  color: #0a0a0a;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.deeperLink:hover {
-  opacity: 0.7;
-}
-
-/* CTA */
 .cta {
   text-align: center;
   display: flex;
@@ -188,17 +189,16 @@
 
 .ctaBtn {
   display: inline-block;
-  border: 2px solid #0a0a0a;
-  color: #0a0a0a;
-  padding: 0.875rem 2rem;
+  background: #0a0a0a;
+  color: #fff;
+  padding: 0.9rem 2.25rem;
   border-radius: 0.625rem;
-  font-size: 0.975rem;
+  font-size: 1rem;
   font-weight: 700;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: background 0.15s ease;
 }
 
 .ctaBtn:hover {
-  background: #0a0a0a;
-  color: #fff;
+  background: #1f1f1f;
   opacity: 1;
 }

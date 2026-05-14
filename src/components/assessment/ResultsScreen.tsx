@@ -52,6 +52,16 @@ export function ResultsScreen({ score, tier, firstName }: Props) {
           Book a Discovery Call
         </Link>
       </div>
+
+      <div className={styles.deeper}>
+        <p className={styles.deeperTitle}>Want a more detailed picture?</p>
+        <p className={styles.deeperSub}>
+          The full scorecard goes deeper — 20 questions across 5 dimensions with section-level scores for process, data, compliance, team, and strategy.
+        </p>
+        <Link href="/assessment/deep" className={styles.deeperLink}>
+          Take the Full 20-Question Scorecard →
+        </Link>
+      </div>
     </div>
   );
 }
