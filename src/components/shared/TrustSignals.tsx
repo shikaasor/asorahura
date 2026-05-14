@@ -2,7 +2,7 @@ import styles from "./TrustSignals.module.css";
 
 const badges = [
   "Oracle Certified",
-  "7,200+ Hours Delivered",
+  "7,200+ Hours Saved Through Automation",
   "43,103 Maritime Records Processed",
 ];
 

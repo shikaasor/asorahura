@@ -18,10 +18,10 @@ export default function AboutSection() {
           <div className={styles.copy}>
             <h2 className={styles.heading}>Who&rsquo;s behind this</h2>
             <p className={styles.text}>
-              I&rsquo;m Asor — Oracle Certified AI professional with over 7,200 hours delivered
-              across clients on three continents. I&rsquo;ve built systems that extracted 260 years
-              of Lloyd&rsquo;s List maritime data, automated thousands of support hours, and helped
-              founders reclaim time they thought was gone.
+              I&rsquo;m Asor — Oracle Certified AI professional. I&rsquo;ve built automation systems
+              that have saved clients 7,200+ hours of operational work — from extracting 260 years
+              of Lloyd&rsquo;s List maritime data to eliminating thousands of hours of manual support,
+              helping founders reclaim time they thought was gone.
             </p>
             <p className={styles.text}>
               My work isn&rsquo;t about applying AI for its own sake. It&rsquo;s about removing
