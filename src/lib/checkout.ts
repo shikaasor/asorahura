@@ -17,8 +17,8 @@ export const tiers: Tier[] = [
     id: "discovery",
     name: "Discovery Call",
     tagline: "Understand exactly where AI can save you time — before spending a dollar on build.",
-    price: "$5,000",
-    priceDetail: "One-time, fixed fee",
+    price: "$50/hr",
+    priceDetail: "Billed hourly",
     deliverables: [
       "Full AI readiness audit across 5 operational dimensions",
       "Personalised automation roadmap — top 5 opportunities ranked by impact",
@@ -33,8 +33,8 @@ export const tiers: Tier[] = [
     id: "strategy",
     name: "Strategy Session",
     tagline: "A working session to map your AI architecture and define the exact build scope.",
-    price: "$15,000",
-    priceDetail: "Scoped per project",
+    price: "$75/hr",
+    priceDetail: "Billed hourly",
     deliverables: [
       "Full AI audit included",
       "Deep-dive into your operational architecture",
