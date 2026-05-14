@@ -14,9 +14,9 @@ const TRUST_ITEMS = [
 ];
 
 export default function CheckoutPage() {
-  const [selectedTier, setSelectedTier] = useState<TierId>("starter");
+  const [selectedTier, setSelectedTier] = useState<TierId>("discovery");
   const tier = getTierById(selectedTier);
-  const isEnterprise = selectedTier === "enterprise";
+  const isEnterprise = false;
 
   return (
     <main className={styles.page}>
