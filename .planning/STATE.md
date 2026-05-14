@@ -18,7 +18,7 @@ See:
 
 **Total Phases:** 5
 **Current Phase:** Not started (pending Phase 1 plan)
-**Progress:** 0/5 phases complete (0%)
+**Progress:** [░░░░░░░░░░] 0%
 
 **Execution Model:** Sequential (one phase per week, blockers resolved before next phase starts)
 **Configuration:** Standard depth, Sequential execution, Budget model profile
@@ -181,6 +181,7 @@ This will:
 | Assessment as primary funnel | 40-50% conversion vs 15-25% for PDFs | ✓ Decided |
 
 ---
+- [Phase 01-critical-path]: Paddle inline checkout (displayMode: inline) — not popup; NEXT_PUBLIC_PADDLE_TOKEN client-side only; PADDLE_PRICE_ID_* server-side only
 
 ## Known Risks & Mitigations
 

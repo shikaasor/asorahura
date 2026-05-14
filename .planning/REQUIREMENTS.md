@@ -86,11 +86,11 @@
 
 ### Checkout Page
 
-- [ ] **CHECK-01**: Order summary (service name, what's included, timeline, support period)
-- [ ] **CHECK-02**: Clear pricing per tier
-- [ ] **CHECK-03**: Payment method (Stripe) with reassurance copy
-- [ ] **CHECK-04**: Trust badges (Oracle Certified, Secure Payment, 100% Ownership)
-- [ ] **CHECK-05**: Per-tier checkout links (Stripe payment links)
+- [x] **CHECK-01**: Order summary (service name, what's included, timeline, support period)
+- [x] **CHECK-02**: Clear pricing per tier
+- [x] **CHECK-03**: Payment method (Stripe) with reassurance copy
+- [x] **CHECK-04**: Trust badges (Oracle Certified, Secure Payment, 100% Ownership)
+- [x] **CHECK-05**: Per-tier checkout links (Stripe payment links)
 
 ### Blog Page
 
@@ -187,11 +187,11 @@
 | ASSESS-08 | Phase 1 | Pending |
 | ASSESS-09 | Phase 1 | Pending |
 | ASSESS-10 | Phase 1 | Pending |
-| CHECK-01 | Phase 1 | Pending |
-| CHECK-02 | Phase 1 | Pending |
-| CHECK-03 | Phase 1 | Pending |
-| CHECK-04 | Phase 1 | Pending |
-| CHECK-05 | Phase 1 | Pending |
+| CHECK-01 | Phase 1 | Complete |
+| CHECK-02 | Phase 1 | Complete |
+| CHECK-03 | Phase 1 | Complete |
+| CHECK-04 | Phase 1 | Complete |
+| CHECK-05 | Phase 1 | Complete |
 | EMAIL-01 | Phase 2 | Pending |
 | EMAIL-02 | Phase 2 | Pending |
 | EMAIL-07 | Phase 2 | Pending |
