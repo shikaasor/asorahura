@@ -24,6 +24,10 @@ export function PaddleCheckout({ priceId, onSuccess }: Props) {
   const opened = useRef(false);
 
   useEffect(() => {
+    if (!priceId) {
+      setError("No price configured for this tier. Please contact us directly.");
+      return;
+    }
     if (opened.current || !containerRef.current) return;
     opened.current = true;
 

@@ -27,7 +27,7 @@ export const tiers: Tier[] = [
     ],
     timeline: "5–7 business days",
     support: "1 × 60-min strategy call + async Q&A",
-    paddlePriceId: process.env.NEXT_PUBLIC_PADDLE_PRICE_ID_STARTER || "pri_placeholder_starter",
+    paddlePriceId: process.env.NEXT_PUBLIC_PADDLE_PRICE_ID_DISCOVERY_CALL || "",
   },
   {
     id: "ops",
@@ -43,7 +43,7 @@ export const tiers: Tier[] = [
     ],
     timeline: "2–4 weeks",
     support: "Weekly check-ins + 30-day post-launch support",
-    paddlePriceId: process.env.NEXT_PUBLIC_PADDLE_PRICE_ID_OPS || "pri_placeholder_ops",
+    paddlePriceId: process.env.NEXT_PUBLIC_PADDLE_PRICE_ID_STRATEGY_SESSION || "",
   },
   {
     id: "systems",
@@ -59,7 +59,7 @@ export const tiers: Tier[] = [
     ],
     timeline: "4–8 weeks",
     support: "Bi-weekly strategy calls + 60-day post-launch support",
-    paddlePriceId: process.env.NEXT_PUBLIC_PADDLE_PRICE_ID_SYSTEMS || "pri_placeholder_systems",
+    paddlePriceId: process.env.NEXT_PUBLIC_PADDLE_PRICE_ID_STRATEGY_SESSION || "",
   },
   {
     id: "enterprise",
