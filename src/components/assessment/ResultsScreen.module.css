@@ -137,46 +137,6 @@
   line-height: 1.5;
 }
 
-/* PDF download */
-.pdfBlock {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding: 1.25rem;
-  border: 1.5px solid #e5e7eb;
-  border-radius: 0.75rem;
-  background: #f9fafb;
-}
-
-.pdfTitle {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: #0a0a0a;
-}
-
-.pdfSub {
-  font-size: 0.825rem;
-  color: #6b7280;
-  margin-top: 0.15rem;
-}
-
-.pdfLink {
-  display: inline-block;
-  align-self: flex-start;
-  background: #0a0a0a;
-  color: #fff;
-  padding: 0.625rem 1.25rem;
-  border-radius: 0.5rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  transition: background 0.15s ease;
-}
-
-.pdfLink:hover {
-  background: #1f1f1f;
-  opacity: 1;
-}
-
 /* CTA */
 .cta {
   text-align: center;

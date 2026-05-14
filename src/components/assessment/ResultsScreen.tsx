@@ -46,22 +46,6 @@ export function ResultsScreen({ score, tier, firstName }: Props) {
         </div>
       </div>
 
-      <div className={styles.pdfBlock}>
-        <div>
-          <p className={styles.pdfTitle}>Want the complete 20-question breakdown?</p>
-          <p className={styles.pdfSub}>
-            Download the full AI Readiness Scorecard — all 20 questions with scoring guidance.
-          </p>
-        </div>
-        <a
-          href="/ai-readiness-scorecard.pdf"
-          download="AI_Readiness_Scorecard.pdf"
-          className={styles.pdfLink}
-        >
-          Download Full PDF
-        </a>
-      </div>
-
       <div className={styles.cta}>
         <p className={styles.ctaHint}>Ready to act on your results?</p>
         <Link href="/checkout" className={styles.ctaBtn}>
