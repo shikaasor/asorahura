@@ -1,36 +1,139 @@
 "use client";
 
 import { useState } from "react";
-import { TierSelector } from "@/components/checkout/TierSelector";
-import { OrderSummary } from "@/components/checkout/OrderSummary";
+import Link from "next/link";
 import { PaddleCheckout } from "@/components/checkout/PaddleCheckout";
-import { TrustBadges } from "@/components/checkout/TrustBadges";
-import { getTierById, type TierId } from "@/lib/checkout";
+import { tiers, getTierById, type TierId } from "@/lib/checkout";
+import styles from "./checkout.module.css";
+
+const TRUST_ITEMS = [
+  "Oracle Certified AI Professional",
+  "Secure payment via Paddle",
+  "100% IP ownership — yours on delivery",
+  "Fixed scope, no surprise invoices",
+];
 
 export default function CheckoutPage() {
   const [selectedTier, setSelectedTier] = useState<TierId>("starter");
   const tier = getTierById(selectedTier);
+  const isEnterprise = selectedTier === "enterprise";
 
   return (
-    <main className="min-h-screen bg-gray-50 pt-28 pb-16 px-4">
-      <div className="container mx-auto max-w-5xl">
-        <div className="text-center mb-10">
-          <h1 className="text-3xl font-bold text-gray-900">Get Started</h1>
-          <p className="text-gray-600 mt-2">Choose the engagement that fits your goals.</p>
+    <main className={styles.page}>
+      <section className={styles.hero}>
+        <div className={styles.heroInner}>
+          <p className={styles.heroLabel}>Engagement</p>
+          <h1 className={styles.heroTitle}>Book Your Discovery Call</h1>
+          <p className={styles.heroSub}>
+            Select the engagement that fits your current phase. Payment secures your slot — your discovery call is scheduled immediately after.
+          </p>
+          <div className={styles.steps}>
+            <div className={`${styles.step} ${styles.stepActive}`}>
+              <span className={styles.stepNum}>1</span>
+              Select tier
+            </div>
+            <span className={styles.stepArrow}>→</span>
+            <div className={`${styles.step} ${styles.stepActive}`}>
+              <span className={styles.stepNum}>2</span>
+              Pay to secure slot
+            </div>
+            <span className={styles.stepArrow}>→</span>
+            <div className={styles.step}>
+              <span className={styles.stepNum}>3</span>
+              Book your call
+            </div>
+            <span className={styles.stepArrow}>→</span>
+            <div className={styles.step}>
+              <span className={styles.stepNum}>4</span>
+              We build
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className={styles.body}>
+        {/* Left — tier selection */}
+        <div className={styles.left}>
+          <div>
+            <p className={styles.sectionLabel}>Choose your engagement</p>
+            <div className={styles.tiers}>
+              {tiers.map((t) => (
+                <button
+                  key={t.id}
+                  onClick={() => setSelectedTier(t.id)}
+                  className={`${styles.tierCard} ${selectedTier === t.id ? styles.selected : ""}`}
+                >
+                  <div className={styles.tierCardTop}>
+                    <span className={styles.tierName}>{t.name}</span>
+                    <span className={styles.tierPrice}>{t.price}</span>
+                  </div>
+                  <span className={styles.tierDesc}>{t.tagline}</span>
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 items-start">
-          {/* Left: tier selection + order summary + trust badges */}
-          <div className="space-y-6">
-            <TierSelector selected={selectedTier} onChange={setSelectedTier} />
-            <OrderSummary tierId={selectedTier} />
-            <TrustBadges />
+        {/* Right — summary + payment */}
+        <div className={styles.right}>
+          <div className={styles.panel}>
+            {/* Order summary */}
+            <div className={styles.summary}>
+              <div className={styles.summaryHeader}>
+                <span className={styles.summaryTier}>{tier.name}</span>
+                <span className={styles.summaryPrice}>{tier.price}</span>
+                <span className={styles.summaryPriceDetail}>{tier.priceDetail}</span>
+              </div>
+
+              <div className={styles.deliverables}>
+                {tier.deliverables.map((d, i) => (
+                  <div key={i} className={styles.deliverable}>
+                    <span className={styles.deliverableCheck}>✓</span>
+                    <span>{d}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className={styles.meta}>
+                <div className={styles.metaRow}>
+                  <span className={styles.metaLabel}>Timeline:</span>
+                  <span>{tier.timeline}</span>
+                </div>
+                <div className={styles.metaRow}>
+                  <span className={styles.metaLabel}>Support:</span>
+                  <span>{tier.support}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Payment or enterprise CTA */}
+            {isEnterprise ? (
+              <div className={styles.enterpriseCta}>
+                <p className={styles.enterpriseCtaText}>
+                  Enterprise engagements are scoped individually. Let&apos;s start with a conversation — no commitment required.
+                </p>
+                <Link href="https://calendly.com/asorahura" target="_blank" rel="noopener noreferrer" className={styles.enterpriseBtn}>
+                  Schedule an Intro Call
+                </Link>
+              </div>
+            ) : (
+              <div className={styles.paymentPanel}>
+                <p className={styles.paymentLabel}>Secure payment</p>
+                <PaddleCheckout priceId={tier.paddlePriceId} />
+              </div>
+            )}
           </div>
 
-          {/* Right: Paddle inline checkout */}
-          <div className="bg-white rounded-2xl shadow-sm p-6">
-            <p className="text-sm font-semibold text-gray-700 mb-4">Payment</p>
-            <PaddleCheckout priceId={tier.paddlePriceId} />
+          {/* Trust */}
+          <div className={styles.trust}>
+            {TRUST_ITEMS.map((item) => (
+              <div key={item} className={styles.trustItem}>
+                <span className={styles.trustIcon}>
+                  <span className={styles.trustDot} />
+                </span>
+                {item}
+              </div>
+            ))}
           </div>
         </div>
       </div>

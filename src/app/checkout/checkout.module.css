@@ -1,0 +1,374 @@
+.page {
+  min-height: 100vh;
+  background: #f9fafb;
+}
+
+.hero {
+  background: #0a0a0a;
+  color: #fff;
+  padding: 3.5rem 2rem 3rem;
+}
+
+.heroInner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.heroLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-bottom: 0.625rem;
+}
+
+.heroTitle {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: #fff;
+}
+
+.heroSub {
+  font-size: 1rem;
+  color: #9ca3af;
+  margin-top: 0.75rem;
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+.steps {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.stepNum {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.375rem;
+  height: 1.375rem;
+  border-radius: 50%;
+  border: 1px solid #374151;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+.stepActive .stepNum {
+  background: #fff;
+  border-color: #fff;
+  color: #0a0a0a;
+}
+
+.stepActive {
+  color: #e5e7eb;
+}
+
+.stepArrow {
+  color: #374151;
+  font-size: 0.7rem;
+}
+
+/* Layout */
+.body {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Left column */
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.sectionLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+  margin-bottom: 0.75rem;
+}
+
+/* Tier cards */
+.tiers {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.tierCard {
+  width: 100%;
+  text-align: left;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 1.5px solid #e5e7eb;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.tierCard:hover {
+  border-color: #6b7280;
+}
+
+.tierCard.selected {
+  border-color: #0a0a0a;
+  background: #0a0a0a;
+}
+
+.tierCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.tierName {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0a0a0a;
+}
+
+.tierCard.selected .tierName {
+  color: #fff;
+}
+
+.tierPrice {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0a0a0a;
+  white-space: nowrap;
+}
+
+.tierCard.selected .tierPrice {
+  color: #d1d5db;
+}
+
+.tierDesc {
+  font-size: 0.8rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.tierCard.selected .tierDesc {
+  color: #9ca3af;
+}
+
+/* Right column */
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: sticky;
+  top: 104px;
+}
+
+.panel {
+  background: #fff;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+/* Order summary */
+.summary {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.summaryHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.summaryTier {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0a0a0a;
+  letter-spacing: -0.02em;
+}
+
+.summaryPrice {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #0a0a0a;
+  letter-spacing: -0.03em;
+}
+
+.summaryPriceDetail {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.deliverables {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.deliverable {
+  display: flex;
+  gap: 0.625rem;
+  align-items: flex-start;
+  font-size: 0.85rem;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.deliverableCheck {
+  color: #0a0a0a;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  font-weight: 700;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.metaRow {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.metaLabel {
+  font-weight: 600;
+  color: #374151;
+  flex-shrink: 0;
+}
+
+/* Payment panel */
+.paymentPanel {
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.paymentLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+  margin-bottom: 1rem;
+}
+
+/* Enterprise CTA */
+.enterpriseCta {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.enterpriseCtaText {
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.enterpriseBtn {
+  display: inline-block;
+  background: #0a0a0a;
+  color: #fff;
+  padding: 0.875rem 1.5rem;
+  border-radius: 0.625rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  transition: background 0.15s ease;
+}
+
+.enterpriseBtn:hover {
+  background: #1f1f1f;
+  opacity: 1;
+}
+
+/* Trust badges */
+.trust {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.trustItem {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.trustIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  border: 1px solid #e5e7eb;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.trustDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #0a0a0a;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 2.5rem 1.25rem 2rem;
+  }
+
+  .steps {
+    gap: 1rem;
+  }
+
+  .body {
+    grid-template-columns: 1fr;
+    padding: 1.75rem 1.25rem 4rem;
+  }
+
+  .right {
+    position: static;
+  }
+}
