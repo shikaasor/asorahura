@@ -104,19 +104,21 @@ export function AssessmentShell() {
 
   if (step === "intro") {
     return (
-      <div className="text-center space-y-6">
-        <h2 className="text-3xl font-bold text-gray-900">
+      <div className="text-center space-y-8">
+        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
           Ready to find your score?
         </h2>
-        <p className="text-gray-600 text-lg">
+        <p className="text-gray-600 text-xl">
           8 questions · takes about 4 minutes · personalized score at the end
         </p>
-        <button
-          onClick={() => setStep("questions")}
-          className="bg-black text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-800 transition-colors inline-block"
-        >
-          Start Assessment
-        </button>
+        <div>
+          <button
+            onClick={() => setStep("questions")}
+            className="bg-black text-white px-10 py-4 rounded-lg text-lg font-bold hover:bg-gray-800 transition-colors shadow-lg"
+          >
+            Start Assessment
+          </button>
+        </div>
       </div>
     );
   }
