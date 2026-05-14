@@ -182,6 +182,8 @@ This will:
 
 ---
 - [Phase 01-critical-path]: Paddle inline checkout (displayMode: inline) — not popup; NEXT_PUBLIC_PADDLE_TOKEN client-side only; PADDLE_PRICE_ID_* server-side only
+- [Phase 01-critical-path]: Email send failure does not block results — server action returns score regardless for dev-safety
+- [Phase 01-critical-path]: Assessment scoring: Q1 unscored (routing only), Q2-Q8 at 12.5 weight each, capped at 100
 
 ## Known Risks & Mitigations
 

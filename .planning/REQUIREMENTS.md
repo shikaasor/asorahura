@@ -41,11 +41,11 @@
 
 ### Assessment Page (Lead Magnet)
 
-- [ ] **ASSESS-01**: Hero "Find Out Exactly Where AI Can Save Your Business Time and Money"
-- [ ] **ASSESS-02**: Sub "Answer 8 questions about your operations. Get a personalized AI Readiness Report."
-- [ ] **ASSESS-03**: Micro-trust signals "Free · Takes 4 Minutes · Report Delivered Instantly · No Sales Call Required"
-- [ ] **ASSESS-04**: Step 0 (email gate): "Where should we send your report?" with First Name + Email fields
-- [ ] **ASSESS-05**: 8 assessment questions (one per screen with progress bar):
+- [x] **ASSESS-01**: Hero "Find Out Exactly Where AI Can Save Your Business Time and Money"
+- [x] **ASSESS-02**: Sub "Answer 8 questions about your operations. Get a personalized AI Readiness Report."
+- [x] **ASSESS-03**: Micro-trust signals "Free · Takes 4 Minutes · Report Delivered Instantly · No Sales Call Required"
+- [x] **ASSESS-04**: Step 0 (email gate): "Where should we send your report?" with First Name + Email fields
+- [x] **ASSESS-05**: 8 assessment questions (one per screen with progress bar):
   - Role ("What best describes your role?" — CEO/CTO/COO/Ops Manager/Other)
   - Biggest time drain (Data entry / Document / Communications / Reporting / Scheduling)
   - Current AI use (Not using / Tools only / Patchy automations / Building systems)
@@ -54,11 +54,11 @@
   - Biggest fear (Integration / Team adoption / Data/security / Don't know what / ROI uncertainty)
   - Urgency (Now / 3 months / Future / Curious)
   - Budget (Under $5k / $5-15k / $15-30k / $30k+ / Not sure)
-- [ ] **ASSESS-06**: Results screen with personalized AI Readiness Score (X/100 with category breakdown)
-- [ ] **ASSESS-07**: Results screen shows 2-3 preview bullets of what full report covers
-- [ ] **ASSESS-08**: Results screen primary CTA "Your Full Report Is On Its Way" with "Check your inbox" message
-- [ ] **ASSESS-09**: Results screen secondary CTA "Want to discuss results?" links to Calendly for $50/hr strategy call
-- [ ] **ASSESS-10**: Automated PDF report delivered to email with:
+- [x] **ASSESS-06**: Results screen with personalized AI Readiness Score (X/100 with category breakdown)
+- [x] **ASSESS-07**: Results screen shows 2-3 preview bullets of what full report covers
+- [x] **ASSESS-08**: Results screen primary CTA "Your Full Report Is On Its Way" with "Check your inbox" message
+- [x] **ASSESS-09**: Results screen secondary CTA "Want to discuss results?" links to Calendly for $50/hr strategy call
+- [x] **ASSESS-10**: Automated PDF report delivered to email with:
   - Personalized score breakdown
   - Top 2-3 automation opportunities ranked by ROI
   - Which service tier maps to their problem
@@ -177,16 +177,16 @@
 | HOME-09 | Phase 1 | Pending |
 | HOME-10 | Phase 1 | Pending |
 | HOME-11 | Phase 1 | Pending |
-| ASSESS-01 | Phase 1 | Pending |
-| ASSESS-02 | Phase 1 | Pending |
-| ASSESS-03 | Phase 1 | Pending |
-| ASSESS-04 | Phase 1 | Pending |
-| ASSESS-05 | Phase 1 | Pending |
-| ASSESS-06 | Phase 1 | Pending |
-| ASSESS-07 | Phase 1 | Pending |
-| ASSESS-08 | Phase 1 | Pending |
-| ASSESS-09 | Phase 1 | Pending |
-| ASSESS-10 | Phase 1 | Pending |
+| ASSESS-01 | Phase 1 | Complete |
+| ASSESS-02 | Phase 1 | Complete |
+| ASSESS-03 | Phase 1 | Complete |
+| ASSESS-04 | Phase 1 | Complete |
+| ASSESS-05 | Phase 1 | Complete |
+| ASSESS-06 | Phase 1 | Complete |
+| ASSESS-07 | Phase 1 | Complete |
+| ASSESS-08 | Phase 1 | Complete |
+| ASSESS-09 | Phase 1 | Complete |
+| ASSESS-10 | Phase 1 | Complete |
 | CHECK-01 | Phase 1 | Complete |
 | CHECK-02 | Phase 1 | Complete |
 | CHECK-03 | Phase 1 | Complete |
