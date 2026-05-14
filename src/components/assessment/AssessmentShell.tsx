@@ -17,6 +17,7 @@ import styles from "./AssessmentShell.module.css";
 type Step = "intro" | "questions" | "email-gate" | "results";
 
 const STORAGE_KEY = "asor_assessment_answers";
+const IDENTITY_KEY = "asor_user_identity";
 const TOTAL_QUESTIONS = assessmentQuestions.length;
 
 export function AssessmentShell() {
@@ -87,6 +88,8 @@ export function AssessmentShell() {
       setEmailError(res.error || "Something went wrong. Please try again.");
       return;
     }
+
+    localStorage.setItem(IDENTITY_KEY, JSON.stringify({ firstName: data.firstName, email: data.email }));
 
     setResult({
       score: res.score!,

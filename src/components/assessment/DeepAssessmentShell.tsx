@@ -17,6 +17,7 @@ import styles from "./DeepAssessmentShell.module.css";
 type Step = "intro" | "questions" | "email-gate" | "results";
 
 const STORAGE_KEY = "asor_deep_assessment_answers";
+const IDENTITY_KEY = "asor_user_identity";
 const TOTAL = deepQuestions.length;
 
 export function DeepAssessmentShell() {
@@ -30,8 +31,14 @@ export function DeepAssessmentShell() {
   } | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [emailError, setEmailError] = useState<string | undefined>();
+  const [savedIdentity, setSavedIdentity] = useState<{ firstName: string; email: string } | null>(null);
 
   useEffect(() => {
+    try {
+      const identity = localStorage.getItem(IDENTITY_KEY);
+      if (identity) setSavedIdentity(JSON.parse(identity));
+    } catch { /* ignore */ }
+
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
@@ -51,16 +58,29 @@ export function DeepAssessmentShell() {
     }
   }, [answers, currentQ, step]);
 
-  function handleAnswer(value: number) {
+  async function handleAnswer(value: number) {
     const q = deepQuestions[currentQ];
     const newAnswers = { ...answers, [q.id]: value };
     setAnswers(newAnswers);
 
     if (currentQ < deepQuestions.length - 1) {
       setCurrentQ(currentQ + 1);
+      return;
+    }
+
+    // All questions done
+    localStorage.removeItem(STORAGE_KEY);
+
+    if (savedIdentity) {
+      // Skip gate — submit with stored identity
+      setIsLoading(true);
+      await submitDeepAssessmentForEmail(savedIdentity.firstName, savedIdentity.email, newAnswers);
+      setIsLoading(false);
+      const { total, byDimension } = calculateDeepScore(newAnswers);
+      setResult({ total, byDimension, firstName: savedIdentity.firstName });
+      setStep("results");
     } else {
       setStep("email-gate");
-      localStorage.removeItem(STORAGE_KEY);
     }
   }
 
@@ -75,6 +95,7 @@ export function DeepAssessmentShell() {
       return;
     }
 
+    localStorage.setItem(IDENTITY_KEY, JSON.stringify({ firstName: data.firstName, email: data.email }));
     const { total, byDimension } = calculateDeepScore(answers);
     setResult({ total, byDimension, firstName: data.firstName });
     setStep("results");
@@ -85,6 +106,14 @@ export function DeepAssessmentShell() {
   const dimInfo = dim ? DIMENSIONS[dim] : null;
   const prevDim = currentQ > 0 ? deepQuestions[currentQ - 1].dimension : null;
   const isNewDimension = dim !== prevDim;
+
+  if (isLoading) {
+    return (
+      <div className={styles.intro}>
+        <p className={styles.introSub}>Calculating your score…</p>
+      </div>
+    );
+  }
 
   if (step === "intro") {
     return (
