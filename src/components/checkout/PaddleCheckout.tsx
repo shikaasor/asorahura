@@ -40,7 +40,6 @@ export function PaddleCheckout({ priceId, onSuccess }: Props) {
       try {
         window.Paddle.Initialize({
           token: process.env.NEXT_PUBLIC_PADDLE_TOKEN!,
-          environment: process.env.NODE_ENV === "production" ? "production" : "sandbox",
           eventCallback: (event: { name: string }) => {
             if (event.name === "checkout.loaded") {
               setIsLoaded(true);
