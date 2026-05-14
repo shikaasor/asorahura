@@ -113,7 +113,7 @@ export function AssessmentShell() {
         </p>
         <button
           onClick={() => setStep("questions")}
-          className="bg-gray-900 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-800 transition-colors"
+          className="bg-black text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-800 transition-colors inline-block"
         >
           Start Assessment
         </button>
