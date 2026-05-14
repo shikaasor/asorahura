@@ -12,7 +12,7 @@ export default function CheckoutPage() {
   const tier = getTierById(selectedTier);
 
   return (
-    <main className="min-h-screen bg-gray-50 py-16 px-4">
+    <main className="min-h-screen bg-gray-50 pt-28 pb-16 px-4">
       <div className="container mx-auto max-w-5xl">
         <div className="text-center mb-10">
           <h1 className="text-3xl font-bold text-gray-900">Get Started</h1>

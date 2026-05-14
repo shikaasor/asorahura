@@ -10,7 +10,7 @@ export default function AssessmentPage() {
   return (
     <main className="min-h-screen bg-white">
       {/* Entry hero — ASSESS-01, ASSESS-02, ASSESS-03 */}
-      <section className="bg-gray-950 text-white py-16 px-4">
+      <section className="bg-gray-950 text-white pt-28 pb-16 px-4">
         <div className="container mx-auto max-w-2xl text-center space-y-4">
           <h1 className="text-4xl md:text-5xl font-bold leading-tight">
             Find Out Exactly Where AI Can Save Your Business 10+ Hours a Week
