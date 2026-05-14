@@ -17,6 +17,7 @@ files_modified:
   - src/lib/pdf.ts
   - src/lib/email.ts
   - src/emails/AssessmentReport.tsx
+  - public/ai-readiness-scorecard.pdf
   - .env.local
 autonomous: false
 requirements:
@@ -48,6 +49,7 @@ must_haves:
     - "After completing Q8, user sees an email gate (First Name + Email) — results are NOT shown yet"
     - "After submitting the email gate, results display with a 0-100 score, tier name, and 2-3 preview bullets"
     - "Results screen shows primary message 'Your Full Report Is On Its Way' and secondary 'Book a Discovery Call' Calendly link"
+    - "Results screen shows 'Download Full PDF' button linking to /ai-readiness-scorecard.pdf (the full 20-question scorecard) — no 404"
     - "Submitting the email gate triggers a Server Action that generates a PDF and sends it via Resend to the captured email"
     - "Assessment answers survive browser refresh via localStorage (user can resume from last question)"
   artifacts:
@@ -65,8 +67,10 @@ must_haves:
       provides: "Orchestrator client component managing step state (intro → questions → email gate → results)"
       min_lines: 60
     - path: "src/components/assessment/ResultsScreen.tsx"
-      provides: "Score display + tier + preview bullets + CTAs"
-      min_lines: 50
+      provides: "Score display + tier + preview bullets + download link for full 20-question scorecard PDF + CTAs"
+      min_lines: 55
+    - path: "public/ai-readiness-scorecard.pdf"
+      provides: "Pre-built static 20-question full scorecard PDF served at /ai-readiness-scorecard.pdf — this is a separate asset from the personalized 8-question results PDF generated server-side. Must be placed in /public so Next.js serves it as a static file."
     - path: "src/emails/AssessmentReport.tsx"
       provides: "React Email template for personalized assessment result email"
       min_lines: 40
@@ -468,6 +472,11 @@ Output: Fully functional /assessment page with end-to-end flow: intro → 8 ques
     src/app/assessment/page.tsx
   </files>
   <action>
+    **Place the full 20-question scorecard PDF in `/public`:**
+    The full 20-question scorecard is a separate static document from the personalized 8-question results PDF (which is generated server-side per user). Place the pre-built file at `public/ai-readiness-scorecard.pdf` — Next.js will serve it as `/ai-readiness-scorecard.pdf`, which the `ResultsScreen` download link targets.
+
+    If the PDF does not yet exist, create a placeholder: use PDFKit inline (or any PDF tool) to generate a minimal 1-page PDF titled "AI Readiness Scorecard — Full 20-Question Assessment" with a note "Full scorecard coming soon" and save it at `public/ai-readiness-scorecard.pdf`. The placeholder ensures the download link works immediately rather than 404-ing. The real 20-question document can replace it in a later phase.
+
     **Create `src/app/assessment/actions.ts`:**
     ```typescript
     "use server";
@@ -639,8 +648,12 @@ Output: Fully functional /assessment page with end-to-end flow: intro → 8 ques
 
     **Create `src/components/assessment/ResultsScreen.tsx`:**
     ```tsx
-    import Link from "next/link";
     import { getTierDescription, getPreviewBullets } from "@/lib/assessment";
+
+    // LOCKED DECISION (CONTEXT.md): "results page offers downloadable full 20-question scorecard PDF"
+    // The full scorecard PDF is a PRE-BUILT static file at /public/ai-readiness-scorecard.pdf
+    // (separate from the personalized 8-question results PDF emailed server-side).
+    // It is served by Next.js as /ai-readiness-scorecard.pdf — no API route needed.
 
     interface Props {
       score: number;
@@ -677,6 +690,7 @@ Output: Fully functional /assessment page with end-to-end flow: intro → 8 ques
           </div>
 
           <div className="border-t pt-6 space-y-4">
+            {/* Email delivery confirmation */}
             <div className="bg-green-50 border border-green-200 rounded-lg p-4">
               <p className="font-semibold text-green-800">Your Full Report Is On Its Way</p>
               <p className="text-green-700 text-sm mt-1">
@@ -684,6 +698,24 @@ Output: Fully functional /assessment page with end-to-end flow: intro → 8 ques
               </p>
             </div>
 
+            {/* Full 20-question scorecard download — LOCKED DECISION */}
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div>
+                <p className="font-semibold text-gray-900">Want the complete 20-question breakdown?</p>
+                <p className="text-gray-600 text-sm mt-0.5">
+                  Download the full AI Readiness Scorecard — all 20 questions with scoring guidance.
+                </p>
+              </div>
+              <a
+                href="/ai-readiness-scorecard.pdf"
+                download="AI_Readiness_Scorecard.pdf"
+                className="shrink-0 inline-block bg-gray-900 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-gray-700 transition-colors text-center"
+              >
+                Download Full PDF
+              </a>
+            </div>
+
+            {/* Discovery Call CTA */}
             <div className="text-center">
               <p className="text-sm text-gray-500 mb-3">Want to talk through your results?</p>
               <a
@@ -874,6 +906,7 @@ Output: Fully functional /assessment page with end-to-end flow: intro → 8 ques
   </action>
   <verify>
     Run `npx tsc --noEmit` — no TypeScript errors.
+    Verify `public/ai-readiness-scorecard.pdf` exists (placeholder or real file).
     Run `npm run dev`, visit http://localhost:3000/assessment:
     - Entry hero visible with H1 "Find Out Exactly Where AI Can Save..."
     - 4 micro-trust badges visible (Free, Takes 4 Minutes, Instant Results, No Sales Call)
@@ -884,11 +917,15 @@ Output: Fully functional /assessment page with end-to-end flow: intro → 8 ques
     - After Q8 — email gate appears (no results yet)
     - Fill First Name + Email → click "Access My Results"
     - (Email may fail if RESEND_API_KEY not set — that's acceptable in dev; results should still appear after server action returns)
-    - Results screen shows score (0-100), tier name, preview bullets, "Your Full Report Is On Its Way" banner, Calendly CTA
+    - Results screen shows score (0-100), tier name, preview bullets, "Your Full Report Is On Its Way" green banner
+    - Results screen shows "Want the complete 20-question breakdown?" section with "Download Full PDF" button
+    - Click "Download Full PDF" — browser downloads `AI_Readiness_Scorecard.pdf` (or navigates to /ai-readiness-scorecard.pdf) — no 404
+    - Confirm "Book a Discovery Call" button links to Calendly
     - Refresh during questions → answers restored from localStorage
+    - Verify http://localhost:3000/ai-readiness-scorecard.pdf resolves (200, not 404)
   </verify>
   <done>
-    End-to-end assessment flow works: 8 questions with role branching → email gate → results screen. Server Action calls Resend (may fail without real API key in dev — that's acceptable). Results display score, tier, bullets, and Calendly CTA. localStorage restores partial completion on refresh.
+    End-to-end assessment flow works: 8 questions with role branching → email gate → results screen. Server Action calls Resend (may fail without real API key in dev — that's acceptable). Results display score, tier, bullets, "Your Full Report Is On Its Way" banner, "Download Full PDF" button linking to /ai-readiness-scorecard.pdf (no 404), and Calendly CTA. localStorage restores partial completion on refresh.
   </done>
 </task>
 
@@ -910,9 +947,11 @@ Output: Fully functional /assessment page with end-to-end flow: intro → 8 ques
     8. Fill in a name and email — click "Access My Results"
     9. Confirm results appear: score number, tier name, 3 preview bullets
     10. Confirm "Your Full Report Is On Its Way" green banner visible
-    11. Confirm "Book a Discovery Call" button visible (links to Calendly)
-    12. Test localStorage: refresh browser at Q4 — confirm assessment resumes from Q4
-    13. (Optional) If RESEND_API_KEY is set: check the email inbox for the PDF attachment
+    11. Confirm "Want the complete 20-question breakdown?" section visible with "Download Full PDF" button
+    12. Click "Download Full PDF" — confirm browser downloads the file (no 404 or broken link)
+    13. Confirm "Book a Discovery Call" button visible (links to Calendly)
+    14. Test localStorage: refresh browser at Q4 — confirm assessment resumes from Q4
+    15. (Optional) If RESEND_API_KEY is set: check the email inbox for the PDF attachment
   </how-to-verify>
   <resume-signal>Type "assessment approved" or describe any issues to fix</resume-signal>
 </task>
@@ -936,7 +975,7 @@ Output: Fully functional /assessment page with end-to-end flow: intro → 8 ques
 - All 8 questions display sequentially with role-based branching on Q2 and Q5
 - Progress bar shows current/total correctly
 - Email gate blocks results until name + email submitted
-- Results screen shows score, tier, preview bullets, and two CTAs
+- Results screen shows score, tier, preview bullets, "Download Full PDF" button (links to /ai-readiness-scorecard.pdf, no 404), and two CTAs
 - Server Action validates input, generates PDF buffer, calls Resend
 - localStorage restores partial assessment on page reload
 - Zero TypeScript errors
