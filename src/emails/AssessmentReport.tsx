@@ -74,12 +74,23 @@ export function AssessmentReport({
             </Text>
           ))}
           <Hr style={{ borderColor: "#e5e7eb", margin: "24px 0" }} />
-          <Text style={{ fontSize: "14px", color: "#6b7280" }}>
-            Your full PDF report is attached. It includes a detailed breakdown
-            of your score and a personalized roadmap.
-          </Text>
           <Button
-            href="https://calendly.com/asorahura"
+            href="https://asorahura.com/ai-readiness-scorecard.pdf"
+            style={{
+              backgroundColor: "#f3f4f6",
+              color: "#111",
+              padding: "12px 24px",
+              borderRadius: "6px",
+              fontSize: "14px",
+              textDecoration: "none",
+              display: "inline-block",
+              marginBottom: "12px",
+            }}
+          >
+            Download Full Scorecard PDF
+          </Button>
+          <Button
+            href="https://asorahura.com/checkout"
             style={{
               backgroundColor: "#111",
               color: "#fff",

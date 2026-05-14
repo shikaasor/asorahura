@@ -10,7 +10,6 @@ export async function sendAssessmentEmail(params: {
   tier: string;
   tierDescription: string;
   previewBullets: string[];
-  pdfBuffer: Buffer;
 }): Promise<{ success: boolean; error?: string }> {
   const { error } = await resend.emails.send({
     from: "Asor Ahura <hello@asorahura.com>",
@@ -23,12 +22,6 @@ export async function sendAssessmentEmail(params: {
       tierDescription: params.tierDescription,
       previewBullets: params.previewBullets,
     }),
-    attachments: [
-      {
-        filename: "AI_Readiness_Report.pdf",
-        content: params.pdfBuffer,
-      },
-    ],
   });
 
   if (error) return { success: false, error: error.message };
