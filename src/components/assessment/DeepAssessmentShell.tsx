@@ -7,7 +7,6 @@ import { DeepResultsScreen } from "./DeepResultsScreen";
 import {
   deepQuestions,
   DIMENSIONS,
-  RATING_OPTIONS,
   calculateDeepScore,
   type Dimension,
 } from "@/lib/deepAssessment";
@@ -127,14 +126,14 @@ export function DeepAssessmentShell() {
           <h2 className={styles.ratingQuestion}>{q.text}</h2>
           <p className={styles.ratingSubtext}>{q.subtext}</p>
           <div className={styles.ratingOptions}>
-            {RATING_OPTIONS.map((opt) => (
+            {q.options.map((label, value) => (
               <button
-                key={opt.value}
-                onClick={() => handleAnswer(opt.value)}
-                className={`${styles.ratingOption} ${answers[q.id] === opt.value ? styles.selected : ""}`}
+                key={value}
+                onClick={() => handleAnswer(value)}
+                className={`${styles.ratingOption} ${answers[q.id] === value ? styles.selected : ""}`}
               >
-                <span className={styles.ratingBadge}>{opt.value}</span>
-                <span className={styles.ratingLabel}>{opt.label}</span>
+                <span className={styles.ratingBadge}>{value}</span>
+                <span className={styles.ratingLabel}>{label}</span>
               </button>
             ))}
           </div>
