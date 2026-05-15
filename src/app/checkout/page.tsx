@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { PaddleCheckout } from "@/components/checkout/PaddleCheckout";
 import { tiers, getTierById, type TierId } from "@/lib/checkout";
@@ -13,8 +14,12 @@ const TRUST_ITEMS = [
   "Fixed scope, no surprise invoices",
 ];
 
-export default function CheckoutPage() {
-  const [selectedTier, setSelectedTier] = useState<TierId>("discovery");
+function CheckoutInner() {
+  const tierParam = useSearchParams().get("tier") as TierId | null;
+  const initialTier: TierId =
+    tierParam && (["discovery", "strategy"] as TierId[]).includes(tierParam) ? tierParam : "discovery";
+
+  const [selectedTier, setSelectedTier] = useState<TierId>(initialTier);
   const tier = getTierById(selectedTier);
   const isEnterprise = false;
 
@@ -119,7 +124,7 @@ export default function CheckoutPage() {
             ) : (
               <div className={styles.paymentPanel}>
                 <p className={styles.paymentLabel}>Secure payment</p>
-                <PaddleCheckout priceId={tier.paddlePriceId} />
+                <PaddleCheckout key={tier.paddlePriceId} priceId={tier.paddlePriceId} />
               </div>
             )}
           </div>
@@ -138,5 +143,13 @@ export default function CheckoutPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function CheckoutPage() {
+  return (
+    <Suspense fallback={null}>
+      <CheckoutInner />
+    </Suspense>
   );
 }

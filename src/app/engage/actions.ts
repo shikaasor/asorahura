@@ -1,10 +1,12 @@
 "use server";
 
-export async function submitInquiry(formData: FormData) {
+import { redirect } from "next/navigation";
+
+export async function submitInquiry(formData: FormData): Promise<{ success: boolean; message: string } | never> {
     const scriptUrl = process.env.GOOGLE_SCRIPT_URL;
-    if (!scriptUrl) {
-        return { success: false, message: "Form submission is not configured." };
-    }
+
+    const scoreRaw = formData.get("score") as string;
+    const score = parseInt(scoreRaw || "0", 10);
 
     const inquiry = {
         name: formData.get("name") as string,
@@ -17,18 +19,27 @@ export async function submitInquiry(formData: FormData) {
         timeline: formData.get("timeline") as string,
         budget: formData.get("budget") as string,
         context: formData.get("context") as string,
+        score: scoreRaw,
     };
 
-    try {
-        await fetch(scriptUrl, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(inquiry),
-            redirect: "follow",
-        });
+    if (scriptUrl) {
+        try {
+            await fetch(scriptUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(inquiry),
+                redirect: "follow",
+            });
+        } catch {
+            // Fire-and-forget — CRM logging failure does not block routing
+        }
+    }
 
-        return { success: true, message: "Inquiry submitted successfully. We will be in touch." };
-    } catch {
-        return { success: false, message: "Something went wrong. Please try again later." };
+    if (score >= 70) {
+        redirect("/checkout?tier=strategy");
+    } else if (score >= 40) {
+        redirect("/checkout?tier=discovery");
+    } else {
+        redirect("/engage/confirmation");
     }
 }
