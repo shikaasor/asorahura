@@ -1,5 +1,5 @@
 import { Resend } from "resend";
-import { draftEmailSequence } from "@/lib/llm";
+import { draftEmailSequence, draftNurtureEmailSequence } from "@/lib/llm";
 import { generateAssessmentPDF } from "@/lib/pdf";
 import { getSegment } from "@/lib/assessment";
 
@@ -100,6 +100,18 @@ export async function sendAssessmentEmailSequence(params: {
     console.error("[email] LLM sequence drafting failed:", err);
   }
 
+  let nurture: Awaited<ReturnType<typeof draftNurtureEmailSequence>> | undefined;
+  try {
+    nurture = await draftNurtureEmailSequence({
+      firstName,
+      score,
+      segment,
+      answers,
+    });
+  } catch (err) {
+    console.error("[email] LLM nurture sequence drafting failed:", err);
+  }
+
   // Initial email — immediate, with PDF attached
   try {
     const initialBody =
@@ -125,64 +137,56 @@ export async function sendAssessmentEmailSequence(params: {
     console.error("[email] Initial send threw:", err);
   }
 
-  // Day 3 follow-up
+  // Day 3 — Problem deepening
   try {
     const { error } = await resend.emails.send({
       from: FROM,
       to: email,
-      subject: sequence?.day3.subject ?? "Quick check-in on your AI report",
-      text:
-        sequence?.day3.body ??
-        `Hey ${firstName}, just checking in on your AI Readiness Report.`,
-      scheduledAt: "in 3 days",
+      subject: nurture?.day3.subject ?? "The cost of doing this manually",
+      text: nurture?.day3.body ?? `Hey ${firstName}, following up on your AI Readiness Assessment.`,
+      scheduledAt: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
     });
     if (error) console.error("[email] Day 3 send failed:", error.message);
   } catch (err) {
     console.error("[email] Day 3 send threw:", err);
   }
 
-  // Day 7 follow-up
+  // Day 7 — Case study with /blog link
   try {
     const { error } = await resend.emails.send({
       from: FROM,
       to: email,
-      subject: sequence?.day7.subject ?? "AI insights for your business",
-      text:
-        sequence?.day7.body ??
-        `Hey ${firstName}, a quick follow-up from Asor.`,
-      scheduledAt: "in 7 days",
+      subject: nurture?.day7.subject ?? "A project you might find relevant",
+      text: nurture?.day7.body ?? `Hey ${firstName}, here's a relevant case study from our blog.`,
+      scheduledAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
     });
     if (error) console.error("[email] Day 7 send failed:", error.message);
   } catch (err) {
     console.error("[email] Day 7 send threw:", err);
   }
 
-  // Day 14 follow-up
+  // Day 14 — Process reveal
   try {
     const { error } = await resend.emails.send({
       from: FROM,
       to: email,
-      subject: sequence?.day14.subject ?? "Still thinking about AI automation?",
-      text:
-        sequence?.day14.body ??
-        `Hey ${firstName}, just wanted to check in.`,
-      scheduledAt: "in 14 days",
+      subject: nurture?.day14.subject ?? "What working with me actually looks like",
+      text: nurture?.day14.body ?? `Hey ${firstName}, here's what a typical engagement looks like.`,
+      scheduledAt: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
     });
     if (error) console.error("[email] Day 14 send failed:", error.message);
   } catch (err) {
     console.error("[email] Day 14 send threw:", err);
   }
 
-  // Day 30 follow-up
+  // Day 30 — Offer with segment CTA
   try {
     const { error } = await resend.emails.send({
       from: FROM,
       to: email,
-      subject: sequence?.day30.subject ?? "One last thought on AI readiness",
-      text:
-        sequence?.day30.body ??
-        `Hey ${firstName}, a month ago you scored ${score}/100 on the AI Readiness Assessment.`,
-      scheduledAt: "in 30 days",
+      subject: nurture?.day30.subject ?? "Still thinking about this?",
+      text: nurture?.day30.body ?? `Hey ${firstName}, a month ago you completed the AI Readiness Assessment.`,
+      scheduledAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
     });
     if (error) console.error("[email] Day 30 send failed:", error.message);
   } catch (err) {
