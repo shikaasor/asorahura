@@ -18,7 +18,7 @@ See:
 
 **Total Phases:** 5
 **Current Phase:** Not started (pending Phase 1 plan)
-**Progress:** [████████░░] 75%
+**Progress:** [██████████] 100%
 
 **Execution Model:** Sequential (one phase per week, blockers resolved before next phase starts)
 **Configuration:** Standard depth, Sequential execution, Budget model profile
@@ -187,6 +187,8 @@ This will:
 - [Phase 02-conversion-funnel]: openai SDK with Gemini baseURL — avoids Gemini-specific dependency, standard OpenAI interface works
 - [Phase 02-conversion-funnel]: maxDuration belongs in page.tsx route segment config, not in use server files (Next.js Turbopack constraint)
 - [Phase 02-conversion-funnel]: Each Resend send individually try/caught — one failure never cascades to block initial email delivery
+- [Phase 02-conversion-funnel]: Inline serviceTiers data array in page.tsx — single-use, no abstraction needed
+- [Phase 02-conversion-funnel]: Services page is a Server Component — Testimonials handles its own client animation boundary
 
 ## Known Risks & Mitigations
 

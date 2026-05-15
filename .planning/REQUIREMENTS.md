@@ -21,13 +21,13 @@
 
 ### Services Page
 
-- [ ] **SERV-01**: Hero "Here's Exactly What I Build" with sub about scoped engagements
-- [ ] **SERV-02**: Tier 1 card — Starter Automation ($5,000) with features and delivery timeline
-- [ ] **SERV-03**: Tier 2 card — Operational Automation ($5k–$15k) with features and delivery timeline
-- [ ] **SERV-04**: Tier 3 card — Systems Integration ($15k–$30k) with features and delivery timeline
-- [ ] **SERV-05**: Tier 4 card — Enterprise/Complex Build ($30k+) with scoping note and "Book a call" CTA
-- [ ] **SERV-06**: Sidebar note pointing to assessment for tier matching
-- [ ] **SERV-07**: Social proof section with 2-3 testimonials (same as homepage)
+- [x] **SERV-01**: Hero "Here's Exactly What I Build" with sub about scoped engagements
+- [x] **SERV-02**: Tier 1 card — Starter Automation ($5,000) with features and delivery timeline
+- [x] **SERV-03**: Tier 2 card — Operational Automation ($5k–$15k) with features and delivery timeline
+- [x] **SERV-04**: Tier 3 card — Systems Integration ($15k–$30k) with features and delivery timeline
+- [x] **SERV-05**: Tier 4 card — Enterprise/Complex Build ($30k+) with scoping note and "Book a call" CTA
+- [x] **SERV-06**: Sidebar note pointing to assessment for tier matching
+- [x] **SERV-07**: Social proof section with 2-3 testimonials (same as homepage)
 
 ### Work / Case Studies Page
 
@@ -201,13 +201,13 @@
 | ENGAGE-04 | Phase 2 | Pending |
 | ENGAGE-05 | Phase 2 | Pending |
 | ENGAGE-06 | Phase 2 | Pending |
-| SERV-01 | Phase 2 | Pending |
-| SERV-02 | Phase 2 | Pending |
-| SERV-03 | Phase 2 | Pending |
-| SERV-04 | Phase 2 | Pending |
-| SERV-05 | Phase 2 | Pending |
-| SERV-06 | Phase 2 | Pending |
-| SERV-07 | Phase 2 | Pending |
+| SERV-01 | Phase 2 | Complete |
+| SERV-02 | Phase 2 | Complete |
+| SERV-03 | Phase 2 | Complete |
+| SERV-04 | Phase 2 | Complete |
+| SERV-05 | Phase 2 | Complete |
+| SERV-06 | Phase 2 | Complete |
+| SERV-07 | Phase 2 | Complete |
 | WORK-01 | Phase 2 | Pending |
 | WORK-02 | Phase 2 | Pending |
 | WORK-03 | Phase 2 | Pending |
