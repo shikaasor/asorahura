@@ -196,6 +196,9 @@ This will:
 - [Phase 02-02-conversion-funnel]: Score=0 (no score param) treated as cold lead (<40) — safe fallback to /engage/confirmation
 - [Phase 02-02-conversion-funnel]: redirect() placed after try/catch block for fetch — Next.js redirect throws internally, must not be caught
 - [Phase 02-02-conversion-funnel]: Suspense-wrapped useSearchParams pattern: extract Inner component, wrap export default in Suspense fallback={null}
+- [Phase 02-05]: CALENDLY_URL module-level constant in email.ts; Calendly link appended to initial email body only, not follow-up sends
+- [Phase 02-05]: serviceInterest dropdown is optional (no required attr) — Not sure yet is valid fallback; defaultValue pre-fills from ?tier= param
+- [Phase 02-05]: ENGAGE-06 spec updated to match score-based routing implementation; old budget/Calendly spec removed from REQUIREMENTS.md
 
 ## Known Risks & Mitigations
 
