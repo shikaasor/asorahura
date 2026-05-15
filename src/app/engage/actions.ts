@@ -14,6 +14,7 @@ export async function submitInquiry(formData: FormData): Promise<{ success: bool
         company: formData.get("company") as string,
         role: formData.get("role") as string,
         companySize: formData.get("companySize") as string,
+        serviceInterest: formData.get("serviceInterest") as string,
         operationalVolume: formData.get("operationalVolume") as string,
         challenge: formData.get("challenge") as string,
         timeline: formData.get("timeline") as string,

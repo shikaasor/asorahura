@@ -8,6 +8,7 @@ import Testimonials from "@/components/Testimonials";
 
 function EngageFormInner() {
     const score = useSearchParams().get("score");
+    const tierParam = useSearchParams().get("tier");
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
     const [message, setMessage] = useState("");
 
@@ -68,6 +69,16 @@ function EngageFormInner() {
                                         <label htmlFor="role">Your Role</label>
                                         <input type="text" id="role" name="role" placeholder="COO, Founder, etc." required />
                                     </div>
+                                </div>
+                                <div className={styles.inputGroup}>
+                                    <label htmlFor="serviceInterest">Which service are you interested in?</label>
+                                    <select id="serviceInterest" name="serviceInterest" defaultValue={tierParam ?? ""}>
+                                        <option value="">Not sure yet</option>
+                                        <option value="starter">Starter Automation (~$5,000)</option>
+                                        <option value="operational">Operational Automation ($5k–$15k)</option>
+                                        <option value="integration">Systems Integration ($15k–$30k)</option>
+                                        <option value="enterprise">Enterprise / Complex Build ($30k+)</option>
+                                    </select>
                                 </div>
                                 <div className={styles.inputGroup}>
                                     <label htmlFor="companySize">Company Size</label>
