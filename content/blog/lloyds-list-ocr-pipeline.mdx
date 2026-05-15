@@ -1,0 +1,111 @@
+---
+title: "43,103 Maritime Records. 260 Years of History. One AI Pipeline."
+subtitle: "How I digitized 7,826 pages of 18th-century shipping documents for a European research institution — with verbatim accuracy at scale."
+excerpt: "How I digitized 7,826 pages of 18th-century Lloyd's List shipping documents for a European research institution — using Chandra OCR + Gemini, 25KB of precision prompt engineering, and a three-stage verification workflow. Verbatim accuracy at scale."
+category: "Case Study"
+coverImage: "/site-images/lloydlist.png"
+tags: ["AIEngineering", "DocumentIntelligence", "OCR", "NLP", "DataExtraction"]
+metrics: "43,103 Records | 7,826 Pages | 260 Years of History"
+---
+
+A European research institution came to me with a simple ask and an enormous problem.
+
+They had 20 bound editions of Lloyd's List — the historic maritime intelligence journal published in London from the 1700s. The editions spanned 1762 to 1826. 260 years of ship movements, maritime casualties, port arrivals, weather records, and the commercial intelligence that underwrote the Age of Sail.
+
+It was all locked in handwritten 18th-century typography. Multi-column layouts. Archaic fonts. Inconsistent spelling. Ditto marks that cascaded across tables. OCR artifacts baked into every page.
+
+They needed it structured, searchable, and usable for academic research. 7,826 pages. Delivered in full.
+
+## Why This Couldn't Be Done with Off-the-Shelf OCR
+
+Most people assume OCR is a solved problem. It isn't — not for documents like this.
+
+The Lloyd's List editions presented every challenge OCR tools struggle with simultaneously:
+
+→ Pre-modern typography (the long 's' that looks like an 'f')
+
+→ Multi-column layouts with tables, narratives, and price lists mixed on the same page
+
+→ Inconsistent abbreviations and archaic spelling across decades of publication
+
+→ Ditto marks ("d°", "do") that reference values from previous rows — but only within the same section
+
+→ No standardized date format across editions
+
+A single OCR pass would produce garbled text with no structure. Feeding that directly to an LLM would produce hallucinated corrections and fabricated data — the opposite of what a research institution needs.
+
+We needed verbatim accuracy. That ruled out correction. That required engineering.
+
+## The Architecture: Two Models, Three Extraction Types
+
+We built a two-model pipeline where each tool does what it does best.
+
+Layer 1: Chandra OCR → Structured Markdown: Chandra specializes in complex document layouts. Rather than outputting raw text, it preserves the spatial structure of the document in Markdown — tables with | notation, section headers with ##, narrative prose as paragraphs. This structured output is critical. It gives the downstream LLM semantic context it couldn't infer from a flat text dump. Every page pair produced a pair_XXXX_ocr.md file. 3,913 pairs across 20 editions.
+
+Layer 2: Gemini → Structured JSON: Gemini processed each OCR markdown file using tailored extraction prompts and returned strict JSON via response_mime_type="application/json" with enforced schema. No markdown wrappers. No parsing errors. Valid JSON output, every time.
+
+Three distinct extraction types, each with its own prompt and schema:
+
+→ Marine List Events — narrative incident reports (ship casualties, captures, wrecks, distress signals)
+
+→ Arrivals & Departures — structured port movement tables (location, ship, captain, origin, destination, date)
+
+→ Winds at Deal — meteorological records (day, wind direction, intensity)
+
+Each extraction type had its own prompt — refined across four versions based on feedback from the research team's review cycle.
+
+## The Prompt Engineering: 25KB of Rules
+
+The prompts.md file is 25KB. That's not bloat — that's precision.
+
+Every rule exists because a naive approach produced a wrong result:
+
+→ Date extraction rule: Always use the edition header date, never the narrative preamble date. Because a ship incident logged as "15th Jan." under a February edition header belongs to the February dataset — the preamble is descriptive context, not the record date.
+
+→ Ditto resolution scope: "d°" means "same as above" — but only within the same location and same section. Carry it across a section boundary and you corrupt the record. The prompt specifies scope constraints explicitly.
+
+→ False positive filtering: Price tables, stock listings, and mail schedules appear on the same pages as Marine List narratives. The model must skip them. The prompt enumerates exactly which text types to exclude.
+
+→ Multi-prompt architecture: A regex detector checks each OCR file for a Marine List header. Files with headers use the targeted scan prompt. Files without use the general V3 prompt. No manual routing. Fully automated.
+
+The result: Gemini never had to guess. Every ambiguity was resolved by a rule.
+
+## Quality Control: A Three-Stage Verification Workflow
+
+Extraction at this scale without validation is just confident noise. We built a three-skill verification loop:
+
+→ Extractor: Runs extraction per page pair, appends to CSV, updates extraction_status.json. Skips already-processed pairs. Fully resumable.
+
+→ Verifier: Cross-references three sources simultaneously — the original PDF image, the OCR markdown, and the extracted CSV row. Flags transcription errors, omissions, and false positives. Outputs a report.md with exact CSV locations and correction text.
+
+→ Corrector: Applies corrections from report.md using grep-based search and replace. Verbatim compliance enforced — even OCR artifacts are preserved if they appear in the source document.
+
+The philosophy: We don't modernize. We don't correct. We transcribe exactly what the document says. The researchers decide what to do with archaic spelling — that's their domain expertise, not ours.
+
+## The Output
+
+20 complete edition archives. Each containing:
+
+→ events.csv — Marine List incidents (up to 3,818 rows per edition)
+
+→ arrivals_departures.csv — Port movement records
+
+→ winds.csv — Meteorological data
+
+→ pair_XXXX_ocr.md — Full-text OCR (enables future search and reprocessing)
+
+→ pair_XXXX_events.json — Structured per-page extracts
+
+→ extraction_status.json — Processing audit trail
+
+43,103 marine incident records. Delivered. Verified. Archived.
+
+## The Broader Lesson
+
+Most organizations sitting on large volumes of unstructured documents — legal archives, historical records, clinical notes, regulatory filings — assume digitization means scanning.
+
+Scanning is the first 1%. The other 99% is the pipeline that turns images into structured, queryable, research-grade data.
+
+The decisions that matter are: Which OCR tool preserves structure? How do you enforce verbatim accuracy at scale? How do you resolve ambiguity without hallucination? How do you build a pipeline that can be paused, resumed, and audited at any point?
+
+Those are engineering decisions. Not configuration decisions.

@@ -1,0 +1,71 @@
+---
+title: "I Built an AI That Screens for Cervical Cancer in Rural Nigeria — Without the Internet"
+subtitle: "What happens when a health system has no specialists, no connectivity, and no margin for error? You build differently."
+excerpt: "Offline-first YOLOv8 diagnostic system deployed across 39+ health facilities in Kano State. Local inference, blind clinical review, automatic model retraining, and zero patient data leaving the clinic. Built for the nurse 70 miles from the nearest specialist."
+category: "Case Study"
+coverImage: "/site-images/cervical-cancer-tool.png"
+tags: ["AIforHealth", "PrivacyFirst", "LocalInference", "DigitalHealth", "GlobalHealth"]
+metrics: "39+ Facilities | Zero Cloud Dependency"
+---
+
+Most AI in healthcare assumes three things: a stable internet connection, a qualified specialist nearby, and patient data you're free to send to the cloud.
+
+Rural northern Nigeria has none of those.
+
+That's exactly why I led the engineering team behind the Cervical Cancer Screening and Continuous Improvement System (CXCA) — an offline-first, AI-powered diagnostic tool built for frontline health workers in Kano State, deployed across 39+ facilities, and designed so that zero patient data leaves the clinic without consent and de-identification.
+
+## The Problem Nobody Was Solving
+
+Cervical cancer is one of the most preventable causes of death among women in sub-Saharan Africa. The word "preventable" is doing a lot of heavy lifting there — because prevention requires screening, and screening requires specialists who aren't there.
+
+In rural Kano, the nearest gynecologist or pathologist can be 60-70 miles away. The current method — Visual Inspection with Acetic Acid (VIA) — is manual, subjective, and dependent on the observer's training and experience.
+
+There were existing AI models for cervical cancer detection. The problem? Every single one was trained on Caucasian patient data. They didn't generalize to African populations. That's not a minor gap — it's a clinical liability.
+
+We weren't going to adapt a broken tool. We were going to build the right one.
+
+## The Architecture: Local Inference, Human-in-the-Loop, Data Flywheel
+
+→ Local YOLOv8 Inference at the Point of Care: The model runs on-device. No API call. No internet dependency. A community health worker captures a cervical image, clicks analyze, and gets a result in seconds — whether the facility has connectivity or not.
+
+→ EXIF Stripping Before Anything Leaves the Device: Every image is processed in-memory through Pillow before upload. GPS coordinates, camera serial numbers, device metadata — all stripped. The image that reaches our database carries no PII. Data sovereignty isn't a feature. It's the foundation.
+
+→ Confidence-Based Escalation: Results below 90% confidence trigger an automatic escalation to a qualified clinician via email — with the image attached. High-confidence results are logged immediately. This protects patients without flooding the clinical review queue.
+
+→ Blind Review Protocol with Round-Robin Assignment: Clinicians review images without seeing the AI's diagnosis first. This is intentional. Anchoring bias — where a clinician defers to the AI result rather than using their own judgment — would compromise the ground-truth labels we need for retraining.
+
+→ The Data Flywheel: Every screening, every clinician label, every disagreement between AI and clinician feeds a retraining pipeline. When we accumulate enough locally-sourced Nigerian patient data — with a deliberate 70/30 negative/positive split — the model retrains. A new version is validated, versioned, and deployed. The system gets smarter with every scan.
+
+## The Stack
+
+→ YOLOv8 (Ultralytics) — image classification, local inference
+
+→ Streamlit — multi-role web interface (Provider, Reviewer, Admin)
+
+→ Supabase — PostgreSQL + Auth + Object Storage with role-based access control
+
+→ Python / Pillow — in-memory EXIF de-identification pipeline
+
+→ Gmail SMTP — async clinical escalation notifications
+
+→ Offline Queue — JSON-based local queue with exponential backoff retry for intermittent connectivity
+
+Three distinct roles. Three distinct access levels. One shared goal: earlier detection.
+
+## Why This Matters Beyond Nigeria
+
+The architecture is the real story. We built a system that can be replicated in any low-resource setting, for any diagnostic task — because the design principles hold regardless of geography.
+
+→ Local inference removes cloud dependency
+
+→ Blind review removes AI bias from ground-truth labels
+
+→ The data flywheel removes demographic bias from the model over time
+
+→ De-identification removes the legal and ethical barrier to data sharing
+
+Most AI health tools are built for hospitals in San Francisco. We built this for the nurse 70 miles from the nearest specialist. That's a different problem — and it demands a different kind of engineering.
+
+## What's Next
+
+The system is live. The facilities are configured. The pipeline is running. If you're serious about building AI for low-resource settings, I want to hear from you.

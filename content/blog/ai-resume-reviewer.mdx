@@ -1,0 +1,87 @@
+---
+title: "2,000+ Resumes Reviewed. 3 HR Departments. Zero Vendor Lock-In."
+subtitle: "Most HR teams are still reading resumes the same way they did in 1995. I built the system that changes that — without locking you into a single AI provider."
+excerpt: "An open-source AI hiring platform supporting Claude, GPT-4, Gemini, Groq, and local Ollama models — switchable from a sidebar with no code changes. Three domain-specific scorecards, evidence-anchored scoring, and color-coded Excel exports. Run it fully local: zero data leaves the building."
+category: "Case Study"
+coverImage: "/site-images/resume-review.png"
+tags: ["HRTech", "AIAutomation", "PrivacyFirst", "LocalInference", "Recruiting"]
+metrics: "2,000+ Resumes | 3 HR Departments | 5 AI Providers Supported"
+---
+
+Here's what resume screening looks like in most organizations:
+
+A job posting goes live. 150 applications arrive in 48 hours. An HR coordinator opens the first PDF, reads it for 90 seconds, and makes a call based on a gut feeling and whether the formatting is clean.
+
+By application 40, they're skimming. By application 80, they're fatigued. By application 120, they're copying scores from the person before and hoping for the best.
+
+That's not a hiring process. That's a coin flip with extra steps.
+
+I built the AI Resume Reviewer to fix this — a multi-LLM screening platform that has now processed over 2,000 resumes across 3 HR departments, with structured verdicts, evidence-based scoring, and the ability to swap AI providers without touching a line of code.
+
+## The Problem with Every Other AI Resume Tool
+
+Most AI hiring tools have the same fatal flaw: they're built on one provider's API. OpenAI today, price hike tomorrow, scramble to re-architect next quarter.
+
+Beyond vendor lock-in, they give you a score. Not a verdict. Not a rubric. Not an evidence trail you can defend to a hiring manager or a candidate.
+
+A number isn't a hiring decision. A structured, evidence-anchored scorecard is.
+
+## How It Works
+
+The system is a Streamlit web application with a multi-provider LLM dispatch layer. Here's the full pipeline:
+
+→ Input: Job description (optional) + resume files. Supported formats: PDF, DOCX, DOC, PNG, JPG, TIFF, BMP, WebP, or a ZIP archive of hundreds of files at once.
+
+→ Text Extraction: Selectable text PDFs via PyPDF2. Scanned PDFs and images via Chandra OCR API. Word documents via python-docx. The system handles resumes that most tools reject outright — scanned documents, photographed pages, image-only PDFs.
+
+→ LLM Dispatch: Select your provider from the sidebar. The same evaluation runs on Claude (Anthropic), Gemini (Google), GPT-4 (OpenAI), Llama/Mixtral (Groq), or Ollama — any local model with zero data leaving the building.
+
+→ Structured Scorecard Output: The LLM returns a strict JSON scorecard — not free text, not a paragraph, not a hallucinated recommendation. Every field validated before display.
+
+## Three Scorecards. Nine Dimensions. One Verdict.
+
+The system ships with three domain-specific evaluation templates:
+
+AI Advisor — for AI specialist roles in international development organizations (UN, World Bank, USAID): 9 scored dimensions including AI Knowledge, Donor Experience, Technical Expertise, AI Capacity Building, and Strategic Skills.
+
+General — universal professional screening for any role: 8 dimensions covering Education, Experience Depth, Technical Skills, Leadership, Sector Fit, Analytical Thinking, Communication, and Completeness.
+
+STL Consultant — short-term local consultant screening for NGO/INGO roles: 7 dimensions including NGO Experience, Thematic Relevance, and Stakeholder Engagement.
+
+Every dimension scored 1-5. Every score requires evidence from the resume text — no inflation, no uniform 3s, no hallucinated endorsements. The final output: "Strongly Recommend" / "Recommend" / "Consider" / "Do Not Recommend" — with deterministic decision logic, not vibes.
+
+## The Excel Export: Built for Decision-Making
+
+Every batch produces a color-coded Excel file built for the hiring manager who wasn't in the room:
+
+→ Red scores (1-2) surface critical gaps immediately
+
+→ Green scores (4-5) highlight standout candidates
+
+→ Overall % column sorts by suitability in one click
+
+→ Verdict column color-coded by recommendation tier
+
+→ Auto-filter on every column for slicing by facility, dimension, or score range
+
+Three HR departments have used this export as the primary input to their shortlisting process.
+
+## The Results
+
+→ 2,000+ resumes evaluated across production deployments
+
+→ 3 HR departments using the system for active hiring cycles
+
+→ 5 AI providers supported — switch in the sidebar, no code change required
+
+→ Batch processing via ZIP upload — screen 100+ candidates in a single session
+
+→ Local inference option via Ollama — for organizations that can't send data to public APIs
+
+The GitHub repository (shikaasor/ai_resume_review) is public and MIT-licensed.
+
+## The Takeaway for Founders and HR Leaders
+
+If your hiring process depends on a person reading 150 PDFs and trusting their instincts — you're not screening candidates. You're introducing randomness into the most consequential decisions your organization makes.
+
+AI doesn't remove judgment from hiring. It removes exhaustion. The right tool gives your team a structured starting point, an evidence trail, and the time to spend their expertise where it actually matters.

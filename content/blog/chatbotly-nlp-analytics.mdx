@@ -1,0 +1,81 @@
+---
+title: "Your Chatbot Doesn't Know What It Doesn't Know — And It's Costing You Customers"
+subtitle: "I ran NLP analysis on thousands of chatbot conversations for a Swiss insurance company. Here's what the data actually revealed."
+excerpt: "I built an NLP analytics pipeline for a Swiss insurance company — analyzing 16,000+ chatbot conversation logs to surface knowledge gaps, escalation drivers, and engagement patterns. What the data revealed changed how they thought about their entire support strategy."
+category: "Case Study"
+coverImage: "/site-images/nueral network and multilingual flow.png"
+tags: ["NLP", "ConversationalAI", "AIAnalytics", "ChatbotOptimization", "CustomerExperience"]
+metrics: "16,454 Conversations Analyzed | 15 Topic Categories | 3-Language Support"
+---
+
+Most companies deploy a chatbot and declare the problem solved.
+
+They look at the dashboard. Conversations handled: ✓. Human escalations reduced: ✓. Support tickets deflected: ✓.
+
+What they're not looking at is the conversation that ended with: "I don't have specific information about that. Please contact us at support@company.com."
+
+That sentence — or some variation of it — is the most expensive line in your chatbot's vocabulary. It tells a customer you built a system that can't answer their actual question. Then it asks them to go find a human to do what the chatbot was supposed to do.
+
+I built an NLP analytics pipeline to find every instance of that failure — and everything it cost.
+
+## The Client and the Problem
+
+A Swiss pet insurance company had deployed an AI chatbot to handle customer service 24/7. The bot was multilingual — German, French, Spanish — and covered a broad set of FAQs around policies, claims, coverage, and account management.
+
+The product team had a nagging problem they couldn't quantify: customers were escalating to human agents at a higher rate than expected. They didn't know why. They didn't know which topics were failing. They didn't know if the knowledge base was the issue or the model or both.
+
+They had the data — 16,454 conversation log entries. They didn't have the analysis.
+
+## The Pipeline
+
+→ Data Ingestion and Cleaning: Raw CSV logs with session IDs, roles (user/assistant/system/contact_form), messages, and timestamps. Signal extraction — stripping system noise, normalizing encoding across three languages, and grouping messages into user-assistant conversation pairs by session.
+
+→ LLM-Based Multi-Dimensional Classification: Each conversation pair was classified across four dimensions simultaneously using GPT-4 and Gemini with an abstracted dispatch layer:
+
+→ Topic Category — 15 predefined categories (Policy Details, Claims & Reimbursement, Account Management, Technical Support, Billing, and more) with confidence scoring per classification.
+
+→ Knowledge Gap Detection — Binary flag (DATA_GAP / OK) identifying conversations where the chatbot signaled it couldn't answer. Not keyword matching — semantic understanding of partial answers, redirects, and deflections.
+
+→ Human Escalation Detection — Binary flag (ESCALATION / OK) capturing both explicit requests and implied frustration, with confidence scores of 0.85-0.95 on high-signal conversations.
+
+→ Engagement Pattern Analysis — Time-series analysis of conversation volume by day and hour, surfacing peak load periods and anomalous spikes.
+
+→ Structured Reporting: Output — a color-coded, multi-sheet Excel report with categorized conversations, summary statistics, topic distribution, and escalation analysis — plus three standalone insight documents.
+
+## What the Data Revealed
+
+The findings fell into three categories, and none of them were what the client expected.
+
+Finding 1: The knowledge base covered FAQs. Not operational reality. The chatbot could explain what the policy covered in general terms. It could not answer whether a specific treatment was covered for a specific breed at a specific age, why a claim was partially paid, how long the current claims queue actually was (answer: 16-30 days), or whether a policy could be modified after activation. These aren't edge cases. They're the questions customers actually have.
+
+Finding 2: Escalations were almost never random. When we mapped escalation conversations against topic categories, a pattern emerged immediately. The highest escalation rates were in Claims & Reimbursement and Specific Coverage Details — the same topics driving the knowledge gaps. Customers weren't escalating because they preferred humans. They were escalating because the chatbot had already told them it couldn't help.
+
+Finding 3: Peak load correlated with policy lifecycle events, not time of day. The most significant engagement spike — 53 conversations in a single day — didn't follow a predictable daily pattern. It correlated with a specific external event that drove a batch of customers to the same set of questions simultaneously.
+
+## The Fix Isn't More AI. It's Better Intelligence.
+
+The temptation after an analysis like this is to upgrade the model. Bigger model, better answers. That's the wrong instinct.
+
+The problem wasn't model capability. The problem was that nobody had systematically mapped what questions customers were actually asking against what the knowledge base actually contained.
+
+The gap between those two things is operational blindness. And it compounds silently until someone measures it.
+
+The right fix:
+
+→ Expand the knowledge base with operational-level policy detail — not just FAQ summaries
+
+→ Build direct integrations with claims systems so the bot can surface real status, real timelines, real answers
+
+→ Add a smooth human handoff with conversation history so the agent isn't starting from scratch
+
+→ Run this analysis quarterly — the gaps change as the product evolves
+
+A chatbot that knows what it doesn't know is infinitely more valuable than one that deflects confidently.
+
+## What This Looks Like for Your Organization
+
+If you have a deployed chatbot and you're not regularly analyzing where it's failing — you're flying blind. Your customers know exactly where the gaps are. The conversation logs know too. You just haven't looked.
+
+I build NLP analytics pipelines that turn conversation data into actionable intelligence: knowledge gap maps, escalation drivers, engagement patterns, and structured recommendations your product team can act on immediately.
+
+No generic dashboards. No vanity metrics. The intelligence your system needs to stop bleeding customers in silence.
