@@ -88,6 +88,13 @@ Plans:
 5. **Blog-to-assessment conversion** visible (readers click assessment CTA in post footer)
 6. **Content migration complete** for case studies (Flowmorph references removed, EU Horizon grant references purged, outcome language applied)
 
+**Plans:** 3 plans across 2 waves
+
+Plans:
+- [ ] 03-01-PLAN.md — Blog infrastructure: install MDX deps, migrate 4 case studies to /content/blog/ MDX files, build src/lib/blog.ts, add /articles redirects
+- [ ] 03-02-PLAN.md — Blog UI: listing page card grid, category filter, /blog/[slug] article page, BlogCTABlock component
+- [ ] 03-03-PLAN.md — Email nurture sequences: draftNurtureEmailSequence (Day 3/7/14/30) in llm.ts, wire into email.ts
+
 **Estimated:** 1 week
 **Dependencies:** Phase 2 (email platform must be configured and handling Phase 1-2 sequences)
 
