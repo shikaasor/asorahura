@@ -1,7 +1,9 @@
 "use server";
 
+export const maxDuration = 30;
+
 import { emailGateSchema } from "@/lib/validation";
-import { sendAssessmentEmail } from "@/lib/email";
+import { sendAssessmentEmailSequence } from "@/lib/email";
 import {
   calculateScore,
   getTierName,
@@ -27,19 +29,16 @@ export async function submitAssessmentForEmail(
   const tierDescription = getTierDescription(score);
   const previewBullets = getPreviewBullets(score);
 
-  // Send email — non-blocking failure so score still shows if email fails (e.g. no API key in dev)
-  const result = await sendAssessmentEmail({
+  // Fire-and-forget — never blocks the results response
+  void sendAssessmentEmailSequence({
     email,
     firstName,
     score,
     tier,
     tierDescription,
     previewBullets,
+    answers,
   });
-
-  if (!result.success) {
-    console.error("Email delivery failed:", result.error);
-  }
 
   return { success: true, score, tier };
 }
