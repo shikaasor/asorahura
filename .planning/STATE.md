@@ -199,6 +199,7 @@ This will:
 - [Phase 02-05]: CALENDLY_URL module-level constant in email.ts; Calendly link appended to initial email body only, not follow-up sends
 - [Phase 02-05]: serviceInterest dropdown is optional (no required attr) — Not sure yet is valid fallback; defaultValue pre-fills from ?tier= param
 - [Phase 02-05]: ENGAGE-06 spec updated to match score-based routing implementation; old budget/Calendly spec removed from REQUIREMENTS.md
+- [Phase 03-lead-nurture-blog-launch-extended-email-sequences-segmentation]: reading-time uses default CJS import not named export; satisfies BlogPost for structural TypeScript validation; MDX tags strip # prefix from articles.ts source
 
 ## Known Risks & Mitigations
 

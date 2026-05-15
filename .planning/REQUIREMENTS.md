@@ -97,7 +97,7 @@
 
 - [ ] **BLOG-01**: Header "Operational Intelligence"
 - [ ] **BLOG-02**: Sub "Insights on AI automation, systems thinking, and scaling operations without headcount"
-- [ ] **BLOG-03**: Content hub with LinkedIn reprints, YouTube embeds, original long-form articles
+- [x] **BLOG-03**: Content hub with LinkedIn reprints, YouTube embeds, original long-form articles
 - [ ] **BLOG-04**: Each post ends with sticky CTA block (relevant case study link OR assessment link)
 - [ ] **BLOG-05**: Email capture widget (sidebar or inline) with "Get automation insights twice a month" message
 
@@ -130,9 +130,9 @@
 
 ### Content Migration
 
-- [ ] **CONTENT-01**: Remove "Explore Flowmorph" button and all Flowmorph branding
-- [ ] **CONTENT-02**: Reframe case studies: outcome-first, plain language, metrics highlighted
-- [ ] **CONTENT-03**: Rename Articles page to Blog and add LinkedIn/YouTube content
+- [x] **CONTENT-01**: Remove "Explore Flowmorph" button and all Flowmorph branding
+- [x] **CONTENT-02**: Reframe case studies: outcome-first, plain language, metrics highlighted
+- [x] **CONTENT-03**: Rename Articles page to Blog and add LinkedIn/YouTube content
 - [ ] **CONTENT-04**: Remove EU Horizon grant references from all case studies
 - [ ] **CONTENT-05**: Move testimonials from Engage page to Homepage and Services page
 - [ ] **CONTENT-06**: Republish all content with new positioning (executive language, not technical)
@@ -224,12 +224,12 @@
 | EMAIL-06 | Phase 3 | Pending |
 | BLOG-01 | Phase 3 | Pending |
 | BLOG-02 | Phase 3 | Pending |
-| BLOG-03 | Phase 3 | Pending |
+| BLOG-03 | Phase 3 | Complete |
 | BLOG-04 | Phase 3 | Pending |
 | BLOG-05 | Phase 3 | Pending |
-| CONTENT-01 | Phase 3 | Pending |
-| CONTENT-02 | Phase 3 | Pending |
-| CONTENT-03 | Phase 3 | Pending |
+| CONTENT-01 | Phase 3 | Complete |
+| CONTENT-02 | Phase 3 | Complete |
+| CONTENT-03 | Phase 3 | Complete |
 | CONTENT-04 | Phase 3 | Pending |
 | NAV-01 | Phase 4 | Pending |
 | NAV-02 | Phase 4 | Pending |
