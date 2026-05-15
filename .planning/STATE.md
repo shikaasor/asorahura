@@ -205,6 +205,8 @@ This will:
 - [Phase 03]: Separate LLM call for nurture sequence — draftNurtureEmailSequence called independently from draftEmailSequence so failure in either does not cascade
 - [Phase 03]: ISO 8601 timestamps via Date.now() + N*86400000 replace natural language scheduledAt strings to eliminate timezone ambiguity in Resend
 - [Phase 03]: Fixed SEGMENT_CASE_STUDY map in llm.ts — deterministic blog slug per segment ensures Day 7 email always has valid /blog URL in both LLM and fallback paths
+- [Phase 03-04]: EmailCaptureWidget is a 'use client' component imported into server components — Next.js handles the client boundary automatically
+- [Phase 03-04]: RESEND_AUDIENCE_ID env var required at runtime; absence returns 500 with config error (graceful degradation)
 
 ## Known Risks & Mitigations
 
