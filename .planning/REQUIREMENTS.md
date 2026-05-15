@@ -67,10 +67,10 @@
 
 ### Engage Page (Scoped Inquiry Form)
 
-- [ ] **ENGAGE-01**: Hero "Tell Me About Your Problem"
-- [ ] **ENGAGE-02**: Sub "Describe what's slowing your operations down. I'll tell you what can be built, how long, and what it costs."
-- [ ] **ENGAGE-03**: 1-2 testimonials repeated at top (social proof at decision point)
-- [ ] **ENGAGE-04**: Form with 7 fields:
+- [x] **ENGAGE-01**: Hero "Tell Me About Your Problem"
+- [x] **ENGAGE-02**: Sub "Describe what's slowing your operations down. I'll tell you what can be built, how long, and what it costs."
+- [x] **ENGAGE-03**: 1-2 testimonials repeated at top (social proof at decision point)
+- [x] **ENGAGE-04**: Form with 7 fields:
   - Full Name (text)
   - Email (email)
   - Company / Role (text, combined)
@@ -78,8 +78,8 @@
   - Which service interested in? (dropdown with tier options, pre-fills if from /services)
   - Budget range (dropdown with tier anchors)
   - When do you want to start? (Immediately / 1 month / 1-3 months / Exploring)
-- [ ] **ENGAGE-05**: Submit button "Submit My Project Brief"
-- [ ] **ENGAGE-06**: Post-submission routing logic:
+- [x] **ENGAGE-05**: Submit button "Submit My Project Brief"
+- [x] **ENGAGE-06**: Post-submission routing logic:
   - Route A: Budget matches tier + problem clear → redirect to /checkout?tier=[X]
   - Route B: Budget "Not sure" OR problem vague OR Enterprise → redirect to Calendly booking
   - Route C: Problem described but unclear tier → confirmation page + 24-hour follow-up email
@@ -121,7 +121,7 @@
 
 ### Conversion & Funnel
 
-- [ ] **CONV-01**: Three entry states served: Cold (assessment) → Warm (engage) → Hot (checkout/services)
+- [x] **CONV-01**: Three entry states served: Cold (assessment) → Warm (engage) → Hot (checkout/services)
 - [x] **CONV-02**: Assessment as primary lead gen engine (lowest friction, highest email capture)
 - [ ] **CONV-03**: Pricing shown transparently (no "contact us" for pricing)
 - [ ] **CONV-04**: Urgency signals real and maintained honestly ("Currently booking for [Month]", "X build slots remaining")
@@ -195,12 +195,12 @@
 | EMAIL-01 | Phase 2 | Complete |
 | EMAIL-02 | Phase 2 | Complete |
 | EMAIL-07 | Phase 2 | Complete |
-| ENGAGE-01 | Phase 2 | Pending |
-| ENGAGE-02 | Phase 2 | Pending |
-| ENGAGE-03 | Phase 2 | Pending |
-| ENGAGE-04 | Phase 2 | Pending |
-| ENGAGE-05 | Phase 2 | Pending |
-| ENGAGE-06 | Phase 2 | Pending |
+| ENGAGE-01 | Phase 2 | Complete |
+| ENGAGE-02 | Phase 2 | Complete |
+| ENGAGE-03 | Phase 2 | Complete |
+| ENGAGE-04 | Phase 2 | Complete |
+| ENGAGE-05 | Phase 2 | Complete |
+| ENGAGE-06 | Phase 2 | Complete |
 | SERV-01 | Phase 2 | Complete |
 | SERV-02 | Phase 2 | Complete |
 | SERV-03 | Phase 2 | Complete |
@@ -215,7 +215,7 @@
 | WORK-05 | Phase 2 | Complete |
 | WORK-06 | Phase 2 | Complete |
 | WORK-07 | Phase 2 | Complete |
-| CONV-01 | Phase 2 | Pending |
+| CONV-01 | Phase 2 | Complete |
 | CONV-02 | Phase 2 | Complete |
 | EMAIL-03 | Phase 3 | Pending |
 | EMAIL-04 | Phase 3 | Pending |

@@ -192,6 +192,10 @@ This will:
 - [Phase 02-conversion-funnel]: Work page is a Server Component — no client-side animation needed, simpler and faster
 - [Phase 02-conversion-funnel]: Inline caseStudies data in work/page.tsx — single-use, no abstraction needed
 - [Phase 02-conversion-funnel]: Metric-first headlines in case studies — lead with outcome numbers (2000+, 16454, 43103, 39) for conversion
+- [Phase 02-02-conversion-funnel]: handleSubmit keeps client-side result.success check as fallback — redirect fires server-side so it rarely renders
+- [Phase 02-02-conversion-funnel]: Score=0 (no score param) treated as cold lead (<40) — safe fallback to /engage/confirmation
+- [Phase 02-02-conversion-funnel]: redirect() placed after try/catch block for fetch — Next.js redirect throws internally, must not be caught
+- [Phase 02-02-conversion-funnel]: Suspense-wrapped useSearchParams pattern: extract Inner component, wrap export default in Suspense fallback={null}
 
 ## Known Risks & Mitigations
 
