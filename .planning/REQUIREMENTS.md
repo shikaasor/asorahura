@@ -79,10 +79,11 @@
   - Budget range (dropdown with tier anchors)
   - When do you want to start? (Immediately / 1 month / 1-3 months / Exploring)
 - [x] **ENGAGE-05**: Submit button "Submit My Project Brief"
-- [x] **ENGAGE-06**: Post-submission routing logic:
-  - Route A: Budget matches tier + problem clear → redirect to /checkout?tier=[X]
-  - Route B: Budget "Not sure" OR problem vague OR Enterprise → redirect to Calendly booking
-  - Route C: Problem described but unclear tier → confirmation page + 24-hour follow-up email
+- [x] **ENGAGE-06**: Post-submission routing logic (score-based, supersedes original budget-based spec):
+  - Hot lead (score ≥ 70): redirect to /checkout?tier=strategy
+  - Warm lead (score 40–69): redirect to /checkout?tier=discovery
+  - Cold lead (score < 40 or no score): redirect to /engage/confirmation
+  - Note: Score is passed as hidden field from ?score= URL param (set by assessment results CTA). Direct /engage visits with no score param default to cold routing.
 
 ### Checkout Page
 
