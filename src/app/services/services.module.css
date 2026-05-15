@@ -1,0 +1,252 @@
+.page {
+  min-height: 100vh;
+  background: #0a0a0a;
+  color: #fff;
+}
+
+/* Hero */
+.hero {
+  background: #0a0a0a;
+  padding: 5rem 2rem 4rem;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.heroInner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.heroTitle {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 1.25rem;
+}
+
+.heroSub {
+  font-size: 1.1rem;
+  color: #9ca3af;
+  line-height: 1.65;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Tiers section */
+.tiersSection {
+  padding: 4rem 2rem;
+}
+
+.tiersInner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tiersGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .tiersGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .tiersGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Card */
+.card {
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 8px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+  transition: border-color 0.2s ease;
+}
+
+.card:hover {
+  border-color: #C9A84C;
+}
+
+.cardEnterprise {
+  border-color: #C9A84C;
+}
+
+.enterpriseBadge {
+  position: absolute;
+  top: -0.75rem;
+  right: 1rem;
+  background: #C9A84C;
+  color: #0a0a0a;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+/* Card header */
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tierName {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #e5e7eb;
+  letter-spacing: 0.01em;
+}
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.price {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+
+.priceNote {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.tagline {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* Bullets */
+.bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  flex: 1;
+}
+
+.bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #d1d5db;
+  line-height: 1.5;
+}
+
+.bulletCheck {
+  color: #C9A84C;
+  font-size: 0.75rem;
+  margin-top: 0.1rem;
+  flex-shrink: 0;
+}
+
+/* Card footer */
+.cardFooter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  margin-top: auto;
+}
+
+.timeline {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.timelineLabel {
+  font-weight: 600;
+  color: #9ca3af;
+}
+
+/* CTA buttons */
+.cta {
+  display: block;
+  text-align: center;
+  padding: 0.625rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.cta:hover {
+  opacity: 0.85;
+}
+
+.ctaDefault {
+  border: 1px solid #C9A84C;
+  color: #C9A84C;
+  background: transparent;
+}
+
+.ctaEnterprise {
+  background: #C9A84C;
+  color: #0a0a0a;
+  border: 1px solid #C9A84C;
+}
+
+/* Assessment callout */
+.assessmentCallout {
+  background: #111;
+  border-left: 3px solid #C9A84C;
+  padding: 1.5rem 2rem;
+  margin-top: 3rem;
+  border-radius: 0 6px 6px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.calloutText {
+  font-size: 0.95rem;
+  color: #d1d5db;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+.calloutLink {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #C9A84C;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+}
+
+.calloutLink:hover {
+  opacity: 0.8;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.8rem;
+  color: #4b5563;
+  border-top: 1px solid #1a1a1a;
+}
