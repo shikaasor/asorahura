@@ -114,10 +114,10 @@
 
 - [x] **EMAIL-01**: Assessment completion triggers immediate PDF delivery (to email captured in Step 0)
 - [x] **EMAIL-02**: Email 1 (0 min) — "Your AI Readiness Report is here" with PDF + Calendly link
-- [ ] **EMAIL-03**: Email 2 (Day 3) — Educational content per score tier + soft CTA to Services
-- [ ] **EMAIL-04**: Email 3 (Day 7) — Relevant case study (matched to their answers) + "Work With Me" CTA
-- [ ] **EMAIL-05**: Email 4 (Day 14) — Objection handling ("If you've been sitting on this...") + booking CTA
-- [ ] **EMAIL-06**: Email 5 (Day 30) — Single-line question "What's the one thing you most wish ran itself?" (reply-to email)
+- [x] **EMAIL-03**: Email 2 (Day 3) — Educational content per score tier + soft CTA to Services
+- [x] **EMAIL-04**: Email 3 (Day 7) — Relevant case study (matched to their answers) + "Work With Me" CTA
+- [x] **EMAIL-05**: Email 4 (Day 14) — Objection handling ("If you've been sitting on this...") + booking CTA
+- [x] **EMAIL-06**: Email 5 (Day 30) — Single-line question "What's the one thing you most wish ran itself?" (reply-to email)
 - [x] **EMAIL-07**: Assessment results are segmented: <40 (cold nurture) / 40-70 (warm engagement) / 70+ (hot sales)
 
 ### Conversion & Funnel
@@ -218,10 +218,10 @@
 | WORK-07 | Phase 2 | Complete |
 | CONV-01 | Phase 2 | Complete |
 | CONV-02 | Phase 2 | Complete |
-| EMAIL-03 | Phase 3 | Pending |
-| EMAIL-04 | Phase 3 | Pending |
-| EMAIL-05 | Phase 3 | Pending |
-| EMAIL-06 | Phase 3 | Pending |
+| EMAIL-03 | Phase 3 | Complete |
+| EMAIL-04 | Phase 3 | Complete |
+| EMAIL-05 | Phase 3 | Complete |
+| EMAIL-06 | Phase 3 | Complete |
 | BLOG-01 | Phase 3 | Complete |
 | BLOG-02 | Phase 3 | Complete |
 | BLOG-03 | Phase 3 | Complete |

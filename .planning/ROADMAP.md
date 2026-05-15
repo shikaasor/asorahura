@@ -88,7 +88,7 @@ Plans:
 5. **Blog-to-assessment conversion** visible (readers click assessment CTA in post footer)
 6. **Content migration complete** for case studies (Flowmorph references removed, EU Horizon grant references purged, outcome language applied)
 
-**Plans:** 2/3 plans executed
+**Plans:** 3/3 plans complete
 
 Plans:
 - [ ] 03-01-PLAN.md — Blog infrastructure: install MDX deps, migrate 4 case studies to /content/blog/ MDX files, build src/lib/blog.ts, add /articles redirects

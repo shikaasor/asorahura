@@ -202,6 +202,9 @@ This will:
 - [Phase 03-lead-nurture-blog-launch-extended-email-sequences-segmentation]: reading-time uses default CJS import not named export; satisfies BlogPost for structural TypeScript validation; MDX tags strip # prefix from articles.ts source
 - [Phase 03-02]: Server Component + client wrapper pattern: page.tsx fetches posts, BlogListingClient manages useState filter — avoids full client-side page
 - [Phase 03-02]: Array.from(new Set()) over spread — TypeScript target does not support Set iteration via spread without downlevelIteration flag
+- [Phase 03]: Separate LLM call for nurture sequence — draftNurtureEmailSequence called independently from draftEmailSequence so failure in either does not cascade
+- [Phase 03]: ISO 8601 timestamps via Date.now() + N*86400000 replace natural language scheduledAt strings to eliminate timezone ambiguity in Resend
+- [Phase 03]: Fixed SEGMENT_CASE_STUDY map in llm.ts — deterministic blog slug per segment ensures Day 7 email always has valid /blog URL in both LLM and fallback paths
 
 ## Known Risks & Mitigations
 
