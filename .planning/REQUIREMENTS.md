@@ -95,11 +95,11 @@
 
 ### Blog Page
 
-- [ ] **BLOG-01**: Header "Operational Intelligence"
-- [ ] **BLOG-02**: Sub "Insights on AI automation, systems thinking, and scaling operations without headcount"
+- [x] **BLOG-01**: Header "Operational Intelligence"
+- [x] **BLOG-02**: Sub "Insights on AI automation, systems thinking, and scaling operations without headcount"
 - [x] **BLOG-03**: Content hub with LinkedIn reprints, YouTube embeds, original long-form articles
-- [ ] **BLOG-04**: Each post ends with sticky CTA block (relevant case study link OR assessment link)
-- [ ] **BLOG-05**: Email capture widget (sidebar or inline) with "Get automation insights twice a month" message
+- [x] **BLOG-04**: Each post ends with sticky CTA block (relevant case study link OR assessment link)
+- [x] **BLOG-05**: Email capture widget (sidebar or inline) with "Get automation insights twice a month" message
 
 ### Navigation & Site-Wide
 
@@ -222,11 +222,11 @@
 | EMAIL-04 | Phase 3 | Pending |
 | EMAIL-05 | Phase 3 | Pending |
 | EMAIL-06 | Phase 3 | Pending |
-| BLOG-01 | Phase 3 | Pending |
-| BLOG-02 | Phase 3 | Pending |
+| BLOG-01 | Phase 3 | Complete |
+| BLOG-02 | Phase 3 | Complete |
 | BLOG-03 | Phase 3 | Complete |
-| BLOG-04 | Phase 3 | Pending |
-| BLOG-05 | Phase 3 | Pending |
+| BLOG-04 | Phase 3 | Complete |
+| BLOG-05 | Phase 3 | Complete |
 | CONTENT-01 | Phase 3 | Complete |
 | CONTENT-02 | Phase 3 | Complete |
 | CONTENT-03 | Phase 3 | Complete |

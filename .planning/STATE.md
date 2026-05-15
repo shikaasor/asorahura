@@ -200,6 +200,8 @@ This will:
 - [Phase 02-05]: serviceInterest dropdown is optional (no required attr) — Not sure yet is valid fallback; defaultValue pre-fills from ?tier= param
 - [Phase 02-05]: ENGAGE-06 spec updated to match score-based routing implementation; old budget/Calendly spec removed from REQUIREMENTS.md
 - [Phase 03-lead-nurture-blog-launch-extended-email-sequences-segmentation]: reading-time uses default CJS import not named export; satisfies BlogPost for structural TypeScript validation; MDX tags strip # prefix from articles.ts source
+- [Phase 03-02]: Server Component + client wrapper pattern: page.tsx fetches posts, BlogListingClient manages useState filter — avoids full client-side page
+- [Phase 03-02]: Array.from(new Set()) over spread — TypeScript target does not support Set iteration via spread without downlevelIteration flag
 
 ## Known Risks & Mitigations
 
