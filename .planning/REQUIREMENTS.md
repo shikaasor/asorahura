@@ -111,18 +111,18 @@
 
 ### Email Automation
 
-- [ ] **EMAIL-01**: Assessment completion triggers immediate PDF delivery (to email captured in Step 0)
-- [ ] **EMAIL-02**: Email 1 (0 min) — "Your AI Readiness Report is here" with PDF + Calendly link
+- [x] **EMAIL-01**: Assessment completion triggers immediate PDF delivery (to email captured in Step 0)
+- [x] **EMAIL-02**: Email 1 (0 min) — "Your AI Readiness Report is here" with PDF + Calendly link
 - [ ] **EMAIL-03**: Email 2 (Day 3) — Educational content per score tier + soft CTA to Services
 - [ ] **EMAIL-04**: Email 3 (Day 7) — Relevant case study (matched to their answers) + "Work With Me" CTA
 - [ ] **EMAIL-05**: Email 4 (Day 14) — Objection handling ("If you've been sitting on this...") + booking CTA
 - [ ] **EMAIL-06**: Email 5 (Day 30) — Single-line question "What's the one thing you most wish ran itself?" (reply-to email)
-- [ ] **EMAIL-07**: Assessment results are segmented: <40 (cold nurture) / 40-70 (warm engagement) / 70+ (hot sales)
+- [x] **EMAIL-07**: Assessment results are segmented: <40 (cold nurture) / 40-70 (warm engagement) / 70+ (hot sales)
 
 ### Conversion & Funnel
 
 - [ ] **CONV-01**: Three entry states served: Cold (assessment) → Warm (engage) → Hot (checkout/services)
-- [ ] **CONV-02**: Assessment as primary lead gen engine (lowest friction, highest email capture)
+- [x] **CONV-02**: Assessment as primary lead gen engine (lowest friction, highest email capture)
 - [ ] **CONV-03**: Pricing shown transparently (no "contact us" for pricing)
 - [ ] **CONV-04**: Urgency signals real and maintained honestly ("Currently booking for [Month]", "X build slots remaining")
 - [ ] **CONV-05**: No exit links to social media in conversion flow (only footer)
@@ -192,9 +192,9 @@
 | CHECK-03 | Phase 1 | Complete |
 | CHECK-04 | Phase 1 | Complete |
 | CHECK-05 | Phase 1 | Complete |
-| EMAIL-01 | Phase 2 | Pending |
-| EMAIL-02 | Phase 2 | Pending |
-| EMAIL-07 | Phase 2 | Pending |
+| EMAIL-01 | Phase 2 | Complete |
+| EMAIL-02 | Phase 2 | Complete |
+| EMAIL-07 | Phase 2 | Complete |
 | ENGAGE-01 | Phase 2 | Pending |
 | ENGAGE-02 | Phase 2 | Pending |
 | ENGAGE-03 | Phase 2 | Pending |
@@ -216,7 +216,7 @@
 | WORK-06 | Phase 2 | Pending |
 | WORK-07 | Phase 2 | Pending |
 | CONV-01 | Phase 2 | Pending |
-| CONV-02 | Phase 2 | Pending |
+| CONV-02 | Phase 2 | Complete |
 | EMAIL-03 | Phase 3 | Pending |
 | EMAIL-04 | Phase 3 | Pending |
 | EMAIL-05 | Phase 3 | Pending |
