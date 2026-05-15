@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { submitInquiry } from "./actions";
 import styles from "./engage.module.css";
 import Testimonials from "@/components/Testimonials";
 
-export default function EngagePage() {
+function EngageFormInner() {
+    const score = useSearchParams().get("score");
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
     const [message, setMessage] = useState("");
 
@@ -16,10 +18,10 @@ export default function EngagePage() {
         const formData = new FormData(e.currentTarget);
         const result = await submitInquiry(formData);
 
-        if (result.success) {
+        if (result && result.success) {
             setStatus("success");
             setMessage(result.message);
-        } else {
+        } else if (result) {
             setStatus("error");
             setMessage(result.message);
         }
@@ -30,36 +32,10 @@ export default function EngagePage() {
             <div className="container">
                 <section className={styles.content}>
                     <div className={styles.header}>
-                        <h1 className={styles.headline}>Let's Build Something Great.</h1>
+                        <h1 className={styles.headline}>Tell Me About Your Problem</h1>
                         <p className={styles.subhead}>
-                            Whether you're a startup looking to scale or an enterprise needing operational efficiency, 
-                            I'm here to help you architect the right solution.
+                            Describe what&apos;s slowing your operations down. I&apos;ll tell you what can be built, how long, and what it costs.
                         </p>
-                    </div>
-
-                    {/* Who I Work With Section - Softened */}
-                    <div className={styles.whoIWorkWith}>
-                        <h2>How I Can Help</h2>
-                        <div className={styles.audienceGrid}>
-                            <div className={styles.audienceCard}>
-                                <h3>Founders & Executives</h3>
-                                <p>
-                                    Unlock operational leverage and focus on strategy while your systems handle the execution.
-                                </p>
-                            </div>
-                            <div className={styles.audienceCard}>
-                                <h3>Operations Leaders</h3>
-                                <p>
-                                    Eliminate bottlenecks and manual data entry. Build workflows that scale with your growth.
-                                </p>
-                            </div>
-                            <div className={styles.audienceCard}>
-                                <h3>Compliance & Risk</h3>
-                                <p>
-                                    Automate with confidence. Create auditable, secure, and compliant digital trails.
-                                </p>
-                            </div>
-                        </div>
                     </div>
 
                     <Testimonials />
@@ -138,11 +114,10 @@ export default function EngagePage() {
                                     <label htmlFor="budget">Budget Alignment</label>
                                     <select id="budget" name="budget" required>
                                         <option value="">Select budget range...</option>
-                                        <option value="under-15k">Under $15k/month</option>
-                                        <option value="15k-30k">$15k - $30k/month</option>
-                                        <option value="30k-50k">$30k - $50k/month</option>
-                                        <option value="50k+">$50k+/month or project-based</option>
-                                        <option value="equity">Open to equity/performance models</option>
+                                        <option value="under-5k">Under $5k</option>
+                                        <option value="5k-15k">$5k–$15k</option>
+                                        <option value="15k-30k">$15k–$30k</option>
+                                        <option value="30k-plus">$30k+</option>
                                     </select>
                                 </div>
                                 <div className={styles.inputGroup}>
@@ -154,8 +129,9 @@ export default function EngagePage() {
                                         placeholder="Any other details that would help us understand your situation..."
                                     ></textarea>
                                 </div>
+                                <input type="hidden" name="score" value={score ?? ""} />
                                 <button type="submit" className={styles.submitBtn} disabled={status === "loading"}>
-                                    {status === "loading" ? "Processing..." : "Submit Inquiry"}
+                                    {status === "loading" ? "Submitting..." : "Submit My Project Brief"}
                                 </button>
                                 {status === "error" && <p className={styles.errorMessage}>{message}</p>}
                             </form>
@@ -170,5 +146,13 @@ export default function EngagePage() {
                 </div>
             </footer>
         </main>
+    );
+}
+
+export default function EngagePage() {
+    return (
+        <Suspense fallback={null}>
+            <EngageFormInner />
+        </Suspense>
     );
 }

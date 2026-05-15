@@ -48,18 +48,11 @@ export function ResultsScreen({ score, tier, firstName }: Props) {
 
       <div className={styles.cta}>
         <p className={styles.ctaHint}>Ready to act on your results?</p>
-        <Link href="/checkout" className={styles.ctaBtn}>
-          Book a Discovery Call
+        <Link href={`/engage?score=${score}`} className={styles.ctaBtn}>
+          Tell Me About Your Problem →
         </Link>
-      </div>
-
-      <div className={styles.deeper}>
-        <p className={styles.deeperTitle}>Want a more detailed picture?</p>
-        <p className={styles.deeperSub}>
-          The full scorecard goes deeper — 20 questions across 5 dimensions with section-level scores for process, data, compliance, team, and strategy.
-        </p>
-        <Link href="/assessment/deep" className={styles.deeperLink}>
-          Take the Full 20-Question Scorecard →
+        <Link href="/checkout" className={styles.ctaSecondary}>
+          Skip to checkout
         </Link>
       </div>
     </div>

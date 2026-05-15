@@ -202,3 +202,14 @@
   color: #fff;
   opacity: 1;
 }
+
+.ctaSecondary {
+  font-size: 0.825rem;
+  color: #9ca3af;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ctaSecondary:hover {
+  color: #6b7280;
+}
