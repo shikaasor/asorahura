@@ -31,13 +31,13 @@
 
 ### Work / Case Studies Page
 
-- [ ] **WORK-01**: Header "Real Problems. Real Systems. Real Results." (remove "Intellectual Dominance...")
-- [ ] **WORK-02**: Case Study 1 — HR Automation (2,000+ resumes, resume screening, AI rubrics, local operation)
-- [ ] **WORK-03**: Case Study 2 — Chatbot Analytics (Swiss insurance, 16,454 conversations, NLP pipeline)
-- [ ] **WORK-04**: Case Study 3 — Document Intelligence (7,826 maritime documents → 43,103 records)
-- [ ] **WORK-05**: Case Study 4 — Healthcare Ops (39 facilities, offline-first, no patient data leaving)
-- [ ] **WORK-06**: Case study card template: Problem (1 sentence) → Result (metric-first, bolded) → Built (1-2 sentences) → Stack (collapsed)
-- [ ] **WORK-07**: Bottom CTA "See how I can do this for your business" links to /engage
+- [x] **WORK-01**: Header "Real Problems. Real Systems. Real Results." (remove "Intellectual Dominance...")
+- [x] **WORK-02**: Case Study 1 — HR Automation (2,000+ resumes, resume screening, AI rubrics, local operation)
+- [x] **WORK-03**: Case Study 2 — Chatbot Analytics (Swiss insurance, 16,454 conversations, NLP pipeline)
+- [x] **WORK-04**: Case Study 3 — Document Intelligence (7,826 maritime documents → 43,103 records)
+- [x] **WORK-05**: Case Study 4 — Healthcare Ops (39 facilities, offline-first, no patient data leaving)
+- [x] **WORK-06**: Case study card template: Problem (1 sentence) → Result (metric-first, bolded) → Built (1-2 sentences) → Stack (collapsed)
+- [x] **WORK-07**: Bottom CTA "See how I can do this for your business" links to /engage
 
 ### Assessment Page (Lead Magnet)
 
@@ -208,13 +208,13 @@
 | SERV-05 | Phase 2 | Complete |
 | SERV-06 | Phase 2 | Complete |
 | SERV-07 | Phase 2 | Complete |
-| WORK-01 | Phase 2 | Pending |
-| WORK-02 | Phase 2 | Pending |
-| WORK-03 | Phase 2 | Pending |
-| WORK-04 | Phase 2 | Pending |
-| WORK-05 | Phase 2 | Pending |
-| WORK-06 | Phase 2 | Pending |
-| WORK-07 | Phase 2 | Pending |
+| WORK-01 | Phase 2 | Complete |
+| WORK-02 | Phase 2 | Complete |
+| WORK-03 | Phase 2 | Complete |
+| WORK-04 | Phase 2 | Complete |
+| WORK-05 | Phase 2 | Complete |
+| WORK-06 | Phase 2 | Complete |
+| WORK-07 | Phase 2 | Complete |
 | CONV-01 | Phase 2 | Pending |
 | CONV-02 | Phase 2 | Complete |
 | EMAIL-03 | Phase 3 | Pending |

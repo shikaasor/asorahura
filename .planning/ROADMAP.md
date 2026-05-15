@@ -58,7 +58,7 @@ Plans:
 5. **Case studies reframed** to outcome-first language (metric-first results, problem/solution/stack visible)
 6. **Assessment results page has CTA** linking to engage form with score in URL
 
-**Plans:** 2/4 plans executed
+**Plans:** 3/4 plans executed
 
 Plans:
 - [ ] 02-01-PLAN.md — Email automation backend: LLM client (Gemini via OpenAI SDK), branded PDF generator, segmentation helper, Resend sequence with scheduling

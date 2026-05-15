@@ -189,6 +189,9 @@ This will:
 - [Phase 02-conversion-funnel]: Each Resend send individually try/caught — one failure never cascades to block initial email delivery
 - [Phase 02-conversion-funnel]: Inline serviceTiers data array in page.tsx — single-use, no abstraction needed
 - [Phase 02-conversion-funnel]: Services page is a Server Component — Testimonials handles its own client animation boundary
+- [Phase 02-conversion-funnel]: Work page is a Server Component — no client-side animation needed, simpler and faster
+- [Phase 02-conversion-funnel]: Inline caseStudies data in work/page.tsx — single-use, no abstraction needed
+- [Phase 02-conversion-funnel]: Metric-first headlines in case studies — lead with outcome numbers (2000+, 16454, 43103, 39) for conversion
 
 ## Known Risks & Mitigations
 
