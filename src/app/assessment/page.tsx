@@ -1,6 +1,8 @@
 import { AssessmentShell } from "@/components/assessment/AssessmentShell";
 import styles from "./assessment.module.css";
 
+export const maxDuration = 30;
+
 export const metadata = {
   title: "AI Readiness Assessment | Asor Ahura",
   description:

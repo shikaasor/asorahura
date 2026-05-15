@@ -1,7 +1,5 @@
 "use server";
 
-export const maxDuration = 30;
-
 import { emailGateSchema } from "@/lib/validation";
 import { sendAssessmentEmailSequence } from "@/lib/email";
 import {
