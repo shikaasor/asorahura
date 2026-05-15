@@ -6,6 +6,7 @@ import { getSegment } from "@/lib/assessment";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const FROM = "Asor Ahura <hello@asorahura.com>";
+const CALENDLY_URL = "https://calendly.com/asorahura";
 
 export async function sendAssessmentEmail(params: {
   email: string;
@@ -101,13 +102,16 @@ export async function sendAssessmentEmailSequence(params: {
 
   // Initial email — immediate, with PDF attached
   try {
+    const initialBody =
+      (sequence?.initial.body ?? `Hey ${firstName}, your score is ${score}/100.`) +
+      `\n\nBook a call: ${CALENDLY_URL}`;
     const { error } = await resend.emails.send({
       from: FROM,
       to: email,
       subject:
         sequence?.initial.subject ??
         `Your AI Readiness Report — Score: ${score}/100`,
-      text: sequence?.initial.body ?? `Hey ${firstName}, your score is ${score}/100.`,
+      text: initialBody,
       ...(pdf
         ? {
             attachments: [
