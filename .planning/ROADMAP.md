@@ -52,11 +52,19 @@ Plans:
 
 **Success Criteria:**
 1. **Assessment-to-email automation works** with PDF report delivered to email within 5 minutes of assessment completion
-2. **Personalized score segmentation active** (cold <40, warm 40-70, hot 70+) and routing distinct email paths per segment
-3. **Engage form collects submissions** with 7 fields, all routing logic functional (Route A → checkout, Route B → Calendly, Route C → confirmation)
+2. **Personalized score segmentation active** (cold <40, warm 40-70, hot 70+) routing distinct email paths per segment
+3. **Engage form collects submissions** with routing logic functional (Hot→checkout Strategy Session, Warm→checkout Discovery Call, Cold→confirmation)
 4. **Services page ranks tiers clearly** with pricing anchors ($5k, $5-15k, $15-30k, $30k+) and assessment linkage for tier matching
 5. **Case studies reframed** to outcome-first language (metric-first results, problem/solution/stack visible)
-6. **Assessment results page has secondary CTA** linking to strategy call booking (Calendly) for immediate engagement
+6. **Assessment results page has CTA** linking to engage form with score in URL
+
+**Plans:** 4 plans across 2 waves
+
+Plans:
+- [ ] 02-01-PLAN.md — Email automation backend: LLM client (Gemini via OpenAI SDK), branded PDF generator, segmentation helper, Resend sequence with scheduling
+- [ ] 02-02-PLAN.md — Frontend funnel wiring: ResultsScreen → /engage?score=, engage form overhaul + score routing + confirmation page, checkout tier pre-selection
+- [ ] 02-03-PLAN.md — Services page: 4 pricing tier cards, assessment sidebar note, testimonials
+- [ ] 02-04-PLAN.md — Work/case studies page rewrite: outcome-first headlines, 5-section template, remove Flowmorph/EU Horizon, /engage CTA
 
 **Estimated:** 1.5 weeks
 **Dependencies:** Phase 1 (assessment core must exist; email platform configured before assessment launch)
@@ -219,4 +227,4 @@ Phase 5 (Analytics + Testing + Launch)
 ---
 
 *Roadmap created: 2026-05-13*
-*Next action: /gsd:plan-phase 1*
+*Next action: /gsd:execute-phase 02*
