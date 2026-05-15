@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import CategoryFilter from '@/components/blog/CategoryFilter';
+import EmailCaptureWidget from '@/components/blog/EmailCaptureWidget';
 import type { BlogPost } from '@/lib/blog';
 import styles from './page.module.css';
 
@@ -27,6 +28,9 @@ export default function BlogListingClient({ posts }: { posts: BlogPost[] }) {
       <section className={styles.listing}>
         <div className="container">
           <CategoryFilter categories={categories} active={active} onChange={setActive} />
+          <div style={{ marginBottom: '3rem' }}>
+            <EmailCaptureWidget />
+          </div>
           <div className={styles.grid}>
             {filtered.map((post) => (
               <Link key={post.slug} href={`/blog/${post.slug}`} className={styles.card}>

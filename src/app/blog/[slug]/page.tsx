@@ -5,6 +5,7 @@ import { ArrowLeft } from 'lucide-react';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import { getBlogPostBySlug, getBlogPosts } from '@/lib/blog';
 import BlogCTABlock from '@/components/blog/BlogCTABlock';
+import EmailCaptureWidget from '@/components/blog/EmailCaptureWidget';
 import styles from './article.module.css';
 
 export async function generateStaticParams() {
@@ -58,6 +59,10 @@ export default async function BlogArticlePage({
           <BlogCTABlock
             type={post.category === 'Case Study' ? 'case-study' : 'educational'}
           />
+
+          <div style={{ marginTop: '2rem' }}>
+            <EmailCaptureWidget />
+          </div>
         </div>
       </div>
 
