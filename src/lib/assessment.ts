@@ -213,6 +213,12 @@ export function getPreviewBullets(score: number): string[] {
   ];
 }
 
+export function getSegment(score: number): "cold" | "warm" | "hot" {
+  if (score < 40) return "cold";
+  if (score < 70) return "warm";
+  return "hot";
+}
+
 export function getQuestionOptions(questionId: number, role: Role): string[] {
   const q = assessmentQuestions.find((q) => q.id === questionId);
   if (!q) return [];
