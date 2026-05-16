@@ -4,8 +4,6 @@ import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { submitInquiry } from "./actions";
 import styles from "./engage.module.css";
-import Testimonials from "@/components/Testimonials";
-
 function EngageFormInner() {
     const score = useSearchParams().get("score");
     const tierParam = useSearchParams().get("tier");
@@ -38,8 +36,6 @@ function EngageFormInner() {
                             Describe what&apos;s slowing your operations down. I&apos;ll tell you what can be built, how long, and what it costs.
                         </p>
                     </div>
-
-                    <Testimonials />
 
                     {/* Contact Form */}
                     <div className={styles.formWrapper} style={{ marginTop: "4rem" }}>
