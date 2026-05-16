@@ -118,6 +118,15 @@ Plans:
 5. **Pricing urgency signals active** with "Currently booking for [Month]" and X build slots messaging
 6. **No dead-end pages** — every page has primary CTA routing to next step (assessment, engage, checkout, or strategy call)
 
+**Plans:** 5 plans across 2 waves
+
+Plans:
+- [ ] 04-01-PLAN.md — Navigation rebuild: dark nav, Services|Work|Assessment|Blog links, "Get Your AI Audit" white CTA, mobile hamburger dropdown
+- [ ] 04-02-PLAN.md — Shared components: TestimonialCard (dark card with headshot), BookingUrgency (inline urgency text), src/config/booking.ts
+- [ ] 04-03-PLAN.md — Homepage + Services page: CTA pair fix, dark testimonials, BookingUrgency, remove assessment callout
+- [ ] 04-04-PLAN.md — Work + Engage + Results pages: CTA surgery, remove Testimonials from Engage, add TestimonialCard to Results
+- [ ] 04-05-PLAN.md — Content migration: remove EU Horizon refs from articles.ts, audit conversion pages for social media links
+
 **Estimated:** 0.5 weeks
 **Dependencies:** Phase 3 (all content finalized before CTA polish)
 
@@ -235,4 +244,4 @@ Phase 5 (Analytics + Testing + Launch)
 ---
 
 *Roadmap created: 2026-05-13*
-*Next action: /gsd:execute-phase 02*
+*Next action: /gsd:execute-phase 04*
