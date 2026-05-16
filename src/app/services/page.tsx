@@ -3,21 +3,9 @@ import { TestimonialCard } from "@/components/shared/TestimonialCard";
 import { BookingUrgency } from "@/components/services/BookingUrgency";
 import styles from "./services.module.css";
 
-// Placeholder — Asor replaces before launch
-const SERVICE_TESTIMONIALS = [
-  {
-    quote: "Placeholder quote 1 — Asor to supply.",
-    name: "Client Name A",
-    title: "Title, Company A",
-    headshot: "/images/testimonials/placeholder.jpg",
-  },
-  {
-    quote: "Placeholder quote 2 — Asor to supply.",
-    name: "Client Name B",
-    title: "Title, Company B",
-    headshot: "/images/testimonials/placeholder.jpg",
-  },
-];
+import testimonials from "@/content/testimonials.json";
+
+const SERVICE_TESTIMONIALS = testimonials.services;
 
 const serviceTiers = [
   {

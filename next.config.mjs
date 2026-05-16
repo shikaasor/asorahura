@@ -3,7 +3,9 @@ import createMDX from '@next/mdx'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+    serverExternalPackages: ['pdfkit'],
     images: {
+        qualities: [75, 100],
         remotePatterns: [
             {
                 protocol: 'https',

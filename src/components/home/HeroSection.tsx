@@ -4,13 +4,9 @@ import TrustSignals from "@/components/shared/TrustSignals";
 import { TestimonialCard } from "@/components/shared/TestimonialCard";
 import styles from "./HeroSection.module.css";
 
-// Placeholder — Asor replaces quote, name, title, and headshot before launch
-const HERO_TESTIMONIAL = {
-  quote: "Placeholder quote — Asor to supply before launch.",
-  name: "Client Name",
-  title: "Title, Company",
-  headshot: "/images/testimonials/placeholder.jpg",
-};
+import testimonials from "@/content/testimonials.json";
+
+const HERO_TESTIMONIAL = testimonials.hero;
 
 export default function HeroSection() {
   return (

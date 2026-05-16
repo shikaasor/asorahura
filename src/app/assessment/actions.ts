@@ -38,5 +38,15 @@ export async function submitAssessmentForEmail(
     answers,
   });
 
+  const scriptUrl = process.env.GOOGLE_SCRIPT_URL;
+  if (scriptUrl) {
+    fetch(scriptUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ formType: "assessment_quick", firstName, email, score, tier }),
+      redirect: "follow",
+    }).catch(() => {});
+  }
+
   return { success: true, score, tier };
 }

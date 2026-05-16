@@ -4,13 +4,21 @@
   gap: 0.75rem;
 }
 
+.frameWrap {
+  position: relative;
+  min-height: 450px;
+}
+
 .skeleton {
-  height: 450px;
+  position: absolute;
+  inset: 0;
   background: #f3f4f6;
   border-radius: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .skeletonText {

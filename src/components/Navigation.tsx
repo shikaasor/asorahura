@@ -30,6 +30,7 @@ export default function Navigation() {
                             width={180}
                             height={50}
                             style={{ height: "40px", width: "auto" }}
+                            quality={100}
                             priority
                         />
                     </Link>

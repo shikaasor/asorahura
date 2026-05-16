@@ -46,6 +46,26 @@ export async function submitDeepAssessmentForEmail(
     </div>
   `;
 
+  const scriptUrl = process.env.GOOGLE_SCRIPT_URL;
+  if (scriptUrl) {
+    fetch(scriptUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        formType: "assessment_deep",
+        firstName,
+        email,
+        total,
+        dimA: byDimension.A,
+        dimB: byDimension.B,
+        dimC: byDimension.C,
+        dimD: byDimension.D,
+        dimE: byDimension.E,
+      }),
+      redirect: "follow",
+    }).catch(() => {});
+  }
+
   try {
     await resend.emails.send({
       from: "Asor Ahura <hello@asorahura.com>",

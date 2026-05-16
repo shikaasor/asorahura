@@ -27,5 +27,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Could not subscribe. Please try again.' }, { status: 500 });
   }
 
+  const scriptUrl = process.env.GOOGLE_SCRIPT_URL;
+  if (scriptUrl) {
+    fetch(scriptUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ formType: 'newsletter', email: email.trim().toLowerCase() }),
+      redirect: 'follow',
+    }).catch(() => {});
+  }
+
   return NextResponse.json({ ok: true });
 }

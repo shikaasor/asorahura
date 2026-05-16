@@ -1,0 +1,28 @@
+{
+  "hero": {
+    "quote": "Asor transformed our archival digitization project, managing thousands of historical documents with precision and technical expertise. His ability to solve complex problems—from custom file systems to specialized applications—exceeded our expectations. He's reliable, responsive, and consistently goes above and beyond. If you need someone who delivers excellence on demanding technical projects, Asor is outstanding.",
+    "name": "Maria Rios",
+    "title": "Founder, Puerto Rico Archives",
+    "headshot": "/images/testimonials/maria.png"
+  },
+  "assessmentResults": {
+    "quote": "Asor built a highly effective AI resume screening platform that significantly improved the consistency and speed of our hiring process. The system handled complex resume formats, supported multiple AI providers without vendor lock-in, and produced structured, evidence-based evaluations our HR team could actually trust. His combination of technical depth, product thinking, and practical understanding of recruitment workflows made the solution genuinely valuable in production.",
+    "name": "Itohan Okpataku",
+    "title": "HR Specialist, Georgetown global Health Nigeria",
+    "headshot": "/images/testimonials/itohan.png"
+  },
+  "services": [
+    {
+      "quote": "Asor delivered exceptional work on a highly complex archival digitization project involving thousands of pages of historical Lloyd’s List records. He built an AI-driven extraction pipeline that transformed difficult 18th-century documents into structured, research-ready data with remarkable accuracy. Beyond execution, he contributed thoughtful ideas around provenance, verification, and long-term archival usability. Reliable, technically strong, and consistently proactive throughout the project.",
+      "name": "Pawel Janas",
+      "title": "Assistant Professor of Economics, Northwestern University - Kellogg School of Management",
+      "headshot": "/images/testimonials/pawel.png"
+    },
+    {
+      "quote": "Asor demonstrated exceptional technical expertise in developing our SRDM image restoration system, combining denoising, super-resolution, and multi-stage refinement into a highly effective AI pipeline. He successfully integrated advanced architectures including Conditional DnCNN and ESRGAN while maintaining clear documentation and a robust evaluation workflow. His ability to translate complex deep learning concepts into a structured, production-ready system was impressive. Reliable, detail-oriented, and highly capable on technically demanding AI projects.",
+      "name": "Aamna Mansoor",
+      "title": "Director of Operations, Significan LC",
+      "headshot": "/images/testimonials/aamna.png"
+    }
+  ]
+}

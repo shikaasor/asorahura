@@ -8,8 +8,9 @@ export async function generateAssessmentPDF(params: {
   segment: "cold" | "warm" | "hot";
   previewBullets: string[];
   answers: Record<number, string>;
+  personalizedNextStep?: string;
 }): Promise<Buffer> {
-  const { firstName, score, tier, tierDescription, segment, previewBullets } = params;
+  const { firstName, score, tier, tierDescription, segment, previewBullets, personalizedNextStep } = params;
 
   return new Promise<Buffer>((resolve, reject) => {
     const doc = new PDFDocument({ size: "A4", margin: 50 });
@@ -68,13 +69,13 @@ export async function generateAssessmentPDF(params: {
       .font("Helvetica")
       .text("/100", { continued: false });
 
-    doc.moveDown(0.3);
-
+    // Explicitly position tier below the 72pt score — doc.y after a
+    // continued chain reflects the smaller trailing font, not the tallest.
     doc
       .fillColor(white)
       .fontSize(16)
       .font("Helvetica-Bold")
-      .text(tier, 50);
+      .text(tier, 50, scoreY + 84);
 
     doc.moveDown(1.5);
 
@@ -149,7 +150,9 @@ export async function generateAssessmentPDF(params: {
     doc.moveDown(0.5);
 
     let nextStep: string;
-    if (segment === "cold") {
+    if (personalizedNextStep) {
+      nextStep = personalizedNextStep;
+    } else if (segment === "cold") {
       nextStep =
         "Step 1: Take the free assessment (done). Step 2: Watch how similar businesses automated their top 3 manual tasks — reply to your report email and I'll send you a short video.";
     } else if (segment === "warm") {

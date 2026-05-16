@@ -9,6 +9,7 @@ export async function submitInquiry(formData: FormData): Promise<{ success: bool
     const score = parseInt(scoreRaw || "0", 10);
 
     const inquiry = {
+        formType: "inquiry",
         name: formData.get("name") as string,
         email: formData.get("email") as string,
         company: formData.get("company") as string,

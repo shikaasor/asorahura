@@ -3,13 +3,9 @@ import { getTierDescription, getPreviewBullets } from "@/lib/assessment";
 import styles from "./ResultsScreen.module.css";
 import { TestimonialCard } from "@/components/shared/TestimonialCard";
 
-// Placeholder — Asor replaces before launch
-const RESULTS_TESTIMONIAL = {
-  quote: "Placeholder quote — Asor to supply.",
-  name: "Client Name",
-  title: "Title, Company",
-  headshot: "/images/testimonials/placeholder.jpg",
-};
+import testimonials from "@/content/testimonials.json";
+
+const RESULTS_TESTIMONIAL = testimonials.assessmentResults;
 
 interface Props {
   score: number;
@@ -43,8 +39,6 @@ export function ResultsScreen({ score, tier, firstName }: Props) {
         ))}
       </div>
 
-      <TestimonialCard {...RESULTS_TESTIMONIAL} />
-
       <div className={styles.divider} />
 
       <div className={styles.emailBanner}>
@@ -63,9 +57,11 @@ export function ResultsScreen({ score, tier, firstName }: Props) {
           Tell Me About Your Problem →
         </Link>
         <Link href="/checkout" className={styles.ctaSecondary}>
-          Skip to checkout
+          Book a discovery call →
         </Link>
       </div>
+
+      <TestimonialCard {...RESULTS_TESTIMONIAL} />
     </div>
   );
 }

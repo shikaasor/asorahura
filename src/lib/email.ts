@@ -1,5 +1,5 @@
 import { Resend } from "resend";
-import { draftEmailSequence, draftNurtureEmailSequence } from "@/lib/llm";
+import { draftEmailSequence, draftNurtureEmailSequence, generatePDFContent } from "@/lib/llm";
 import { generateAssessmentPDF } from "@/lib/pdf";
 import { getSegment } from "@/lib/assessment";
 
@@ -70,6 +70,22 @@ export async function sendAssessmentEmailSequence(params: {
 
   const segment = getSegment(score);
 
+  // Run all LLM calls in parallel — they're independent
+  const [pdfContent, sequence, nurture] = await Promise.all([
+    generatePDFContent({ firstName, answers, score, tier, segment }).catch((err) => {
+      console.error("[email] PDF content generation failed:", err);
+      return null;
+    }),
+    draftEmailSequence({ firstName, email, score, segment, tier, tierDescription, previewBullets, answers }).catch((err) => {
+      console.error("[email] LLM sequence drafting failed:", err);
+      return undefined;
+    }),
+    draftNurtureEmailSequence({ firstName, score, segment, answers }).catch((err) => {
+      console.error("[email] LLM nurture sequence drafting failed:", err);
+      return undefined;
+    }),
+  ]);
+
   let pdf: Buffer | undefined;
   try {
     pdf = await generateAssessmentPDF({
@@ -78,38 +94,12 @@ export async function sendAssessmentEmailSequence(params: {
       tier,
       tierDescription,
       segment,
-      previewBullets,
+      previewBullets: pdfContent?.opportunities ?? previewBullets,
       answers,
+      personalizedNextStep: pdfContent?.nextStep,
     });
   } catch (err) {
     console.error("[email] PDF generation failed:", err);
-  }
-
-  let sequence: Awaited<ReturnType<typeof draftEmailSequence>> | undefined;
-  try {
-    sequence = await draftEmailSequence({
-      firstName,
-      email,
-      score,
-      segment,
-      tier,
-      tierDescription,
-      previewBullets,
-    });
-  } catch (err) {
-    console.error("[email] LLM sequence drafting failed:", err);
-  }
-
-  let nurture: Awaited<ReturnType<typeof draftNurtureEmailSequence>> | undefined;
-  try {
-    nurture = await draftNurtureEmailSequence({
-      firstName,
-      score,
-      segment,
-      answers,
-    });
-  } catch (err) {
-    console.error("[email] LLM nurture sequence drafting failed:", err);
   }
 
   // Initial email — immediate, with PDF attached

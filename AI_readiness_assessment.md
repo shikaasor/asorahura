@@ -1,4 +1,4 @@
-**ASOR AHURA · FLOWMORPH**
+**ASOR AHURA · Asor Ahura**
 
 **AI READINESS ASSESSMENT**
 
@@ -206,7 +206,7 @@ Strong process clarity and strategic intent (A + E), but data is locked in PDFs,
 
 If you've scored 20 or above - or if a section revealed a gap you weren't expecting - this is exactly the conversation we're built for.
 
-Flowmorph works with Founders, CTOs, and Operations Leaders who have real operational problems and the mandate to fix them. Every engagement starts with a System Architecture Audit: a scoped, fixed-price session that maps your highest-friction workflows, assesses your data and infrastructure, and produces a deployment blueprint.
+Asor Ahura works with Founders, CTOs, and Operations Leaders who have real operational problems and the mandate to fix them. Every engagement starts with a System Architecture Audit: a scoped, fixed-price session that maps your highest-friction workflows, assesses your data and infrastructure, and produces a deployment blueprint.
 
 **WHO WE WORK WITH**
 
@@ -218,7 +218,7 @@ Custom AI agents · Document intelligence · Offline-capable inference · GDPR/H
 
 **Book a Discovery Call**
 
-asorahura.com · flowmorph.io
+asorahura.com · Asor Ahura.io
 
 ## About Asor Ahura
 
