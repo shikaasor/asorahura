@@ -19,7 +19,7 @@ export const articles: Article[] = [
         title: "I Built an AI That Screens for Cervical Cancer in Rural Nigeria — Without the Internet",
         subtitle: "What happens when a health system has no specialists, no connectivity, and no margin for error? You build differently.",
         description: "Offline-first YOLOv8 diagnostic system deployed across 39+ health facilities in Kano State. Local inference, blind clinical review, automatic model retraining, and zero patient data leaving the clinic. Built for the nurse 70 miles from the nearest specialist.",
-        metrics: "39+ Facilities | EU HORIZON €2.25M | Zero Cloud Dependency",
+        metrics: "39+ Facilities | Zero Cloud Dependency",
         tags: ["#AIforHealth", "#PrivacyFirst", "#LocalInference", "#DigitalHealth", "#GlobalHealth"],
         sections: [
             {
@@ -63,8 +63,7 @@ export const articles: Article[] = [
             {
                 heading: "Why This Matters Beyond Nigeria",
                 body: [
-                    "This project is currently being positioned for an EU HORIZON grant of up to €2.25 million under the EDCTP3 Global Health partnership. The call is specifically for AI-driven health innovation in sub-Saharan Africa.",
-                    "But the architecture is the real story. We built a system that can be replicated — in any low-resource setting, for any diagnostic task — because the design principles hold regardless of geography:",
+                    "The architecture is the real story. We built a system that can be replicated — in any low-resource setting, for any diagnostic task — because the design principles hold regardless of geography:",
                     "→ Local inference removes cloud dependency",
                     "→ Blind review removes AI bias from ground-truth labels",
                     "→ The data flywheel removes demographic bias from the model over time",
@@ -75,8 +74,8 @@ export const articles: Article[] = [
             {
                 heading: "What's Next",
                 body: [
-                    "We are actively assembling a consortium of partners across Europe and sub-Saharan Africa for the grant submission. If you work in global health, digital health infrastructure, or AI-assisted diagnostics — and you're serious about building for low-resource settings — I want to hear from you.",
-                    "This isn't a demo. The system is live. The facilities are configured. The pipeline is running.",
+                    "The system is live. The facilities are configured. The pipeline is running.",
+                    "If you need to deploy AI in a low-resource setting — whether for diagnostics, data collection, or operational intelligence — the architecture is replicable. I want to hear about the problem.",
                 ]
             },
         ]
