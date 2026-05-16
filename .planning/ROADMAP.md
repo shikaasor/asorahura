@@ -134,23 +134,31 @@ Plans:
 
 ## Phase 5: Optimization, Tracking & Launch Readiness — Analytics + Conversion Instrumentation + Final Testing
 
-**Goal:** Instrument site with conversion tracking, add analytics for measurement, run final QA/testing, and prepare for live launch with monitoring dashboards.
+**Goal:** Instrument the site with GA4 conversion tracking and Microsoft Clarity heatmaps, wire funnel events at all conversion touchpoints, benchmark performance on Vercel preview, verify email deliverability and Paddle sandbox transactions, and produce a documented go/no-go launch decision in LAUNCH.md.
 
 **Requirements Mapped:**
-- All CTA tracking + funnel instrumentation
-- GA4/Clarity analytics setup
-- Email deliverability verification
-- Stripe live mode activation
+- GA4-EVENTS, CLARITY-HEATMAPS, PERF-BENCH (analytics infrastructure)
+- CTA-TRACK, FUNNEL-INST (funnel event wiring)
+- EMAIL-DELIV, PADDLE-TEST, MOBILE-TEST, PERF-BENCH (testing and verification)
+- GONOGO-DOC (launch decision)
 
 **Success Criteria:**
-1. **Microsoft Clarity heatmaps installed** tracking user behavior on homepage, assessment, results, and checkout pages
-2. **GA4 event tracking active** for all CTAs (assessment click, assessment start, assessment completion, engagement form submission, checkout initiation, email opens)
-3. **Funnel visualization dashboard built** showing conversions at each stage (visitor → assessment → email → engage → checkout)
-4. **Email deliverability tested** (test emails to Gmail, Outlook, corporate domains with PDF rendering verified)
-5. **Stripe production mode activated** with 3 test transactions completed end-to-end
-6. **Mobile testing passed** (iOS Safari, Chrome mobile, Android Chrome for all flows)
-7. **Page speed benchmarked** (<2s homepage, <1.5s assessment results, <2s checkout) via Lighthouse
-8. **Go/no-go decision documented** with confidence level for launch
+1. **Microsoft Clarity heatmaps installed** tracking user behavior on homepage, assessment, results, and checkout pages (4 pages only — not site-wide)
+2. **GA4 event tracking active** for all CTAs (assessment_click, assessment_start, assessment_submit, engagement_form_submit, checkout_begin, purchase_complete) plus scroll depth milestones
+3. **GA4 funnel exploration view** set up in GA4 console using the 6-step event sequence (no Looker Studio needed)
+4. **Email deliverability tested** — Gmail inbox receives email with PDF rendered correctly (Gmail only per user decision)
+5. **Paddle sandbox 4 transactions** complete — one per tier (Starter, Operational, Systems, Enterprise) using test card
+6. **Mobile testing passed** — Chrome on real device (Asor's phone), full funnel navigable
+7. **Page speed benchmarked** on Vercel preview URL (not localhost) — Core Web Vitals (LCP, CLS, INP) recorded; soft targets (<2s homepage, <1.5s results, <2s checkout) non-blocking
+8. **Go/no-go decision documented** in LAUNCH.md with checklist, pass/fail per item, confidence level (Low/Medium/High), and explicit sign-off by name and date
+
+**Plans:** 4 plans across 4 waves
+
+Plans:
+- [ ] 05-01-PLAN.md — Analytics infrastructure: @microsoft/clarity install, trackEvent utility, WebVitals component, ClarityProvider, root layout wiring
+- [ ] 05-02-PLAN.md — Funnel event wiring: ScrollDepthTracker, homepage CTA click, assessment start/submit, engage form submit, Paddle checkout begin/complete
+- [ ] 05-03-PLAN.md — Testing and verification: Lighthouse CI on Vercel preview, Gmail email test, 4 Paddle sandbox transactions, mobile Chrome real device test
+- [ ] 05-04-PLAN.md — LAUNCH.md: go/no-go checklist populated from test results, confidence level, Asor sign-off
 
 **Estimated:** 1 week
 **Dependencies:** Phase 4 (all content and CTAs finalized)
@@ -244,4 +252,5 @@ Phase 5 (Analytics + Testing + Launch)
 ---
 
 *Roadmap created: 2026-05-13*
-*Next action: /gsd:execute-phase 04*
+*Phase 5 planned: 2026-05-16*
+*Next action: /gsd:execute-phase 05*
