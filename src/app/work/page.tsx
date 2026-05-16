@@ -67,9 +67,6 @@ export default function WorkPage() {
                   <span>{cs.stack}</span>
                 </div>
               </div>
-              <div className={styles.caseCta}>
-                <Link href="/engage">See if we&apos;re a fit &rarr;</Link>
-              </div>
             </article>
           ))}
         </div>
@@ -80,7 +77,10 @@ export default function WorkPage() {
           <h2 className={styles.bottomCtaHeadline}>See how I can do this for your business</h2>
           <p className={styles.bottomCtaSub}>Describe your operational problem. I&apos;ll tell you what can be built, how long, and what it costs.</p>
           <Link href="/engage" className={styles.bottomCtaBtn}>
-            Tell Me About Your Problem →
+            Work With Me →
+          </Link>
+          <Link href="/assessment" style={{ color: '#a3a3a3', fontSize: '0.875rem', textDecoration: 'underline', marginTop: '0.75rem', display: 'block', textAlign: 'center' }}>
+            Or take the AI Readiness Assessment first
           </Link>
         </div>
       </section>
