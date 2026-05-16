@@ -18,7 +18,7 @@ See:
 
 **Total Phases:** 5
 **Current Phase:** 03
-**Progress:** [█████████░] 86%
+**Progress:** [██████████] 100%
 
 **Execution Model:** Sequential (one phase per week, blockers resolved before next phase starts)
 **Configuration:** Standard depth, Sequential execution, Budget model profile
@@ -211,6 +211,8 @@ This will:
 - [Phase 04-01]: Cleared .next cache after deleting flowmorph route to resolve stale type validator reference
 - [Phase 04-02]: BOOKING_SLOTS typed as number to prevent TS2367 literal comparison error in BookingUrgency
 - [Phase 04-02]: Both TestimonialCard and BookingUrgency are pure server components — no use client directive
+- [Phase 04-05]: EU Horizon grant references removed from articles.ts; What's Next reframed to direct client CTA — grant-seeking narrative conflicts with solo expert positioning
+- [Phase 04-05]: CONV-05: zero social media links found on any conversion page — LinkedIn only in Footer.tsx which is the correct location
 
 ## Known Risks & Mitigations
 

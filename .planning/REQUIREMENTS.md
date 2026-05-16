@@ -126,16 +126,16 @@
 - [x] **CONV-02**: Assessment as primary lead gen engine (lowest friction, highest email capture)
 - [ ] **CONV-03**: Pricing shown transparently (no "contact us" for pricing)
 - [x] **CONV-04**: Urgency signals real and maintained honestly ("Currently booking for [Month]", "X build slots remaining")
-- [ ] **CONV-05**: No exit links to social media in conversion flow (only footer)
+- [x] **CONV-05**: No exit links to social media in conversion flow (only footer)
 
 ### Content Migration
 
 - [x] **CONTENT-01**: Remove "Explore Flowmorph" button and all Flowmorph branding
 - [x] **CONTENT-02**: Reframe case studies: outcome-first, plain language, metrics highlighted
 - [x] **CONTENT-03**: Rename Articles page to Blog and add LinkedIn/YouTube content
-- [ ] **CONTENT-04**: Remove EU Horizon grant references from all case studies
+- [x] **CONTENT-04**: Remove EU Horizon grant references from all case studies
 - [ ] **CONTENT-05**: Move testimonials from Engage page to Homepage and Services page
-- [ ] **CONTENT-06**: Republish all content with new positioning (executive language, not technical)
+- [x] **CONTENT-06**: Republish all content with new positioning (executive language, not technical)
 
 ## v2 Requirements
 
@@ -230,7 +230,7 @@
 | CONTENT-01 | Phase 3 | Complete |
 | CONTENT-02 | Phase 3 | Complete |
 | CONTENT-03 | Phase 3 | Complete |
-| CONTENT-04 | Phase 3 | Pending |
+| CONTENT-04 | Phase 3 | Complete |
 | NAV-01 | Phase 4 | Complete |
 | NAV-02 | Phase 4 | Complete |
 | NAV-03 | Phase 4 | Pending |
@@ -238,10 +238,10 @@
 | NAV-05 | Phase 4 | Pending |
 | NAV-06 | Phase 4 | Pending |
 | CONTENT-05 | Phase 4 | Pending |
-| CONTENT-06 | Phase 4 | Pending |
+| CONTENT-06 | Phase 4 | Complete |
 | CONV-03 | Phase 4 | Pending |
 | CONV-04 | Phase 4 | Complete |
-| CONV-05 | Phase 4 | Pending |
+| CONV-05 | Phase 4 | Complete |
 
 **Coverage:**
 - v1 requirements: 75 total (HOME 11, ASSESS 10, CHECK 5, ENGAGE 6, SERV 7, WORK 7, BLOG 5, NAV 6, EMAIL 7, CONV 5, CONTENT 6)
