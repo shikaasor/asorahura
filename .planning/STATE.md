@@ -18,7 +18,7 @@ See:
 
 **Total Phases:** 5
 **Current Phase:** 03
-**Progress:** [██████████] 100%
+**Progress:** [█████████░] 86%
 
 **Execution Model:** Sequential (one phase per week, blockers resolved before next phase starts)
 **Configuration:** Standard depth, Sequential execution, Budget model profile
@@ -207,6 +207,8 @@ This will:
 - [Phase 03]: Fixed SEGMENT_CASE_STUDY map in llm.ts — deterministic blog slug per segment ensures Day 7 email always has valid /blog URL in both LLM and fallback paths
 - [Phase 03-04]: EmailCaptureWidget is a 'use client' component imported into server components — Next.js handles the client boundary automatically
 - [Phase 03-04]: RESEND_AUDIENCE_ID env var required at runtime; absence returns 500 with config error (graceful degradation)
+- [Phase 04-01]: useEffect with pathname dep closes mobile menu on route change — simpler than router events
+- [Phase 04-01]: Cleared .next cache after deleting flowmorph route to resolve stale type validator reference
 
 ## Known Risks & Mitigations
 

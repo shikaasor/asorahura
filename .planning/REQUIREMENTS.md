@@ -103,10 +103,10 @@
 
 ### Navigation & Site-Wide
 
-- [ ] **NAV-01**: Primary nav: Services | Work | Assessment | Blog
-- [ ] **NAV-02**: Nav CTA button "Get Your AI Audit" links to /assessment (takes priority)
+- [x] **NAV-01**: Primary nav: Services | Work | Assessment | Blog
+- [x] **NAV-02**: Nav CTA button "Get Your AI Audit" links to /assessment (takes priority)
 - [ ] **NAV-03**: Secondary CTA "Work With Me" in hero, Services page, Work page, About section
-- [ ] **NAV-04**: No Flowmorph branding anywhere on site
+- [x] **NAV-04**: No Flowmorph branding anywhere on site
 - [ ] **NAV-05**: No more than 2 CTAs visible at once on any page
 - [ ] **NAV-06**: Every page has a primary CTA routing to next step
 
@@ -231,10 +231,10 @@
 | CONTENT-02 | Phase 3 | Complete |
 | CONTENT-03 | Phase 3 | Complete |
 | CONTENT-04 | Phase 3 | Pending |
-| NAV-01 | Phase 4 | Pending |
-| NAV-02 | Phase 4 | Pending |
+| NAV-01 | Phase 4 | Complete |
+| NAV-02 | Phase 4 | Complete |
 | NAV-03 | Phase 4 | Pending |
-| NAV-04 | Phase 4 | Pending |
+| NAV-04 | Phase 4 | Complete |
 | NAV-05 | Phase 4 | Pending |
 | NAV-06 | Phase 4 | Pending |
 | CONTENT-05 | Phase 4 | Pending |
