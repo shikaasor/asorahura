@@ -1,0 +1,61 @@
+.main {
+  min-height: 100vh;
+  background: #ffffff;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.header {
+  padding: 4rem 0 2rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.body {
+  max-width: 720px;
+}
+
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.section h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.section p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #374151;
+  margin-bottom: 0.75rem;
+}
+
+.section ul {
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.section ul li {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.section a {
+  color: var(--foreground);
+  text-decoration: underline;
+}
