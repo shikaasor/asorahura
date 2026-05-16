@@ -118,7 +118,7 @@ Plans:
 5. **Pricing urgency signals active** with "Currently booking for [Month]" and X build slots messaging
 6. **No dead-end pages** — every page has primary CTA routing to next step (assessment, engage, checkout, or strategy call)
 
-**Plans:** 4/5 plans executed
+**Plans:** 5/5 plans complete
 
 Plans:
 - [ ] 04-01-PLAN.md — Navigation rebuild: dark nav, Services|Work|Assessment|Blog links, "Get Your AI Audit" white CTA, mobile hamburger dropdown

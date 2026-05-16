@@ -215,6 +215,10 @@ This will:
 - [Phase 04-05]: CONV-05: zero social media links found on any conversion page — LinkedIn only in Footer.tsx which is the correct location
 - [Phase 04-03]: AboutSection is light-background — Work With Me link uses dark text not white; underlined style matches CTA pattern without invisible contrast
 - [Phase 04-03]: Services hero CTA hierarchy: Work With Me (white filled button) = primary, Take the Assessment (underlined link) = secondary
+- [Phase 04-04]: Work page caseCta div removed from caseStudies map — standalone per-card link = page-level CTA per locked CTA definition
+- [Phase 04-04]: Secondary assessment link uses inline style rather than new CSS class — keeps change surgical and self-contained
+- [Phase 04-04]: RESULTS_TESTIMONIAL constant defined at module scope with placeholder data — Asor replaces before launch
+- [Phase 04-04]: Engage page marginTop on formWrapper retained after Testimonials removal — still provides useful visual breathing room
 
 ## Known Risks & Mitigations
 
