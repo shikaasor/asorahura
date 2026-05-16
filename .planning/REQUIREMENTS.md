@@ -125,7 +125,7 @@
 - [x] **CONV-01**: Three entry states served: Cold (assessment) → Warm (engage) → Hot (checkout/services)
 - [x] **CONV-02**: Assessment as primary lead gen engine (lowest friction, highest email capture)
 - [ ] **CONV-03**: Pricing shown transparently (no "contact us" for pricing)
-- [ ] **CONV-04**: Urgency signals real and maintained honestly ("Currently booking for [Month]", "X build slots remaining")
+- [x] **CONV-04**: Urgency signals real and maintained honestly ("Currently booking for [Month]", "X build slots remaining")
 - [ ] **CONV-05**: No exit links to social media in conversion flow (only footer)
 
 ### Content Migration
@@ -240,7 +240,7 @@
 | CONTENT-05 | Phase 4 | Pending |
 | CONTENT-06 | Phase 4 | Pending |
 | CONV-03 | Phase 4 | Pending |
-| CONV-04 | Phase 4 | Pending |
+| CONV-04 | Phase 4 | Complete |
 | CONV-05 | Phase 4 | Pending |
 
 **Coverage:**

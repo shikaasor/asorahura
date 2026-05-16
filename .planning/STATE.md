@@ -209,6 +209,8 @@ This will:
 - [Phase 03-04]: RESEND_AUDIENCE_ID env var required at runtime; absence returns 500 with config error (graceful degradation)
 - [Phase 04-01]: useEffect with pathname dep closes mobile menu on route change — simpler than router events
 - [Phase 04-01]: Cleared .next cache after deleting flowmorph route to resolve stale type validator reference
+- [Phase 04-02]: BOOKING_SLOTS typed as number to prevent TS2367 literal comparison error in BookingUrgency
+- [Phase 04-02]: Both TestimonialCard and BookingUrgency are pure server components — no use client directive
 
 ## Known Risks & Mitigations
 
