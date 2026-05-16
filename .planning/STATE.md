@@ -213,6 +213,8 @@ This will:
 - [Phase 04-02]: Both TestimonialCard and BookingUrgency are pure server components — no use client directive
 - [Phase 04-05]: EU Horizon grant references removed from articles.ts; What's Next reframed to direct client CTA — grant-seeking narrative conflicts with solo expert positioning
 - [Phase 04-05]: CONV-05: zero social media links found on any conversion page — LinkedIn only in Footer.tsx which is the correct location
+- [Phase 04-03]: AboutSection is light-background — Work With Me link uses dark text not white; underlined style matches CTA pattern without invisible contrast
+- [Phase 04-03]: Services hero CTA hierarchy: Work With Me (white filled button) = primary, Take the Assessment (underlined link) = secondary
 
 ## Known Risks & Mitigations
 

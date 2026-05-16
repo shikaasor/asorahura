@@ -105,10 +105,10 @@
 
 - [x] **NAV-01**: Primary nav: Services | Work | Assessment | Blog
 - [x] **NAV-02**: Nav CTA button "Get Your AI Audit" links to /assessment (takes priority)
-- [ ] **NAV-03**: Secondary CTA "Work With Me" in hero, Services page, Work page, About section
+- [x] **NAV-03**: Secondary CTA "Work With Me" in hero, Services page, Work page, About section
 - [x] **NAV-04**: No Flowmorph branding anywhere on site
-- [ ] **NAV-05**: No more than 2 CTAs visible at once on any page
-- [ ] **NAV-06**: Every page has a primary CTA routing to next step
+- [x] **NAV-05**: No more than 2 CTAs visible at once on any page
+- [x] **NAV-06**: Every page has a primary CTA routing to next step
 
 ### Email Automation
 
@@ -124,7 +124,7 @@
 
 - [x] **CONV-01**: Three entry states served: Cold (assessment) → Warm (engage) → Hot (checkout/services)
 - [x] **CONV-02**: Assessment as primary lead gen engine (lowest friction, highest email capture)
-- [ ] **CONV-03**: Pricing shown transparently (no "contact us" for pricing)
+- [x] **CONV-03**: Pricing shown transparently (no "contact us" for pricing)
 - [x] **CONV-04**: Urgency signals real and maintained honestly ("Currently booking for [Month]", "X build slots remaining")
 - [x] **CONV-05**: No exit links to social media in conversion flow (only footer)
 
@@ -134,7 +134,7 @@
 - [x] **CONTENT-02**: Reframe case studies: outcome-first, plain language, metrics highlighted
 - [x] **CONTENT-03**: Rename Articles page to Blog and add LinkedIn/YouTube content
 - [x] **CONTENT-04**: Remove EU Horizon grant references from all case studies
-- [ ] **CONTENT-05**: Move testimonials from Engage page to Homepage and Services page
+- [x] **CONTENT-05**: Move testimonials from Engage page to Homepage and Services page
 - [x] **CONTENT-06**: Republish all content with new positioning (executive language, not technical)
 
 ## v2 Requirements
@@ -233,13 +233,13 @@
 | CONTENT-04 | Phase 3 | Complete |
 | NAV-01 | Phase 4 | Complete |
 | NAV-02 | Phase 4 | Complete |
-| NAV-03 | Phase 4 | Pending |
+| NAV-03 | Phase 4 | Complete |
 | NAV-04 | Phase 4 | Complete |
-| NAV-05 | Phase 4 | Pending |
-| NAV-06 | Phase 4 | Pending |
-| CONTENT-05 | Phase 4 | Pending |
+| NAV-05 | Phase 4 | Complete |
+| NAV-06 | Phase 4 | Complete |
+| CONTENT-05 | Phase 4 | Complete |
 | CONTENT-06 | Phase 4 | Complete |
-| CONV-03 | Phase 4 | Pending |
+| CONV-03 | Phase 4 | Complete |
 | CONV-04 | Phase 4 | Complete |
 | CONV-05 | Phase 4 | Complete |
 
