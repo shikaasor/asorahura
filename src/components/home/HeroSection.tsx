@@ -1,7 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
 import TrustSignals from "@/components/shared/TrustSignals";
+import { TestimonialCard } from "@/components/shared/TestimonialCard";
 import styles from "./HeroSection.module.css";
+
+// Placeholder — Asor replaces quote, name, title, and headshot before launch
+const HERO_TESTIMONIAL = {
+  quote: "Placeholder quote — Asor to supply before launch.",
+  name: "Client Name",
+  title: "Title, Company",
+  headshot: "/images/testimonials/placeholder.jpg",
+};
 
 export default function HeroSection() {
   return (
@@ -21,11 +30,12 @@ export default function HeroSection() {
               <Link href="/assessment" className={styles.primaryBtn}>
                 Take the Free AI Readiness Assessment
               </Link>
-              <Link href="/checkout" className={styles.secondaryBtn}>
-                Book a Discovery Call
+              <Link href="/engage" className={styles.secondaryBtn}>
+                Work With Me
               </Link>
             </div>
             <TrustSignals />
+            <TestimonialCard {...HERO_TESTIMONIAL} />
           </div>
 
           {/* Right column: Asor photo */}
