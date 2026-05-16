@@ -11,6 +11,15 @@ const nextConfig = {
             },
         ],
     },
+    async redirects() {
+        return [
+            {
+                source: '/flowmorph',
+                destination: '/',
+                permanent: true,
+            },
+        ];
+    },
 };
 
 const withMDX = createMDX({
