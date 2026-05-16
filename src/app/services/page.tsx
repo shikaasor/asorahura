@@ -1,6 +1,23 @@
 import Link from "next/link";
-import Testimonials from "@/components/Testimonials";
+import { TestimonialCard } from "@/components/shared/TestimonialCard";
+import { BookingUrgency } from "@/components/services/BookingUrgency";
 import styles from "./services.module.css";
+
+// Placeholder — Asor replaces before launch
+const SERVICE_TESTIMONIALS = [
+  {
+    quote: "Placeholder quote 1 — Asor to supply.",
+    name: "Client Name A",
+    title: "Title, Company A",
+    headshot: "/images/testimonials/placeholder.jpg",
+  },
+  {
+    quote: "Placeholder quote 2 — Asor to supply.",
+    name: "Client Name B",
+    title: "Title, Company B",
+    headshot: "/images/testimonials/placeholder.jpg",
+  },
+];
 
 const serviceTiers = [
   {
@@ -81,6 +98,10 @@ export default function ServicesPage() {
           <p className={styles.heroSub}>
             Scoped engagements with defined scope, fixed timelines, and full IP transfer on delivery. No retainers, no surprise invoices.
           </p>
+          <div className={styles.heroActions}>
+            <Link href="/engage" className={styles.workWithMeBtn}>Work With Me</Link>
+            <Link href="/assessment" className={styles.heroSecondary}>Take the Assessment</Link>
+          </div>
         </div>
       </section>
 
@@ -126,21 +147,18 @@ export default function ServicesPage() {
               </div>
             ))}
           </div>
-
-          {/* Assessment callout */}
-          <div className={styles.assessmentCallout}>
-            <p className={styles.calloutText}>
-              Not sure which tier fits? Take the free AI Readiness Assessment — your score maps directly to the right engagement level.
-            </p>
-            <Link href="/assessment" className={styles.calloutLink}>
-              Take the Assessment →
-            </Link>
-          </div>
+          <BookingUrgency />
         </div>
       </section>
 
       {/* Testimonials */}
-      <Testimonials />
+      <section className={styles.testimonialsSection}>
+        <div className={styles.testimonialsInner}>
+          {SERVICE_TESTIMONIALS.map((t) => (
+            <TestimonialCard key={t.name} {...t} />
+          ))}
+        </div>
+      </section>
 
       {/* Footer */}
       <footer className={styles.footer}>

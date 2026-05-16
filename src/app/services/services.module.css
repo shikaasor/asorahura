@@ -208,38 +208,51 @@
   border: 1px solid #C9A84C;
 }
 
-/* Assessment callout */
-.assessmentCallout {
-  background: #111;
-  border-left: 3px solid #C9A84C;
-  padding: 1.5rem 2rem;
-  margin-top: 3rem;
-  border-radius: 0 6px 6px 0;
+/* Hero CTAs */
+.heroActions {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
+  flex-direction: row;
+  gap: 1rem;
+  margin-top: 1.5rem;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
-.calloutText {
-  font-size: 0.95rem;
-  color: #d1d5db;
-  line-height: 1.6;
-  max-width: 600px;
-}
-
-.calloutLink {
-  font-size: 0.875rem;
+.workWithMeBtn {
+  background: #ffffff;
+  color: #0a0a0a;
+  padding: 0.875rem 2rem;
+  border-radius: 8px;
   font-weight: 600;
-  color: #C9A84C;
+  font-size: 0.9375rem;
   text-decoration: none;
-  white-space: nowrap;
   transition: opacity 0.15s ease;
 }
 
-.calloutLink:hover {
-  opacity: 0.8;
+.workWithMeBtn:hover {
+  opacity: 0.85;
+}
+
+.heroSecondary {
+  color: #ffffff;
+  font-size: 0.9375rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+}
+
+/* Testimonials section */
+.testimonialsSection {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testimonialsInner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
 }
 
 /* Footer */
