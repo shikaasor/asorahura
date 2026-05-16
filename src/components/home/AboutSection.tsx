@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./AboutSection.module.css";
 
 export default function AboutSection() {
@@ -32,6 +33,9 @@ export default function AboutSection() {
               If you&rsquo;re drowning in manual processes and ready to build something that runs
               without you in the loop, I&rsquo;d like to help.
             </p>
+            <Link href="/engage" className={styles.workWithMe}>
+              Work With Me
+            </Link>
           </div>
         </div>
       </div>
