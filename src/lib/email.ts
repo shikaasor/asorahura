@@ -7,6 +7,11 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 const FROM = "Asor Ahura <hello@asorahura.com>";
 const CALENDLY_URL = "https://calendly.com/asorahura";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://asorahura.vercel.app';
+
+function unsubscribeFooter(email: string) {
+  return `\n\n---\nTo stop receiving emails: ${BASE_URL}/api/unsubscribe?email=${encodeURIComponent(email)}`;
+}
 
 export async function sendAssessmentEmail(params: {
   email: string;
@@ -40,6 +45,7 @@ export async function sendAssessmentEmail(params: {
             tier,
             tierDescription,
             previewBullets,
+            email,
           }),
         }),
     ...(pdf
@@ -106,7 +112,8 @@ export async function sendAssessmentEmailSequence(params: {
   try {
     const initialBody =
       (sequence?.initial.body ?? `Hey ${firstName}, your score is ${score}/100.`) +
-      `\n\nBook a call: ${CALENDLY_URL}`;
+      `\n\nBook a call: ${CALENDLY_URL}` +
+      unsubscribeFooter(email);
     const { error } = await resend.emails.send({
       from: FROM,
       to: email,
@@ -133,7 +140,7 @@ export async function sendAssessmentEmailSequence(params: {
       from: FROM,
       to: email,
       subject: nurture?.day3.subject ?? "The cost of doing this manually",
-      text: nurture?.day3.body ?? `Hey ${firstName}, following up on your AI Readiness Assessment.`,
+      text: (nurture?.day3.body ?? `Hey ${firstName}, following up on your AI Readiness Assessment.`) + unsubscribeFooter(email),
       scheduledAt: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
     });
     if (error) console.error("[email] Day 3 send failed:", error.message);
@@ -147,7 +154,7 @@ export async function sendAssessmentEmailSequence(params: {
       from: FROM,
       to: email,
       subject: nurture?.day7.subject ?? "A project you might find relevant",
-      text: nurture?.day7.body ?? `Hey ${firstName}, here's a relevant case study from our blog.`,
+      text: (nurture?.day7.body ?? `Hey ${firstName}, here's a relevant case study from our blog.`) + unsubscribeFooter(email),
       scheduledAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
     });
     if (error) console.error("[email] Day 7 send failed:", error.message);
@@ -161,7 +168,7 @@ export async function sendAssessmentEmailSequence(params: {
       from: FROM,
       to: email,
       subject: nurture?.day14.subject ?? "What working with me actually looks like",
-      text: nurture?.day14.body ?? `Hey ${firstName}, here's what a typical engagement looks like.`,
+      text: (nurture?.day14.body ?? `Hey ${firstName}, here's what a typical engagement looks like.`) + unsubscribeFooter(email),
       scheduledAt: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
     });
     if (error) console.error("[email] Day 14 send failed:", error.message);
@@ -175,7 +182,7 @@ export async function sendAssessmentEmailSequence(params: {
       from: FROM,
       to: email,
       subject: nurture?.day30.subject ?? "Still thinking about this?",
-      text: nurture?.day30.body ?? `Hey ${firstName}, a month ago you completed the AI Readiness Assessment.`,
+      text: (nurture?.day30.body ?? `Hey ${firstName}, a month ago you completed the AI Readiness Assessment.`) + unsubscribeFooter(email),
       scheduledAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
     });
     if (error) console.error("[email] Day 30 send failed:", error.message);

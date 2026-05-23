@@ -15,7 +15,10 @@ interface Props {
   tier: string;
   tierDescription: string;
   previewBullets: string[];
+  email: string;
 }
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://asorahura.vercel.app';
 
 export function AssessmentReport({
   firstName,
@@ -23,7 +26,9 @@ export function AssessmentReport({
   tier,
   tierDescription,
   previewBullets,
+  email,
 }: Props) {
+  const unsubscribeUrl = `${BASE_URL}/api/unsubscribe?email=${encodeURIComponent(email)}`;
   return (
     <Html>
       <Body
@@ -102,6 +107,11 @@ export function AssessmentReport({
           >
             Book a Discovery Call
           </Button>
+          <Hr style={{ borderColor: "#e5e7eb", margin: "24px 0" }} />
+          <Text style={{ fontSize: "12px", color: "#9ca3af", textAlign: "center" }}>
+            You received this because you completed the AI Readiness Assessment.{" "}
+            <a href={unsubscribeUrl} style={{ color: "#9ca3af" }}>Unsubscribe</a>
+          </Text>
         </Container>
       </Body>
     </Html>
