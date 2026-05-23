@@ -41,7 +41,17 @@ export default async function BlogArticlePage({
             <p className={styles.subtitle}>{post.excerpt}</p>
           </header>
 
-          {post.coverImage && (
+          {post.youtubeId ? (
+            <div className={styles.coverImageWrapper}>
+              <iframe
+                src={`https://www.youtube.com/embed/${post.youtubeId}`}
+                title={post.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0 }}
+              />
+            </div>
+          ) : post.coverImage ? (
             <div className={styles.coverImageWrapper}>
               <Image
                 src={post.coverImage}
@@ -52,7 +62,7 @@ export default async function BlogArticlePage({
                 sizes="(max-width: 1200px) 100vw, 900px"
               />
             </div>
-          )}
+          ) : null}
 
           <article className={styles.body}>{content}</article>
 

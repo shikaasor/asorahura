@@ -36,7 +36,11 @@ export default function BlogListingClient({ posts }: { posts: BlogPost[] }) {
               <Link key={post.slug} href={`/blog/${post.slug}`} className={styles.card}>
                 <div className={styles.cardImage}>
                   <Image
-                    src={post.coverImage}
+                    src={
+                      post.youtubeId
+                        ? `https://img.youtube.com/vi/${post.youtubeId}/hqdefault.jpg`
+                        : post.coverImage
+                    }
                     alt={post.title}
                     fill
                     style={{ objectFit: 'cover' }}

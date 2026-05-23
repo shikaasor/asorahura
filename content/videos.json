@@ -1,0 +1,34 @@
+[
+  {
+    "slug": "agentic-coding-free",
+    "title": "Agentic Coding for Free: ClaudeCode + Open-Source Model Setup Guide",
+    "excerpt": "Hands-on guide to setting up agentic coding with ClaudeCode and open-source models, enabling you to automate coding tasks without cost.",
+    "youtubeId": "K9VwFdxaxIQ",
+    "category": "Video",
+    "tags": ["AI", "automation"]
+  },
+  {
+    "slug": "from-scanned-pdfs-to-clean-excel-files",
+    "title": "From Scanned PDFs to Clean Excel Files — Without Cloud AI Risks",
+    "excerpt": "Learn how to convert scanned PDFs into clean Excel files using local AI tools, ensuring data privacy and security without relying on cloud services.",
+    "youtubeId": "jZBm3YJp3C8",
+    "category": "Video",
+    "tags": ["AI", "automation", "data extraction"]
+  },
+  {
+    "slug": "ai-that-works-with-no-wifi",
+    "title": "AI that works with no WiFi? Yes. And Guarantees 100% Privacy.",
+    "excerpt": "Discover how to use AI tools that operate without an internet connection, ensuring complete privacy and security for your data while still providing powerful automation capabilities.",
+    "youtubeId": "PVkXHyQDHsM",
+    "category": "Video",
+    "tags": ["AI", "automation", "Ollama", "huggingface"]
+  },
+  {
+    "slug": "n8n-ai-easiest-way-to-build-simple-agents",
+    "title": "n8n + AI: The Easiest Way to Build Simple Agents for Any Workflow (Save 10k+ Hours of Boring Work)",
+    "excerpt": "Learn how to integrate n8n with AI to create simple agents that can automate various workflows, saving you thousands of hours on repetitive tasks and boosting your productivity.",
+    "youtubeId": "Uz-HJe-sK28",
+    "category": "Video",
+    "tags": ["AI", "automation", "n8n", "supabase"]
+  }
+]
