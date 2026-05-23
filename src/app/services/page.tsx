@@ -21,7 +21,7 @@ const serviceTiers = [
       "1 round of revisions post-delivery",
     ],
     timeline: "2–3 weeks",
-    cta: { text: "Take the Assessment", href: "/assessment" },
+    cta: { text: "Book Strategy Session", href: "/checkout?tier=strategy" },
     enterprise: false,
   },
   {
@@ -37,7 +37,7 @@ const serviceTiers = [
       "Team handover and async support (30 days)",
     ],
     timeline: "4–8 weeks",
-    cta: { text: "Take the Assessment", href: "/assessment" },
+    cta: { text: "Book Strategy Session", href: "/checkout?tier=strategy" },
     enterprise: false,
   },
   {
@@ -53,7 +53,7 @@ const serviceTiers = [
       "Dedicated async support (60 days post-delivery)",
     ],
     timeline: "8–14 weeks",
-    cta: { text: "Take the Assessment", href: "/assessment" },
+    cta: { text: "Book Strategy Session", href: "/checkout?tier=strategy" },
     enterprise: false,
   },
   {
