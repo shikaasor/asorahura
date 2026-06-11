@@ -72,7 +72,7 @@ export default function EngageConfirmationPage() {
                             textUnderlineOffset: "3px",
                         }}
                     >
-                        Retake the Assessment
+                        Retake the Discovery
                     </Link>
                 </div>
             </div>

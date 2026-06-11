@@ -8,8 +8,8 @@ const steps = [
   },
   {
     number: "2",
-    name: "AI Audit",
-    description: "Deep diagnostic of your workflows, tools, and data — resulting in a prioritised roadmap.",
+    name: "AI Opportunity Discovery",
+    description: "Deep exploration of your workflows, tools, and data — resulting in a prioritised roadmap.",
   },
   {
     number: "3",

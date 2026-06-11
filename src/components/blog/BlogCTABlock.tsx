@@ -21,12 +21,12 @@ export default function BlogCTABlock({ type }: BlogCTABlockProps) {
       <h3 style={{ color: '#ffffff', fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem' }}>
         {isCaseStudy
           ? 'See how I can do this for your business.'
-          : 'Take the Free AI Readiness Assessment.'}
+          : 'Start Your Free AI Opportunity Discovery.'}
       </h3>
       <p style={{ color: '#a3a3a3', fontSize: '1rem', marginBottom: '2rem', maxWidth: '480px', margin: '0 auto 2rem' }}>
         {isCaseStudy
           ? 'The same architecture principles apply to your operations. Let\'s talk about what AI can automate for you.'
-          : 'Find out your AI readiness score and get a personalised report in under 5 minutes.'}
+          : 'Find out where AI can save you the most time and get a personalised report in under 5 minutes.'}
       </p>
       <Link
         href={isCaseStudy ? '/engage' : '/assessment'}
@@ -41,7 +41,7 @@ export default function BlogCTABlock({ type }: BlogCTABlockProps) {
           textDecoration: 'none',
         }}
       >
-        {isCaseStudy ? 'Work With Me' : 'Take the Assessment →'}
+        {isCaseStudy ? 'Work With Me' : 'Start the Discovery →'}
       </Link>
     </div>
   );

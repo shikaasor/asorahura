@@ -1,21 +1,26 @@
-import { Clock, AlertCircle, Users } from "lucide-react";
+import { Scale, Landmark, Building2, HardHat } from "lucide-react";
 import styles from "./PainSection.module.css";
 
-const painCards = [
+const sectorCards = [
   {
-    icon: <Clock size={24} />,
-    title: "You're the bottleneck",
-    body: "Every decision loops back to you. Approvals, reviews, sign-offs — nothing moves without your involvement, and the backlog never shrinks.",
+    icon: <Scale size={24} />,
+    title: "Law firms",
+    body: "You can't paste matter content into public LLMs without an ABA Rule 1.6 risk — but your competitors are already using Harvey on contract review and pulling ahead. The gap is privilege architecture, not ambition.",
   },
   {
-    icon: <AlertCircle size={24} />,
-    title: "Every task needs you",
-    body: "Delegation keeps failing. The moment you step away, quality drops or work stops entirely. You've become the system instead of running one.",
+    icon: <Landmark size={24} />,
+    title: "Finance & RIAs",
+    body: "Your model risk management was built for deterministic models. Now GenAI lands inside SR 11-7 and EU AI Act Annex III, and 44% of RIAs running AI tools have no formal validation. Governance has to catch up.",
   },
   {
-    icon: <Users size={24} />,
-    title: "You can't scale without hiring",
-    body: "Growth means more headcount. More headcount means more management. You're not scaling a business — you're managing a growing dependency chain.",
+    icon: <Building2 size={24} />,
+    title: "Real estate & property",
+    body: "Tenant screening, ad audience targeting, AVMs — every AI use case touches a protected class. Without a bias-impact review and standardised data, every pilot is a future enforcement action.",
+  },
+  {
+    icon: <HardHat size={24} />,
+    title: "Construction",
+    body: "Procore here, ACC there, paper RFIs in between. 45% of construction firms have zero AI deployed because the data doesn't exist in a form models can use. Platform standardisation comes first — then the takeoff and schedule-risk wins are real.",
   },
 ];
 
@@ -24,8 +29,12 @@ export default function PainSection() {
     <section className={styles.section}>
       <div className={styles.container}>
         <h2 className={styles.heading}>Sound familiar?</h2>
+        <p className={styles.subheading}>
+          Different sectors, same pattern — exposure without architecture. Different sector? The
+          general track captures the same dynamics for any operator.
+        </p>
         <div className={styles.grid}>
-          {painCards.map((card) => (
+          {sectorCards.map((card) => (
             <div key={card.title} className={styles.card}>
               <div className={styles.icon}>{card.icon}</div>
               <h3 className={styles.cardTitle}>{card.title}</h3>

@@ -117,8 +117,8 @@ export default function ParticleWave() {
                                 const dist = dx * dx + dy * dy;
 
                                 if (dist < CONNECTION_DIST * CONNECTION_DIST) {
-                                    const alpha = 0.06 * (1 - Math.sqrt(dist) / CONNECTION_DIST);
-                                    ctx.strokeStyle = `rgba(59, 130, 246, ${alpha})`;
+                                    const alpha = 0.07 * (1 - Math.sqrt(dist) / CONNECTION_DIST);
+                                    ctx.strokeStyle = `rgba(201, 160, 96, ${alpha})`;
                                     ctx.beginPath();
                                     ctx.moveTo(particles[i].x, particles[i].y);
                                     ctx.lineTo(particles[j].x, particles[j].y);
@@ -135,7 +135,7 @@ export default function ParticleWave() {
                 const p = particles[i];
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(59, 130, 246, ${p.opacity})`;
+                ctx.fillStyle = `rgba(201, 160, 96, ${p.opacity * 0.6})`;
                 ctx.fill();
             }
 

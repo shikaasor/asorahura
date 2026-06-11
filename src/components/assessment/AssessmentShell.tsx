@@ -5,25 +5,35 @@ import { QuestionCard } from "./QuestionCard";
 import { ProgressBar } from "./ProgressBar";
 import { EmailGate } from "./EmailGate";
 import { ResultsScreen } from "./ResultsScreen";
+import { SectorPicker } from "./SectorPicker";
 import {
   assessmentQuestions,
   getQuestionOptions,
-  type Role,
+  getQuestionText,
+  isValidSector,
+  DEFAULT_SECTOR,
+  type Sector,
 } from "@/lib/assessment";
 import { submitAssessmentForEmail } from "@/app/assessment/actions";
 import type { EmailGateInput } from "@/lib/validation";
 import styles from "./AssessmentShell.module.css";
 
-type Step = "intro" | "questions" | "email-gate" | "results";
+type Step = "intro" | "sector" | "questions" | "email-gate" | "results";
 
-const STORAGE_KEY = "asor_assessment_answers";
+const STORAGE_KEY = "asor_assessment_answers_v3";
 const IDENTITY_KEY = "asor_user_identity";
-const TOTAL_QUESTIONS = assessmentQuestions.length;
+const SECTOR_KEY = "asor_user_sector";
+
+// Q1 in assessmentQuestions is the sector routing question (served by SectorPicker).
+// The questions step iterates from index 1 onward.
+const FIRST_QUESTION_INDEX = 1;
+const SCORED_TOTAL = assessmentQuestions.length - FIRST_QUESTION_INDEX;
 
 export function AssessmentShell() {
   const [step, setStep] = useState<Step>("intro");
-  const [currentQ, setCurrentQ] = useState(0);
+  const [currentQ, setCurrentQ] = useState(FIRST_QUESTION_INDEX);
   const [answers, setAnswers] = useState<Record<number, string>>({});
+  const [sector, setSector] = useState<Sector>(DEFAULT_SECTOR);
   const [result, setResult] = useState<{
     score: number;
     tier: string;
@@ -34,32 +44,48 @@ export function AssessmentShell() {
 
   useEffect(() => {
     try {
+      const storedSector = localStorage.getItem(SECTOR_KEY);
+      if (storedSector && isValidSector(storedSector)) {
+        setSector(storedSector);
+        setAnswers((a) => ({ ...a, 1: storedSector }));
+      }
+    } catch { /* ignore */ }
+
+    try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved) as {
           answers: Record<number, string>;
           currentQ: number;
           step: string;
+          sector?: string;
         };
         if (parsed.answers && parsed.step === "questions") {
           setAnswers(parsed.answers);
-          setCurrentQ(parsed.currentQ ?? 0);
+          setCurrentQ(parsed.currentQ ?? FIRST_QUESTION_INDEX);
+          if (parsed.sector && isValidSector(parsed.sector)) setSector(parsed.sector);
           setStep("questions");
         }
       }
-    } catch {
-      // ignore parse errors
-    }
+    } catch { /* ignore */ }
   }, []);
 
   useEffect(() => {
     if (step === "questions") {
       localStorage.setItem(
         STORAGE_KEY,
-        JSON.stringify({ answers, currentQ, step })
+        JSON.stringify({ answers, currentQ, step, sector })
       );
     }
-  }, [answers, currentQ, step]);
+  }, [answers, currentQ, step, sector]);
+
+  function handleSectorSelect(s: Sector) {
+    setSector(s);
+    setAnswers((a) => ({ ...a, 1: s }));
+    try { localStorage.setItem(SECTOR_KEY, s); } catch { /* ignore */ }
+    setCurrentQ(FIRST_QUESTION_INDEX);
+    setStep("questions");
+  }
 
   function handleAnswer(answer: string) {
     const q = assessmentQuestions[currentQ];
@@ -100,19 +126,30 @@ export function AssessmentShell() {
   }
 
   const q = assessmentQuestions[currentQ];
-  const role = (answers[1] as Role) || "Other";
-  const displayQuestionNumber = currentQ + 1;
+  // Position within the scored set (1..SCORED_TOTAL), used for progress display.
+  const displayQuestionNumber = currentQ - FIRST_QUESTION_INDEX + 1;
 
   if (step === "intro") {
     return (
       <div className={styles.intro}>
         <h2 className={styles.introTitle}>Ready to find your score?</h2>
         <p className={styles.introSub}>
-          8 questions · takes about 4 minutes · personalized score at the end
+          Pick your sector, then answer 7 questions · about 4 minutes · personalized score at the end
         </p>
-        <button className={styles.startBtn} onClick={() => setStep("questions")}>
-          Start Assessment
+        <button className={styles.startBtn} onClick={() => setStep("sector")}>
+          Start Discovery
         </button>
+      </div>
+    );
+  }
+
+  if (step === "sector") {
+    return (
+      <div className={styles.questionWrap}>
+        <SectorPicker
+          selectedSector={sector}
+          onSelect={handleSectorSelect}
+        />
       </div>
     );
   }
@@ -120,10 +157,10 @@ export function AssessmentShell() {
   if (step === "questions") {
     return (
       <div className={styles.questionWrap}>
-        <ProgressBar current={displayQuestionNumber} total={TOTAL_QUESTIONS} />
+        <ProgressBar current={displayQuestionNumber} total={SCORED_TOTAL} />
         <QuestionCard
-          question={q}
-          options={getQuestionOptions(q.id, role)}
+          question={{ id: q.id, text: getQuestionText(q.id, sector) }}
+          options={getQuestionOptions(q.id, sector)}
           selectedAnswer={answers[q.id]}
           onAnswer={handleAnswer}
         />
@@ -147,6 +184,7 @@ export function AssessmentShell() {
         score={result.score}
         tier={result.tier}
         firstName={result.firstName}
+        sector={sector}
       />
     );
   }

@@ -4,8 +4,8 @@ const testimonials = [
   {
     quote:
       "Asor extracted and structured 7,826 pages of data from 260 years of Lloyd's List maritime records in a fraction of the time any team could manage manually. The system he built changed how we approach archival research.",
-    name: "C.M.",
-    role: "Operations Director, Lloyd's List",
+    name: "P.J.",
+    role: "Assistant Professor, Kellogg School of Management",
   },
   {
     quote:

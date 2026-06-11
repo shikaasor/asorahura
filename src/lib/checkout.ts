@@ -20,9 +20,9 @@ export const tiers: Tier[] = [
     price: "$50/hr",
     priceDetail: "Billed hourly",
     deliverables: [
-      "Full AI readiness audit across 5 operational dimensions",
+      "Full AI Opportunity Discovery across 5 operational dimensions",
       "Personalised automation roadmap — top 5 opportunities ranked by impact",
-      "Tool stack assessment and integration recommendations",
+      "Tool stack review and integration recommendations",
       "Written report with priority-ordered action plan",
     ],
     timeline: "5–7 business days",
@@ -36,7 +36,7 @@ export const tiers: Tier[] = [
     price: "$75/hr",
     priceDetail: "Billed hourly",
     deliverables: [
-      "Full AI audit included",
+      "Full AI Opportunity Discovery included",
       "Deep-dive into your operational architecture",
       "Defined build scope with technical specification",
       "Prioritised implementation roadmap with effort estimates",

@@ -20,7 +20,7 @@ export default function PrivacyPage() {
             <h2>1. Information We Collect</h2>
             <p>
               We collect information you provide directly — such as your name, email address, and
-              business details when you submit the assessment, contact form, or engage our services.
+              business details when you complete the discovery, contact form, or engage our services.
             </p>
             <p>
               We also collect usage data automatically through analytics tools (page views, session
@@ -32,7 +32,7 @@ export default function PrivacyPage() {
             <h2>2. How We Use Your Information</h2>
             <p>Your information is used to:</p>
             <ul>
-              <li>Deliver assessment results and follow-up recommendations</li>
+              <li>Deliver discovery results and follow-up recommendations</li>
               <li>Respond to inquiries and manage client engagements</li>
               <li>Send relevant updates about services (you may opt out at any time)</li>
               <li>Improve site content and user experience</li>
@@ -52,7 +52,7 @@ export default function PrivacyPage() {
           <section className={styles.section}>
             <h2>4. Data Retention</h2>
             <p>
-              We retain contact and assessment data for as long as necessary to fulfill the purpose
+              We retain contact and discovery data for as long as necessary to fulfill the purpose
               it was collected for, or as required by applicable law. You may request deletion of
               your data at any time.
             </p>

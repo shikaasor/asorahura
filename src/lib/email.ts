@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 import { draftEmailSequence, draftNurtureEmailSequence, generatePDFContent } from "@/lib/llm";
 import { generateAssessmentPDF } from "@/lib/pdf";
-import { getSegment } from "@/lib/assessment";
+import { getSegment, DEFAULT_SECTOR, type Sector } from "@/lib/assessment";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -71,8 +71,13 @@ export async function sendAssessmentEmailSequence(params: {
   tierDescription: string;
   previewBullets: string[];
   answers: Record<number, string>;
+  sector?: Sector;
 }): Promise<void> {
   const { email, firstName, score, tier, tierDescription, previewBullets, answers } = params;
+  const sector = params.sector ?? DEFAULT_SECTOR;
+  // sector is also visible to the LLM via formatAnswers (Q1 = "Sector: <sector>"); kept here
+  // as an explicit param so future template branching can use it without touching callers.
+  void sector;
 
   const segment = getSegment(score);
 
@@ -140,7 +145,7 @@ export async function sendAssessmentEmailSequence(params: {
       from: FROM,
       to: email,
       subject: nurture?.day3.subject ?? "The cost of doing this manually",
-      text: (nurture?.day3.body ?? `Hey ${firstName}, following up on your AI Readiness Assessment.`) + unsubscribeFooter(email),
+      text: (nurture?.day3.body ?? `Hey ${firstName}, following up on your AI Opportunity Discovery.`) + unsubscribeFooter(email),
       scheduledAt: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
     });
     if (error) console.error("[email] Day 3 send failed:", error.message);
@@ -182,7 +187,7 @@ export async function sendAssessmentEmailSequence(params: {
       from: FROM,
       to: email,
       subject: nurture?.day30.subject ?? "Still thinking about this?",
-      text: (nurture?.day30.body ?? `Hey ${firstName}, a month ago you completed the AI Readiness Assessment.`) + unsubscribeFooter(email),
+      text: (nurture?.day30.body ?? `Hey ${firstName}, a month ago you completed the AI Opportunity Discovery.`) + unsubscribeFooter(email),
       scheduledAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
     });
     if (error) console.error("[email] Day 30 send failed:", error.message);

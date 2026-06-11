@@ -1,22 +1,24 @@
 import Link from "next/link";
-import { DIMENSIONS, getDeepTier, getDimensionInterpretation, type Dimension } from "@/lib/deepAssessment";
+import { DIMENSIONS, DEEP_MAX_SCORE, getDeepTier, getDimensionInterpretation, type Dimension } from "@/lib/deepAssessment";
+import { DEFAULT_SECTOR, type Sector } from "@/lib/assessment";
 import styles from "./DeepResultsScreen.module.css";
 
 interface Props {
   total: number;
   byDimension: Record<Dimension, number>;
   firstName: string;
+  sector?: Sector;
 }
 
-export function DeepResultsScreen({ total, byDimension, firstName }: Props) {
-  const tier = getDeepTier(total);
+export function DeepResultsScreen({ total, byDimension, firstName, sector = DEFAULT_SECTOR }: Props) {
+  const tier = getDeepTier(total, sector);
 
   return (
     <div className={styles.wrap}>
       <div className={styles.scoreBlock}>
-        <span className={styles.scoreLabel}>Your AI Readiness Score</span>
+        <span className={styles.scoreLabel}>Your AI Opportunity Score</span>
         <div className={styles.scoreNumber}>
-          {total}<span className={styles.scoreMax}>/60</span>
+          {total}<span className={styles.scoreMax}>/{DEEP_MAX_SCORE}</span>
         </div>
         <div className={styles.tier}>{tier.name}</div>
       </div>
@@ -29,7 +31,7 @@ export function DeepResultsScreen({ total, byDimension, firstName }: Props) {
           {(Object.entries(DIMENSIONS) as [Dimension, typeof DIMENSIONS[Dimension]][]).map(([code, dim]) => {
             const score = byDimension[code];
             const pct = Math.round((score / dim.max) * 100);
-            const interpretation = getDimensionInterpretation(code, score);
+            const interpretation = getDimensionInterpretation(code, score, sector);
             return (
               <div key={code} className={styles.dimCard}>
                 <div className={styles.dimCardHeader}>

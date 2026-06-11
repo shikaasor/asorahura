@@ -24,7 +24,7 @@ export default function HeroSection() {
             </p>
             <div className={styles.actions}>
               <Link href="/assessment" className={styles.primaryBtn}>
-                Take the Free AI Readiness Assessment
+                Start Your Free AI Opportunity Discovery
               </Link>
               <Link href="/engage" className={styles.secondaryBtn}>
                 Work With Me

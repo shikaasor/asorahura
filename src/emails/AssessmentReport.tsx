@@ -47,7 +47,7 @@ export function AssessmentReport({
           }}
         >
           <Heading style={{ fontSize: "24px", color: "#111" }}>
-            Your AI Readiness Report is here, {firstName}
+            Your AI Opportunity Discovery Report is here, {firstName}
           </Heading>
           <Section style={{ textAlign: "center", padding: "24px 0" }}>
             <Text
@@ -109,7 +109,7 @@ export function AssessmentReport({
           </Button>
           <Hr style={{ borderColor: "#e5e7eb", margin: "24px 0" }} />
           <Text style={{ fontSize: "12px", color: "#9ca3af", textAlign: "center" }}>
-            You received this because you completed the AI Readiness Assessment.{" "}
+            You received this because you completed the AI Opportunity Discovery.{" "}
             <a href={unsubscribeUrl} style={{ color: "#9ca3af" }}>Unsubscribe</a>
           </Text>
         </Container>

@@ -20,7 +20,7 @@ export default function Footer() {
             <p className={styles.navLabel}>Navigation</p>
             <ul className={styles.navList}>
               <li><Link href="/" className={styles.navLink}>Home</Link></li>
-              <li><Link href="/assessment" className={styles.navLink}>Assessment</Link></li>
+              <li><Link href="/assessment" className={styles.navLink}>Discovery</Link></li>
               <li><Link href="/engage" className={styles.navLink}>Engage</Link></li>
               <li><Link href="/work" className={styles.navLink}>Work</Link></li>
             </ul>

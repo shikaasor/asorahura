@@ -3,16 +3,16 @@ import styles from "./ServicesPreview.module.css";
 
 const services = [
   {
-    title: "AI Audit & Roadmap",
+    title: "AI Opportunity Discovery",
     description:
-      "A structured diagnostic of your current operations. I identify where AI automation delivers the highest ROI and produce a prioritised implementation roadmap.",
+      "A structured exploration of your current operations. I identify where AI automation delivers the highest ROI and produce a prioritised implementation roadmap.",
     price: "$5,000",
     href: "/engage",
   },
   {
     title: "Ops Automation Build",
     description:
-      "End-to-end build of the highest-impact automation identified in your audit. Covers workflow design, integration, testing, and handover documentation.",
+      "End-to-end build of the highest-impact automation identified in your discovery. Covers workflow design, integration, testing, and handover documentation.",
     price: "$5,000 – $15,000",
     href: "/engage",
   },
@@ -24,6 +24,8 @@ const services = [
     href: "/engage",
   },
 ];
+
+const sectorTracks = ["Law", "Finance", "Real Estate", "Construction", "Other / Cross-Industry"];
 
 export default function ServicesPreview() {
   return (
@@ -45,6 +47,17 @@ export default function ServicesPreview() {
               </div>
             </div>
           ))}
+        </div>
+        <div className={styles.sectorStrip}>
+          <span className={styles.sectorLabel}>Sector-aware assessment tracks</span>
+          <div className={styles.sectorChips}>
+            {sectorTracks.map((s) => (
+              <span key={s} className={styles.sectorChip}>{s}</span>
+            ))}
+          </div>
+          <Link href="/assessment" className={styles.sectorLink}>
+            Take the free AI Opportunity Discovery →
+          </Link>
         </div>
       </div>
     </section>

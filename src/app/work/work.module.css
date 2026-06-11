@@ -1,213 +1,42 @@
 .main {
     min-height: 100vh;
-    background: #ffffff;
+    background: var(--bg-base, #04080F);
     padding-top: 10rem;
 }
 
-.nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem 4rem;
-}
-
-.logo {
-    font-family: var(--font-serif);
-    font-size: 1.5rem;
-    letter-spacing: -0.05em;
-}
-
-.backLink {
-    font-size: 0.9rem;
-    color: var(--muted);
-}
-
-.ctaSmall {
-    background: var(--foreground);
-    color: var(--background);
-    padding: 0.6rem 1.2rem;
-}
-
+/* ── Hero ── */
 .hero {
-    padding: 6rem 0;
-    border-bottom: 1px solid var(--border);
+    padding: 4rem 0 5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .headline {
-    font-size: 3.5rem;
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 700;
     max-width: 800px;
-    line-height: 1.2;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
     margin-bottom: 1.5rem;
+    color: #EDF2F7;
 }
 
 .subhead {
-    font-size: 1.25rem;
-    color: var(--muted);
+    font-size: 1.125rem;
+    color: #5A6B84;
     max-width: 600px;
+    line-height: 1.7;
     margin-bottom: 3rem;
 }
 
-.disclaimer {
-    margin-top: 3rem;
-    padding: 1.5rem;
-    background: #f9fafb;
-    border-left: 3px solid var(--muted);
-    max-width: 800px;
-}
-
-.disclaimer p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: var(--muted);
-}
-
-.disclaimer strong {
-    color: var(--foreground);
-}
-
-.systemEntry {
-    display: flex;
-    gap: 4rem;
-    padding: 6rem 0;
-    border-bottom: 1px solid var(--border);
-    align-items: center;
-}
-
-.systemInfo {
-    flex: 1;
-}
-
-.systemTitle {
-    font-size: 2.25rem;
-    margin-bottom: 1rem;
-}
-
-.systemDesc {
-    font-size: 1.1rem;
-    color: var(--muted);
-    margin-bottom: 2rem;
-    line-height: 1.6;
-}
-
-.toolchain {
-    font-size: 0.9rem;
-    color: var(--muted);
-    margin-bottom: 1rem;
-    font-family: var(--font-sans);
-}
-
-.toolchain span {
-    font-weight: 700;
-    color: var(--foreground);
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-}
-
-.metrics {
-    font-family: var(--font-sans);
-    font-weight: 600;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: black;
-    margin-bottom: 2rem;
-}
-
-.caseStudy {
-    margin-top: 2rem;
-    padding: 2rem;
-    background: #f9fafb;
-    border-left: 2px solid var(--foreground);
-}
-
-.caseStudy h4 {
-    font-size: 1rem;
-    font-family: var(--font-sans);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 1.5rem;
-    color: var(--foreground);
-}
-
-.caseStudyItem {
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: var(--muted);
-}
-
-.caseStudyItem strong {
-    color: var(--foreground);
-    font-weight: 600;
-    display: inline-block;
-    min-width: 100px;
-}
-
-.systemDiagram {
-    flex: 1;
-    height: 300px;
-    background: #fcfcfc;
-    border: 1px solid var(--border);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-.placeholderDiagram {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.line {
-    width: 100px;
-    height: 1px;
-    background: var(--border);
-}
-
-.node {
-    width: 40px;
-    height: 40px;
-    border: 1px solid var(--foreground);
-    border-radius: 50%;
-    animation: flow 4s infinite ease-in-out;
-}
-
-.articleLink {
-    display: inline-block;
-    margin-top: 1.5rem;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--foreground);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    border-bottom: 1px solid var(--foreground);
-    padding-bottom: 0.15rem;
-    transition: opacity 0.2s ease;
-}
-
-.articleLink:hover {
-    opacity: 0.5;
-}
-
-.footer {
-    padding: 4rem 0;
-    text-align: center;
-    font-size: 0.9rem;
-    color: var(--muted);
-}
-
-/* Case studies section */
+/* ── Case study cards ── */
 .caseStudies {
     padding: 4rem 0;
 }
 
 .caseStudyCard {
-    border-bottom: 1px solid #222;
-    padding: 3rem 0;
-    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 3.5rem 0;
 }
 
 .caseStudyCard:last-child {
@@ -215,98 +44,132 @@
 }
 
 .caseHeadline {
+    font-family: var(--font-serif);
     font-size: 1.5rem;
     font-weight: 700;
-    color: #fff;
-    margin-bottom: 1.5rem;
-    line-height: 1.4;
+    color: #EDF2F7;
+    margin-bottom: 2rem;
+    line-height: 1.45;
+    max-width: 860px;
 }
 
 .caseBody {
-    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 3rem;
 }
 
 .caseSection {
-    margin-bottom: 1.25rem;
+    margin-bottom: 0;
 }
 
 .caseSectionLabel {
-    font-size: 0.75rem;
+    font-size: 0.6875rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #C9A84C;
+    letter-spacing: 0.12em;
+    color: var(--gold, #C9A060);
     margin-bottom: 0.5rem;
-    font-weight: 600;
+    font-weight: 700;
+}
+
+.caseSection p {
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: #5A6B84;
 }
 
 .caseStack {
-    margin-top: 1rem;
-    font-size: 0.875rem;
-    color: #888;
+    grid-column: 1 / -1;
+    margin-top: 0.5rem;
+    font-size: 0.8125rem;
+    color: #3D4F66;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 1.25rem;
 }
 
 .caseStackLabel {
     font-weight: 700;
-    color: #888;
+    color: #5A6B84;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.6875rem;
+    margin-right: 0.375rem;
 }
 
-.caseCta {
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid #222;
-    font-size: 0.9rem;
-}
-
-.caseCta a {
-    color: #C9A84C;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.caseCta a:hover {
-    opacity: 0.8;
-}
-
-/* Bottom CTA section */
+/* ── Bottom CTA ── */
 .bottomCta {
-    background: #111;
-    padding: 5rem 2rem;
+    background: var(--bg-surface, #080E1A);
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 5.5rem 2rem;
     text-align: center;
 }
 
 .bottomCtaHeadline {
+    font-family: var(--font-serif);
     font-size: 2rem;
     font-weight: 700;
-    color: #fff;
+    color: #EDF2F7;
     margin-bottom: 1rem;
+    letter-spacing: -0.01em;
 }
 
 .bottomCtaSub {
-    font-size: 1.1rem;
-    color: #888;
-    max-width: 560px;
+    font-size: 1rem;
+    color: #5A6B84;
+    max-width: 520px;
     margin: 0 auto;
+    line-height: 1.65;
 }
 
 .bottomCtaBtn {
     display: inline-block;
-    background: #C9A84C;
-    color: #000;
-    padding: 1rem 2.5rem;
-    font-weight: 600;
-    border-radius: 4px;
+    background: var(--gold, #C9A060);
+    color: #04080F;
+    padding: 0.9375rem 2.25rem;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    border-radius: 6px;
     text-decoration: none;
-    margin-top: 1.5rem;
+    margin-top: 1.75rem;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 20px rgba(201, 160, 96, 0.28);
+    cursor: pointer;
 }
 
 .bottomCtaBtn:hover {
-    opacity: 0.9;
+    background: var(--gold-light, #E0B878);
+    box-shadow: 0 6px 28px rgba(201, 160, 96, 0.42);
+    opacity: 1;
+}
+
+/* ── Footer ── */
+.footer {
+    padding: 3rem 0;
+    text-align: center;
+    font-size: 0.8125rem;
+    color: #2E3D52;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ── Legacy classes kept for any other usage ── */
+.nav { display: flex; justify-content: space-between; align-items: center; padding: 2rem 4rem; }
+.logo { font-family: var(--font-serif); font-size: 1.5rem; letter-spacing: -0.05em; color: #EDF2F7; }
+.backLink { font-size: 0.9rem; color: #5A6B84; }
+
+@media (max-width: 900px) {
+    .caseBody {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .caseStack {
+        grid-column: 1;
+    }
 }
 
 @media (max-width: 768px) {
-    .systemEntry {
-        flex-direction: column;
-        gap: 2rem;
+    .headline {
+        font-size: 2.25rem;
     }
 
     .caseHeadline {
@@ -314,6 +177,10 @@
     }
 
     .bottomCtaHeadline {
-        font-size: 1.5rem;
+        font-size: 1.625rem;
+    }
+
+    .main {
+        padding-top: 7rem;
     }
 }

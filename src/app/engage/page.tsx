@@ -147,11 +147,6 @@ function EngageFormInner() {
                 </section>
             </div>
 
-            <footer className={styles.footer}>
-                <div className="container">
-                    <p>&copy; {new Date().getFullYear()} Asor Ahura. Intentional Growth.</p>
-                </div>
-            </footer>
         </main>
     );
 }

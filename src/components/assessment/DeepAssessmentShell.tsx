@@ -1,29 +1,34 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { ProgressBar } from "./ProgressBar";
 import { EmailGate } from "./EmailGate";
 import { DeepResultsScreen } from "./DeepResultsScreen";
+import { SectorPicker } from "./SectorPicker";
 import {
-  deepQuestions,
   DIMENSIONS,
   calculateDeepScore,
+  getDeepQuestionsForSector,
+  resolveDeepQuestion,
   type Dimension,
 } from "@/lib/deepAssessment";
+import { DEFAULT_SECTOR, isValidSector, type Sector } from "@/lib/assessment";
 import { submitDeepAssessmentForEmail } from "@/app/assessment/deep/actions";
 import type { EmailGateInput } from "@/lib/validation";
 import styles from "./DeepAssessmentShell.module.css";
 
-type Step = "intro" | "questions" | "email-gate" | "results";
+type Step = "intro" | "sector" | "questions" | "email-gate" | "results";
 
-const STORAGE_KEY = "asor_deep_assessment_answers";
+const STORAGE_KEY = "asor_deep_assessment_answers_v3";
 const IDENTITY_KEY = "asor_user_identity";
-const TOTAL = deepQuestions.length;
+const SECTOR_KEY = "asor_user_sector";
 
 export function DeepAssessmentShell() {
   const [step, setStep] = useState<Step>("intro");
   const [currentQ, setCurrentQ] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
+  const [sector, setSector] = useState<Sector>(DEFAULT_SECTOR);
+  const [sectorChosen, setSectorChosen] = useState(false);
   const [result, setResult] = useState<{
     total: number;
     byDimension: Record<Dimension, number>;
@@ -33,6 +38,9 @@ export function DeepAssessmentShell() {
   const [emailError, setEmailError] = useState<string | undefined>();
   const [savedIdentity, setSavedIdentity] = useState<{ firstName: string; email: string } | null>(null);
 
+  const sectorQuestions = useMemo(() => getDeepQuestionsForSector(sector), [sector]);
+  const total = sectorQuestions.length;
+
   useEffect(() => {
     try {
       const identity = localStorage.getItem(IDENTITY_KEY);
@@ -40,12 +48,29 @@ export function DeepAssessmentShell() {
     } catch { /* ignore */ }
 
     try {
+      const storedSector = localStorage.getItem(SECTOR_KEY);
+      if (storedSector && isValidSector(storedSector)) {
+        setSector(storedSector);
+        setSectorChosen(true);
+      }
+    } catch { /* ignore */ }
+
+    try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
-        const parsed = JSON.parse(saved) as { answers: Record<number, number>; currentQ: number; step: string };
+        const parsed = JSON.parse(saved) as {
+          answers: Record<number, number>;
+          currentQ: number;
+          step: string;
+          sector?: string;
+        };
         if (parsed.answers && parsed.step === "questions") {
           setAnswers(parsed.answers);
           setCurrentQ(parsed.currentQ ?? 0);
+          if (parsed.sector && isValidSector(parsed.sector)) {
+            setSector(parsed.sector);
+            setSectorChosen(true);
+          }
           setStep("questions");
         }
       }
@@ -54,16 +79,33 @@ export function DeepAssessmentShell() {
 
   useEffect(() => {
     if (step === "questions") {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ answers, currentQ, step }));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ answers, currentQ, step, sector }));
     }
-  }, [answers, currentQ, step]);
+  }, [answers, currentQ, step, sector]);
+
+  function handleSectorSelect(s: Sector) {
+    setSector(s);
+    setSectorChosen(true);
+    try { localStorage.setItem(SECTOR_KEY, s); } catch { /* ignore */ }
+    setCurrentQ(0);
+    setStep("questions");
+  }
+
+  function startFlow() {
+    if (sectorChosen) {
+      setCurrentQ(0);
+      setStep("questions");
+    } else {
+      setStep("sector");
+    }
+  }
 
   async function handleAnswer(value: number) {
-    const q = deepQuestions[currentQ];
+    const q = sectorQuestions[currentQ];
     const newAnswers = { ...answers, [q.id]: value };
     setAnswers(newAnswers);
 
-    if (currentQ < deepQuestions.length - 1) {
+    if (currentQ < sectorQuestions.length - 1) {
       setCurrentQ(currentQ + 1);
       return;
     }
@@ -74,10 +116,10 @@ export function DeepAssessmentShell() {
     if (savedIdentity) {
       // Skip gate — submit with stored identity
       setIsLoading(true);
-      await submitDeepAssessmentForEmail(savedIdentity.firstName, savedIdentity.email, newAnswers);
+      await submitDeepAssessmentForEmail(savedIdentity.firstName, savedIdentity.email, newAnswers, sector);
       setIsLoading(false);
-      const { total, byDimension } = calculateDeepScore(newAnswers);
-      setResult({ total, byDimension, firstName: savedIdentity.firstName });
+      const scored = calculateDeepScore(newAnswers, sector);
+      setResult({ total: scored.total, byDimension: scored.byDimension, firstName: savedIdentity.firstName });
       setStep("results");
     } else {
       setStep("email-gate");
@@ -87,7 +129,7 @@ export function DeepAssessmentShell() {
   async function handleEmailSubmit(data: EmailGateInput) {
     setIsLoading(true);
     setEmailError(undefined);
-    const res = await submitDeepAssessmentForEmail(data.firstName, data.email, answers);
+    const res = await submitDeepAssessmentForEmail(data.firstName, data.email, answers, sector);
     setIsLoading(false);
 
     if (!res.success) {
@@ -96,15 +138,16 @@ export function DeepAssessmentShell() {
     }
 
     localStorage.setItem(IDENTITY_KEY, JSON.stringify({ firstName: data.firstName, email: data.email }));
-    const { total, byDimension } = calculateDeepScore(answers);
-    setResult({ total, byDimension, firstName: data.firstName });
+    const scored = calculateDeepScore(answers, sector);
+    setResult({ total: scored.total, byDimension: scored.byDimension, firstName: data.firstName });
     setStep("results");
   }
 
-  const q = deepQuestions[currentQ];
+  const rawQ = sectorQuestions[currentQ];
+  const q = rawQ ? resolveDeepQuestion(rawQ, sector) : undefined;
   const dim = q?.dimension;
   const dimInfo = dim ? DIMENSIONS[dim] : null;
-  const prevDim = currentQ > 0 ? deepQuestions[currentQ - 1].dimension : null;
+  const prevDim = currentQ > 0 ? sectorQuestions[currentQ - 1].dimension : null;
   const isNewDimension = dim !== prevDim;
 
   if (isLoading) {
@@ -118,8 +161,9 @@ export function DeepAssessmentShell() {
   if (step === "intro") {
     return (
       <div className={styles.intro}>
-        <h2 className={styles.introTitle}>The full scorecard — 5 dimensions, 20 questions</h2>
+        <h2 className={styles.introTitle}>The full scorecard — 6 dimensions, 24 questions</h2>
         <p className={styles.introSub}>
+          {sectorChosen ? `Sector: ${sector}. ` : ""}
           Score yourself 0–3 on each question. Be honest — inflating scores only misleads your own planning.
         </p>
         <div className={styles.dimensions}>
@@ -131,9 +175,20 @@ export function DeepAssessmentShell() {
             </div>
           ))}
         </div>
-        <button className={styles.startBtn} onClick={() => setStep("questions")}>
-          Start Full Scorecard
+        <button className={styles.startBtn} onClick={startFlow}>
+          {sectorChosen ? "Start Full Scorecard" : "Pick Sector & Start"}
         </button>
+      </div>
+    );
+  }
+
+  if (step === "sector") {
+    return (
+      <div className={styles.questionWrap}>
+        <SectorPicker
+          selectedSector={sector}
+          onSelect={handleSectorSelect}
+        />
       </div>
     );
   }
@@ -141,7 +196,7 @@ export function DeepAssessmentShell() {
   if (step === "questions" && q && dimInfo) {
     return (
       <div className={styles.questionWrap}>
-        <ProgressBar current={currentQ + 1} total={TOTAL} />
+        <ProgressBar current={currentQ + 1} total={total} />
 
         {isNewDimension && (
           <div className={styles.dimHeader}>
@@ -187,6 +242,7 @@ export function DeepAssessmentShell() {
         total={result.total}
         byDimension={result.byDimension}
         firstName={result.firstName}
+        sector={sector}
       />
     );
   }

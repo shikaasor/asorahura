@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getTierDescription, getPreviewBullets } from "@/lib/assessment";
+import { getTierDescription, getPreviewBullets, DEFAULT_SECTOR, type Sector } from "@/lib/assessment";
 import styles from "./ResultsScreen.module.css";
 import { TestimonialCard } from "@/components/shared/TestimonialCard";
 
@@ -11,16 +11,17 @@ interface Props {
   score: number;
   tier: string;
   firstName: string;
+  sector?: Sector;
 }
 
-export function ResultsScreen({ score, tier, firstName }: Props) {
-  const description = getTierDescription(score);
-  const bullets = getPreviewBullets(score);
+export function ResultsScreen({ score, tier, firstName, sector = DEFAULT_SECTOR }: Props) {
+  const description = getTierDescription(score, sector);
+  const bullets = getPreviewBullets(score, sector);
 
   return (
     <div className={styles.wrap}>
       <div className={styles.scoreBlock}>
-        <span className={styles.scoreLabel}>Your AI Readiness Score</span>
+        <span className={styles.scoreLabel}>Your AI Opportunity Score</span>
         <div className={styles.scoreNumber}>
           {score}<span className={styles.scoreMax}>/100</span>
         </div>

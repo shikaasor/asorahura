@@ -4,9 +4,9 @@ import styles from "./assessment.module.css";
 export const maxDuration = 30;
 
 export const metadata = {
-  title: "AI Readiness Assessment | Asor Ahura",
+  title: "AI Opportunity Discovery | Asor Ahura",
   description:
-    "Answer 8 questions and get a personalized AI readiness score — free, takes 4 minutes.",
+    "Pick your sector, answer 7 questions, and discover your highest-impact AI opportunities — free, takes 4 minutes.",
 };
 
 export default function AssessmentPage() {
@@ -18,8 +18,8 @@ export default function AssessmentPage() {
             Find Out Exactly Where AI Can Save Your Business 10+ Hours a Week
           </h1>
           <p className={styles.heroSub}>
-            Answer 8 questions. Get a personalized AI readiness score and a
-            report showing your highest-impact opportunities.
+            Pick your sector, answer 7 questions. Get a personalised opportunity score and a
+            report showing exactly where AI can save you the most time.
           </p>
           <div className={styles.trustPills}>
             {["Free", "Takes 4 Minutes", "Instant Results", "No Sales Call"].map((t) => (

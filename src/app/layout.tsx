@@ -3,9 +3,16 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import ParticleWave from "@/components/ParticleWave";
+import Footer from "@/components/home/Footer";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif" });
+const playfair = Playfair_Display({
+    subsets: ["latin"],
+    variable: "--font-serif",
+    weight: ["400", "500", "600", "700"],
+    style: ["normal", "italic"],
+    display: "swap",
+});
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://asorahura.vercel.app"),
@@ -44,6 +51,7 @@ export default function RootLayout({
                 <Navigation />
                 <div style={{ paddingTop: "88px" }}>
                     {children}
+                    <Footer />
                 </div>
             </body>
         </html>

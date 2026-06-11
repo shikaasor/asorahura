@@ -36,7 +36,7 @@ export async function generateAssessmentPDF(params: {
       .fillColor(gold)
       .fontSize(18)
       .font("Helvetica-Bold")
-      .text("AI READINESS REPORT", 50, 25, { continued: false });
+      .text("AI OPPORTUNITY DISCOVERY REPORT", 50, 25, { continued: false });
 
     doc
       .fillColor(lightGray)
@@ -113,7 +113,7 @@ export async function generateAssessmentPDF(params: {
       .fillColor(gold)
       .fontSize(14)
       .font("Helvetica-Bold")
-      .text("AI Readiness Score Ranges", 50);
+      .text("Opportunity Score Ranges", 50);
 
     doc.moveDown(0.5);
 
@@ -154,7 +154,7 @@ export async function generateAssessmentPDF(params: {
       nextStep = personalizedNextStep;
     } else if (segment === "cold") {
       nextStep =
-        "Step 1: Take the free assessment (done). Step 2: Watch how similar businesses automated their top 3 manual tasks — reply to your report email and I'll send you a short video.";
+        "Step 1: Complete the free discovery (done). Step 2: Watch how similar businesses automated their top 3 manual tasks — reply to your report email and I'll send you a short video.";
     } else if (segment === "warm") {
       nextStep =
         "Book a Discovery Call — see how others at your readiness level achieved 40–60% reduction in manual effort. Visit asorahura.com to schedule.";

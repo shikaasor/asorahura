@@ -1,8 +1,32 @@
 .section {
-  padding: 8rem 0 6rem;
-  background: radial-gradient(circle at top right, rgba(0, 0, 0, 0.02) 0%, transparent 40%);
+  padding: 8rem 0 7rem;
+  background: var(--bg-base, #04080F);
   position: relative;
   overflow: hidden;
+}
+
+/* Ambient glow — top-right warm */
+.section::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 55%;
+  height: 70%;
+  background: radial-gradient(ellipse at center, rgba(201, 160, 96, 0.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* Ambient glow — bottom-left cool */
+.section::after {
+  content: "";
+  position: absolute;
+  bottom: -10%;
+  left: -5%;
+  width: 45%;
+  height: 60%;
+  background: radial-gradient(ellipse at center, rgba(30, 60, 120, 0.12) 0%, transparent 65%);
+  pointer-events: none;
 }
 
 .container {
@@ -10,44 +34,59 @@
   margin: 0 auto;
   padding: 0 1.5rem;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 4rem;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 5rem;
   align-items: center;
 }
 
 .copy {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.75rem;
 }
 
 .eyebrow {
-  font-size: 0.8125rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #64748b;
+  letter-spacing: 0.14em;
+  color: var(--gold, #C9A060);
   margin: 0;
 }
 
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--gold, #C9A060);
+  flex-shrink: 0;
+}
+
 .headline {
-  font-size: 3rem;
-  line-height: 1.1;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: #0f172a;
+  font-family: var(--font-serif);
+  font-size: 3.25rem;
+  line-height: 1.12;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #EDF2F7;
   margin: 0;
 }
 
 .subheading {
-  font-size: 1.125rem;
-  line-height: 1.6;
-  color: #475569;
-  max-width: 500px;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: #7A8FA8;
+  max-width: 490px;
   margin: 0;
 }
 
@@ -58,50 +97,69 @@
 }
 
 .primaryBtn {
-  display: inline-block;
-  background: #0f172a;
-  color: #ffffff;
-  padding: 0.875rem 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--gold, #C9A060);
+  color: #04080F;
+  padding: 0.9rem 1.875rem;
   font-size: 0.9375rem;
-  font-weight: 600;
-  border-radius: 0.75rem;
+  font-weight: 700;
+  border-radius: 6px;
   text-decoration: none;
-  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25);
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 20px rgba(201, 160, 96, 0.3);
   white-space: nowrap;
+  letter-spacing: 0.01em;
+  cursor: pointer;
 }
 
 .primaryBtn:hover {
-  background: #1e293b;
+  background: var(--gold-light, #E0B878);
+  box-shadow: 0 6px 28px rgba(201, 160, 96, 0.45);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.3);
+  opacity: 1;
 }
 
 .secondaryBtn {
-  display: inline-block;
-  background: #ffffff;
-  color: #0f172a;
-  padding: 0.875rem 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: #94A3B8;
+  padding: 0.9rem 1.875rem;
   font-size: 0.9375rem;
   font-weight: 600;
-  border-radius: 0.75rem;
-  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   text-decoration: none;
-  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .secondaryBtn:hover {
-  background: #f8fafc;
-  border-color: #cbd5e1;
+  border-color: rgba(201, 160, 96, 0.4);
+  color: #E2E8F0;
   transform: translateY(-2px);
+  opacity: 1;
 }
 
 .imageWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+/* Subtle gold ring behind the photo */
+.imageWrapper::before {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border-radius: 1.75rem;
+  background: radial-gradient(ellipse at 40% 50%, rgba(201, 160, 96, 0.12) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .photo {
@@ -109,13 +167,17 @@
   object-fit: cover;
   width: 100%;
   height: auto;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    0 0 0 1px rgba(201, 160, 96, 0.15),
+    0 30px 60px -15px rgba(0, 0, 0, 0.7);
+  position: relative;
+  z-index: 1;
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
   .headline {
-    font-size: 2.5rem;
+    font-size: 2.75rem;
   }
 }
 
@@ -134,6 +196,10 @@
     text-align: center;
   }
 
+  .eyebrow {
+    justify-content: center;
+  }
+
   .subheading {
     max-width: 100%;
   }
@@ -147,11 +213,12 @@
   .primaryBtn,
   .secondaryBtn {
     width: 100%;
+    justify-content: center;
     text-align: center;
   }
 
   .headline {
-    font-size: 2rem;
+    font-size: 2.25rem;
   }
 
   .imageWrapper {

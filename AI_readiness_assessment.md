@@ -1,18 +1,18 @@
 **ASOR AHURA · Asor Ahura**
 
-**AI READINESS ASSESSMENT**
+**AI OPPORTUNITY DISCOVERY**
 
 **SCORECARD**
 
-_Is your organisation actually ready to deploy AI?_
+_Where can AI create the most value in your organisation?_
 
-Find out in 10 minutes. Score your readiness across 5 dimensions - 60 points total.
+Find out in 10 minutes. Map your opportunity across 5 dimensions - 60 points total.
 
 _Purpose-built for Founders, CTOs, and Operations Leaders_
 
 ## Five Dimensions. One Clear Score
 
-This scorecard evaluates AI readiness across five core dimensions. Score each section independently for a granular view of strengths and gaps.
+This scorecard maps your AI opportunity landscape across five dimensions. Score each section to see where you can move fast — and where to build the foundation first.
 
 | **Code** | **Dimension**               | **Max** | **What It Assesses**                                                               |
 | -------- | --------------------------- | ------- | ---------------------------------------------------------------------------------- |
@@ -151,7 +151,7 @@ Transfer this score to the Scorecard Summary.
 
 **Scorecard Summary**
 
-_Transfer your five section totals below. Add them up for your overall AI Readiness Score._
+_Transfer your five section totals below. Add them up for your overall AI Opportunity Score._
 
 | **Section**                        | **Max Score** | **Your Score**  |
 | ---------------------------------- | ------------- | --------------- |
@@ -162,12 +162,12 @@ _Transfer your five section totals below. Add them up for your overall AI Readin
 | Section E: Strategic Alignment     | 9             |                 |
 | **TOTAL SCORE**                    | **60**        | **\_\_\_ / 60** |
 
-## Readiness Tier Reference
+## Opportunity Tier Reference
 
 | **Score**   | **Readiness Tier**   | **What It Means**                                                                                                                         | **Recommended Action**                                                    |
 | ----------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| **0 - 19**  | **Not Ready**        | Foundational gaps across process, data, or governance. AI deployment now will waste resources and erode confidence in the technology.     | Process and data audit first. Build the foundation before any AI scoping. |
-| **20 - 34** | **Pre-Deployment**   | Some strong areas but critical gaps exist. A targeted readiness sprint of 4-8 weeks can close the distance before full deployment.        | Engage for a System Architecture Audit to identify and sequence the gaps. |
+| **0 - 19**  | **Not Ready**        | Foundational gaps across process, data, or governance. AI deployment now will waste resources and erode confidence in the technology.     | Build the foundation first. Map and fix process and data gaps before any AI scoping. |
+| **20 - 34** | **Pre-Deployment**   | Some strong areas but critical gaps exist. A targeted readiness sprint of 4-8 weeks can close the distance before full deployment.        | Engage for a System Architecture Review to identify and sequence the gaps. |
 | **35 - 47** | **Deployment Ready** | Foundational pieces are in place. AI deployment is viable with the right architectural choices and scoped implementation plan.            | Move to solution design. Define scope, timeline, and ROI targets.         |
 | **48 - 60** | **High Readiness**   | Strong readiness across all five dimensions. You're positioned to move fast, get early measurable results, and scale from a working base. | Book a discovery call. This is the profile we build for.                  |
 
@@ -206,7 +206,7 @@ Strong process clarity and strategic intent (A + E), but data is locked in PDFs,
 
 If you've scored 20 or above - or if a section revealed a gap you weren't expecting - this is exactly the conversation we're built for.
 
-Asor Ahura works with Founders, CTOs, and Operations Leaders who have real operational problems and the mandate to fix them. Every engagement starts with a System Architecture Audit: a scoped, fixed-price session that maps your highest-friction workflows, assesses your data and infrastructure, and produces a deployment blueprint.
+Asor Ahura works with Founders, CTOs, and Operations Leaders who have real operational problems and the mandate to fix them. Every engagement starts with an AI Opportunity Discovery session: a scoped, fixed-price engagement that maps your highest-friction workflows, evaluates your data and infrastructure, and produces a deployment blueprint.
 
 **WHO WE WORK WITH**
 

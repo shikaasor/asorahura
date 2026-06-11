@@ -2,7 +2,7 @@
 // Edit prompts here — llm.ts contains no prompt strings.
 
 export const QUESTION_LABELS: Record<number, string> = {
-  1: "Role",
+  1: "Sector",
   2: "Biggest time drain each week",
   3: "How often they handle automatable tasks",
   4: "Number of disconnected tools",
@@ -48,7 +48,7 @@ export function segmentAngle(segment: "cold" | "warm" | "hot"): string {
 
 export function nurtureSegmentAngle(segment: "cold" | "warm" | "hot"): string {
   if (segment === "cold") {
-    return "Educational + opportunity-cost angle — every email surfaces a specific, costly problem manual operations create. Show them what's possible. Soft CTA only: read a blog post or re-take the assessment as their team grows. Do NOT pitch services or ask for a call. Goal: become the trusted voice in their inbox.";
+    return "Educational + opportunity-cost angle — every email surfaces a specific, costly problem manual operations create. Show them what's possible. Soft CTA only: read a blog post or re-run the discovery as their team grows. Do NOT pitch services or ask for a call. Goal: become the trusted voice in their inbox.";
   }
   if (segment === "warm") {
     return "Proof + identity angle — share case study results from someone with their context. Show what a person at their readiness level looks like 90 days from now after working with Asor. CTA to book a discovery call at https://asorahura.com/checkout?tier=discovery — frame it as 'the conversation that costs nothing but reveals everything'.";
@@ -70,7 +70,7 @@ export function pdfContentPrompt(params: {
   return {
     system:
       "You are Asor Ahura, an AI systems consultant who writes like a sharp operator, not a brochure. You speak in specifics — hours, dollars, named bottlenecks — never vague benefits. You frame every insight against the cost of staying the same. Return valid JSON only. No markdown, no code fences.",
-    user: `A prospect completed an AI Readiness Assessment. Generate personalized PDF report content based on their specific answers. Every line must feel like it was written for this person — not pasted from a template.
+    user: `A prospect completed an AI Opportunity Discovery. Generate personalized PDF report content based on their specific answers. Every line must feel like it was written for this person — not pasted from a template.
 
 Name: ${firstName}
 Score: ${score}/100
@@ -135,7 +135,7 @@ SUBJECT LINE RULES (apply to every email):
 → Never use: "Quick question", "Following up", "Checking in", "Your AI Readiness Report" (boring), or anything with emojis.
 
 INITIAL EMAIL — non-negotiables:
-→ Opens like a 1-on-1 message from Asor, not a system notification. First line references something specific they said (their role, their time drain, their tool count) — never "Thanks for completing the assessment".
+→ Opens like a 1-on-1 message from Asor, not a system notification. First line references something specific they said (their role, their time drain, their tool count) — never "Thanks for completing the discovery".
 → States their score in plain terms + what it actually means for their business (not what the tier name is — what it COSTS them or UNLOCKS for them this quarter).
 → Gives them ONE specific insight they can act on this week, drawn from their answers. No paywall on this. Trust before transaction.
 → One clear next action. No double CTAs. No "feel free to reply if you have any questions".
@@ -163,7 +163,7 @@ export function nurtureSequencePrompt(params: {
 
   return {
     system:
-      "You are Asor Ahura, an AI systems consultant, drafting a 4-email nurture sequence for a prospect who completed an AI Readiness Assessment. You write like a sharp operator talking to one person. Short punchy sentences. Arrows (→) over bullets. No em-dashes, no corporate jargon, no 'LLM-speak'. Every email earns its open and ends with one clear action. Return valid JSON with exactly these keys: day3, day7, day14, day30. Each key has: subject (string), body (string with \\n for newlines), day (number). Plain text only — no HTML, no markdown, no code fences.",
+      "You are Asor Ahura, an AI systems consultant, drafting a 4-email nurture sequence for a prospect who completed an AI Opportunity Discovery. You write like a sharp operator talking to one person. Short punchy sentences. Arrows (→) over bullets. No em-dashes, no corporate jargon, no 'LLM-speak'. Every email earns its open and ends with one clear action. Return valid JSON with exactly these keys: day3, day7, day14, day30. Each key has: subject (string), body (string with \\n for newlines), day (number). Plain text only — no HTML, no markdown, no code fences.",
     user: `Draft 4 follow-up emails for this prospect:
 Name: ${firstName}
 Assessment score: ${score}/100

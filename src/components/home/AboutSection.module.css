@@ -1,6 +1,19 @@
 .section {
-  padding: 6rem 0;
-  background: #f8fafc;
+  padding: 7rem 0;
+  background: var(--bg-surface, #080E1A);
+  position: relative;
+  overflow: hidden;
+}
+
+.section::after {
+  content: "";
+  position: absolute;
+  bottom: -15%;
+  right: -5%;
+  width: 40%;
+  height: 80%;
+  background: radial-gradient(ellipse at center, rgba(201, 160, 96, 0.05) 0%, transparent 65%);
+  pointer-events: none;
 }
 
 .container {
@@ -8,12 +21,14 @@
   margin: 0 auto;
   padding: 0 1.5rem;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .grid {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 4rem;
+  gap: 4.5rem;
   align-items: center;
   max-width: 900px;
   margin: 0 auto;
@@ -21,6 +36,23 @@
 
 .imageWrapper {
   flex-shrink: 0;
+  position: relative;
+}
+
+/* Gold ring around photo */
+.imageWrapper::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(201, 160, 96, 0.6) 0deg,
+    rgba(201, 160, 96, 0.1) 120deg,
+    rgba(201, 160, 96, 0.6) 240deg,
+    rgba(201, 160, 96, 0.1) 360deg
+  );
+  z-index: 0;
 }
 
 .photo {
@@ -28,42 +60,56 @@
   object-fit: cover;
   width: 200px;
   height: 200px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 0 3px var(--bg-surface, #080E1A);
 }
 
 .heading {
+  font-family: var(--font-serif);
   font-size: 2rem;
-  font-weight: 800;
-  color: #0f172a;
-  margin-bottom: 1.5rem;
-  letter-spacing: -0.02em;
+  font-weight: 700;
+  color: #EDF2F7;
+  margin-bottom: 1.75rem;
+  letter-spacing: -0.01em;
 }
 
 .text {
   font-size: 1rem;
-  line-height: 1.75;
-  color: #475569;
-  margin-bottom: 1rem;
+  line-height: 1.8;
+  color: #5A6B84;
+  margin-bottom: 1.125rem;
 }
 
-.text:last-child {
+.text:last-of-type {
   margin-bottom: 0;
 }
 
 .workWithMe {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   margin-top: 2rem;
-  color: #0f172a;
+  color: var(--gold, #C9A060);
   font-size: 0.9375rem;
-  font-weight: 500;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 160, 96, 0.3);
+  padding-bottom: 2px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+}
+
+.workWithMe:hover {
+  color: var(--gold-light, #E0B878);
+  border-color: var(--gold-light, #E0B878);
+  opacity: 1;
 }
 
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.5rem;
     text-align: center;
   }
 

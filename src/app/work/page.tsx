@@ -79,17 +79,12 @@ export default function WorkPage() {
           <Link href="/engage" className={styles.bottomCtaBtn}>
             Work With Me →
           </Link>
-          <Link href="/assessment" style={{ color: '#a3a3a3', fontSize: '0.875rem', textDecoration: 'underline', marginTop: '0.75rem', display: 'block', textAlign: 'center' }}>
-            Or take the AI Readiness Assessment first
+          <Link href="/assessment" style={{ color: '#5A6B84', fontSize: '0.875rem', textDecoration: 'underline', marginTop: '0.75rem', display: 'block', textAlign: 'center' }}>
+            Or start the AI Opportunity Discovery first
           </Link>
         </div>
       </section>
 
-      <footer className={styles.footer}>
-        <div className="container">
-          <p>&copy; {new Date().getFullYear()} Asor Ahura. Real Systems. Real Results.</p>
-        </div>
-      </footer>
     </main>
   );
 }

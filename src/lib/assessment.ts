@@ -1,55 +1,104 @@
-export type Role = "Founder" | "CTO" | "Operations Manager" | "Other";
+import {
+  SECTOR_RECOMMENDATIONS,
+  quickScoreToTierLevel,
+} from "./sectorRecommendations";
+
+export type Sector =
+  | "Law"
+  | "Finance"
+  | "Real Estate & Property"
+  | "Construction"
+  | "Other / Cross-Industry";
+
+export const SECTORS: readonly Sector[] = [
+  "Law",
+  "Finance",
+  "Real Estate & Property",
+  "Construction",
+  "Other / Cross-Industry",
+] as const;
+
+export const DEFAULT_SECTOR: Sector = "Other / Cross-Industry";
+
+export function isValidSector(value: unknown): value is Sector {
+  return typeof value === "string" && (SECTORS as readonly string[]).includes(value);
+}
+
+export interface QuestionOverride {
+  text?: string;
+  options?: string[];
+}
 
 export interface Question {
   id: number;
   text: string;
   type: "single-select";
   options: string[];
-  weight: number; // 0 for routing question, 12.5 for scored questions (7 scored × ~14.3 ≈ 100)
-  roleSpecific?: Partial<Record<Role, string[]>>;
+  weight: number; // 0 for routing question, 12.5 for scored questions
+  sectorSpecific?: Partial<Record<Sector, QuestionOverride>>;
 }
 
 export const assessmentQuestions: Question[] = [
   {
     id: 1,
-    text: "What best describes your role?",
+    text: "Which sector best describes your organisation?",
     type: "single-select",
-    options: ["Founder", "CTO", "Operations Manager", "Other"],
+    options: [...SECTORS],
     weight: 0, // routing question — not scored
   },
+
+  // ─── Q2: Biggest manual time drain ──────────────────────────────────────────
   {
     id: 2,
     text: "Which activity consumes most of your manual time each week?",
     type: "single-select",
     options: ["Data entry", "Document processing", "Communications", "Reporting", "Scheduling"],
     weight: 12.5,
-    roleSpecific: {
-      Founder: [
-        "Hiring and onboarding",
-        "Customer acquisition follow-up",
-        "Strategic planning sessions",
-        "Admin and operations",
-      ],
-      CTO: [
-        "Architecture and design reviews",
-        "Team management and 1:1s",
-        "Tech debt triage",
-        "Vendor and tooling decisions",
-      ],
-      "Operations Manager": [
-        "Data entry and reconciliation",
-        "Status report generation",
-        "Email and communication triage",
-        "Scheduling and coordination",
-      ],
-      Other: [
-        "Data entry",
-        "Document processing",
-        "Reporting",
-        "Email and communication triage",
-      ],
+    sectorSpecific: {
+      Law: {
+        text: "Which activity consumes the most of your firm's manual time each week?",
+        options: [
+          "Time entry & billing reconciliation",
+          "Filings, deadlines & docket management",
+          "Client matter intake & conflicts checks",
+          "Document review & contract redlining",
+          "Client communications & email triage",
+        ],
+      },
+      Finance: {
+        text: "Which activity consumes the most of your team's manual time each week?",
+        options: [
+          "Data entry & internal reconciliation",
+          "KYC / AML & client onboarding paperwork",
+          "Portfolio reporting & performance updates",
+          "Compliance review & comms surveillance",
+          "Client meeting prep & follow-up notes",
+        ],
+      },
+      "Real Estate & Property": {
+        text: "Which activity consumes the most of your team's manual time each week?",
+        options: [
+          "Lease abstraction & rent roll work",
+          "Listing prep, CMA & marketing collateral",
+          "Tenant inquiries & maintenance triage",
+          "Underwriting & due diligence",
+          "Broker / vendor / agent coordination",
+        ],
+      },
+      Construction: {
+        text: "Which activity consumes the most of your team's manual time each week?",
+        options: [
+          "Daily reports & jobsite documentation",
+          "RFIs, submittals & change orders",
+          "Takeoff & estimating",
+          "Schedule updates & project coordination",
+          "Bid coordination & proposal prep",
+        ],
+      },
     },
   },
+
+  // ─── Q3: Frequency of handling automatable work ─────────────────────────────
   {
     id: 3,
     text: "How often do you personally handle a task that could be automated?",
@@ -61,7 +110,47 @@ export const assessmentQuestions: Question[] = [
       "Rarely",
     ],
     weight: 12.5,
+    sectorSpecific: {
+      Law: {
+        text: "How often do partners or senior associates handle work that could be automated?",
+        options: [
+          "Multiple times a day",
+          "Once a day",
+          "A few times a week",
+          "Rarely — junior staff or tooling handle it",
+        ],
+      },
+      Finance: {
+        text: "How often do advisors or senior staff handle work that could be automated?",
+        options: [
+          "Multiple times a day",
+          "Once a day",
+          "A few times a week",
+          "Rarely — operations or tooling handle it",
+        ],
+      },
+      "Real Estate & Property": {
+        text: "How often do brokers, agents, or owners handle work that could be automated?",
+        options: [
+          "Multiple times a day",
+          "Once a day",
+          "A few times a week",
+          "Rarely — staff or platforms handle it",
+        ],
+      },
+      Construction: {
+        text: "How often do PMs, estimators, or superintendents handle work that could be automated?",
+        options: [
+          "Multiple times a day",
+          "Once a day",
+          "A few times a week",
+          "Rarely — field staff or platforms handle it",
+        ],
+      },
+    },
   },
+
+  // ─── Q4: Disconnected tool count ────────────────────────────────────────────
   {
     id: 4,
     text: "How many tools does your team use daily that don't talk to each other?",
@@ -73,7 +162,23 @@ export const assessmentQuestions: Question[] = [
       "They're mostly integrated",
     ],
     weight: 12.5,
+    sectorSpecific: {
+      Law: {
+        text: "How many systems does your firm use daily that don't talk to each other (DMS, time/billing, eDiscovery, CRM, email)?",
+      },
+      Finance: {
+        text: "How many systems does your firm use daily that don't talk to each other (CRM, custodian, planning, comms surveillance, reporting)?",
+      },
+      "Real Estate & Property": {
+        text: "How many systems does your operation use daily that don't talk to each other (CRM, MLS, property mgmt, accounting, listings)?",
+      },
+      Construction: {
+        text: "How many systems does your firm use daily that don't talk to each other (Procore/ACC, estimating, accounting, scheduling, BIM)?",
+      },
+    },
   },
+
+  // ─── Q5: Who does operational work ──────────────────────────────────────────
   {
     id: 5,
     text: "When a task needs doing, who typically does it?",
@@ -85,33 +190,47 @@ export const assessmentQuestions: Question[] = [
       "An automated system",
     ],
     weight: 12.5,
-    roleSpecific: {
-      Founder: [
-        "Me — I'm the only one who can",
-        "A trusted team member",
-        "We have a documented process",
-        "An automated workflow handles it",
-      ],
-      CTO: [
-        "Me — it's faster than explaining",
-        "I delegate to an engineer",
-        "We have a documented runbook",
-        "Automated CI/CD or tooling",
-      ],
-      "Operations Manager": [
-        "Me — it falls to ops",
-        "A team member with a checklist",
-        "A documented SOP",
-        "An automated process",
-      ],
-      Other: [
-        "Me personally",
-        "A team member I delegate to",
-        "A documented process",
-        "An automated system",
-      ],
+    sectorSpecific: {
+      Law: {
+        text: "When non-billable operational work needs doing, who typically handles it?",
+        options: [
+          "A partner — it falls to us",
+          "An associate or paralegal",
+          "A documented practice-group SOP",
+          "An integrated platform workflow",
+        ],
+      },
+      Finance: {
+        text: "When operational work needs doing, who typically handles it?",
+        options: [
+          "A senior advisor or portfolio manager personally",
+          "A junior associate or ops team",
+          "A documented SOP",
+          "An automated workflow",
+        ],
+      },
+      "Real Estate & Property": {
+        text: "When operational work needs doing, who typically handles it?",
+        options: [
+          "The broker or owner personally",
+          "An agent or property manager",
+          "A documented operating process",
+          "An integrated platform workflow",
+        ],
+      },
+      Construction: {
+        text: "When operational work needs doing, who typically handles it?",
+        options: [
+          "The PM or superintendent personally",
+          "The field team or subs",
+          "A documented project process",
+          "An integrated platform workflow",
+        ],
+      },
     },
   },
+
+  // ─── Q6: Operational confidence without leader ──────────────────────────────
   {
     id: 6,
     text: "How confident are you that your team could run operations for a week without you?",
@@ -123,7 +242,47 @@ export const assessmentQuestions: Question[] = [
       "Very confident",
     ],
     weight: 12.5,
+    sectorSpecific: {
+      Law: {
+        text: "If named partners were unavailable for a week, how confident are you the firm's operations would hold?",
+        options: [
+          "Not at all — partner involvement is constant",
+          "Slightly — material decisions would stall",
+          "Fairly — most matters move with delegated coverage",
+          "Very — the firm runs on systems and senior associates",
+        ],
+      },
+      Finance: {
+        text: "If senior advisors or portfolio managers were unavailable for a week, how confident are you the firm's operations would hold?",
+        options: [
+          "Not at all — senior involvement is constant",
+          "Slightly — client decisions would stall",
+          "Fairly — most workflows continue with coverage",
+          "Very — the firm runs on systems and team coverage",
+        ],
+      },
+      "Real Estate & Property": {
+        text: "If the principal broker or owner were unavailable for a week, how confident are you operations would hold?",
+        options: [
+          "Not at all — principal involvement is constant",
+          "Slightly — material decisions would stall",
+          "Fairly — most workflows continue with coverage",
+          "Very — the operation runs on systems and team coverage",
+        ],
+      },
+      Construction: {
+        text: "If lead PMs or superintendents were unavailable for a week, how confident are you projects would hold?",
+        options: [
+          "Not at all — PM/super involvement is constant",
+          "Slightly — material decisions would stall",
+          "Fairly — most projects continue with coverage",
+          "Very — projects run on systems and documented processes",
+        ],
+      },
+    },
   },
+
+  // ─── Q7: Key-person dependency ──────────────────────────────────────────────
   {
     id: 7,
     text: "What happens to your business when you take a week off?",
@@ -135,7 +294,47 @@ export const assessmentQuestions: Question[] = [
       "It runs smoothly",
     ],
     weight: 12.5,
+    sectorSpecific: {
+      Law: {
+        text: "How dependent is matter progress on a single attorney being present?",
+        options: [
+          "It stalls — that attorney is the only one who can move the matter",
+          "It slows materially — coverage exists but quality drops",
+          "It continues — coverage is real but we're still in the loop daily",
+          "It runs smoothly — matters move on documented processes regardless of who's away",
+        ],
+      },
+      Finance: {
+        text: "How dependent is client service on a single advisor or PM being present?",
+        options: [
+          "It stalls — that advisor is the only one who knows the client",
+          "It slows materially — coverage exists but client experience drops",
+          "It continues — coverage is real but we're still in the loop daily",
+          "It runs smoothly — client service is shared with documented continuity",
+        ],
+      },
+      "Real Estate & Property": {
+        text: "How dependent is operations on a single broker or property manager being present?",
+        options: [
+          "It stalls — that person is the only one who can move it",
+          "It slows materially — coverage exists but quality drops",
+          "It continues — coverage is real but we're still in the loop daily",
+          "It runs smoothly — work is shared with documented continuity",
+        ],
+      },
+      Construction: {
+        text: "How dependent is project progress on a single PM or superintendent being on-site?",
+        options: [
+          "It stalls — that person is the only one who can move the project forward",
+          "It slows materially — coverage exists but quality drops",
+          "It continues — coverage is real but we're still in the loop daily",
+          "It runs smoothly — projects move on documented processes regardless of who's away",
+        ],
+      },
+    },
   },
+
+  // ─── Q8: Intake / onboarding process clarity ────────────────────────────────
   {
     id: 8,
     text: "How clearly defined is your process for onboarding a new client?",
@@ -147,18 +346,59 @@ export const assessmentQuestions: Question[] = [
       "Fully systematized",
     ],
     weight: 12.5,
+    sectorSpecific: {
+      Law: {
+        text: "How clearly defined is your new matter intake and conflicts process?",
+        options: [
+          "It's ad hoc — depends who picks it up",
+          "Loosely documented — varies by practice group",
+          "Documented but inconsistently followed",
+          "Fully systematised across the firm",
+        ],
+      },
+      Finance: {
+        text: "How clearly defined is your KYC, account opening, and client onboarding process?",
+        options: [
+          "It's ad hoc — varies by advisor",
+          "Loosely documented — followed inconsistently",
+          "Documented but with manual handoffs",
+          "Fully systematised end-to-end",
+        ],
+      },
+      "Real Estate & Property": {
+        text: "How clearly defined is your new tenant onboarding or new listing intake process?",
+        options: [
+          "It's ad hoc — varies by property or agent",
+          "Loosely documented — followed inconsistently",
+          "Documented but with manual handoffs",
+          "Fully systematised across the portfolio",
+        ],
+      },
+      Construction: {
+        text: "How clearly defined is your project mobilisation and kickoff process?",
+        options: [
+          "It's ad hoc — varies by PM",
+          "Loosely documented — followed inconsistently",
+          "Documented but inconsistently followed across jobs",
+          "Fully systematised across all projects",
+        ],
+      },
+    },
   },
 ];
 
-// Answer index maps to score position within weight
-// Index 0 = lowest score, last index = highest score
-export function calculateScore(answers: Record<number, string>): number {
+// Answer index maps to score position within weight.
+// Index 0 = lowest score, last index = highest score.
+export function calculateScore(
+  answers: Record<number, string>,
+  sector: Sector = DEFAULT_SECTOR,
+): number {
   let total = 0;
   assessmentQuestions.forEach((q) => {
     if (q.weight === 0) return;
     const answer = answers[q.id];
     if (!answer) return;
-    const options = getQuestionOptions(q.id, (answers[1] as Role) || "Other");
+    const options = getQuestionOptions(q.id, sector);
     const idx = options.indexOf(answer);
     if (idx === -1) return;
     const answerScore = (idx / Math.max(options.length - 1, 1)) * q.weight;
@@ -167,50 +407,21 @@ export function calculateScore(answers: Record<number, string>): number {
   return Math.round(Math.min(total, 100));
 }
 
-export function getTierName(score: number): string {
+export function getTierName(score: number, _sector: Sector = DEFAULT_SECTOR): string {
   if (score < 30) return "Early Stage — Systems Needed";
   if (score < 60) return "Pre-Deployment Ready";
   if (score < 80) return "Deployment Ready";
   return "Advanced Optimization Ready";
 }
 
-export function getTierDescription(score: number): string {
-  if (score < 30)
-    return "You're running everything manually. AI systems could reclaim 10–20 hours per week and remove you as the bottleneck.";
-  if (score < 60)
-    return "You have some structure, but key processes still depend on you. Targeted automation could cut manual effort by 40–60%.";
-  if (score < 80)
-    return "Your systems are working, but there are clear opportunities to automate further and scale without adding headcount.";
-  return "You're well-systematized. AI optimization can drive compounding efficiency gains and unlock growth without proportional cost.";
+export function getTierDescription(score: number, sector: Sector = DEFAULT_SECTOR): string {
+  const tier = quickScoreToTierLevel(score);
+  return SECTOR_RECOMMENDATIONS[sector][tier].paragraph;
 }
 
-export function getPreviewBullets(score: number): string[] {
-  if (score < 30) {
-    return [
-      "Automate client onboarding — eliminate 5+ manual touchpoints",
-      "Build a reporting pipeline so data flows without you",
-      "Document and systematize your top 3 recurring tasks",
-    ];
-  }
-  if (score < 60) {
-    return [
-      "Connect your tool stack — eliminate copy-paste between platforms",
-      "Automate your most frequent delegation loop",
-      "Create a self-serve client portal to reduce inbound questions",
-    ];
-  }
-  if (score < 80) {
-    return [
-      "Layer AI decision support on top of your existing workflows",
-      "Automate exception handling so the team escalates less",
-      "Build monitoring dashboards so issues surface without you",
-    ];
-  }
-  return [
-    "Explore AI agents for complex multi-step workflows",
-    "Optimize your automation stack for reliability and cost",
-    "Instrument your systems for continuous improvement",
-  ];
+export function getPreviewBullets(score: number, sector: Sector = DEFAULT_SECTOR): string[] {
+  const tier = quickScoreToTierLevel(score);
+  return [...SECTOR_RECOMMENDATIONS[sector][tier].bullets];
 }
 
 export function getSegment(score: number): "cold" | "warm" | "hot" {
@@ -219,11 +430,18 @@ export function getSegment(score: number): "cold" | "warm" | "hot" {
   return "hot";
 }
 
-export function getQuestionOptions(questionId: number, role: Role): string[] {
+export function getQuestionOptions(questionId: number, sector: Sector): string[] {
   const q = assessmentQuestions.find((q) => q.id === questionId);
   if (!q) return [];
-  if (q.roleSpecific && q.roleSpecific[role]) {
-    return q.roleSpecific[role]!;
-  }
+  const override = q.sectorSpecific?.[sector];
+  if (override?.options) return override.options;
   return q.options;
+}
+
+export function getQuestionText(questionId: number, sector: Sector): string {
+  const q = assessmentQuestions.find((q) => q.id === questionId);
+  if (!q) return "";
+  const override = q.sectorSpecific?.[sector];
+  if (override?.text) return override.text;
+  return q.text;
 }

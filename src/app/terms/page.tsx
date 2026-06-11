@@ -32,17 +32,17 @@ export default function TermsPage() {
               separate written agreement between Asor Ahura and the client.
             </p>
             <p>
-              Content on this site (case studies, assessment results, service descriptions) is
+              Content on this site (case studies, discovery results, service descriptions) is
               informational and does not constitute a guarantee of specific outcomes.
             </p>
           </section>
 
           <section className={styles.section}>
-            <h2>3. Assessment Tool</h2>
+            <h2>3. AI Opportunity Discovery Tool</h2>
             <p>
-              The AI Readiness Assessment is provided free of charge as an informational tool.
+              The AI Opportunity Discovery is provided free of charge as an informational tool.
               Results are generated algorithmically based on your inputs and are not a substitute
-              for professional advice. We reserve the right to modify or discontinue the assessment
+              for professional advice. We reserve the right to modify or discontinue the discovery tool
               at any time.
             </p>
           </section>

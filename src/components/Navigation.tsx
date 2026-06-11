@@ -49,13 +49,13 @@ export default function Navigation() {
                         Work
                     </Link>
                     <Link href="/assessment" className={pathname.startsWith("/assessment") ? styles.active : ""}>
-                        Assessment
+                        Discovery
                     </Link>
                     <Link href="/blog" className={pathname.startsWith("/blog") ? styles.active : ""}>
                         Blog
                     </Link>
                     <Link href="/assessment" className={styles.cta}>
-                        Get Your AI Audit
+                        Start AI Opportunity Discovery
                     </Link>
                 </motion.div>
 
@@ -75,9 +75,9 @@ export default function Navigation() {
                 <div className={styles.mobileMenu}>
                     <Link href="/services" className={pathname === "/services" ? styles.mobileActive : ""} onClick={() => setMenuOpen(false)}>Services</Link>
                     <Link href="/work" className={pathname === "/work" ? styles.mobileActive : ""} onClick={() => setMenuOpen(false)}>Work</Link>
-                    <Link href="/assessment" className={pathname.startsWith("/assessment") ? styles.mobileActive : ""} onClick={() => setMenuOpen(false)}>Assessment</Link>
+                    <Link href="/assessment" className={pathname.startsWith("/assessment") ? styles.mobileActive : ""} onClick={() => setMenuOpen(false)}>Discovery</Link>
                     <Link href="/blog" className={pathname.startsWith("/blog") ? styles.mobileActive : ""} onClick={() => setMenuOpen(false)}>Blog</Link>
-                    <Link href="/assessment" className={styles.mobileCta} onClick={() => setMenuOpen(false)}>Get Your AI Audit</Link>
+                    <Link href="/assessment" className={styles.mobileCta} onClick={() => setMenuOpen(false)}>Start AI Opportunity Discovery</Link>
                 </div>
             )}
         </div>

@@ -7,10 +7,10 @@ export default function LeadMagnetStrip() {
       <div className={styles.container}>
         <h2 className={styles.heading}>Not sure where to start?</h2>
         <p className={styles.subtext}>
-          Take the 4-minute AI Readiness Assessment and get a personalised score.
+          Complete the 4-minute AI Opportunity Discovery and get a personalised score.
         </p>
         <Link href="/assessment" className={styles.cta}>
-          Start Free Assessment
+          Start Free Discovery
         </Link>
       </div>
     </section>

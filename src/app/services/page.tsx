@@ -88,7 +88,7 @@ export default function ServicesPage() {
           </p>
           <div className={styles.heroActions}>
             <Link href="/engage" className={styles.workWithMeBtn}>Work With Me</Link>
-            <Link href="/assessment" className={styles.heroSecondary}>Take the Assessment</Link>
+            <Link href="/assessment" className={styles.heroSecondary}>Start the Discovery</Link>
           </div>
         </div>
       </section>
@@ -148,10 +148,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className={styles.footer}>
-        <p>© {year} Asor Ahura. Built for operators.</p>
-      </footer>
     </main>
   );
 }

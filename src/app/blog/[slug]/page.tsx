@@ -76,11 +76,6 @@ export default async function BlogArticlePage({
         </div>
       </div>
 
-      <footer className={styles.footer}>
-        <div className="container">
-          <p>&copy; {new Date().getFullYear()} Asor Ahura. All rights reserved.</p>
-        </div>
-      </footer>
     </main>
   );
 }
