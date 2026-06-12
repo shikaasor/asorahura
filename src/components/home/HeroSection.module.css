@@ -167,6 +167,7 @@
   object-fit: cover;
   width: 100%;
   height: auto;
+  max-width: 100%;
   box-shadow:
     0 0 0 1px rgba(201, 160, 96, 0.15),
     0 30px 60px -15px rgba(0, 0, 0, 0.7);
@@ -227,5 +228,92 @@
 
   .photo {
     max-width: 300px;
+  }
+}
+
+/* === Belt-and-suspenders mobile fit for narrow phones === */
+@media (max-width: 640px) {
+  .section {
+    padding: 5rem 0 3rem;
+    overflow-x: hidden;
+  }
+
+  .container {
+    padding: 0 1rem;
+    max-width: 100%;
+  }
+
+  .grid {
+    gap: 2rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .copy {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+  }
+
+  .headline {
+    font-size: 1.875rem;
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+  }
+
+  .subheading {
+    font-size: 0.9375rem;
+    max-width: 100%;
+  }
+
+  .actions {
+    width: 100%;
+    max-width: 100%;
+    gap: 0.625rem;
+  }
+
+  .primaryBtn,
+  .secondaryBtn {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 0.875rem;
+    white-space: normal;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+
+  .imageWrapper {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .imageWrapper::before {
+    inset: -6px; /* keep the gold-ring decoration but pulled in */
+  }
+
+  .photo {
+    max-width: 240px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+@media (max-width: 380px) {
+  .headline {
+    font-size: 1.625rem;
+  }
+
+  .photo {
+    max-width: 200px;
   }
 }

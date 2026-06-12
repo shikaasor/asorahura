@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
@@ -13,6 +13,12 @@ const playfair = Playfair_Display({
     style: ["normal", "italic"],
     display: "swap",
 });
+
+export const viewport: Viewport = {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+};
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://asorahura.vercel.app"),
@@ -49,7 +55,7 @@ export default function RootLayout({
             <body className={`${inter.variable} ${playfair.variable}`}>
                 <ParticleWave />
                 <Navigation />
-                <div style={{ paddingTop: "88px" }}>
+                <div className="nav-offset">
                     {children}
                     <Footer />
                 </div>

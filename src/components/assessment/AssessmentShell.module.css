@@ -47,3 +47,24 @@
   flex-direction: column;
   gap: 2rem;
 }
+
+@media (max-width: 640px) {
+  .introTitle {
+    font-size: 1.5rem;
+  }
+
+  .introSub {
+    font-size: 0.95rem;
+  }
+
+  .startBtn {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 0.95rem;
+    min-height: 48px;
+  }
+
+  .questionWrap {
+    gap: 1.25rem;
+  }
+}

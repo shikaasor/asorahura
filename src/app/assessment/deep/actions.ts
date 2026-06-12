@@ -51,7 +51,7 @@ export async function submitDeepAssessmentForEmail(
           ${dimensionRows}
         </table>
         <p style="font-size:13px;color:#6b7280;margin-bottom:16px">${tier.action}</p>
-        <a href="https://asorahura.com/checkout" style="display:inline-block;background:#0a0a0a;color:#fff;padding:12px 24px;border-radius:6px;font-size:14px;font-weight:600;text-decoration:none">Book a Discovery Call</a>
+        <a href="https://calendly.com/asorahura" style="display:inline-block;background:#0a0a0a;color:#fff;padding:12px 24px;border-radius:6px;font-size:14px;font-weight:600;text-decoration:none">Book a Discovery Call</a>
       </div>
     </div>
   `;

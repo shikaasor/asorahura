@@ -38,9 +38,9 @@ export async function submitInquiry(formData: FormData): Promise<{ success: bool
     }
 
     if (score >= 70) {
-        redirect("/checkout?tier=strategy");
+        redirect("https://calendly.com/asorahura");
     } else if (score >= 40) {
-        redirect("/checkout?tier=discovery");
+        redirect("https://calendly.com/asorahura");
     } else {
         redirect("/engage/confirmation");
     }

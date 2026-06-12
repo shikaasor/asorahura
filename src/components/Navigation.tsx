@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
 import styles from "./Navigation.module.css";
 
 export default function Navigation() {
@@ -18,11 +17,7 @@ export default function Navigation() {
     return (
         <div className={styles.navWrapper}>
             <nav className={styles.nav}>
-                <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                >
+                <div>
                     <Link href="/" className={styles.logo}>
                         <Image
                             src="/logomain.png"
@@ -34,14 +29,9 @@ export default function Navigation() {
                             priority
                         />
                     </Link>
-                </motion.div>
+                </div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.1 }}
-                    className={styles.links}
-                >
+                <div className={styles.links}>
                     <Link href="/services" className={pathname === "/services" ? styles.active : ""}>
                         Services
                     </Link>
@@ -57,9 +47,10 @@ export default function Navigation() {
                     <Link href="/assessment" className={styles.cta}>
                         Start AI Opportunity Discovery
                     </Link>
-                </motion.div>
+                </div>
 
                 <button
+                    type="button"
                     className={styles.hamburger}
                     onClick={() => setMenuOpen(prev => !prev)}
                     aria-label={menuOpen ? "Close menu" : "Open menu"}

@@ -160,7 +160,7 @@ export async function generateAssessmentPDF(params: {
         "Book a Discovery Call — see how others at your readiness level achieved 40–60% reduction in manual effort. Visit asorahura.com to schedule.";
     } else {
       nextStep =
-        "You're ready to build. Book a Strategy Session to define your exact build scope: asorahura.com/checkout?tier=strategy";
+        "You're ready to build. Book a Strategy Session to define your exact build scope: calendly.com/asorahura";
     }
 
     doc

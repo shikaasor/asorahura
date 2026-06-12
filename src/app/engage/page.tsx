@@ -31,6 +31,7 @@ function EngageFormInner() {
             <div className="container">
                 <section className={styles.content}>
                     <div className={styles.header}>
+                        <p className={styles.eyebrow}>Discovery Brief</p>
                         <h1 className={styles.headline}>Tell Me About Your Problem</h1>
                         <p className={styles.subhead}>
                             Describe what&apos;s slowing your operations down. I&apos;ll tell you what can be built, how long, and what it costs.
@@ -38,7 +39,7 @@ function EngageFormInner() {
                     </div>
 
                     {/* Contact Form */}
-                    <div className={styles.formWrapper} style={{ marginTop: "4rem" }}>
+                    <div className={styles.formWrapper}>
                         <h2 className={styles.formTitle}>Tell me about your project</h2>
                         {status === "success" ? (
                             <div className={styles.successMessage}>

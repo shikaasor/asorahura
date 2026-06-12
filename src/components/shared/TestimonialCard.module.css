@@ -49,3 +49,20 @@
   color: var(--gold, #C9A060);
   font-size: 0.8125rem;
 }
+
+@media (max-width: 640px) {
+  .card {
+    padding: 1.125rem;
+    max-width: 100%;
+  }
+
+  .quote {
+    font-size: 0.875rem;
+    overflow-wrap: anywhere;
+  }
+
+  .name,
+  .title {
+    overflow-wrap: anywhere;
+  }
+}

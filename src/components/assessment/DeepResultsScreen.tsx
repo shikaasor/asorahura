@@ -65,9 +65,9 @@ export function DeepResultsScreen({ total, byDimension, firstName, sector = DEFA
 
       <div className={styles.cta}>
         <p className={styles.ctaHint}>{tier.action}</p>
-        <Link href="/checkout" className={styles.ctaBtn}>
+        <a href="https://calendly.com/asorahura" target="_blank" rel="noopener noreferrer" className={styles.ctaBtn}>
           Book a Discovery Call
-        </Link>
+        </a>
       </div>
     </div>
   );

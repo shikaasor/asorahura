@@ -95,7 +95,7 @@ export function AssessmentReport({
             Download Full Scorecard PDF
           </Button>
           <Button
-            href="https://asorahura.com/checkout"
+            href="https://calendly.com/asorahura"
             style={{
               backgroundColor: "#111",
               color: "#fff",

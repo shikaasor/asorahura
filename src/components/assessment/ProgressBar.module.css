@@ -38,3 +38,14 @@
   border-radius: 999px;
   transition: width 0.3s ease;
 }
+
+@media (max-width: 640px) {
+  .label,
+  .pct {
+    font-size: 0.7rem;
+  }
+
+  .track {
+    height: 4px;
+  }
+}

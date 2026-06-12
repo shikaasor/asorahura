@@ -1,288 +1,304 @@
+/* === Engage page — dark + gold, matching the home design system === */
+
 .main {
-    min-height: 100vh;
-    background: #ffffff;
-    padding-top: 10rem;
+  min-height: 100vh;
+  background: var(--bg-base, #04080F);
+  color: var(--text-primary, #EDF2F7);
+  position: relative;
+  overflow-x: hidden;
+  padding: 7rem 0 6rem;
 }
 
-.nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem 4rem;
+/* Ambient gold glow — same treatment as HeroSection */
+.main::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -10%;
+  width: 55%;
+  height: 70%;
+  background: radial-gradient(ellipse at center, rgba(201, 160, 96, 0.07) 0%, transparent 65%);
+  pointer-events: none;
 }
 
-.logo {
-    font-family: var(--font-serif);
-    font-size: 1.5rem;
-    letter-spacing: -0.05em;
-}
-
-.backLink {
-    font-size: 0.9rem;
-    color: var(--muted);
+.main::after {
+  content: "";
+  position: absolute;
+  bottom: -10%;
+  left: -10%;
+  width: 50%;
+  height: 60%;
+  background: radial-gradient(ellipse at center, rgba(30, 60, 120, 0.10) 0%, transparent 65%);
+  pointer-events: none;
 }
 
 .content {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 4rem 2rem 6rem;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
 }
 
+/* === Header === */
 .header {
-    margin-bottom: 6rem;
-    text-align: center;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gold, #C9A060);
+  margin-bottom: 1.25rem;
+}
+
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--gold, #C9A060);
+  flex-shrink: 0;
 }
 
 .headline {
-    font-size: 4rem;
-    margin-bottom: 2rem;
+  font-family: var(--font-serif);
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #EDF2F7;
+  margin-bottom: 1.25rem;
 }
 
 .subhead {
-    font-size: 1.3rem;
-    color: var(--muted);
-    line-height: 1.6;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: #7A8FA8;
+  max-width: 540px;
+  margin: 0 auto;
 }
 
-.filtering {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    margin-bottom: 8rem;
-    padding: 4rem;
-    background: #fafafa;
-    border: 1px solid var(--border);
-}
-
-.filterSection h3 {
-    font-family: var(--font-sans);
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 1.5rem;
-}
-
-.filterSection ul {
-    list-style: none;
-    font-size: 1rem;
-    line-height: 1.8;
-    color: var(--muted);
-}
-
-.filterSection li::before {
-    content: "• ";
-    color: black;
-    font-weight: bold;
-}
-
-.filterSection p {
-    color: var(--muted);
-    line-height: 1.7;
-}
-
-.filterNote {
-    margin-top: 1rem;
-    font-size: 0.9rem;
-    font-style: italic;
-}
-
-/* Background Narrative Section */
-.backgroundSection {
-    margin-bottom: 6rem;
-}
-
-.backgroundSection h2 {
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    text-align: center;
-}
-
-.backgroundContent {
-    display: grid;
-    gap: 2rem;
-}
-
-.backgroundBlock {
-    padding: 2rem;
-    background: #fafafa;
-    border-left: 3px solid var(--foreground);
-}
-
-.backgroundBlock h3 {
-    font-family: var(--font-sans);
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 1rem;
-}
-
-.backgroundBlock p {
-    color: var(--muted);
-    line-height: 1.7;
-}
-
-/* Who I Work With Section */
-.whoIWorkWith {
-    margin-bottom: 6rem;
-}
-
-.whoIWorkWith h2 {
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    text-align: center;
-}
-
-.audienceGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-}
-
-.audienceCard {
-    padding: 2rem;
-    border: 1px solid var(--border);
-    transition: border-color 0.2s;
-}
-
-.audienceCard:hover {
-    border-color: var(--foreground);
-}
-
-.audienceCard h3 {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-}
-
-.audienceCard p {
-    color: var(--muted);
-    line-height: 1.6;
-    font-size: 0.95rem;
-}
-
+/* === Form wrapper card === */
 .formWrapper {
-    padding: 4rem;
-    border: 1px solid var(--border);
+  background: var(--bg-card, #0D1525);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 1rem;
+  padding: 3rem;
+  margin-top: 3rem;
+  position: relative;
+  overflow: hidden;
 }
 
-.successMessage {
-    text-align: center;
-    padding: 2rem 0;
-}
-
-.successMessage h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--foreground);
-}
-
-.successMessage p {
-    color: var(--muted);
-}
-
-.errorMessage {
-    color: #ef4444;
-    font-size: 0.9rem;
-    margin-top: 1rem;
-    text-align: center;
+.formWrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 2rem;
+  right: 2rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 160, 96, 0.35), transparent);
 }
 
 .formTitle {
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #EDF2F7;
+  margin-bottom: 2.25rem;
+  letter-spacing: -0.01em;
 }
 
 .form {
-    display: grid;
-    gap: 2rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
 }
 
 .inputGroup {
-    display: grid;
-    gap: 0.75rem;
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
 }
 
 .inputGroup label {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 600;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold, #C9A060);
 }
 
 .inputGroup input,
 .inputGroup textarea,
 .inputGroup select {
-    padding: 1.25rem;
-    border: 1px solid var(--border);
-    font-family: inherit;
-    font-size: 1rem;
-    border-radius: 0;
-    background: white;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  color: #EDF2F7;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.inputGroup input::placeholder,
+.inputGroup textarea::placeholder {
+  color: #5A6B84;
+}
+
+.inputGroup input:hover,
+.inputGroup textarea:hover,
+.inputGroup select:hover {
+  border-color: rgba(201, 160, 96, 0.25);
 }
 
 .inputGroup input:focus,
 .inputGroup textarea:focus,
 .inputGroup select:focus {
-    outline: none;
-    border-color: black;
+  outline: none;
+  border-color: var(--gold, #C9A060);
+  background: rgba(201, 160, 96, 0.04);
 }
 
-.formRow {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+.inputGroup textarea {
+  resize: vertical;
+  min-height: 96px;
+  line-height: 1.6;
+}
+
+.inputGroup select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23C9A060'%3e%3cpath d='M8 10.293 3.354 5.646 2.646 6.354 8 11.707l5.354-5.353-.708-.708L8 10.293z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 14px;
+  padding-right: 2.75rem;
+}
+
+.inputGroup select option {
+  background: #0D1525;
+  color: #EDF2F7;
 }
 
 .submitBtn {
-    background: black;
-    color: white;
-    padding: 1.25rem;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: opacity 0.2s;
+  margin-top: 1rem;
+  width: 100%;
+  background: var(--gold, #C9A060);
+  color: #04080F;
+  padding: 1rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 20px rgba(201, 160, 96, 0.25);
 }
 
-.submitBtn:hover {
-    opacity: 0.9;
+.submitBtn:hover:not(:disabled) {
+  background: var(--gold-light, #E0B878);
+  box-shadow: 0 6px 28px rgba(201, 160, 96, 0.40);
+  transform: translateY(-2px);
 }
 
-.footer {
-    padding: 4rem 0;
-    text-align: center;
-    font-size: 0.9rem;
-    color: var(--muted);
+.submitBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
-@media (max-width: 1024px) {
-    .audienceGrid {
-        grid-template-columns: 1fr;
-    }
+.successMessage {
+  text-align: center;
+  padding: 2rem 0.5rem;
 }
 
+.successMessage h3 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #EDF2F7;
+  margin-bottom: 0.75rem;
+}
+
+.successMessage p {
+  color: #7A8FA8;
+  line-height: 1.65;
+}
+
+.errorMessage {
+  color: #f87171;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* === Mobile responsiveness === */
 @media (max-width: 768px) {
-    .main {
-        padding-top: 6rem;
-    }
+  .main {
+    padding: 5rem 0 4rem;
+  }
 
-    .headline {
-        font-size: 2.5rem;
-    }
+  .content {
+    padding: 0 1.25rem;
+  }
 
-    .filtering {
-        grid-template-columns: 1fr;
-        padding: 2rem;
-    }
+  .header {
+    margin-bottom: 2.5rem;
+  }
 
-    .formWrapper {
-        padding: 2rem;
-    }
+  .formWrapper {
+    padding: 1.75rem 1.25rem;
+    margin-top: 2rem;
+    border-radius: 0.75rem;
+  }
 
-    .formRow {
-        grid-template-columns: 1fr;
-    }
+  .formTitle {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
 
-    .backgroundSection h2,
-    .whoIWorkWith h2 {
-        font-size: 2rem;
-    }
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .form {
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    padding: 4rem 0 3rem;
+  }
+
+  .formWrapper {
+    padding: 1.5rem 1rem;
+  }
+
+  .inputGroup input,
+  .inputGroup textarea,
+  .inputGroup select {
+    font-size: 1rem; /* prevents iOS zoom on focus */
+  }
+
+  .submitBtn {
+    padding: 0.9375rem 1.25rem;
+    min-height: 48px;
+  }
 }

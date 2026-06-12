@@ -57,9 +57,9 @@ export function ResultsScreen({ score, tier, firstName, sector = DEFAULT_SECTOR 
         <Link href={`/engage?score=${score}`} className={styles.ctaBtn}>
           Tell Me About Your Problem →
         </Link>
-        <Link href="/checkout" className={styles.ctaSecondary}>
+        <a href="https://calendly.com/asorahura" target="_blank" rel="noopener noreferrer" className={styles.ctaSecondary}>
           Book a discovery call →
-        </Link>
+        </a>
       </div>
 
       <TestimonialCard {...RESULTS_TESTIMONIAL} />

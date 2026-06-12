@@ -21,7 +21,7 @@ const serviceTiers = [
       "1 round of revisions post-delivery",
     ],
     timeline: "2–3 weeks",
-    cta: { text: "Book Strategy Session", href: "/checkout?tier=strategy" },
+    cta: { text: "Book Strategy Session", href: "https://calendly.com/asorahura" },
     enterprise: false,
   },
   {
@@ -37,7 +37,7 @@ const serviceTiers = [
       "Team handover and async support (30 days)",
     ],
     timeline: "4–8 weeks",
-    cta: { text: "Book Strategy Session", href: "/checkout?tier=strategy" },
+    cta: { text: "Book Strategy Session", href: "https://calendly.com/asorahura" },
     enterprise: false,
   },
   {
@@ -53,7 +53,7 @@ const serviceTiers = [
       "Dedicated async support (60 days post-delivery)",
     ],
     timeline: "8–14 weeks",
-    cta: { text: "Book Strategy Session", href: "/checkout?tier=strategy" },
+    cta: { text: "Book Strategy Session", href: "https://calendly.com/asorahura" },
     enterprise: false,
   },
   {
@@ -69,7 +69,7 @@ const serviceTiers = [
       "Long-term retainer and maintenance available",
     ],
     timeline: "Scoped after discovery call",
-    cta: { text: "Book Strategy Session", href: "/checkout?tier=strategy" },
+    cta: { text: "Book Strategy Session", href: "https://calendly.com/asorahura" },
     enterprise: true,
   },
 ];

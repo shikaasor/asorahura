@@ -31,6 +31,18 @@
     color: #ffffff;
     letter-spacing: -0.02em;
     opacity: 1;
+    flex-shrink: 0;
+    min-width: 0;
+}
+
+/* Force the rendered image inside the logo Link to keep its dimensions.
+ * Next.js Image emits an <img> with intrinsic sizing — explicit rules here
+ * stop any global cascade from collapsing it on mobile. */
+.logo img {
+    height: 40px;
+    width: auto;
+    max-width: none;
+    display: block;
 }
 
 .logo:hover {

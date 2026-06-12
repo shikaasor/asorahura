@@ -31,3 +31,18 @@
   flex-shrink: 0;
   opacity: 0.7;
 }
+
+@media (max-width: 640px) {
+  .wrapper {
+    width: 100%;
+    max-width: 100%;
+    gap: 0.5rem;
+  }
+
+  .badge {
+    white-space: normal;
+    font-size: 0.7rem;
+    padding: 0.3rem 0.75rem;
+    max-width: 100%;
+  }
+}
