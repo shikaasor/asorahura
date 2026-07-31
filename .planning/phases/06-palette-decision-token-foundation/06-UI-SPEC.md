@@ -58,8 +58,8 @@ Light-first, warm/editorial tone. Type scale follows a 1.25× ratio (major-third
 | Small (caption) | 12px | 400 | 1.4 | Footnotes, timestamps, muted labels |
 | Body | 16px | 400 | 1.6 | Default body text, prose |
 | Lead | 18px | 400 | 1.6 | Article leads, intro paragraphs |
-| Subtitle | 20px | 500 | 1.5 | Secondary headings, card titles |
-| Heading | 24px | 600 | 1.3 | Section headings (h3, h4) |
+| Subtitle | 20px | 700 | 1.5 | Secondary headings, card titles |
+| Heading | 24px | 700 | 1.3 | Section headings (h3, h4) |
 | Large | 32px | 700 | 1.2 | Primary headings (h2) |
 | Display | 48px | 700 | 1.1 | Hero/display headings (h1) |
 
@@ -68,6 +68,8 @@ Light-first, warm/editorial tone. Type scale follows a 1.25× ratio (major-third
 **Letter Spacing:** h1–h4 retain existing `-0.02em` tracking; all other roles use browser default.
 
 **Implementation:** Define as `--fontSize-*`, `--fontWeight-*`, `--lineHeight-*` in `:root`. No `.serif` utility class (removed).
+
+**Font Weights:** Exactly 2 weights only: `--fontWeight-normal` (400) and `--fontWeight-bold` (700). Intermediate weights (500, 600) are not declared.
 
 ---
 
@@ -81,6 +83,10 @@ Phase 6 builds a comparison board at `/internal/palette-review` showing 3 light-
 - **Accent:** Lightened warm gold/amber (60–70% lightness, avoiding full #FFD700 saturation)
 - **Tone:** Warm/editorial (not clean/minimal SaaS) — preserves operator-to-operator credibility from brand
 - **Contrast floor:** All text/background pairings ≥ 4.5:1 (body text) and ≥ 3:1 (large text) per WCAG AA
+
+### Visual-Weight Distribution
+
+**60/30/10 Split (surfaces dominate, accent reserves hierarchy):** Surface colors (1–4) occupy ~60% of typical layouts as page and section backgrounds. Ink colors (1–3) consume ~30% as text and primary content. Accent, semantic, and border colors reserve the remaining ~10% for interactive elements, call-outs, and visual punctuation. This distribution reflects light-first, warm/editorial visual hierarchy: dominant off-white surfaces establish credibility, text hierarchy via Ink 1–3, and accent gold reserves focus for primary CTAs and confirmations.
 
 ### Direction A: Warm Cream + Deep Gold
 
@@ -202,7 +208,7 @@ Color:
 
 Type:
   --fontSize-xs, --fontSize-sm, --fontSize-base, --fontSize-lg, --fontSize-xl, --fontSize-2xl, --fontSize-3xl
-  --fontWeight-normal (400), --fontWeight-medium (500), --fontWeight-semibold (600), --fontWeight-bold (700)
+  --fontWeight-normal (400), --fontWeight-bold (700)
   --lineHeight-tight (1.1), --lineHeight-normal (1.5), --lineHeight-relaxed (1.6)
 
 Spacing:
@@ -248,7 +254,7 @@ Transition:
 
    b. **Pricing Card**
       - Card background (Surface 2)
-      - Card title (Subtitle size, 20px, weight 500)
+      - Card title (Subtitle size, 20px, weight 700)
       - Price display (Heading size, 24px, weight 700)
       - Feature list (Body size, 16px, weight 400)
       - CTA button (outlined, Accent color)
@@ -363,7 +369,7 @@ Not applicable. Phase 6 uses only custom CSS custom properties and native CSS sy
 | Dimension | Status |
 |-----------|--------|
 | **Spacing Scale** | 6 steps, multiples of 4 (4, 8, 16, 24, 32, 48px) |
-| **Typography** | 7 steps, 1.25× ratio (12–48px), 2 weights (400, 600–700) |
+| **Typography** | 7 steps, 1.25× ratio (12–48px), 2 weights (400, 700) |
 | **Color Palette** | 3 directions compared, Direction B selected (Lighter Cream + Medium Gold) |
 | **Token Naming** | Semantic-scale (`--surface-*`, `--ink-*`, `--accent`, etc.) |
 | **Contrast Verification** | All pairings ≥ 4.5:1 body, ≥ 3:1 large per WCAG AA |
