@@ -1,3 +1,18 @@
+---
+gsd_state_version: 1.0
+milestone: v2.0
+milestone_name: Reposition to Small Business Owners
+status: planning
+last_updated: "2026-07-31T08:11:29.225Z"
+last_activity: 2026-07-31
+progress:
+  total_phases: 0
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
+  percent: 0
+---
+
 # Execution State
 
 ## Project Reference
@@ -7,6 +22,7 @@
 **Updated:** 2026-05-13
 
 See:
+
 - `.planning/PROJECT.md` — core value and strategic constraints
 - `.planning/REQUIREMENTS.md` — 80 v1 requirements across 11 categories
 - `.planning/ROADMAP.md` — 5-phase sequential roadmap (5-6.5 weeks)
@@ -42,11 +58,13 @@ See:
 ## Requirement Coverage by Phase
 
 ### Phase 1 (26 requirements)
+
 Homepage (11): HOME-01–11
 Assessment (10): ASSESS-01–10
 Checkout (5): CHECK-01–05
 
 ### Phase 2 (25 requirements)
+
 Email Automation (3): EMAIL-01, EMAIL-02, EMAIL-07
 Engagement Form (6): ENGAGE-01–06
 Services Page (7): SERV-01–07
@@ -54,16 +72,19 @@ Work/Case Studies (7): WORK-01–07
 Conversion Funnel (2): CONV-01, CONV-02
 
 ### Phase 3 (13 requirements)
+
 Email Sequences (4): EMAIL-03–06
 Blog (5): BLOG-01–05
 Content Migration (4): CONTENT-01–04
 
 ### Phase 4 (11 requirements)
+
 Navigation (6): NAV-01–06
 Content Polish (2): CONTENT-05–06
 Conversion Signals (3): CONV-03–05
 
 ### Phase 5 (Cross-cutting)
+
 Analytics & Conversion Tracking (instrumentation/measurement of Phases 1-4, not new requirements)
 
 **Total Mapped:** 75/75 (100%)
@@ -74,6 +95,7 @@ Analytics & Conversion Tracking (instrumentation/measurement of Phases 1-4, not 
 ## Critical Path & Dependencies
 
 **Order must be:**
+
 1. ✓ Phase 1 → Email platform configured, assessment assessment built
 2. ✓ Phase 2 → Automation working, engage form routing logic verified
 3. ✓ Phase 3 → Blog content exists, email sequences reference it
@@ -81,6 +103,7 @@ Analytics & Conversion Tracking (instrumentation/measurement of Phases 1-4, not 
 5. ✓ Phase 5 → Launch with analytics
 
 **Blockers to Watch:**
+
 - Email platform not configured before Phase 1 ships → Phase 2 blocked
 - Services/Work pages not done by Phase 2 end → Engage routing fails
 - Pricing not transparent by Phase 2 → Checkout flow breaks
@@ -91,32 +114,39 @@ Analytics & Conversion Tracking (instrumentation/measurement of Phases 1-4, not 
 ## Next Actions
 
 ### Immediate (Today)
+
 1. **Review roadmap** — does phase breakdown match your vision?
 2. **Confirm Phase 1 scope** — is 1.5 weeks realistic for homepage + assessment?
 3. **Validate email platform choice** — Loops + Resend recommended per research
 
 ### Week 1 (Phase 1 Planning)
+
 Run: `/gsd:plan-phase 1`
 
 This will:
+
 - Create `.planning/phases/1/PLAN.md` with detailed tasks
 - Estimate story points per task
 - List blockers and dependencies
 - Identify any missing context
 
 ### Week 1 Start (Phase 1 Execution)
+
 Run: `/gsd:execute-phase 1`
 
 This will:
+
 - Create feature branches per work stream
 - Execute all Phase 1 work with parallel sub-teams
 - Verify all 21 requirements completed
 - Commit staged work with atomic commits
 
 ### Week 2.5 (Phase 1 Verification)
+
 Run: `/gsd:verify-work`
 
 This will:
+
 - Walk through Phase 1 deliverables conversationally
 - Verify success criteria met
 - Identify any gaps before Phase 2 planning
@@ -126,6 +156,7 @@ This will:
 ## Success Metrics (Per Phase)
 
 ### Phase 1 Complete When:
+
 - [ ] Homepage renders <2s with pain-first copy, Asor photo, 2 CTAs visible
 - [ ] Assessment link clickable, all 8 questions functional
 - [ ] Email captured from Step 0 (name + email only)
@@ -135,6 +166,7 @@ This will:
 - [ ] Zero 404s on critical path
 
 ### Phase 2 Complete When:
+
 - [ ] PDF email delivered <5 min post-assessment
 - [ ] Email segmentation active (cold/warm/hot routing)
 - [ ] Engage form submits with 7 fields, routing logic works
@@ -143,6 +175,7 @@ This will:
 - [ ] Secondary CTA (Calendly) visible on assessment results
 
 ### Phase 3 Complete When:
+
 - [ ] Blog page live with 3-5 articles
 - [ ] Each post has sticky CTA block (assessment or case study)
 - [ ] Email sequences fully segmented (5 emails per tier)
@@ -150,6 +183,7 @@ This will:
 - [ ] Content migration complete (Flowmorph purged, outcome language)
 
 ### Phase 4 Complete When:
+
 - [ ] Nav built (Services | Work | Assessment | Blog)
 - [ ] Max 2 CTAs per page enforced
 - [ ] Testimonials repositioned (hero + services + results)
@@ -158,6 +192,7 @@ This will:
 - [ ] No dead-end pages
 
 ### Phase 5 Complete When:
+
 - [ ] Clarity heatmaps installed on critical pages
 - [ ] GA4 event tracking live (CTAs, funnel)
 - [ ] Email deliverability verified
@@ -255,3 +290,10 @@ This will:
 
 *State initialized: 2026-05-13*
 *Next action: /gsd:plan-phase 1*
+
+## Current Position
+
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-07-31 — Milestone v2.0 started
