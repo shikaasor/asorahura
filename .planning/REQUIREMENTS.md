@@ -141,18 +141,82 @@ Deferred to a later milestone. Tracked but not in this roadmap.
 
 ## Traceability
 
-Populated during roadmap creation.
-
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| — | — | Pending |
+| DESIGN-01 | Phase 6 | Pending |
+| DESIGN-02 | Phase 6 | Pending |
+| DESIGN-03 | Phase 6 | Pending |
+| DESIGN-04 | Phase 6 | Pending |
+| DESIGN-05 | Phase 6 | Pending |
+| DESIGN-06 | Phase 6 | Pending |
+| DESIGN-07 | Phase 6 | Pending |
+| PROD-01 | Phase 7 | Pending |
+| PROD-02 | Phase 7 | Pending |
+| PROD-03 | Phase 7 | Pending |
+| PROD-04 | Phase 7 | Pending |
+| PROD-05 | Phase 7 | Pending |
+| PROD-06 | Phase 7 | Pending |
+| PROD-07 | Phase 7 | Pending |
+| PROD-08 | Phase 7 | Pending |
+| PROD-09 | Phase 7 | Pending |
+| PROD-10 | Phase 7 | Pending |
+| PROD-11 | Phase 7 | Pending |
+| PROD-12 | Phase 7 | Pending |
+| PROD-13 | Phase 7 | Pending |
+| LEAD-01 | Phase 7 | Pending |
+| LEAD-02 | Phase 7 | Pending |
+| LEAD-03 | Phase 7 | Pending |
+| LEAD-04 | Phase 7 | Pending |
+| PAY-01 | Phase 7 | Pending |
+| PAY-02 | Phase 7 | Pending |
+| PAY-03 | Phase 7 | Pending |
+| PAY-04 | Phase 7 | Pending |
+| PAY-05 | Phase 7 | Pending |
+| PAY-06 | Phase 7 | Pending |
+| PAY-07 | Phase 7 | Pending |
+| PAY-08 | Phase 7 | Pending |
+| PAY-09 | Phase 7 | Pending |
+| TRACK-01 | Phase 7 | Pending |
+| TRACK-02 | Phase 7 | Pending |
+| TRACK-03 | Phase 7 | Pending |
+| STYLE-01 | Phase 8 | Pending |
+| STYLE-02 | Phase 8 | Pending |
+| STYLE-03 | Phase 8 | Pending |
+| STYLE-04 | Phase 8 | Pending |
+| STYLE-05 | Phase 8 | Pending |
+| STYLE-06 | Phase 8 | Pending |
+| HOME-12 | Phase 9 | Pending |
+| HOME-13 | Phase 9 | Pending |
+| HOME-14 | Phase 9 | Pending |
+| HOME-15 | Phase 9 | Pending |
+| HOME-16 | Phase 9 | Pending |
+| HOME-17 | Phase 9 | Pending |
+| HOME-18 | Phase 9 | Pending |
+| HOME-19 | Phase 9 | Pending |
+| HOME-20 | Phase 9 | Pending |
+| HOME-21 | Phase 9 | Pending |
+| ASSESS-11 | Phase 10 | Pending |
+| ASSESS-12 | Phase 10 | Pending |
+| ASSESS-13 | Phase 10 | Pending |
+| ASSESS-14 | Phase 10 | Pending |
+| ASSESS-15 | Phase 10 | Pending |
+| ASSESS-16 | Phase 10 | Pending |
+| ENT-01 | Phase 10 | Pending |
+| ENT-02 | Phase 10 | Pending |
+| POLISH-01 | Phase 11 | Pending |
+| POLISH-02 | Phase 11 | Pending |
+| POLISH-03 | Phase 11 | Pending |
+| POLISH-04 | Phase 11 | Pending |
+| POLISH-05 | Phase 11 | Pending |
+| POLISH-06 | Phase 11 | Pending |
+| POLISH-07 | Phase 11 | Pending |
 
 **Coverage:**
 - v2.0 requirements: 67 total (DESIGN 7, PROD 13, LEAD 4, PAY 9, TRACK 3, STYLE 6, HOME 10, ASSESS 6, ENT 2, POLISH 7)
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 67
+- Mapped to phases: 67/67
+- Unmapped: 0
 
 ---
 
 *Requirements defined: 2026-07-31*
-*Last updated: 2026-07-31 at milestone v2.0 start*
+*Last updated: 2026-07-31 — traceability mapped to Phases 6-11 in ROADMAP.md*

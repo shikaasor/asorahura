@@ -1,256 +1,245 @@
 # asorahura.com Roadmap
 
-**Total Phases:** 5
-**Sequential Execution:** One phase per week
-**Total Timeline:** 5 weeks
-**Core Value:** Scale Your Business Without Scaling Your Payroll
+**Core Value:** Grow your income through small automations — start with one automation that visibly makes money, then ascend to automating everything automatable.
+
+## Milestones
+
+- ✅ **v1.0 Solo Expert Repositioning** — Phases 1–5 (shipped)
+- 📋 **v2.0 Reposition to Small Business Owners** — Phases 6–11 (planned)
 
 ---
 
-## Phase 1: Critical Path — Homepage + Assessment Core + Checkout Foundation
+## Phases
 
-**Goal:** Launch a pain-first homepage with the assessment lead magnet and checkout payment flow scaffolding. Establish the primary funnel engine and prove value capture.
+**Phase Numbering:**
+- Integer phases: planned milestone work, continuous across milestones (never restarts)
+- Decimal phases (e.g. 7.1): urgent insertions between integers
 
-**Requirements Mapped:**
-- HOME-01, HOME-02, HOME-03, HOME-04, HOME-05, HOME-06, HOME-07, HOME-08, HOME-09, HOME-10, HOME-11 (11 total)
-- ASSESS-01, ASSESS-02, ASSESS-03, ASSESS-04, ASSESS-05, ASSESS-06, ASSESS-07, ASSESS-08, ASSESS-09, ASSESS-10 (10 total)
-- CHECK-01, CHECK-02, CHECK-03, CHECK-04, CHECK-05 (5 total)
-**Total Phase 1: 26 requirements** (Note: Total adjusted from initial estimate)
+<details>
+<summary>✅ v1.0 Solo Expert Repositioning (Phases 1–5) — SHIPPED</summary>
 
-**Success Criteria:**
-1. **Homepage renders in <2s** with Asor's photo on right, pain-first copy on left, and two visible CTAs
-2. **Assessment entry point visible** with "Take the Free AI Readiness Assessment" primary CTA above fold on homepage
-3. **Assessment completes end-to-end** with 8 questions, progress bar, email capture in Step 0, and personalized score on results page
-4. **Email can be captured** from assessment completion with no friction (First Name + Email only)
-5. **Checkout page displays** with Stripe payment ready per tier ($5k, $5-15k, $15-30k, $30k+) without taking payment yet (test mode)
-6. **Mobile responsive** across all three journeys (homepage → assessment → checkout)
-7. **Trust signal visible** below homepage CTAs (Oracle Certified, 7,200+ hours, 3 continents)
+- [x] **Phase 1: Critical Path** - Homepage + assessment core + checkout foundation
+- [x] **Phase 2: Conversion Funnel** - Email automation + engage form + services/work pages
+- [x] **Phase 3: Lead Nurture** - Blog launch + extended email sequences + segmentation
+- [x] **Phase 4: Navigation & Content Polish** - Site-wide CTA discipline + finished content + trust signals
+- [x] **Phase 5: Optimization & Launch Readiness** - Analytics + conversion instrumentation + final testing
 
-**Plans:** 4 plans across 2 waves
+Full detail for Phases 1–5 lives in `.planning/phases/01-*` … `05-*` and is preserved as originally written below.
 
-Plans:
-- [ ] 01-1a-homepage.md — Build all 11 homepage sections (hero, pain, services, social proof, timeline, about, lead magnet strip, footer)
-- [ ] 01-1b-assessment.md — Build 8-question role-branching assessment with email gate, scoring, results screen, PDF generation, and Resend delivery
-- [ ] 01-1c-checkout.md — Build Paddle inline checkout with 4-tier pricing, order summary, and trust badges
-- [ ] 01-2-integration.md — Integration pass: fix layout/config, cross-page consistency audit, full end-to-end verification
+</details>
 
-**Estimated:** 1.5 weeks
-**Dependencies:** None (phase 1 is foundation)
+### 📋 v2.0 Reposition to Small Business Owners (Phases 6–11)
+
+- [ ] **Phase 6: Palette Decision + Token Foundation** - Committed light-first design system exists as tokens
+- [ ] **Phase 7: Product #1 Live + Payments (REVENUE)** - A visitor from the Reel can buy DFY/DWY or get the free Build Map, self-serve
+- [ ] **Phase 8: Design System Rollout** - One visual system across every page; dead code removed; no hardcoded colors
+- [ ] **Phase 9: Homepage & Funnel Reposition** - Cold visitor understands the offer and can buy without a call
+- [ ] **Phase 10: Assessment Re-point + Enterprise Track** - Assessment serves the new ICP and feeds the ladder; enterprise work keeps a home
+- [ ] **Phase 11: Cleanup & Consistency** - Redirects, accessibility, responsive, Lighthouse, token documentation
 
 ---
 
-## Phase 2: Conversion Funnel — Email Automation + Engage Form + Services & Work Pages
+## Phase Details
 
-**Goal:** Complete the conversion funnel by automating email delivery, launching the engagement form with routing logic, and publishing services/case studies pages to establish authority and provide tier matching guidance.
+<details>
+<summary>v1.0 Phase Details (Phases 1–5, shipped — collapsed for length)</summary>
 
-**Requirements Mapped:**
-- EMAIL-01, EMAIL-02, EMAIL-07
-- ENGAGE-01, ENGAGE-02, ENGAGE-03, ENGAGE-04, ENGAGE-05, ENGAGE-06
-- SERV-01, SERV-02, SERV-03, SERV-04, SERV-05, SERV-06, SERV-07
-- WORK-01, WORK-02, WORK-03, WORK-04, WORK-05, WORK-06, WORK-07
-- CONV-01, CONV-02
+### Phase 1: Critical Path — Homepage + Assessment Core + Checkout Foundation
+**Goal**: Launch a pain-first homepage with the assessment lead magnet and checkout payment flow scaffolding.
+**Depends on**: Nothing (first phase)
+**Requirements**: HOME-01..11, ASSESS-01..10, CHECK-01..05 (26 total)
+**Success Criteria**:
+  1. Homepage renders in <2s with pain-first copy and two visible CTAs
+  2. Assessment completes end-to-end with 8 questions, email capture, and personalized score
+  3. Checkout page displays with Paddle inline checkout per tier
+**Plans**: 4 plans — see `.planning/phases/01-critical-path/`
+**Status**: Complete
 
-**Success Criteria:**
-1. **Assessment-to-email automation works** with PDF report delivered to email within 5 minutes of assessment completion
-2. **Personalized score segmentation active** (cold <40, warm 40-70, hot 70+) routing distinct email paths per segment
-3. **Engage form collects submissions** with routing logic functional (Hot→checkout Strategy Session, Warm→checkout Discovery Call, Cold→confirmation)
-4. **Services page ranks tiers clearly** with pricing anchors ($5k, $5-15k, $15-30k, $30k+) and assessment linkage for tier matching
-5. **Case studies reframed** to outcome-first language (metric-first results, problem/solution/stack visible)
-6. **Assessment results page has CTA** linking to engage form with score in URL
+### Phase 2: Conversion Funnel — Email Automation + Engage Form + Services & Work Pages
+**Goal**: Complete the conversion funnel with automated email delivery, engagement form routing, and services/case-studies pages.
+**Depends on**: Phase 1
+**Requirements**: EMAIL-01/02/07, ENGAGE-01..06, SERV-01..07, WORK-01..07, CONV-01/02 (25 total)
+**Success Criteria**:
+  1. Assessment-to-email automation delivers a PDF report within 5 minutes
+  2. Engage form routes submissions by score segment
+  3. Services and Work pages live with pricing anchors and outcome-first case studies
+**Plans**: 5 plans — see `.planning/phases/02-conversion-funnel-email-automation-engage-form-services-work-pages/`
+**Status**: Complete
 
-**Plans:** 5/5 plans complete
+### Phase 3: Lead Nurture — Blog Launch + Extended Email Sequences + Segmentation
+**Goal**: Build a content-driven nurture engine and extended email sequences.
+**Depends on**: Phase 2
+**Requirements**: EMAIL-03..06, BLOG-01..05, CONTENT-01..03 (13 total)
+**Success Criteria**:
+  1. Blog page live with initial articles, each ending in a CTA
+  2. Segmented Day 3/7/14/30 email sequences trigger automatically
+  3. Case study content migration complete (Flowmorph/EU Horizon references purged)
+**Plans**: 4 plans — see `.planning/phases/03-lead-nurture-blog-launch-extended-email-sequences-segmentation/`
+**Status**: Complete
 
-Plans:
-- [ ] 02-01-PLAN.md — Email automation backend: LLM client (Gemini via OpenAI SDK), branded PDF generator, segmentation helper, Resend sequence with scheduling
-- [ ] 02-02-PLAN.md — Frontend funnel wiring: ResultsScreen → /engage?score=, engage form overhaul + score routing + confirmation page, checkout tier pre-selection
-- [ ] 02-03-PLAN.md — Services page: 4 pricing tier cards, assessment sidebar note, testimonials
-- [ ] 02-04-PLAN.md — Work/case studies page rewrite: outcome-first headlines, 5-section template, remove Flowmorph/EU Horizon, /engage CTA
+### Phase 4: Navigation & Content Polish — Site-Wide CTA Discipline
+**Goal**: Coherent navigation, CTA discipline, finished content, and trust signal placement.
+**Depends on**: Phase 3
+**Requirements**: NAV-01..06, CONTENT-04..06, CONV-03..05 (11 total)
+**Success Criteria**:
+  1. Primary nav built with a single clear CTA
+  2. No more than 2 CTAs visible on any page
+  3. Zero Flowmorph references; no dead-end pages
+**Plans**: 5 plans — see `.planning/phases/04-navigation-content-polish-site-wide-cta-discipline-finish-content-trust-signals/`
+**Status**: Complete
 
-**Estimated:** 1.5 weeks
-**Dependencies:** Phase 1 (assessment core must exist; email platform configured before assessment launch)
+### Phase 5: Optimization, Tracking & Launch Readiness
+**Goal**: Instrument the site with analytics, verify email/payments, and produce a go/no-go launch decision.
+**Depends on**: Phase 4
+**Requirements**: Cross-cutting (GA4, Clarity, performance, testing, go/no-go doc)
+**Success Criteria**:
+  1. Funnel events fire at all conversion touchpoints
+  2. Email deliverability and Paddle sandbox transactions verified
+  3. Go/no-go decision documented with sign-off
+**Plans**: 4 plans — see `.planning/phases/05-optimization-tracking-launch-readiness-analytics-conversion-instrumentation-final-testing/`
+**Status**: Complete
+
+</details>
+
+### Phase 6: Palette Decision + Token Foundation
+**Goal**: A committed light-first design system exists as tokens, ready to build against.
+**Depends on**: Phase 5 (v1.0 complete)
+**Requirements**: DESIGN-01, DESIGN-02, DESIGN-03, DESIGN-04, DESIGN-05, DESIGN-06, DESIGN-07
+**Success Criteria** (what must be TRUE):
+  1. The creative director can compare 2–3 light-first palette directions side-by-side on identical hero, pricing-card, and CTA components
+  2. Each direction ships pre-computed contrast ratios for every text/background pairing, with none below 4.5:1 body / 3:1 large text
+  3. The selected direction exists in `globals.css` as color (surface, text, accent, semantic, border), type (~7 steps), spacing (~6 steps), radius/shadow/transition tokens — replacing the dark token block
+  4. Playfair Display is resolved — either committed to display headings with the `h1–h4 → sans` override fixed, or dropped entirely and no longer downloaded
+  5. A repeatable script checks contrast for every text/surface token pairing and reports failures
+**Plans**: TBD
+**UI hint**: yes
+
+**Note**: The palette selection (task 0.2) is a review cycle the team does not control — flag as a schedule risk. Phase 7 may proceed on a provisional accent token if this slips; the palette decision must not block revenue.
+
+### Phase 7: Product #1 Page Live + Payments (REVENUE)
+**Goal**: A visitor from the Reel can buy DFY or DWY, or download the Build Map against an email, without talking to anyone.
+**Depends on**: Phase 6 (the product page is built directly in the new token system — it is the pilot for the design system)
+**Requirements**: PROD-01, PROD-02, PROD-03, PROD-04, PROD-05, PROD-06, PROD-07, PROD-08, PROD-09, PROD-10, PROD-11, PROD-12, PROD-13, LEAD-01, LEAD-02, LEAD-03, LEAD-04, PAY-01, PAY-02, PAY-03, PAY-04, PAY-05, PAY-06, PAY-07, PAY-08, PAY-09, TRACK-01, TRACK-02, TRACK-03
+**Success Criteria** (what must be TRUE):
+  1. Paddle live status is verified and `NEXT_PUBLIC_PADDLE_PRICE_ID_*` are confirmed set in production — done first, before any other checkout work (largest launch risk, cheapest to check)
+  2. The Care Plan price reads $9.99/mo everywhere on `/automate`, and $15.99/mo all-in is stated as a headline fact against ManyChat's cheapest tier (fixed before any other page work — §H4-R 10× typo)
+  3. End-to-end on a real device: Reel → `/automate` → comment the keyword → receive the DM → return → purchase (DFY or DWY) completes → buyer confirmation email arrives → owner notification email arrives
+  4. A visitor can submit their email inline to get the Build Map: the address lands in Resend contacts + Google Sheets mirror, the download link arrives from `hello@asorahura.com`, and the downloader is tagged for the DFY upsell
+  5. The success page collects DFY/DWY onboarding (IG handle, keyword, lead magnet link, voice/tone notes), offers a scheduling link for DWY, and names the next rung in copy with an `automate-buyer` segmentation tag — with no link into the assessment yet (Phase 10 not shipped)
+  6. All five analytics events (land w/ UTM, demo interaction, Build Map submit, checkout opened, purchase) fire and are visible in the dashboard
+**Plans**: TBD
+**UI hint**: yes
+
+**Note**: `/automate` ships self-contained — logo-only header, own footer, no site nav — until Phase 9 lands. This is the critical path to revenue; Phases 8–11 can flex in priority once this ships.
+
+### Phase 8: Design System Rollout
+**Goal**: One visual system across every page; no hardcoded colors.
+**Depends on**: Phase 7
+**Requirements**: STYLE-01, STYLE-02, STYLE-03, STYLE-04, STYLE-05, STYLE-06
+**Success Criteria** (what must be TRUE):
+  1. Dead code is deleted before any style conversion — `page.module.css`, `Testimonials.tsx`, `SaasShowcase.tsx`, `LinkedInFeed.tsx`, `YouTubeFeed.tsx` + CSS modules, `lloydlist.{jpg,png}`, dead `const year`/`const isEnterprise` — roughly 900 lines removed first
+  2. `grep -rE "#[0-9a-fA-F]{3,8}" src --include=*.css` returns only the token definitions in `globals.css`
+  3. Palette collisions are resolved: two golds → one accent, `#0a0a0a` vs `#04080F` → one surface, raw Tailwind grays → the text scale
+  4. Every route renders on one theme — `/articles`, `/privacy`, `/terms`, `/checkout`, `/assessment` no longer flip light/dark
+  5. The Phase 6 contrast script passes on every text/surface pairing site-wide
+**Plans**: TBD
+**UI hint**: yes
+
+**Note**: Does not block revenue (Phase 7 already shipped) but blocks Phase 9 — the homepage rewrite happens on top of the rolled-out system, not before it.
+
+### Phase 9: Homepage & Funnel Reposition
+**Goal**: A creator/coach landing cold understands the offer, believes it, and can buy — without a call.
+**Depends on**: Phase 8 (rollout before homepage rewrite)
+**Requirements**: HOME-12, HOME-13, HOME-14, HOME-15, HOME-16, HOME-17, HOME-18, HOME-19, HOME-20, HOME-21
+**Success Criteria** (what must be TRUE):
+  1. A cold reader reaches a purchase in ≤2 clicks from the homepage
+  2. The hero leads with income growth, not hours saved; `PainSection` speaks the new ICP's language and the four regulated-vertical cards move to the enterprise track
+  3. `ServicesPreview` reads as a ladder with Product #1 as the visible entry rung at its real price
+  4. One entry price story appears everywhere (`/services` tiers become enterprise pricing) and the homepage shows one primary CTA
+  5. Enterprise case studies appear only as a credibility strip; named testimonials with headshots replace the anonymized set; `/engage` is reframed as enterprise intake; pricing appears in the nav; one positioning statement runs across metadata/hero/footer with `metadataBase` on the production domain
+**Plans**: TBD
+**UI hint**: yes
+
+**Note**: This phase removes the need for `/automate`'s self-contained shell (PROD-02) — `/automate` can adopt the full site nav once this ships.
+
+### Phase 10: Assessment Re-point + Enterprise Track
+**Goal**: The assessment serves the new ICP and feeds the ladder; enterprise work keeps a home.
+**Depends on**: Phase 9
+**Requirements**: ASSESS-11, ASSESS-12, ASSESS-13, ASSESS-14, ASSESS-15, ASSESS-16, ENT-01, ENT-02
+**Success Criteria** (what must be TRUE):
+  1. Sector routing serves the new ICP by default; a creator no longer lands in `Other / Cross-Industry`; the four regulated verticals sit behind an enterprise entry
+  2. The assessment output is revenue-framed ("here are three automations worth ~$X/month to you") and the results screen routes straight to purchase instead of a 10-field form
+  3. `/assessment` and `/assessment/deep` are resolved to one canonical route
+  4. Calendly is removed from the primary path (all five hardcoded occurrences) and `BOOKING_SLOTS` manual scarcity is retired or automated
+  5. An enterprise track page carries the case studies, the four regulated verticals, the `/engage` intake, and the `/services` tiers, reachable only from the footer and a secondary nav slot
+**Plans**: TBD
+**UI hint**: yes
+
+**Note**: Once this phase lands, `/automate`'s closing section (PROD-12) can link directly into the assessment instead of relying on the `automate-buyer` tag alone.
+
+### Phase 11: Cleanup & Consistency
+**Goal**: The site is consistent, accessible, and documented so the reposition doesn't erode.
+**Depends on**: Phase 10
+**Requirements**: POLISH-01, POLISH-02, POLISH-03, POLISH-04, POLISH-05, POLISH-06, POLISH-07
+**Success Criteria** (what must be TRUE):
+  1. Redirects exist for every retired or moved route — old Reel comments and shared links keep working
+  2. The footer copyright year computes dynamically, and the product page's mixed icon set is replaced with lucide-react
+  3. An accessibility pass covers focus states, alt text, heading order, and keyboard navigation across the site
+  4. Every page is verified responsive at 360, 768, 1024, and 1440
+  5. Lighthouse runs on `/` and `/automate` and meets agreed thresholds; the README documents the token system
+**Plans**: TBD
+**UI hint**: yes
 
 ---
 
-## Phase 3: Lead Nurture — Blog Launch + Extended Email Sequences + Segmentation
+## Progress
 
-**Goal:** Build content-driven nurture engine and extended email sequences that convert cold/warm leads into warm/hot prospects. Blog becomes second funnel driver pulling readers to assessment.
+**Execution Order (v2.0):** 6 → 7 → 8 → 9 → 10 → 11
 
-**Requirements Mapped:**
-- EMAIL-03, EMAIL-04, EMAIL-05, EMAIL-06
-- BLOG-01, BLOG-02, BLOG-03, BLOG-04, BLOG-05
-- CONTENT-01, CONTENT-02, CONTENT-03
+| Phase | Milestone | Plans Complete | Status | Completed |
+|-------|-----------|-----------------|--------|-----------|
+| 1. Critical Path | v1.0 | 4/4 | Complete | ✓ |
+| 2. Conversion Funnel | v1.0 | 5/5 | Complete | ✓ |
+| 3. Lead Nurture | v1.0 | 4/4 | Complete | ✓ |
+| 4. Navigation & Content Polish | v1.0 | 5/5 | Complete | ✓ |
+| 5. Optimization & Launch Readiness | v1.0 | 4/4 | Complete | ✓ |
+| 6. Palette Decision + Token Foundation | v2.0 | 0/TBD | Not started | - |
+| 7. Product #1 Live + Payments | v2.0 | 0/TBD | Not started | - |
+| 8. Design System Rollout | v2.0 | 0/TBD | Not started | - |
+| 9. Homepage & Funnel Reposition | v2.0 | 0/TBD | Not started | - |
+| 10. Assessment Re-point + Enterprise Track | v2.0 | 0/TBD | Not started | - |
+| 11. Cleanup & Consistency | v2.0 | 0/TBD | Not started | - |
 
-**Success Criteria:**
-1. **Blog page live** with 3-5 initial articles (mix of LinkedIn reprints, YouTube embeds, original long-form)
-2. **Each blog post ends with CTA** (sticky block linking to assessment or relevant case study)
-3. **Email sequences fully segmented** with distinct 5-email nurture per temperature tier (cold, warm, hot)
-4. **Day 3, 7, 14, 30 emails send** automatically per trigger with educational/case study/objection handling content
-5. **Blog-to-assessment conversion** visible (readers click assessment CTA in post footer)
-6. **Content migration complete** for case studies (Flowmorph references removed, EU Horizon grant references purged, outcome language applied)
+## Requirement Coverage Summary (v2.0)
 
-**Plans:** 4 plans (3 complete + 1 gap closure)
-
-Plans:
-- [ ] 03-01-PLAN.md — Blog infrastructure: install MDX deps, migrate 4 case studies to /content/blog/ MDX files, build src/lib/blog.ts, add /articles redirects
-- [ ] 03-02-PLAN.md — Blog UI: listing page card grid, category filter, /blog/[slug] article page, BlogCTABlock component
-- [ ] 03-03-PLAN.md — Email nurture sequences: draftNurtureEmailSequence (Day 3/7/14/30) in llm.ts, wire into email.ts
-- [ ] 03-04-PLAN.md — Gap closure: EmailCaptureWidget component, POST /api/subscribe Resend contacts integration, widget wired into blog listing and article pages (BLOG-05)
-
-**Estimated:** 1 week
-**Dependencies:** Phase 2 (email platform must be configured and handling Phase 1-2 sequences)
-
----
-
-## Phase 4: Navigation & Content Polish — Site-Wide CTA Discipline + Finish Content + Trust Signals
-
-**Goal:** Polish site experience with coherent navigation, CTA discipline (max 2 per page), complete all content migrations, and finalize trust signal placement across all pages.
-
-**Requirements Mapped:**
-- NAV-01, NAV-02, NAV-03, NAV-04, NAV-05, NAV-06
-- CONTENT-04, CONTENT-05, CONTENT-06
-- CONV-03, CONV-04, CONV-05
-
-**Success Criteria:**
-1. **Primary nav built** (Services | Work | Assessment | Blog) with "Get Your AI Audit" CTA button in header
-2. **No more than 2 CTAs visible** on any page simultaneously (primary + secondary; enforced via design review)
-3. **Testimonials repositioned** (1-2 on hero, 3 on services, 1 on assessment results) with specific metrics + name/title
-4. **Flowmorph references scrubbed entirely** (zero mentions on any page)
-5. **Pricing urgency signals active** with "Currently booking for [Month]" and X build slots messaging
-6. **No dead-end pages** — every page has primary CTA routing to next step (assessment, engage, checkout, or strategy call)
-
-**Plans:** 5/5 plans complete
-
-Plans:
-- [ ] 04-01-PLAN.md — Navigation rebuild: dark nav, Services|Work|Assessment|Blog links, "Get Your AI Audit" white CTA, mobile hamburger dropdown
-- [ ] 04-02-PLAN.md — Shared components: TestimonialCard (dark card with headshot), BookingUrgency (inline urgency text), src/config/booking.ts
-- [ ] 04-03-PLAN.md — Homepage + Services page: CTA pair fix, dark testimonials, BookingUrgency, remove assessment callout
-- [ ] 04-04-PLAN.md — Work + Engage + Results pages: CTA surgery, remove Testimonials from Engage, add TestimonialCard to Results
-- [ ] 04-05-PLAN.md — Content migration: remove EU Horizon refs from articles.ts, audit conversion pages for social media links
-
-**Estimated:** 0.5 weeks
-**Dependencies:** Phase 3 (all content finalized before CTA polish)
-
----
-
-## Phase 5: Optimization, Tracking & Launch Readiness — Analytics + Conversion Instrumentation + Final Testing
-
-**Goal:** Instrument the site with GA4 conversion tracking and Microsoft Clarity heatmaps, wire funnel events at all conversion touchpoints, benchmark performance on Vercel preview, verify email deliverability and Paddle sandbox transactions, and produce a documented go/no-go launch decision in LAUNCH.md.
-
-**Requirements Mapped:**
-- GA4-EVENTS, CLARITY-HEATMAPS, PERF-BENCH (analytics infrastructure)
-- CTA-TRACK, FUNNEL-INST (funnel event wiring)
-- EMAIL-DELIV, PADDLE-TEST, MOBILE-TEST, PERF-BENCH (testing and verification)
-- GONOGO-DOC (launch decision)
-
-**Success Criteria:**
-1. **Microsoft Clarity heatmaps installed** tracking user behavior on homepage, assessment, results, and checkout pages (4 pages only — not site-wide)
-2. **GA4 event tracking active** for all CTAs (assessment_click, assessment_start, assessment_submit, engagement_form_submit, checkout_begin, purchase_complete) plus scroll depth milestones
-3. **GA4 funnel exploration view** set up in GA4 console using the 6-step event sequence (no Looker Studio needed)
-4. **Email deliverability tested** — Gmail inbox receives email with PDF rendered correctly (Gmail only per user decision)
-5. **Paddle sandbox 4 transactions** complete — one per tier (Starter, Operational, Systems, Enterprise) using test card
-6. **Mobile testing passed** — Chrome on real device (Asor's phone), full funnel navigable
-7. **Page speed benchmarked** on Vercel preview URL (not localhost) — Core Web Vitals (LCP, CLS, INP) recorded; soft targets (<2s homepage, <1.5s results, <2s checkout) non-blocking
-8. **Go/no-go decision documented** in LAUNCH.md with checklist, pass/fail per item, confidence level (Low/Medium/High), and explicit sign-off by name and date
-
-**Plans:** 4 plans across 4 waves
-
-Plans:
-- [ ] 05-01-PLAN.md — Analytics infrastructure: @microsoft/clarity install, trackEvent utility, WebVitals component, ClarityProvider, root layout wiring
-- [ ] 05-02-PLAN.md — Funnel event wiring: ScrollDepthTracker, homepage CTA click, assessment start/submit, engage form submit, Paddle checkout begin/complete
-- [ ] 05-03-PLAN.md — Testing and verification: Lighthouse CI on Vercel preview, Gmail email test, 4 Paddle sandbox transactions, mobile Chrome real device test
-- [ ] 05-04-PLAN.md — LAUNCH.md: go/no-go checklist populated from test results, confidence level, Asor sign-off
-
-**Estimated:** 1 week
-**Dependencies:** Phase 4 (all content and CTAs finalized)
-
----
-
-## Requirement Coverage Summary
-
-**Total v1 Requirements:** 75
-**Total Mapped:** 75
+**Total v2.0 Requirements:** 67
+**Total Mapped:** 67
 **Unmapped:** 0
 
 **Distribution by Phase:**
-- Phase 1: 26 requirements (Homepage 11, Assessment 10, Checkout 5)
-- Phase 2: 25 requirements (Email automation 3, Engagement 6, Services 7, Work 7, Conversion 2)
-- Phase 3: 13 requirements (Email automation 4, Blog 5, Content 4)
-- Phase 4: 11 requirements (Navigation 6, Content 2, Conversion 3)
+- Phase 6: 7 requirements (DESIGN-01..07)
+- Phase 7: 29 requirements (PROD-01..13, LEAD-01..04, PAY-01..09, TRACK-01..03)
+- Phase 8: 6 requirements (STYLE-01..06)
+- Phase 9: 10 requirements (HOME-12..21)
+- Phase 10: 8 requirements (ASSESS-11..16, ENT-01..02)
+- Phase 11: 7 requirements (POLISH-01..07)
 
-**Coverage Verification:**
-✓ All 75 v1 requirements mapped to exactly one phase (26+25+13+11=75)
-✓ Zero unmapped requirements
-✓ All dependencies respected (Assessment before Checkout, Email before Assessment, Services before Engage routing)
-✓ All success criteria are observable user behaviors or measurable signals, not task completion
-✓ Phase count (4) covers all functional scope; Phase 5 is instrumentation/analytics/optimization only
+7 + 29 + 6 + 10 + 8 + 7 = 67 ✓
 
----
+## Risk Register (carried from IMPLEMENTATION_PLAN.md)
 
-## Timeline & Velocity
-
-| Phase | Weeks | Start | End | Deliverable |
-|-------|-------|-------|-----|-------------|
-| Phase 1 | 1.5 | Week 1 | Week 2.5 | Homepage + Assessment + Checkout (test mode) |
-| Phase 2 | 1.5 | Week 2.5 | Week 4 | Email automation + Engage + Services/Work pages |
-| Phase 3 | 1 | Week 4 | Week 5 | Blog + Extended email sequences |
-| Phase 4 | 0.5 | Week 5 | Week 5.5 | Navigation + CTA polish + Content finalization |
-| Phase 5 | 1 | Week 5.5 | Week 6.5 | Analytics + Testing + Launch readiness |
-
-**Total Project Duration:** 6.5 weeks (18.2 weeks compressed to working weeks)
+| Risk | Mitigation | Affects |
+|---|---|---|
+| Paddle isn't live | Verify in Phase 7 immediately, not at the end (PAY-01 is the first task) | Phase 7 |
+| Care Plan typo ships | Fixed before any other page work (PROD-03) | Phase 7 |
+| Palette decision slips — a review cycle the team doesn't control | Product page can ship on a provisional accent token; don't let this block revenue | Phase 6 → 7 |
+| Buyer wanders off `/automate` into the un-repositioned site | Ship self-contained until Phase 9 | Phase 7 → 9 |
+| Funnel converts poorly and nobody knows why | Instrument before launch (TRACK-01..03), not after | Phase 7 |
+| DFY sale arrives and delivery stalls | Webhook + success-page intake ship with checkout, not as a follow-up (PAY-06/07) | Phase 7 |
+| Design system erodes again | Phase 8 verify is a grep that must return zero; documented in README (POLISH-07) | Phase 8, 11 |
 
 ---
 
-## Critical Path Dependencies
-
-```
-Phase 1 (Homepage + Assessment + Checkout scaffolding)
-    ↓
-Phase 2 (Email automation + Engage + Services/Work)
-    ↓
-Phase 3 (Blog + Extended email nurture)
-    ↓
-Phase 4 (Navigation + CTA discipline + Content polish)
-    ↓
-Phase 5 (Analytics + Testing + Launch)
-```
-
-**Key Blockers to Prevent:**
-- Assessment must be live before email automation (otherwise no subscribers)
-- Email platform must be configured before Phase 1 ships (results delivery email must work)
-- Services/Work pages must exist before Engage form launch (routing logic references tier options)
-- Blog content must exist before email sequences reference it (Email 3 & 4 link to case studies)
-
----
-
-## Success Definition for Entire Project
-
-**Day 1 (Live Launch Readiness):**
-- Homepage visible in <2 seconds with clear Asor photo, pain-first copy, 2 CTAs
-- Assessment link clickable and fully functional through score display and results page
-- Email delivery verified (test email received with PDF)
-- Stripe payment flow testable (not yet live, but endpoints working)
-
-**Week 1 (First 100 Visitors):**
-- 10-15% of homepage visitors click Assessment CTA
-- 80%+ of assessment starters complete all 8 questions
-- 80%+ of completers provide email (name + email fields)
-- Results page visible and Secondary CTA (Calendly) clickable
-- Zero 404s or broken links on critical path
-
-**Week 2-3 (Funnel Stability):**
-- Email automation working (PDF delivered <5 min)
-- Engage form accepts submissions with routing functional
-- Services and Work pages visible with outcome-first language
-- Case study links from Engage form working correctly
-
-**Week 4-6 (Nurture Engine):**
-- Blog posts published with CTA blocks active
-- Email sequences triggered correctly per segment
-- Analytics dashboard showing conversion funnel
-- Mobile experience parity with desktop
-
----
-
-*Roadmap created: 2026-05-13*
-*Phase 5 planned: 2026-05-16*
-*Next action: /gsd:execute-phase 05*
+*Roadmap v1.0 created: 2026-05-13*
+*Roadmap v2.0 (Phases 6–11) created: 2026-07-31 from IMPLEMENTATION_PLAN.md and WEBSITE_AUDIT.md*
+*Next action: `/gsd-plan-phase 6`*
