@@ -1,254 +1,158 @@
-# Requirements: asorahura.com — Solo Expert Repositioning
+# Requirements: asorahura.com — Milestone v2.0 Reposition to Small Business Owners
 
-**Defined:** 2026-05-13
-**Core Value:** Scale Your Business Without Scaling Your Payroll — Free up team cognitive bandwidth for work only humans can do, without adding headcount.
+**Defined:** 2026-07-31
+**Core Value:** Grow your income through small automations — start with one automation that visibly makes money, then ascend.
 
-## v1 Requirements
+**Source:** [IMPLEMENTATION_PLAN.md](../IMPLEMENTATION_PLAN.md) and [WEBSITE_AUDIT.md](../WEBSITE_AUDIT.md). Section references (§A1, §H4-R, …) point at the audit finding each requirement resolves.
 
-### Homepage
+**v1.0 requirements** are archived at `.planning/archive/v1.0-REQUIREMENTS.md` — 75 requirements, all Complete.
 
-- [ ] **HOME-01**: Hero section with Asor photo (right), copy on left, eyebrow "AI Automation Consultant"
-- [ ] **HOME-02**: Primary CTA "Take the Free AI Readiness Assessment" links to /assessment
-- [ ] **HOME-03**: Secondary CTA "Work with me directly" links to /engage
-- [ ] **HOME-04**: Trust signal below CTAs (Oracle Certified, 7,200+ hours, 3 continents, client types)
-- [ ] **HOME-05**: Pain section with 3-column card grid ("Sound familiar?" section)
-- [ ] **HOME-06**: Services preview with 3 cards (RAG, Workflow Automation, Document Intelligence) with pricing anchors
-- [ ] **HOME-07**: Social proof section with 3 testimonials (25% time saved, 7,200 hours freed, scaled without hiring)
-- [ ] **HOME-08**: Process section (4-step horizontal timeline: Assess → Scope → Build → Deploy & Own)
-- [ ] **HOME-09**: About section "Why work with a solo expert?" with informal working photo of Asor
-- [ ] **HOME-10**: Lead magnet strip (dark background) "Not sure where AI fits?" + "Take assessment" CTA
-- [ ] **HOME-11**: Footer with logo, nav links, social links (LinkedIn, YouTube), legal
+## v2.0 Requirements
 
-### Services Page
+### Design System Foundation
 
-- [x] **SERV-01**: Hero "Here's Exactly What I Build" with sub about scoped engagements
-- [x] **SERV-02**: Tier 1 card — Starter Automation ($5,000) with features and delivery timeline
-- [x] **SERV-03**: Tier 2 card — Operational Automation ($5k–$15k) with features and delivery timeline
-- [x] **SERV-04**: Tier 3 card — Systems Integration ($15k–$30k) with features and delivery timeline
-- [x] **SERV-05**: Tier 4 card — Enterprise/Complex Build ($30k+) with scoping note and "Book a call" CTA
-- [x] **SERV-06**: Sidebar note pointing to assessment for tier matching
-- [x] **SERV-07**: Social proof section with 2-3 testimonials (same as homepage)
+- [ ] **DESIGN-01**: Creative director can compare 2–3 light-first palette directions on a static board, each applied to the same hero, pricing card, and CTA button
+- [ ] **DESIGN-02**: Each direction ships with pre-computed contrast ratios for every text/background pairing — none below 4.5:1 body, 3:1 large (§B4)
+- [ ] **DESIGN-03**: Selected direction exists in `globals.css` as color tokens — surface scale (3–4 steps), text scale (3 steps), accent + accent states, semantic (success/error/warn), borders — replacing the dark token block
+- [ ] **DESIGN-04**: A type scale of ~7 steps on one ratio exists as tokens, replacing the 20+ ad-hoc font sizes (§B6)
+- [ ] **DESIGN-05**: Spacing scale (~6 steps) plus radius, shadow, and transition (3 steps each) exist as tokens
+- [ ] **DESIGN-06**: Playfair Display is resolved — either committed to display headings with the `h1–h4 → sans` override in `globals.css` fixed, or dropped and no longer downloaded (§B6, §H9)
+- [ ] **DESIGN-07**: A repeatable script checks contrast for every text/surface token pairing and reports failures
 
-### Work / Case Studies Page
+### Product #1 Page (`/automate`)
 
-- [x] **WORK-01**: Header "Real Problems. Real Systems. Real Results." (remove "Intellectual Dominance...")
-- [x] **WORK-02**: Case Study 1 — HR Automation (2,000+ resumes, resume screening, AI rubrics, local operation)
-- [x] **WORK-03**: Case Study 2 — Chatbot Analytics (Swiss insurance, 16,454 conversations, NLP pipeline)
-- [x] **WORK-04**: Case Study 3 — Document Intelligence (7,826 maritime documents → 43,103 records)
-- [x] **WORK-05**: Case Study 4 — Healthcare Ops (39 facilities, offline-first, no patient data leaving)
-- [x] **WORK-06**: Case study card template: Problem (1 sentence) → Result (metric-first, bolded) → Built (1-2 sentences) → Stack (collapsed)
-- [x] **WORK-07**: Bottom CTA "See how I can do this for your business" links to /engage
+- [ ] **PROD-01**: A visitor can reach `/automate`, rebuilt from `ai_learnt/assets/automate-landing-page.html` structure and copy on Phase 0 tokens — styling not ported (§H9)
+- [ ] **PROD-02**: `/automate` renders self-contained — logo-only header, its own footer, no site nav — until the homepage is repositioned
+- [ ] **PROD-03**: The Care Plan price reads **$9.99/mo** everywhere on the page (§H4-R — currently printed as $99/mo, a 10× error)
+- [ ] **PROD-04**: The page states $15.99/mo all-in ($6 droplet + $9.99 care) against ManyChat's cheapest 250-contact tier as a headline fact, in large type
+- [ ] **PROD-05**: The comparison strip presents all four ManyChat tiers as a path with arrows, contact counts leading and prices secondary (§H3-R)
+- [ ] **PROD-06**: The trajectory line — "the bill climbs as your ads work" — is a section heading, with the flat $6/mo line running underneath as visual counterpoint
+- [ ] **PROD-07**: The acquisition Reel is embedded on the page (§H5-R)
+- [ ] **PROD-08**: A "try it right now" block invites the visitor to comment the keyword on the live post and receive the DM themselves
+- [ ] **PROD-09**: The phone mockup is labelled as a real screenshot of a live account, not an illustration
+- [ ] **PROD-10**: DFY bullets sell speed and certainty — an afternoon of technical setup done right the first time — not access the free tier already grants (§H10)
+- [ ] **PROD-11**: The pain section carries the revenue framing — the follow-gate grows followers and lead list together from ad spend already being made (§H6)
+- [ ] **PROD-12**: A closing section names the next rung of the ladder in copy and applies an `automate-buyer` segmentation tag; it does **not** link into the assessment until ASSESS-11 lands (§H8, §A2)
+- [ ] **PROD-13**: Refund policy and an FAQ are visible in text on the page
 
-### Assessment Page (Lead Magnet)
+### Build Map Lead Capture
 
-- [x] **ASSESS-01**: Hero "Find Out Exactly Where AI Can Save Your Business Time and Money"
-- [x] **ASSESS-02**: Sub "Answer 8 questions about your operations. Get a personalized AI Readiness Report."
-- [x] **ASSESS-03**: Micro-trust signals "Free · Takes 4 Minutes · Report Delivered Instantly · No Sales Call Required"
-- [x] **ASSESS-04**: Step 0 (email gate): "Where should we send your report?" with First Name + Email fields
-- [x] **ASSESS-05**: 8 assessment questions (one per screen with progress bar):
-  - Role ("What best describes your role?" — CEO/CTO/COO/Ops Manager/Other)
-  - Biggest time drain (Data entry / Document / Communications / Reporting / Scheduling)
-  - Current AI use (Not using / Tools only / Patchy automations / Building systems)
-  - Volume ("How much per week?" — <5h / 5-20h / 20-50h / 50+h)
-  - Systems in play (Multi-select: CRM/ERP/Spreadsheets/Databases/Email/Docs/None)
-  - Biggest fear (Integration / Team adoption / Data/security / Don't know what / ROI uncertainty)
-  - Urgency (Now / 3 months / Future / Curious)
-  - Budget (Under $5k / $5-15k / $15-30k / $30k+ / Not sure)
-- [x] **ASSESS-06**: Results screen with personalized AI Readiness Score (X/100 with category breakdown)
-- [x] **ASSESS-07**: Results screen shows 2-3 preview bullets of what full report covers
-- [x] **ASSESS-08**: Results screen primary CTA "Your Full Report Is On Its Way" with "Check your inbox" message
-- [x] **ASSESS-09**: Results screen secondary CTA "Want to discuss results?" links to Calendly for $50/hr strategy call
-- [x] **ASSESS-10**: Automated PDF report delivered to email with:
-  - Personalized score breakdown
-  - Top 2-3 automation opportunities ranked by ROI
-  - Which service tier maps to their problem
-  - 1-page "what you can realistically build" brief
-  - Embedded Calendly link at bottom
+- [ ] **LEAD-01**: A visitor can submit their email inline on `/automate` to request the Build Map (§H10 — currently a raw Drive link collecting nothing)
+- [ ] **LEAD-02**: Submission subscribes the address via the existing Resend `contacts.create` + Google Sheets mirror path
+- [ ] **LEAD-03**: The download link arrives by email from `Asor Ahura <hello@asorahura.com>` using `src/lib/email.ts`
+- [ ] **LEAD-04**: Build Map downloaders carry a segmentation tag so they are addressable separately for the DFY upsell
 
-### Engage Page (Scoped Inquiry Form)
+### Payments and Fulfilment
 
-- [x] **ENGAGE-01**: Hero "Tell Me About Your Problem"
-- [x] **ENGAGE-02**: Sub "Describe what's slowing your operations down. I'll tell you what can be built, how long, and what it costs."
-- [x] **ENGAGE-03**: 1-2 testimonials repeated at top (social proof at decision point)
-- [x] **ENGAGE-04**: Form with 7 fields:
-  - Full Name (text)
-  - Email (email)
-  - Company / Role (text, combined)
-  - Describe your problem (large text area)
-  - Which service interested in? (dropdown with tier options, pre-fills if from /services)
-  - Budget range (dropdown with tier anchors)
-  - When do you want to start? (Immediately / 1 month / 1-3 months / Exploring)
-- [x] **ENGAGE-05**: Submit button "Submit My Project Brief"
-- [x] **ENGAGE-06**: Post-submission routing logic (score-based, supersedes original budget-based spec):
-  - Hot lead (score ≥ 70): redirect to /checkout?tier=strategy
-  - Warm lead (score 40–69): redirect to /checkout?tier=discovery
-  - Cold lead (score < 40 or no score): redirect to /engage/confirmation
-  - Note: Score is passed as hidden field from ?score= URL param (set by assessment results CTA). Direct /engage visits with no score param default to cold routing.
+- [ ] **PAY-01**: Paddle live status is verified and `NEXT_PUBLIC_PADDLE_PRICE_ID_*` confirmed set in production before further checkout work proceeds
+- [ ] **PAY-02**: A visitor can purchase DFY ($500) from `/automate` without talking to anyone
+- [ ] **PAY-03**: A visitor can purchase DWY ($800) from `/automate` without talking to anyone
+- [ ] **PAY-04**: The Care Plan is purchasable as a separate recurring price
+- [ ] **PAY-05**: The buyer receives a purchase confirmation email
+- [ ] **PAY-06**: The owner receives a notification email on purchase, so DFY builds start without polling the Paddle dashboard
+- [ ] **PAY-07**: The success page collects DFY/DWY onboarding details — IG handle, keyword, lead magnet link, voice/tone notes — in four fields, not via `/engage`
+- [ ] **PAY-08**: The DWY success page offers a scheduling link for the screen-to-screen build session
+- [ ] **PAY-09**: The success page names the next rung of the ladder to the buyer
 
-### Checkout Page
+### Funnel Instrumentation
 
-- [x] **CHECK-01**: Order summary (service name, what's included, timeline, support period)
-- [x] **CHECK-02**: Clear pricing per tier
-- [x] **CHECK-03**: Payment method (Stripe) with reassurance copy
-- [x] **CHECK-04**: Trust badges (Oracle Certified, Secure Payment, 100% Ownership)
-- [x] **CHECK-05**: Per-tier checkout links (Stripe payment links)
+- [ ] **TRACK-01**: Lightweight analytics (Vercel Analytics or Plausible) is installed and reporting
+- [ ] **TRACK-02**: A land event fires carrying the UTM parameters from the Reel link
+- [ ] **TRACK-03**: Demo interaction, Build Map submit, checkout opened, and purchase events fire and are visible in the dashboard
 
-### Blog Page
+### Design System Rollout
 
-- [x] **BLOG-01**: Header "Operational Intelligence"
-- [x] **BLOG-02**: Sub "Insights on AI automation, systems thinking, and scaling operations without headcount"
-- [x] **BLOG-03**: Content hub with LinkedIn reprints, YouTube embeds, original long-form articles
-- [x] **BLOG-04**: Each post ends with sticky CTA block (relevant case study link OR assessment link)
-- [x] **BLOG-05**: Email capture widget (sidebar or inline) with "Get automation insights twice a month" message
+- [ ] **STYLE-01**: Dead code is deleted before any style conversion — `src/app/page.module.css`, `Testimonials.tsx`, `SaasShowcase.tsx`, `LinkedInFeed.tsx`, `YouTubeFeed.tsx` and their CSS modules, `public/images/testimonials/lloydlist.{jpg,png}`, `const year` in `services/page.tsx`, `const isEnterprise` in `checkout/page.tsx` (§D1)
+- [ ] **STYLE-02**: `grep -rE "#[0-9a-fA-F]{3,8}" src --include=*.css` returns only the token definitions in `globals.css` — all 66 hex and 43 rgba values converted (§B1)
+- [ ] **STYLE-03**: Palette collisions are resolved — two golds to one accent, `#0a0a0a` vs `#04080F` to one surface, raw Tailwind grays to the text scale (§B2)
+- [ ] **STYLE-04**: Every route renders on one theme — `/articles`, `/privacy`, `/terms`, `/checkout`, `/assessment` no longer flip (§B3)
+- [ ] **STYLE-05**: The type and spacing scales are applied across all stylesheets, replacing ad-hoc values
+- [ ] **STYLE-06**: The DESIGN-07 contrast script passes on every text/surface pairing site-wide
 
-### Navigation & Site-Wide
+### Homepage and Funnel Reposition
 
-- [x] **NAV-01**: Primary nav: Services | Work | Assessment | Blog
-- [x] **NAV-02**: Nav CTA button "Get Your AI Audit" links to /assessment (takes priority)
-- [x] **NAV-03**: Secondary CTA "Work With Me" in hero, Services page, Work page, About section
-- [x] **NAV-04**: No Flowmorph branding anywhere on site
-- [x] **NAV-05**: No more than 2 CTAs visible at once on any page
-- [x] **NAV-06**: Every page has a primary CTA routing to next step
+- [ ] **HOME-12**: The hero leads with income growth, not hours saved (§A6)
+- [ ] **HOME-13**: `PainSection` speaks the new ICP's language; the four regulated-vertical cards (ABA Rule 1.6, SR 11-7, EU AI Act) move to the enterprise track (§A1)
+- [ ] **HOME-14**: `ServicesPreview` reads as a ladder with Product #1 as the visible entry rung at its real price, then what comes after (§A7)
+- [ ] **HOME-15**: One entry price story appears everywhere — the free/$50-per-hour/$5,000 contradiction is resolved and `/services` tiers become enterprise-track pricing (§A3, §C3)
+- [ ] **HOME-16**: The homepage presents one primary CTA, replacing the current four competing entry points (§C2)
+- [ ] **HOME-17**: Enterprise case studies appear as a credibility strip ("who I've built for"), not as primary proof (§A5)
+- [ ] **HOME-18**: Named testimonials with headshots from `content/testimonials.json` replace the anonymized `SocialProof.tsx` set, with T.N. and R.O. either attributed specifically or removed (§D2)
+- [ ] **HOME-19**: `/engage` is out of the primary path and reframed as the enterprise intake form
+- [ ] **HOME-20**: Pricing appears in the navigation (§C7)
+- [ ] **HOME-21**: One positioning statement runs across page metadata, hero eyebrow, and footer, and `metadataBase` points at the production domain rather than `vercel.app` (§A8)
 
-### Email Automation
+### Assessment Re-point
 
-- [x] **EMAIL-01**: Assessment completion triggers immediate PDF delivery (to email captured in Step 0)
-- [x] **EMAIL-02**: Email 1 (0 min) — "Your AI Readiness Report is here" with PDF + Calendly link
-- [x] **EMAIL-03**: Email 2 (Day 3) — Educational content per score tier + soft CTA to Services
-- [x] **EMAIL-04**: Email 3 (Day 7) — Relevant case study (matched to their answers) + "Work With Me" CTA
-- [x] **EMAIL-05**: Email 4 (Day 14) — Objection handling ("If you've been sitting on this...") + booking CTA
-- [x] **EMAIL-06**: Email 5 (Day 30) — Single-line question "What's the one thing you most wish ran itself?" (reply-to email)
-- [x] **EMAIL-07**: Assessment results are segmented: <40 (cold nurture) / 40-70 (warm engagement) / 70+ (hot sales)
+- [ ] **ASSESS-11**: Sector routing serves the new ICP by default; the four regulated verticals sit behind an enterprise entry, so a creator no longer lands in `Other / Cross-Industry` (§A2)
+- [ ] **ASSESS-12**: The output is revenue-framed — "here are three automations worth ~$X/month to you" — naming a number rather than an AI readiness score
+- [ ] **ASSESS-13**: The results screen routes to purchase instead of the 10-field form (§C4)
+- [ ] **ASSESS-14**: `/assessment` and `/assessment/deep` are resolved to one canonical route; the other is merged or deleted (§D3)
+- [ ] **ASSESS-15**: Calendly is removed from the primary path — all five hardcoded occurrences — and appears on the enterprise track only (§C5)
+- [ ] **ASSESS-16**: `BOOKING_SLOTS` manual scarcity is retired or automated so it cannot go stale (§C6)
 
-### Conversion & Funnel
+### Enterprise Track
 
-- [x] **CONV-01**: Three entry states served: Cold (assessment) → Warm (engage) → Hot (checkout/services)
-- [x] **CONV-02**: Assessment as primary lead gen engine (lowest friction, highest email capture)
-- [x] **CONV-03**: Pricing shown transparently (no "contact us" for pricing)
-- [x] **CONV-04**: Urgency signals real and maintained honestly ("Currently booking for [Month]", "X build slots remaining")
-- [x] **CONV-05**: No exit links to social media in conversion flow (only footer)
+- [ ] **ENT-01**: An enterprise track page carries the case studies, the four regulated verticals, the `/engage` intake, and the `/services` tiers
+- [ ] **ENT-02**: The enterprise track is reachable from the footer and a secondary nav slot, never the primary path
 
-### Content Migration
+### Cleanup and Consistency
 
-- [x] **CONTENT-01**: Remove "Explore Flowmorph" button and all Flowmorph branding
-- [x] **CONTENT-02**: Reframe case studies: outcome-first, plain language, metrics highlighted
-- [x] **CONTENT-03**: Rename Articles page to Blog and add LinkedIn/YouTube content
-- [x] **CONTENT-04**: Remove EU Horizon grant references from all case studies
-- [x] **CONTENT-05**: Move testimonials from Engage page to Homepage and Services page
-- [x] **CONTENT-06**: Republish all content with new positioning (executive language, not technical)
+- [ ] **POLISH-01**: Redirects exist for every retired or moved route, so old Reel comments and shared links keep working
+- [ ] **POLISH-02**: The footer copyright year is computed, not hardcoded (§D4)
+- [ ] **POLISH-03**: The product page's mixed icon set (`↑ ✕ 🔒`) is replaced with lucide-react (§H9)
+- [ ] **POLISH-04**: An accessibility pass covers focus states, alt text, heading order, and keyboard navigation across the site
+- [ ] **POLISH-05**: Every page is verified responsive at 360, 768, 1024, and 1440
+- [ ] **POLISH-06**: Lighthouse is run on `/` and `/automate` and meets agreed thresholds
+- [ ] **POLISH-07**: The README documents the token system so it does not erode again
 
-## v2 Requirements
+## Future Requirements
 
-- **Retainer model option** (monthly project retainers for ongoing optimization)
-- **Advanced lead scoring** (behavioral triggers, email engagement tracking)
-- **CRM full integration** (HubSpot or Pipedrive native sync)
-- **Video testimonials** (upgrade from written quotes)
-- **Case study video** (client testimonial videos, 15-30 sec each)
-- **Custom integrations** (API connections to client-specific tools)
-- **White-label option** (for agencies to resell Asor's services)
-- **Mobile app** (native iOS/Android for clients to monitor automations)
-- **Webinar/live demo series** (automated systems walkthroughs)
+Deferred to a later milestone. Tracked but not in this roadmap.
+
+### Segment Expansion
+
+- **SEG-01**: Segment landing page for local service businesses
+- **SEG-02**: Segment landing page for agencies and freelancers
+- **SEG-03**: Segment landing page for e-commerce / DTC
+- **SEG-04**: Assessment branches for each additional segment
+
+### Proof
+
+- **PROOF-01**: Before/after result captured from the first DFY customer — leads captured and follower growth
+- **PROOF-02**: Small-business testimonials with revenue impact replace mechanism-only proof
+
+### Ladder
+
+- **LADDER-01**: Product #2 defined and priced as the next rung after Instagram Lead Automation
+- **LADDER-02**: Post-purchase upsell sequence from `automate-buyer` into the next rung
 
 ## Out of Scope
 
 | Feature | Reason |
 |---------|--------|
-| Flowmorph branding/pages | Completely retired; single expert brand only |
-| EU Horizon grant references | Removed per direction |
-| Real-time chat | High complexity, not core to v1 value |
-| Video posts in assessment | Storage/bandwidth costs, defer to v2+ |
-| OAuth login | Email/password sufficient for v1 |
-| Mobile native app | Web-first, native later |
-| Multiple expert profiles | Solo expert positioning only |
-| Agency reseller model | Solo focus, v2+ feature |
-| Automated webinars | Live/recorded content MVP sufficient |
+| Launching all four ICP segments at once | 4× copy and 4× branching against zero proof in three of them; creators/coaches carries the launch |
+| Deleting the regulated verticals, case studies, or `/engage` | Existing high-ticket deals are worth a path; they move behind an enterprise entry instead |
+| New enterprise marketing or lead gen | The enterprise track is preserved, not grown |
+| Rebuilding the assessment engine | Re-pointing the routing and output is the work; the engine is a validated v1.0 asset |
+| Mobile app | Web-first only |
+| Real-time chat | Not core to a self-serve purchase |
+| Calendly in the primary funnel | Contradicts "no call in the path"; post-purchase DWY scheduling and the enterprise track are the exceptions |
 
 ## Traceability
 
+Populated during roadmap creation.
+
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| HOME-01 | Phase 1 | Pending |
-| HOME-02 | Phase 1 | Pending |
-| HOME-03 | Phase 1 | Pending |
-| HOME-04 | Phase 1 | Pending |
-| HOME-05 | Phase 1 | Pending |
-| HOME-06 | Phase 1 | Pending |
-| HOME-07 | Phase 1 | Pending |
-| HOME-08 | Phase 1 | Pending |
-| HOME-09 | Phase 1 | Pending |
-| HOME-10 | Phase 1 | Pending |
-| HOME-11 | Phase 1 | Pending |
-| ASSESS-01 | Phase 1 | Complete |
-| ASSESS-02 | Phase 1 | Complete |
-| ASSESS-03 | Phase 1 | Complete |
-| ASSESS-04 | Phase 1 | Complete |
-| ASSESS-05 | Phase 1 | Complete |
-| ASSESS-06 | Phase 1 | Complete |
-| ASSESS-07 | Phase 1 | Complete |
-| ASSESS-08 | Phase 1 | Complete |
-| ASSESS-09 | Phase 1 | Complete |
-| ASSESS-10 | Phase 1 | Complete |
-| CHECK-01 | Phase 1 | Complete |
-| CHECK-02 | Phase 1 | Complete |
-| CHECK-03 | Phase 1 | Complete |
-| CHECK-04 | Phase 1 | Complete |
-| CHECK-05 | Phase 1 | Complete |
-| EMAIL-01 | Phase 2 | Complete |
-| EMAIL-02 | Phase 2 | Complete |
-| EMAIL-07 | Phase 2 | Complete |
-| ENGAGE-01 | Phase 2 | Complete |
-| ENGAGE-02 | Phase 2 | Complete |
-| ENGAGE-03 | Phase 2 | Complete |
-| ENGAGE-04 | Phase 2 | Complete |
-| ENGAGE-05 | Phase 2 | Complete |
-| ENGAGE-06 | Phase 2 | Complete |
-| SERV-01 | Phase 2 | Complete |
-| SERV-02 | Phase 2 | Complete |
-| SERV-03 | Phase 2 | Complete |
-| SERV-04 | Phase 2 | Complete |
-| SERV-05 | Phase 2 | Complete |
-| SERV-06 | Phase 2 | Complete |
-| SERV-07 | Phase 2 | Complete |
-| WORK-01 | Phase 2 | Complete |
-| WORK-02 | Phase 2 | Complete |
-| WORK-03 | Phase 2 | Complete |
-| WORK-04 | Phase 2 | Complete |
-| WORK-05 | Phase 2 | Complete |
-| WORK-06 | Phase 2 | Complete |
-| WORK-07 | Phase 2 | Complete |
-| CONV-01 | Phase 2 | Complete |
-| CONV-02 | Phase 2 | Complete |
-| EMAIL-03 | Phase 3 | Complete |
-| EMAIL-04 | Phase 3 | Complete |
-| EMAIL-05 | Phase 3 | Complete |
-| EMAIL-06 | Phase 3 | Complete |
-| BLOG-01 | Phase 3 | Complete |
-| BLOG-02 | Phase 3 | Complete |
-| BLOG-03 | Phase 3 | Complete |
-| BLOG-04 | Phase 3 | Complete |
-| BLOG-05 | Phase 3 | Complete |
-| CONTENT-01 | Phase 3 | Complete |
-| CONTENT-02 | Phase 3 | Complete |
-| CONTENT-03 | Phase 3 | Complete |
-| CONTENT-04 | Phase 3 | Complete |
-| NAV-01 | Phase 4 | Complete |
-| NAV-02 | Phase 4 | Complete |
-| NAV-03 | Phase 4 | Complete |
-| NAV-04 | Phase 4 | Complete |
-| NAV-05 | Phase 4 | Complete |
-| NAV-06 | Phase 4 | Complete |
-| CONTENT-05 | Phase 4 | Complete |
-| CONTENT-06 | Phase 4 | Complete |
-| CONV-03 | Phase 4 | Complete |
-| CONV-04 | Phase 4 | Complete |
-| CONV-05 | Phase 4 | Complete |
+| — | — | Pending |
 
 **Coverage:**
-- v1 requirements: 75 total (HOME 11, ASSESS 10, CHECK 5, ENGAGE 6, SERV 7, WORK 7, BLOG 5, NAV 6, EMAIL 7, CONV 5, CONTENT 6)
-- Mapped to phases: 75 (Phase 1: 26, Phase 2: 25, Phase 3: 13, Phase 4: 11)
-- Unmapped: 0
+- v2.0 requirements: 67 total (DESIGN 7, PROD 13, LEAD 4, PAY 9, TRACK 3, STYLE 6, HOME 10, ASSESS 6, ENT 2, POLISH 7)
+- Mapped to phases: 0 (pending roadmap)
+- Unmapped: 67
 
 ---
 
-*Requirements defined: 2026-05-13*
-*Last updated: 2026-05-13 with comprehensive roadmap and phase assignments*
+*Requirements defined: 2026-07-31*
+*Last updated: 2026-07-31 at milestone v2.0 start*
