@@ -878,22 +878,22 @@ grep -r "\.serif" src/
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Contrast verification in CI/CD pipeline placement:**
    - What we know: Script should exit with status 1 on failure, gating deployment
    - What's unclear: Should this be a pre-commit hook (catch early), or CI/CD only (simpler setup)? DESIGN-07 spec doesn't specify
-   - Recommendation: Add to CI/CD pipeline only; pre-commit is optional for Phase 6 (Phase 8 can add pre-commit if desired)
+   - RESOLVED: Add to CI/CD pipeline only; pre-commit is optional for Phase 6 (Phase 8 can add pre-commit if desired)
 
 2. **Direction A, B, C palette values:**
    - What we know: UI-SPEC provides all three directions' hex/rgba values (lines 91-156)
    - What's unclear: Are these final or subject to adjustment based on contrast verification?
-   - Recommendation: Use UI-SPEC values as-is for the comparison board. If any pairing fails, flag in the contrast summary table rather than adjusting the palette mid-phase.
+   - RESOLVED: Use UI-SPEC values as-is for the comparison board. If any pairing fails, flag in the contrast summary table rather than adjusting the palette mid-phase.
 
 3. **Comparison board component implementation (hero, pricing card, CTA):**
    - What we know: UI-SPEC requires "identical production components" for fair comparison
    - What's unclear: Do these reuse existing components from /automate, or are they new components for /internal/palette-review?
-   - Recommendation: Create simple, isolated components for the palette review (don't couple to /automate). Phase 7 will build /automate independently.
+   - RESOLVED: Create simple, isolated components for the palette review (don't couple to /automate). Phase 7 will build /automate independently.
 
 ---
 
