@@ -113,7 +113,7 @@ Full detail for Phases 1–5 lives in `.planning/phases/01-*` … `05-*` and is 
   5. A repeatable script checks contrast for every text/surface token pairing and reports failures
 **Plans**: 3 plans — see `.planning/phases/06-palette-decision-token-foundation/`
 Plans:
-- [ ] 06-01-PLAN.md — Wave 0 test infra (Vitest + legitimacy checkpoint), WCAG contrast-verification script, contrast-math + token-naming test scaffolds
+- [x] 06-01-PLAN.md — Wave 0 test infra (Vitest + legitimacy checkpoint), WCAG contrast-verification script, contrast-math + token-naming test scaffolds
 - [ ] 06-02-PLAN.md — Direction B semantic-scale token replacement in globals.css; Playfair Display removal from layout.tsx
 - [ ] 06-03-PLAN.md — /internal/palette-review 3-direction comparison board (noindex, no site nav); route smoke test + full suite gate
 **UI hint**: yes
@@ -207,7 +207,7 @@ Plans:
 | 3. Lead Nurture | v1.0 | 4/4 | Complete | ✓ |
 | 4. Navigation & Content Polish | v1.0 | 5/5 | Complete | ✓ |
 | 5. Optimization & Launch Readiness | v1.0 | 4/4 | Complete | ✓ |
-| 6. Palette Decision + Token Foundation | v2.0 | 0/3 | Planned | - |
+| 6. Palette Decision + Token Foundation | v2.0 | 1/3 | In Progress|  |
 | 7. Product #1 Live + Payments | v2.0 | 0/TBD | Not started | - |
 | 8. Design System Rollout | v2.0 | 0/TBD | Not started | - |
 | 9. Homepage & Funnel Reposition | v2.0 | 0/TBD | Not started | - |
