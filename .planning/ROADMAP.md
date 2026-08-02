@@ -115,7 +115,7 @@ Full detail for Phases 1–5 lives in `.planning/phases/01-*` … `05-*` and is 
 Plans:
 - [x] 06-01-PLAN.md — Wave 0 test infra (Vitest + legitimacy checkpoint), WCAG contrast-verification script, contrast-math + token-naming test scaffolds
 - [x] 06-02-PLAN.md — Direction B semantic-scale token replacement in globals.css; Playfair Display removal from layout.tsx
-- [ ] 06-03-PLAN.md — /internal/palette-review 3-direction comparison board (noindex, no site nav); route smoke test + full suite gate
+- [x] 06-03-PLAN.md — /internal/palette-review 3-direction comparison board (noindex, no site nav); route smoke test + full suite gate
 **UI hint**: yes
 
 **Note**: The palette selection (task 0.2) is a review cycle the team does not control — flag as a schedule risk. Phase 7 may proceed on a provisional accent token if this slips; the palette decision must not block revenue.
@@ -207,7 +207,7 @@ Plans:
 | 3. Lead Nurture | v1.0 | 4/4 | Complete | ✓ |
 | 4. Navigation & Content Polish | v1.0 | 5/5 | Complete | ✓ |
 | 5. Optimization & Launch Readiness | v1.0 | 4/4 | Complete | ✓ |
-| 6. Palette Decision + Token Foundation | v2.0 | 2/3 | In Progress|  |
+| 6. Palette Decision + Token Foundation | v2.0 | 3/3 | Complete   | 2026-08-02 |
 | 7. Product #1 Live + Payments | v2.0 | 0/TBD | Not started | - |
 | 8. Design System Rollout | v2.0 | 0/TBD | Not started | - |
 | 9. Homepage & Funnel Reposition | v2.0 | 0/TBD | Not started | - |
