@@ -1,45 +1,69 @@
 @import "tailwindcss";
 
 :root {
-  /* Dark premium palette */
-  --bg-base: #04080F;
-  --bg-surface: #080E1A;
-  --bg-card: #0D1525;
-  --bg-elevated: #111D30;
+  /* Color — Direction B semantic scale */
+  --surface-1: #FDFAF4;
+  --surface-2: #F9F4ED;
+  --surface-3: #F2EBDE;
+  --surface-4: #FFFEF9;
+  --ink-1: #1F1B17;
+  --ink-2: #5D564E;
+  --ink-3: #8B827A;
+  --accent: #C9A86D;
+  --accent-hover: #B5985B;
+  --accent-active: #A1854A;
+  --success: #3D6B1F;
+  --error: #AA3918;
+  --warn: #935A19;
+  --border-1: rgba(31, 27, 23, 0.08);
+  --border-2: rgba(31, 27, 23, 0.16);
 
-  /* Gold accent system */
-  --gold: #C9A060;
-  --gold-light: #E0B878;
-  --gold-dim: #9A7845;
-  --gold-glow: rgba(201, 160, 96, 0.18);
-  --gold-border: rgba(201, 160, 96, 0.28);
+  /* Type */
+  --fontSize-1: 12px;
+  --fontSize-2: 16px;
+  --fontSize-3: 18px;
+  --fontSize-4: 20px;
+  --fontSize-5: 24px;
+  --fontSize-6: 32px;
+  --fontSize-7: 48px;
+  --fontWeight-normal: 400;
+  --fontWeight-bold: 700;
+  --lineHeight-tight: 1.1;
+  --lineHeight-normal: 1.5;
+  --lineHeight-relaxed: 1.6;
 
-  /* Text */
-  --text-primary: #EDF2F7;
-  --text-secondary: #8B9BB4;
-  --text-muted: #5A6B84;
+  /* Spacing */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 16px;
+  --spacing-4: 24px;
+  --spacing-5: 32px;
+  --spacing-6: 48px;
 
-  /* Borders */
-  --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-default: rgba(255, 255, 255, 0.10);
+  /* Radius */
+  --radius-1: 4px;
+  --radius-2: 8px;
+  --radius-3: 12px;
 
-  /* Legacy aliases kept for compatibility */
-  --background: var(--bg-base);
-  --foreground: var(--text-primary);
-  --accent: var(--gold);
-  --muted: var(--text-secondary);
-  --border: var(--border-default);
+  /* Shadow */
+  --shadow-1: 0 1px 2px rgba(31, 27, 23, 0.05);
+  --shadow-2: 0 4px 8px rgba(31, 27, 23, 0.1);
+  --shadow-3: 0 12px 24px rgba(31, 27, 23, 0.12);
+
+  /* Transition */
+  --duration-1: 150ms;
+  --duration-2: 300ms;
+  --duration-3: 500ms;
 
   /* Fonts */
-  --font-serif: "Playfair Display", Georgia, serif;
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-  --selection: rgba(201, 160, 96, 0.25);
+  --selection: rgba(201, 168, 109, 0.25);
 }
 
 ::selection {
   background: var(--selection);
-  color: var(--text-primary);
+  color: var(--ink-1);
 }
 
 * {
@@ -57,8 +81,8 @@ body {
   overflow-x: hidden; /* fallback for browsers without 'clip' */
   overflow-x: clip;
   width: 100%;
-  background: var(--bg-base);
-  color: var(--text-primary);
+  background: var(--surface-1);
+  color: var(--ink-1);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -70,13 +94,8 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-sans);
   font-weight: 700;
   letter-spacing: -0.02em;
-}
-
-.serif {
-  font-family: var(--font-serif);
 }
 
 a {
