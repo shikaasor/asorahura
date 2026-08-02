@@ -14,6 +14,10 @@ export default function Navigation() {
         setMenuOpen(false);
     }, [pathname]);
 
+    if (pathname.startsWith("/internal")) {
+        return null;
+    }
+
     return (
         <div className={styles.navWrapper}>
             <nav className={styles.nav}>
