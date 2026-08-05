@@ -55,9 +55,6 @@
   --duration-2: 300ms;
   --duration-3: 500ms;
 
-  /* Fonts */
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-
   --selection: rgba(201, 168, 109, 0.25);
 }
 
