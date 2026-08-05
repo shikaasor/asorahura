@@ -61,6 +61,7 @@ function checkContrast(tokens) {
     const isRelevant =
       name.startsWith("--ink-") ||
       name.startsWith("--surface-") ||
+      name.startsWith("--accent") ||
       name === "--success" ||
       name === "--error" ||
       name === "--warn";
@@ -74,6 +75,7 @@ function checkContrast(tokens) {
 
   const surfaces = Object.keys(colors).filter((k) => k.startsWith("--surface-"));
   const inks = Object.keys(colors).filter((k) => k.startsWith("--ink-"));
+  const accents = Object.keys(colors).filter((k) => k.startsWith("--accent"));
   const semantics = Object.keys(colors).filter(
     (k) => k === "--success" || k === "--error" || k === "--warn"
   );
@@ -95,6 +97,10 @@ function checkContrast(tokens) {
   inks.forEach((ink) => {
     const minRatio = ink === "--ink-3" ? 3 : 4.5;
     surfaces.forEach((surface) => checkPair(ink, surface, minRatio));
+  });
+
+  accents.forEach((accent) => {
+    surfaces.forEach((surface) => checkPair(accent, surface, 4.5));
   });
 
   semantics.forEach((semantic) => {
