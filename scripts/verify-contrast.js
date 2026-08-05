@@ -57,6 +57,8 @@ function parseTokens(cssString) {
 // pairing, and validates against the WCAG floor. Returns { failures }.
 function checkContrast(tokens) {
   const colors = {};
+  const failures = [];
+
   Object.entries(tokens).forEach(([name, value]) => {
     const isRelevant =
       name.startsWith("--ink-") ||
@@ -70,6 +72,8 @@ function checkContrast(tokens) {
     const parsed = parseColor(value);
     if (parsed && parsed.values) {
       colors[name] = parsed.values.slice(0, 3).map((v) => Math.round(v));
+    } else {
+      failures.push(`${name}: unable to parse color value, skipping contrast check`);
     }
   });
 
@@ -79,8 +83,6 @@ function checkContrast(tokens) {
   const semantics = Object.keys(colors).filter(
     (k) => k === "--success" || k === "--error" || k === "--warn"
   );
-
-  const failures = [];
 
   function checkPair(tokenA, tokenB, minRatio) {
     const ratio = getContrastRatio(
