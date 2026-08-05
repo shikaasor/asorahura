@@ -4,6 +4,7 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import ParticleWave from "@/components/ParticleWave";
 import Footer from "@/components/home/Footer";
+import RouteChrome from "@/components/RouteChrome";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -46,11 +47,15 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={inter.variable}>
-                <ParticleWave />
+                <RouteChrome>
+                    <ParticleWave />
+                </RouteChrome>
                 <Navigation />
                 <div className="nav-offset">
                     {children}
-                    <Footer />
+                    <RouteChrome>
+                        <Footer />
+                    </RouteChrome>
                 </div>
             </body>
         </html>
