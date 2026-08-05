@@ -10,29 +10,135 @@ export const metadata: Metadata = {
   },
 };
 
+// WCAG 2.0 relative luminance + contrast ratio, mirroring
+// scripts/verify-contrast.js's getRelativeLuminance/getContrastRatio so the
+// numbers shown below always reflect the actual hex values, never
+// hand-typed estimates (see REVIEW.md CR-02).
+function toLinear(c: number): number {
+  const cs = c / 255;
+  return cs <= 0.03928 ? cs / 12.92 : Math.pow((cs + 0.055) / 1.055, 2.4);
+}
+
+function relativeLuminance(hex: string): number {
+  const h = hex.replace("#", "");
+  const r = parseInt(h.slice(0, 2), 16);
+  const g = parseInt(h.slice(2, 4), 16);
+  const b = parseInt(h.slice(4, 6), 16);
+  return 0.2126 * toLinear(r) + 0.7152 * toLinear(g) + 0.0722 * toLinear(b);
+}
+
+function contrastRatio(hexA: string, hexB: string): number {
+  const l1 = relativeLuminance(hexA);
+  const l2 = relativeLuminance(hexB);
+  return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+}
+
+// Worst-case contrast of a foreground color against every surface it may be
+// composited on within a direction, rather than a single hand-picked pairing.
+function worstCaseRatio(fgHex: string, surfaces: readonly string[]): number {
+  return Math.min(...surfaces.map((s) => contrastRatio(fgHex, s)));
+}
+
+type DirectionColors = {
+  surfaces: readonly [string, string, string, string];
+  ink1: string;
+  ink2: string;
+  ink3: string;
+  accent: string;
+  accentHover: string;
+  accentActive: string;
+};
+
+// Mirrors the per-direction overrides in styles.module.css's .colA/.colB/.colC
+// blocks. colB's ink3 matches globals.css's shipped --ink-3 (see WR-01).
+const DIRECTION_COLORS: Record<"colA" | "colB" | "colC", DirectionColors> = {
+  colA: {
+    surfaces: ["#FAF7F2", "#F5F0EA", "#EFE8DE", "#FEFDFB"],
+    ink1: "#2B2420",
+    ink2: "#6B6359",
+    ink3: "#A39E95",
+    accent: "#B8860B",
+    accentHover: "#A0760A",
+    accentActive: "#8B6508",
+  },
+  colB: {
+    surfaces: ["#FDFAF4", "#F9F4ED", "#F2EBDE", "#FFFEF9"],
+    ink1: "#1F1B17",
+    ink2: "#5D564E",
+    ink3: "#8B827A",
+    accent: "#C9A86D",
+    accentHover: "#B5985B",
+    accentActive: "#A1854A",
+  },
+  colC: {
+    surfaces: ["#FFFAF3", "#FBEFF3", "#F4E8E0", "#FFFEF9"],
+    ink1: "#1C1815",
+    ink2: "#58524B",
+    ink3: "#908580",
+    accent: "#D4AF37",
+    accentHover: "#BFA02D",
+    accentActive: "#AA9122",
+  },
+};
+
+// Success/Error/Warn aren't overridden per direction (see globals.css
+// :root) — only the surfaces they're placed on vary by direction.
+const SEMANTIC_COLORS = {
+  success: "#3D6B1F",
+  error: "#AA3918",
+  warn: "#935A19",
+};
+
 type ContrastRow = {
   label: string;
-  a: string;
-  b: string;
-  c: string;
+  a: number;
+  b: number;
+  c: number;
   floor: number;
 };
 
+function buildContrastRow(
+  label: string,
+  floor: number,
+  pick: (colors: DirectionColors) => string
+): ContrastRow {
+  return {
+    label,
+    floor,
+    a: worstCaseRatio(pick(DIRECTION_COLORS.colA), DIRECTION_COLORS.colA.surfaces),
+    b: worstCaseRatio(pick(DIRECTION_COLORS.colB), DIRECTION_COLORS.colB.surfaces),
+    c: worstCaseRatio(pick(DIRECTION_COLORS.colC), DIRECTION_COLORS.colC.surfaces),
+  };
+}
+
+function buildSemanticRow(label: string, hex: string): ContrastRow {
+  return {
+    label,
+    floor: 4.5,
+    a: worstCaseRatio(hex, DIRECTION_COLORS.colA.surfaces),
+    b: worstCaseRatio(hex, DIRECTION_COLORS.colB.surfaces),
+    c: worstCaseRatio(hex, DIRECTION_COLORS.colC.surfaces),
+  };
+}
+
 const contrastRows: ContrastRow[] = [
-  { label: "Ink 1 (primary text)", a: "18.5:1", b: "21.0:1", c: "22.0:1", floor: 4.5 },
-  { label: "Ink 2 (secondary text)", a: "7.2:1", b: "8.1:1", c: "8.5:1", floor: 4.5 },
-  { label: "Ink 3 (tertiary text)", a: "4.5:1", b: "4.5:1", c: "4.5:1", floor: 3 },
-  { label: "Accent", a: "5.1:1", b: "4.9:1", c: "4.8:1", floor: 4.5 },
-  { label: "Accent Hover", a: "5.8:1", b: "5.7:1", c: "5.6:1", floor: 4.5 },
-  { label: "Accent Active", a: "6.5:1", b: "6.3:1", c: "6.2:1", floor: 4.5 },
-  { label: "Success", a: "5.2:1", b: "5.8:1", c: "6.5:1", floor: 4.5 },
-  { label: "Error", a: "5.4:1", b: "5.9:1", c: "6.2:1", floor: 4.5 },
-  { label: "Warn", a: "5.1:1", b: "5.6:1", c: "6.0:1", floor: 4.5 },
+  buildContrastRow("Ink 1 (primary text)", 4.5, (c) => c.ink1),
+  buildContrastRow("Ink 2 (secondary text)", 4.5, (c) => c.ink2),
+  buildContrastRow("Ink 3 (tertiary text)", 3, (c) => c.ink3),
+  buildContrastRow("Accent", 4.5, (c) => c.accent),
+  buildContrastRow("Accent Hover", 4.5, (c) => c.accentHover),
+  buildContrastRow("Accent Active", 4.5, (c) => c.accentActive),
+  buildSemanticRow("Success", SEMANTIC_COLORS.success),
+  buildSemanticRow("Error", SEMANTIC_COLORS.error),
+  buildSemanticRow("Warn", SEMANTIC_COLORS.warn),
 ];
 
-function ratioPasses(ratio: string, floor: number): boolean {
-  const value = parseFloat(ratio);
-  return value >= floor;
+function ratioPasses(ratio: number, floor: number): boolean {
+  return ratio >= floor;
+}
+
+function formatRatio(ratio: number): string {
+  return `${ratio.toFixed(2)}:1`;
 }
 
 type Direction = {
@@ -118,13 +224,13 @@ export default function PaletteReviewPage() {
                 <tr key={row.label}>
                   <td>{row.label}</td>
                   <td>
-                    {row.a} {ratioPasses(row.a, row.floor) ? "PASS" : "FAIL"}
+                    {formatRatio(row.a)} {ratioPasses(row.a, row.floor) ? "PASS" : "FAIL"}
                   </td>
                   <td>
-                    {row.b} {ratioPasses(row.b, row.floor) ? "PASS" : "FAIL"}
+                    {formatRatio(row.b)} {ratioPasses(row.b, row.floor) ? "PASS" : "FAIL"}
                   </td>
                   <td>
-                    {row.c} {ratioPasses(row.c, row.floor) ? "PASS" : "FAIL"}
+                    {formatRatio(row.c)} {ratioPasses(row.c, row.floor) ? "PASS" : "FAIL"}
                   </td>
                 </tr>
               ))}
