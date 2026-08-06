@@ -121,13 +121,31 @@ function buildSemanticRow(label: string, hex: string): ContrastRow {
   };
 }
 
+// Accent tokens are CTA button fills, not standalone foreground text (see
+// .ctaButton/.ctaButtonOutlined in styles.module.css). The pairing that
+// actually renders on the page is ink-1 button text on an accent-colored
+// fill, so that direct pairing is what gets measured here — not accent
+// treated as text sitting on the page surface, which never happens.
+function buildInkOnAccentRow(
+  label: string,
+  pick: (colors: DirectionColors) => string
+): ContrastRow {
+  return {
+    label,
+    floor: 4.5,
+    a: contrastRatio(DIRECTION_COLORS.colA.ink1, pick(DIRECTION_COLORS.colA)),
+    b: contrastRatio(DIRECTION_COLORS.colB.ink1, pick(DIRECTION_COLORS.colB)),
+    c: contrastRatio(DIRECTION_COLORS.colC.ink1, pick(DIRECTION_COLORS.colC)),
+  };
+}
+
 const contrastRows: ContrastRow[] = [
   buildContrastRow("Ink 1 (primary text)", 4.5, (c) => c.ink1),
   buildContrastRow("Ink 2 (secondary text)", 4.5, (c) => c.ink2),
   buildContrastRow("Ink 3 (tertiary text)", 3, (c) => c.ink3),
-  buildContrastRow("Accent", 4.5, (c) => c.accent),
-  buildContrastRow("Accent Hover", 4.5, (c) => c.accentHover),
-  buildContrastRow("Accent Active", 4.5, (c) => c.accentActive),
+  buildInkOnAccentRow("CTA text on Accent fill", (c) => c.accent),
+  buildInkOnAccentRow("CTA text on Accent Hover fill", (c) => c.accentHover),
+  buildInkOnAccentRow("CTA text on Accent Active fill", (c) => c.accentActive),
   buildSemanticRow("Success", SEMANTIC_COLORS.success),
   buildSemanticRow("Error", SEMANTIC_COLORS.error),
   buildSemanticRow("Warn", SEMANTIC_COLORS.warn),

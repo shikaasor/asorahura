@@ -101,9 +101,16 @@ function checkContrast(tokens) {
     surfaces.forEach((surface) => checkPair(ink, surface, minRatio));
   });
 
-  accents.forEach((accent) => {
-    surfaces.forEach((surface) => checkPair(accent, surface, 4.5));
-  });
+  // Accent tokens are backgrounds (CTA button fills), not foreground text —
+  // checking them against surfaces tests the wrong pairing (accent-as-text)
+  // and both misses the real risk and over-flags a pairing that never
+  // occurs in the UI. The actual component pairing is --ink-1 button text
+  // on an --accent* fill, so that's what gets validated at the 4.5:1 floor.
+  if (colors["--ink-1"]) {
+    accents.forEach((accent) => checkPair("--ink-1", accent, 4.5));
+  } else {
+    failures.push("--ink-1: token missing, cannot verify accent button text contrast");
+  }
 
   semantics.forEach((semantic) => {
     surfaces.forEach((surface) => checkPair(semantic, surface, 4.5));

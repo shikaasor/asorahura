@@ -165,7 +165,10 @@
 .ctaButtonActive {
   padding: var(--spacing-2) var(--spacing-4);
   border-radius: var(--radius-1);
-  color: var(--col-surface-1);
+  /* Dark ink text on the gold fill, not light surface text — light-on-gold
+     measures 1.90-2.23:1 against WCAG AA's 4.5:1 floor (see REVIEW.md CR-01).
+     Dark ink on the same fills measures 4.86-7.58:1 across accent/hover/active. */
+  color: var(--col-ink-1);
   font-weight: var(--fontWeight-bold);
 }
 
@@ -185,8 +188,11 @@
   padding: var(--spacing-2) var(--spacing-4);
   border-radius: var(--radius-1);
   background: transparent;
-  border: 1px solid var(--col-accent);
-  color: var(--col-accent);
+  /* Ink border/text, not accent — accent-as-foreground directly on a surface
+     fails WCAG AA (2.17-3.48:1 across all surfaces); ink-1 clears it by a
+     wide margin while accent stays reserved for fills. */
+  border: 1px solid var(--col-ink-1);
+  color: var(--col-ink-1);
   font-weight: var(--fontWeight-bold);
 }
 
