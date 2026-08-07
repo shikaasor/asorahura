@@ -131,10 +131,30 @@ Plans:
   4. A visitor can submit their email inline to get the Build Map: the address lands in Resend contacts + Google Sheets mirror, the download link arrives from `hello@asorahura.com`, and the downloader is tagged for the DFY upsell
   5. The success page collects DFY/DWY onboarding (IG handle, keyword, lead magnet link, voice/tone notes), offers a scheduling link for DWY, and names the next rung in copy with an `automate-buyer` segmentation tag — with no link into the assessment yet (Phase 10 not shipped)
   6. All five analytics events (land w/ UTM, demo interaction, Build Map submit, checkout opened, purchase) fire and are visible in the dashboard
-**Plans**: TBD
+**Plans**: 13 plans across 5 waves — see `.planning/phases/07-product-1-page-live-payments-revenue/`
+Plans:
+- [ ] 07-01-PLAN.md — Paddle production readiness diagnostic route + blocking human checkpoint (PAY-01)
+- [ ] 07-02-PLAN.md — Plausible analytics foundation (script tag + trackAnalyticsEvent + Land event hook)
+- [ ] 07-03-PLAN.md — (automate) route group self-contained layout (logo-only header, own footer)
+- [ ] 07-04-PLAN.md — automateTiers checkout config (DFY/DWY/Care Plan, $9.99/mo fix) + Paddle env/custom_data wiring
+- [ ] 07-05-PLAN.md — Build Map lead capture (schemas, /api/subscribe segmentation + email, BuildMapForm)
+- [ ] 07-06-PLAN.md — Hero + Try-It-Now sections (revenue framing, Reel embed)
+- [ ] 07-07-PLAN.md — Phone mockup + FAQ sections (refund policy)
+- [ ] 07-08-PLAN.md — Paddle webhook signature verification + route skeleton
+- [ ] 07-09-PLAN.md — Comparison strip + pricing cards (config-driven Care Plan price, Paddle checkout wiring)
+- [ ] 07-10-PLAN.md — Differentiated DFY/DWY success page + onboarding API route
+- [ ] 07-11-PLAN.md — Order confirmation + owner notification emails, automate-buyer segmentation, Purchase event
+- [ ] 07-12-PLAN.md — Compose /automate page + closing section
+- [ ] 07-13-PLAN.md — End-to-end human verification checkpoint (real device, real Paddle/Resend/Plausible)
 **UI hint**: yes
 
 **Note**: `/automate` ships self-contained — logo-only header, own footer, no site nav — until Phase 9 lands. This is the critical path to revenue; Phases 8–11 can flex in priority once this ships.
+
+**Content gaps flagged during planning (must be resolved before real launch, do not block execution):**
+- No real Reel URL exists in any source artifact — `NEXT_PUBLIC_AUTOMATE_REEL_URL` env var must be set before launch (07-06)
+- Real Build Map deliverable (4 n8n workflow files + env template + deployment guide) does not exist in the repo — `public/downloads/build-map-guide.txt` ships as a clearly-labeled placeholder (07-05)
+- Real phone-mockup screenshot of a live DM conversation does not exist — PhoneMockup ships with a placeholder graphic in the final layout position (07-07)
+- No database exists in this codebase — webhook idempotency (duplicate emails on Paddle retry) is an accepted risk documented in 07-08/07-11's threat models, not solved this phase
 
 ### Phase 8: Design System Rollout
 **Goal**: One visual system across every page; no hardcoded colors.
@@ -208,7 +228,7 @@ Plans:
 | 4. Navigation & Content Polish | v1.0 | 5/5 | Complete | ✓ |
 | 5. Optimization & Launch Readiness | v1.0 | 4/4 | Complete | ✓ |
 | 6. Palette Decision + Token Foundation | v2.0 | 3/3 | Complete   | 2026-08-02 |
-| 7. Product #1 Live + Payments | v2.0 | 0/TBD | Not started | - |
+| 7. Product #1 Live + Payments | v2.0 | 0/13 | Planned | - |
 | 8. Design System Rollout | v2.0 | 0/TBD | Not started | - |
 | 9. Homepage & Funnel Reposition | v2.0 | 0/TBD | Not started | - |
 | 10. Assessment Re-point + Enterprise Track | v2.0 | 0/TBD | Not started | - |
@@ -246,4 +266,4 @@ Plans:
 
 *Roadmap v1.0 created: 2026-05-13*
 *Roadmap v2.0 (Phases 6–11) created: 2026-07-31 from IMPLEMENTATION_PLAN.md and WEBSITE_AUDIT.md*
-*Next action: `/gsd-plan-phase 6`*
+*Next action: `/gsd-execute-phase 07`*
