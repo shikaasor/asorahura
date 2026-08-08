@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import styles from "./PaddleCheckout.module.css";
+import { getPaddleEnvironment } from "@/lib/checkout";
 
 declare global {
   interface Window {
@@ -25,9 +26,10 @@ const PADDLE_BUS = "paddle:event";
 interface Props {
   priceId: string;
   onSuccess?: () => void;
+  customData?: Record<string, string>;
 }
 
-export function PaddleCheckout({ priceId, onSuccess }: Props) {
+export function PaddleCheckout({ priceId, onSuccess, customData }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -60,7 +62,7 @@ export function PaddleCheckout({ priceId, onSuccess }: Props) {
       if (!window.Paddle || !containerRef.current) return;
 
       if (!paddleInitialized) {
-        window.Paddle.Environment.set("sandbox");
+        window.Paddle.Environment.set(getPaddleEnvironment());
         window.Paddle.Initialize({
           token: process.env.NEXT_PUBLIC_PADDLE_TOKEN!,
           // Dispatch onto window — decoupled from any specific component instance.
@@ -79,6 +81,7 @@ export function PaddleCheckout({ priceId, onSuccess }: Props) {
           frameInitialHeight: 450,
           frameStyle: "width:100%;min-width:312px;background:transparent;border:none;",
         },
+        ...(customData ? { customData } : {}),
       });
     }
 
