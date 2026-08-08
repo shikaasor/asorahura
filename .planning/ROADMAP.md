@@ -136,11 +136,11 @@ Plans:
 - [x] 07-01-PLAN.md — Paddle production readiness diagnostic route + blocking human checkpoint (PAY-01)
 - [x] 07-02-PLAN.md — Plausible analytics foundation (script tag + trackAnalyticsEvent + Land event hook)
 - [x] 07-03-PLAN.md — (automate) route group self-contained layout (logo-only header, own footer)
-- [ ] 07-04-PLAN.md — automateTiers checkout config (DFY/DWY/Care Plan, $9.99/mo fix) + Paddle env/custom_data wiring
-- [ ] 07-05-PLAN.md — Build Map lead capture (schemas, /api/subscribe segmentation + email, BuildMapForm)
-- [ ] 07-06-PLAN.md — Hero + Try-It-Now sections (revenue framing, Reel embed)
-- [ ] 07-07-PLAN.md — Phone mockup + FAQ sections (refund policy)
-- [ ] 07-08-PLAN.md — Paddle webhook signature verification + route skeleton
+- [x] 07-04-PLAN.md — automateTiers checkout config (DFY/DWY/Care Plan, $9.99/mo fix) + Paddle env/custom_data wiring
+- [x] 07-05-PLAN.md — Build Map lead capture (schemas, /api/subscribe segmentation + email, BuildMapForm)
+- [x] 07-06-PLAN.md — Hero + Try-It-Now sections (revenue framing, Reel embed)
+- [x] 07-07-PLAN.md — Phone mockup + FAQ sections (refund policy)
+- [x] 07-08-PLAN.md — Paddle webhook signature verification + route skeleton
 - [ ] 07-09-PLAN.md — Comparison strip + pricing cards (config-driven Care Plan price, Paddle checkout wiring)
 - [ ] 07-10-PLAN.md — Differentiated DFY/DWY success page + onboarding API route
 - [ ] 07-11-PLAN.md — Order confirmation + owner notification emails, automate-buyer segmentation, Purchase event
@@ -228,7 +228,7 @@ Plans:
 | 4. Navigation & Content Polish | v1.0 | 5/5 | Complete | ✓ |
 | 5. Optimization & Launch Readiness | v1.0 | 4/4 | Complete | ✓ |
 | 6. Palette Decision + Token Foundation | v2.0 | 3/3 | Complete   | 2026-08-02 |
-| 7. Product #1 Live + Payments | v2.0 | 3/13 | In Progress|  |
+| 7. Product #1 Live + Payments | v2.0 | 8/13 | In Progress|  |
 | 8. Design System Rollout | v2.0 | 0/TBD | Not started | - |
 | 9. Homepage & Funnel Reposition | v2.0 | 0/TBD | Not started | - |
 | 10. Assessment Re-point + Enterprise Track | v2.0 | 0/TBD | Not started | - |
