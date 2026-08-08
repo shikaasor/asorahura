@@ -63,6 +63,24 @@ export async function sendAssessmentEmail(params: {
   return { success: true };
 }
 
+export async function sendBuildMapEmail(
+  email: string
+): Promise<{ success: boolean; error?: string }> {
+  const text =
+    `Your Build Map is ready. Download it here: ${BASE_URL}/downloads/build-map-guide.txt` +
+    unsubscribeFooter(email);
+
+  const { error } = await resend.emails.send({
+    from: FROM,
+    to: email,
+    subject: "Your Build Map is ready",
+    text,
+  });
+
+  if (error) return { success: false, error: error.message };
+  return { success: true };
+}
+
 export async function sendAssessmentEmailSequence(params: {
   email: string;
   firstName: string;
