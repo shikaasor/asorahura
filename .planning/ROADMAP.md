@@ -231,7 +231,7 @@ Plans:
   3. Offering #2's copy never implies instant multi-client Gmail onboarding; offering #4's copy never frames itself as AI price research
   4. No dead links: the retired /automate/success URL redirects to /automate/instagram/success
 
-**Plans:** 1/5 plans executed
+**Plans:** 2/5 plans executed
 Plans:
 **Wave 1**
 
@@ -239,7 +239,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 09.1-02-PLAN.md — Shared components: Breadcrumb, OfferingCard, CatalogGrid
+- [x] 09.1-02-PLAN.md — Shared components: Breadcrumb, OfferingCard, CatalogGrid
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
