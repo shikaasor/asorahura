@@ -23,7 +23,7 @@ vi.mock("../src/lib/email", () => ({
   sendOrderNotificationEmail,
 }));
 
-const { POST } = await import("../src/app/api/paddle/webhook/route");
+import { POST } from "../src/app/api/paddle/webhook/route";
 
 const SECRET = "whsec_test_secret";
 

@@ -81,6 +81,61 @@ export async function sendBuildMapEmail(
   return { success: true };
 }
 
+export async function sendPurchaseConfirmationEmail(params: {
+  email: string;
+  firstName?: string;
+  productType: "dfy" | "dwy" | "care-plan";
+  transactionId: string;
+  amount: string;
+}): Promise<{ success: boolean; error?: string }> {
+  try {
+    const { PurchaseConfirmation } = await import("@/emails/PurchaseConfirmation");
+
+    const { error } = await resend.emails.send({
+      from: FROM,
+      to: params.email,
+      subject: "Order confirmed",
+      react: PurchaseConfirmation({ ...params }),
+    });
+
+    if (error) {
+      console.error("[email] sendPurchaseConfirmationEmail failed:", error.message);
+      return { success: false, error: error.message };
+    }
+    return { success: true };
+  } catch (err) {
+    console.error("[email] sendPurchaseConfirmationEmail threw:", err);
+    return { success: false, error: err instanceof Error ? err.message : "unknown error" };
+  }
+}
+
+export async function sendOrderNotificationEmail(params: {
+  productType: "dfy" | "dwy" | "care-plan";
+  transactionId: string;
+  amount: string;
+  buyerEmail: string;
+}): Promise<{ success: boolean; error?: string }> {
+  try {
+    const { OrderNotification } = await import("@/emails/OrderNotification");
+
+    const { error } = await resend.emails.send({
+      from: FROM,
+      to: process.env.OWNER_EMAIL ?? "hello@asorahura.com",
+      subject: `New Order: ${params.productType} from ${params.buyerEmail}`,
+      react: OrderNotification({ ...params }),
+    });
+
+    if (error) {
+      console.error("[email] sendOrderNotificationEmail failed:", error.message);
+      return { success: false, error: error.message };
+    }
+    return { success: true };
+  } catch (err) {
+    console.error("[email] sendOrderNotificationEmail threw:", err);
+    return { success: false, error: err instanceof Error ? err.message : "unknown error" };
+  }
+}
+
 export async function sendOnboardingNotification(params: {
   product: "dfy" | "dwy";
   igHandle: string;
