@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import ParticleWave from "@/components/ParticleWave";
 import Footer from "@/components/home/Footer";
 import RouteChrome from "@/components/RouteChrome";
+import NavOffset from "@/components/NavOffset";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -58,12 +59,12 @@ export default function RootLayout({
                     <ParticleWave />
                 </RouteChrome>
                 <Navigation />
-                <div className="nav-offset">
+                <NavOffset>
                     {children}
                     <RouteChrome>
                         <Footer />
                     </RouteChrome>
-                </div>
+                </NavOffset>
             </body>
         </html>
     );
