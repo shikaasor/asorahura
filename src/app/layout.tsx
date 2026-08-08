@@ -46,6 +46,13 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
+            <head>
+                <script
+                    defer
+                    data-domain={process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN ?? "asorahura.com"}
+                    src="https://plausible.io/js/script.js"
+                />
+            </head>
             <body className={inter.variable}>
                 <RouteChrome>
                     <ParticleWave />
