@@ -32,6 +32,7 @@ export default function Footer() {
             <ul className={styles.navList}>
               <li><Link href="/privacy" className={styles.navLink}>Privacy Policy</Link></li>
               <li><Link href="/terms" className={styles.navLink}>Terms</Link></li>
+              <li><Link href="/refund" className={styles.navLink}>Refund Policy</Link></li>
             </ul>
             <div className={styles.social}>
               <a
