@@ -169,7 +169,7 @@ function SuccessInner() {
             Your Care Plan keeps this running — token renewals, uptime, small copy changes,{" "}
             {carePlan.price}.
           </p>
-          <a href="/automate#pricing" className={styles.nextRungLink}>
+          <a href="/automate/instagram#pricing" className={styles.nextRungLink}>
             See the Care Plan
           </a>
         </div>

@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
         headers: { 'Content-Type': 'application/json', 'User-Agent': 'asorahura-webhook' },
         body: JSON.stringify({
           name: 'Purchase',
-          url: `${process.env.NEXT_PUBLIC_BASE_URL ?? 'https://asorahura.vercel.app'}/automate`,
+          url: `${process.env.NEXT_PUBLIC_BASE_URL ?? 'https://asorahura.vercel.app'}/automate/instagram`,
           domain: process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN ?? 'asorahura.com',
           props: { product_type: productType, amount, currency: 'usd' },
         }),

@@ -20,6 +20,11 @@ const nextConfig = {
                 destination: '/',
                 permanent: true,
             },
+            {
+                source: '/automate/success',
+                destination: '/automate/instagram/success',
+                permanent: true,
+            },
         ];
     },
 };

@@ -3,9 +3,14 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import nextConfig from "../next.config.mjs";
 
+async function getRedirects() {
+  if (!nextConfig.redirects) throw new Error("next.config.mjs has no redirects() function");
+  return nextConfig.redirects();
+}
+
 describe("next.config.mjs redirects()", () => {
   it("includes a redirect from /automate/success to /automate/instagram/success", async () => {
-    const redirects = await nextConfig.redirects();
+    const redirects = await getRedirects();
 
     expect(redirects).toContainEqual(
       expect.objectContaining({
@@ -17,7 +22,7 @@ describe("next.config.mjs redirects()", () => {
   });
 
   it("still contains the existing /flowmorph redirect, unchanged", async () => {
-    const redirects = await nextConfig.redirects();
+    const redirects = await getRedirects();
 
     expect(redirects).toContainEqual(
       expect.objectContaining({
@@ -29,13 +34,13 @@ describe("next.config.mjs redirects()", () => {
   });
 
   it("has exactly 2 redirect entries", async () => {
-    const redirects = await nextConfig.redirects();
+    const redirects = await getRedirects();
 
     expect(redirects).toHaveLength(2);
   });
 
   it("has no redirect destination that equals another redirect's source (no chain/loop)", async () => {
-    const redirects = await nextConfig.redirects();
+    const redirects = await getRedirects();
     const sources = new Set(redirects.map((r) => r.source));
 
     for (const redirect of redirects) {
