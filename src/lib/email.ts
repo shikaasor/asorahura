@@ -6,6 +6,8 @@ import { getSegment, DEFAULT_SECTOR, type Sector } from "@/lib/assessment";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const FROM = "Asor Ahura <hello@asorahura.com>";
+const RESOURCES_FROM = "Asor Ahura <resources@asorahura.com>";
+const BUILD_MAP_DOWNLOAD_URL = "https://drive.google.com/file/d/1jDFFWWg2JsEy9vlRtMVwkdeLggqStcOZ/view?usp=drive_link";
 export const CALENDLY_URL = "https://calendly.com/asorahura";
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://asorahura.vercel.app';
 
@@ -67,11 +69,11 @@ export async function sendBuildMapEmail(
   email: string
 ): Promise<{ success: boolean; error?: string }> {
   const text =
-    `Your Build Map is ready. Download it here: ${BASE_URL}/downloads/build-map-guide.txt` +
+    `Your Build Map is ready. Download it here: ${BUILD_MAP_DOWNLOAD_URL}` +
     unsubscribeFooter(email);
 
   const { error } = await resend.emails.send({
-    from: FROM,
+    from: RESOURCES_FROM,
     to: email,
     subject: "Your Build Map is ready",
     text,

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styles from "./PhoneMockup.module.css";
 
 export default function PhoneMockup() {
@@ -10,9 +11,15 @@ export default function PhoneMockup() {
           </p>
         </div>
         <div className={styles.mockupWrap}>
-          <div className={styles.phoneFrame} role="img" aria-label="Instagram DM showing lead capture in action">
+          <div className={styles.phoneFrame}>
             <div className={styles.screen}>
-              <p className={styles.placeholderText}>Screenshot pending</p>
+              <Image
+                src="/images/automate/dm-screenshot.png"
+                alt="Instagram DM showing lead capture in action on @ai_learnt's live account"
+                fill
+                className={styles.screenshotImg}
+                sizes="(min-width: 768px) 300px, 80vw"
+              />
             </div>
           </div>
           <p className={styles.label}>Real screenshot. Live account. Working now.</p>
