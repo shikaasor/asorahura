@@ -186,6 +186,16 @@ Plans:
 
 **Note**: This phase removes the need for `/automate`'s self-contained shell (PROD-02) — `/automate` can adopt the full site nav once this ships.
 
+### Phase 09.1: Automations Page — catalog of automations with detail pages per offering (INSERTED)
+
+**Goal:** A new catalog page lists all five automation offerings (Instagram comment-to-DM, Email triage on Telegram, Writing constitution + content, Rate-aware invoice and quote, Client onboarding agent); each has its own detail page built on the Phase 7 `/automate` pattern, with Product #1 linking to the existing live page.
+**Requirements**: TBD
+**Depends on:** Phase 9
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd-plan-phase 09.1 to break down)
+
 ### Phase 10: Assessment Re-point + Enterprise Track
 **Goal**: The assessment serves the new ICP and feeds the ladder; enterprise work keeps a home.
 **Depends on**: Phase 9
