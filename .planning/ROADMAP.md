@@ -231,7 +231,7 @@ Plans:
   3. Offering #2's copy never implies instant multi-client Gmail onboarding; offering #4's copy never frames itself as AI price research
   4. No dead links: the retired /automate/success URL redirects to /automate/instagram/success
 
-**Plans:** 2/5 plans executed
+**Plans:** 5/5 plans complete
 Plans:
 **Wave 1**
 
@@ -243,9 +243,9 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 09.1-03-PLAN.md — Move Instagram offering to /automate/instagram (+ success page move, redirect, hardcoded reference fixes)
-- [ ] 09.1-04-PLAN.md — Generic /automate/[slug] detail page for the four waitlist offerings
-- [ ] 09.1-05-PLAN.md — Catalog page (/automate) composition
+- [x] 09.1-03-PLAN.md — Move Instagram offering to /automate/instagram (+ success page move, redirect, hardcoded reference fixes)
+- [x] 09.1-04-PLAN.md — Generic /automate/[slug] detail page for the four waitlist offerings
+- [x] 09.1-05-PLAN.md — Catalog page (/automate) composition
 
 **UI hint**: yes
 
