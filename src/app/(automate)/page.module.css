@@ -1,0 +1,26 @@
+.closing {
+  background: var(--surface-1);
+  padding: var(--spacing-6) var(--spacing-4);
+  border-top: 1px solid var(--border-1);
+}
+
+.closingContainer {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.closingHeading {
+  font-size: var(--fontSize-6);
+  font-weight: var(--fontWeight-bold);
+  color: var(--ink-1);
+}
+
+.closingBody {
+  font-size: var(--fontSize-2);
+  line-height: var(--lineHeight-relaxed);
+  color: var(--ink-2);
+}
