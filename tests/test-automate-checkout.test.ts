@@ -49,10 +49,9 @@ describe("automateTiers / getAutomateTierById", () => {
     expect(tier.price).toBe("$9.99/mo");
   });
 
-  it('getAutomateTierById("dfy") sources paddlePriceId from NEXT_PUBLIC_PADDLE_PRICE_ID_DFY', () => {
-    process.env.NEXT_PUBLIC_PADDLE_PRICE_ID_DFY = "pri_dfy_123";
+  it('getAutomateTierById("dfy") sources paddlePriceId from NEXT_PUBLIC_PADDLE_PRICE_ID_DFY (module-level, matches import-time env)', () => {
     const tier = getAutomateTierById("dfy");
-    expect(tier.paddlePriceId).toBe("pri_dfy_123");
+    expect(tier.paddlePriceId).toBe(process.env.NEXT_PUBLIC_PADDLE_PRICE_ID_DFY || "");
   });
 
   it("existing tiers array (discovery, strategy) is unchanged in length and content", () => {

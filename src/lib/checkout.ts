@@ -50,3 +50,62 @@ export const tiers: Tier[] = [
 export function getTierById(id: TierId): Tier {
   return tiers.find((t) => t.id === id) || tiers[0];
 }
+
+export type AutomateTierId = "build-map" | "dfy" | "dwy" | "care-plan";
+
+export interface AutomateTier {
+  id: AutomateTierId;
+  name: string;
+  price: string;
+  priceDetail: string;
+  billingType: "one-time" | "recurring" | "free";
+  paddlePriceId: string;
+  description: string;
+}
+
+export const automateTiers: AutomateTier[] = [
+  {
+    id: "build-map",
+    name: "Build Map",
+    price: "Free",
+    priceDetail: "",
+    billingType: "free",
+    paddlePriceId: "",
+    description: "4 n8n workflows, environment template, deployment guide. Self-host at ~$6/mo.",
+  },
+  {
+    id: "dfy",
+    name: "Done For You",
+    price: "$500",
+    priceDetail: "one-time",
+    billingType: "one-time",
+    paddlePriceId: process.env.NEXT_PUBLIC_PADDLE_PRICE_ID_DFY || "",
+    description: "Provisioned server, Meta app setup, live in 3–5 days.",
+  },
+  {
+    id: "dwy",
+    name: "Done With You",
+    price: "$800",
+    priceDetail: "one-time",
+    billingType: "one-time",
+    paddlePriceId: process.env.NEXT_PUBLIC_PADDLE_PRICE_ID_DWY || "",
+    description: "Screen-to-screen build session. You maintain it going forward.",
+  },
+  {
+    id: "care-plan",
+    name: "Care Plan",
+    price: "$9.99/mo",
+    priceDetail: "monthly",
+    billingType: "recurring",
+    paddlePriceId: process.env.NEXT_PUBLIC_PADDLE_PRICE_ID_CARE_PLAN || "",
+    description: "Token renewals, uptime monitoring, copy updates, priority support.",
+  },
+];
+
+export function getAutomateTierById(id: AutomateTierId): AutomateTier {
+  return automateTiers.find((t) => t.id === id) || automateTiers[0];
+}
+
+export function getPaddleEnvironment(): "sandbox" | "production" {
+  return process.env.NEXT_PUBLIC_PADDLE_TOKEN?.startsWith("test_") ? "sandbox" : "production";
+}
