@@ -1,0 +1,157 @@
+.main {
+  padding: var(--spacing-6) 0;
+  background: var(--surface-1);
+}
+
+.hero {
+  padding: var(--spacing-5) 0;
+}
+
+.heroHeadline {
+  font-size: var(--fontSize-7);
+  font-weight: var(--fontWeight-bold);
+  color: var(--ink-1);
+  margin-bottom: var(--spacing-3);
+}
+
+.heroSubheading {
+  font-size: var(--fontSize-6);
+  color: var(--ink-2);
+  line-height: var(--lineHeight-relaxed);
+}
+
+.sectionHeading {
+  font-size: var(--fontSize-5);
+  font-weight: var(--fontWeight-bold);
+  color: var(--ink-1);
+  margin-bottom: var(--spacing-4);
+}
+
+.pricingSection {
+  padding: var(--spacing-5) 0;
+}
+
+.pricingCard {
+  background: var(--surface-2);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-2);
+  padding: var(--spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  max-width: 480px;
+}
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-2);
+}
+
+.price {
+  font-size: var(--fontSize-6);
+  font-weight: var(--fontWeight-bold);
+  color: var(--ink-1);
+}
+
+.priceLabel {
+  font-size: var(--fontSize-1);
+  color: var(--ink-2);
+}
+
+.pricingDescription {
+  font-size: var(--fontSize-2);
+  color: var(--ink-2);
+  line-height: var(--lineHeight-relaxed);
+}
+
+.scopeConstraint {
+  font-size: var(--fontSize-1);
+  color: var(--ink-3);
+  font-style: italic;
+}
+
+.cta {
+  display: block;
+  text-align: center;
+  width: 100%;
+  padding: var(--spacing-2) var(--spacing-3);
+  background: var(--accent);
+  color: var(--surface-1);
+  border: none;
+  border-radius: var(--radius-1);
+  font-weight: var(--fontWeight-bold);
+  text-decoration: none;
+  min-height: 44px;
+  line-height: 28px;
+  transition: background 200ms ease;
+}
+
+.cta:hover {
+  background: var(--accent-hover);
+}
+
+.faqSection {
+  padding: var(--spacing-5) 0;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.faqItem {
+  background: var(--surface-2);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-2);
+}
+
+.faqQuestion {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: var(--fontSize-4);
+  font-weight: var(--fontWeight-bold);
+  color: var(--ink-1);
+}
+
+.chevron {
+  flex-shrink: 0;
+  transition: transform var(--duration-1) ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.faqAnswer {
+  padding: 0 var(--spacing-3) var(--spacing-3);
+  font-size: var(--fontSize-2);
+  line-height: var(--lineHeight-relaxed);
+  color: var(--ink-2);
+}
+
+.backLinkWrapper {
+  padding: var(--spacing-5) 0;
+}
+
+.backLink {
+  color: var(--ink-1);
+  text-decoration: underline;
+  font-size: var(--fontSize-2);
+}
+
+.backLink:hover {
+  opacity: 0.8;
+}
