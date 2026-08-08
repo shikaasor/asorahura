@@ -1,8 +1,29 @@
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import crypto from "crypto";
 import { NextRequest } from "next/server";
 import { verifyPaddleWebhookSignature } from "../src/lib/paddle-webhook";
-import { POST } from "../src/app/api/paddle/webhook/route";
+
+const { contactsUpdate, sendPurchaseConfirmationEmail, sendOrderNotificationEmail } = vi.hoisted(() => ({
+  contactsUpdate: vi.fn(),
+  sendPurchaseConfirmationEmail: vi.fn(),
+  sendOrderNotificationEmail: vi.fn(),
+}));
+
+vi.mock("resend", () => {
+  class Resend {
+    contacts = {
+      update: contactsUpdate,
+    };
+  }
+  return { Resend };
+});
+
+vi.mock("../src/lib/email", () => ({
+  sendPurchaseConfirmationEmail,
+  sendOrderNotificationEmail,
+}));
+
+const { POST } = await import("../src/app/api/paddle/webhook/route");
 
 const SECRET = "whsec_test_secret";
 
@@ -53,9 +74,18 @@ describe("verifyPaddleWebhookSignature", () => {
 
 describe("POST /api/paddle/webhook", () => {
   const originalSecret = process.env.PADDLE_WEBHOOK_SECRET;
+  const originalFetch = global.fetch;
 
   beforeEach(() => {
     process.env.PADDLE_WEBHOOK_SECRET = SECRET;
+    process.env.RESEND_AUDIENCE_ID = "aud_123";
+    contactsUpdate.mockReset();
+    contactsUpdate.mockResolvedValue({ data: { id: "c1" }, error: null });
+    sendPurchaseConfirmationEmail.mockReset();
+    sendPurchaseConfirmationEmail.mockResolvedValue({ success: true });
+    sendOrderNotificationEmail.mockReset();
+    sendOrderNotificationEmail.mockResolvedValue({ success: true });
+    global.fetch = vi.fn().mockResolvedValue({ ok: true }) as unknown as typeof fetch;
   });
 
   afterEach(() => {
@@ -64,6 +94,7 @@ describe("POST /api/paddle/webhook", () => {
     } else {
       process.env.PADDLE_WEBHOOK_SECRET = originalSecret;
     }
+    global.fetch = originalFetch;
   });
 
   function makeRequest(body: string, signature: string | null) {
@@ -117,6 +148,76 @@ describe("POST /api/paddle/webhook", () => {
       type: "subscription.created",
       data: { id: "sub_123" },
     });
+    const signature = sign(body, SECRET);
+
+    const res = await POST(makeRequest(body, signature));
+    const json = await res.json();
+
+    expect(res.status).toBe(200);
+    expect(json).toEqual({ ok: true });
+  });
+
+  function makeCompletedBody(overrides: Record<string, unknown> = {}) {
+    return JSON.stringify({
+      event_id: "evt_dfy",
+      type: "transaction.completed",
+      data: {
+        id: "txn_dfy_1",
+        customer_email: "buyer@example.com",
+        items: [{ price: { custom_data: { product: "dfy" } } }],
+        details: { totals: { total: "50000" } },
+        ...overrides,
+      },
+    });
+  }
+
+  it("triggers sendPurchaseConfirmationEmail and sendOrderNotificationEmail with productType dfy", async () => {
+    const body = makeCompletedBody();
+    const signature = sign(body, SECRET);
+
+    const res = await POST(makeRequest(body, signature));
+
+    expect(res.status).toBe(200);
+    expect(sendPurchaseConfirmationEmail).toHaveBeenCalledWith(
+      expect.objectContaining({ productType: "dfy", email: "buyer@example.com", transactionId: "txn_dfy_1" })
+    );
+    expect(sendOrderNotificationEmail).toHaveBeenCalledWith(
+      expect.objectContaining({ productType: "dfy", buyerEmail: "buyer@example.com", transactionId: "txn_dfy_1" })
+    );
+  });
+
+  it("segments the buyer contact as automate-buyer", async () => {
+    const body = makeCompletedBody();
+    const signature = sign(body, SECRET);
+
+    await POST(makeRequest(body, signature));
+
+    expect(contactsUpdate).toHaveBeenCalledWith(
+      expect.objectContaining({
+        email: "buyer@example.com",
+        properties: { segment: "automate-buyer" },
+      })
+    );
+  });
+
+  it("fires a Purchase analytics event via fetch to plausible.io/api/event", async () => {
+    const body = makeCompletedBody();
+    const signature = sign(body, SECRET);
+
+    await POST(makeRequest(body, signature));
+
+    expect(global.fetch).toHaveBeenCalledWith(
+      "https://plausible.io/api/event",
+      expect.objectContaining({
+        method: "POST",
+        body: expect.stringContaining('"product_type":"dfy"'),
+      })
+    );
+  });
+
+  it("still returns 200 when sendPurchaseConfirmationEmail rejects", async () => {
+    sendPurchaseConfirmationEmail.mockRejectedValue(new Error("resend down"));
+    const body = makeCompletedBody();
     const signature = sign(body, SECRET);
 
     const res = await POST(makeRequest(body, signature));
