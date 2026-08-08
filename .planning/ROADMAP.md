@@ -231,11 +231,11 @@ Plans:
   3. Offering #2's copy never implies instant multi-client Gmail onboarding; offering #4's copy never frames itself as AI price research
   4. No dead links: the retired /automate/success URL redirects to /automate/instagram/success
 
-**Plans:** 5 plans across 3 waves — see `.planning/phases/09.1-automations-page-catalog-of-automations-with-detail-pages-pe/`
+**Plans:** 1/5 plans executed
 Plans:
 **Wave 1**
 
-- [ ] 09.1-01-PLAN.md — Offerings data layer in checkout.ts (5 offerings, locked pricing/copy) + analytics event names
+- [x] 09.1-01-PLAN.md — Offerings data layer in checkout.ts (5 offerings, locked pricing/copy) + analytics event names
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
