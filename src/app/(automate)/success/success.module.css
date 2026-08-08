@@ -1,0 +1,149 @@
+.page {
+  padding: var(--spacing-6) var(--spacing-4);
+  background: var(--surface-1);
+  min-height: 60vh;
+}
+
+.inner {
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5);
+}
+
+.header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.headline {
+  font-size: var(--fontSize-6);
+  font-weight: var(--fontWeight-bold);
+  color: var(--ink-1);
+}
+
+.subcopy {
+  font-size: var(--fontSize-3);
+  color: var(--ink-2);
+}
+
+.card {
+  background: var(--surface-2);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-2);
+  padding: var(--spacing-4);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.label {
+  font-size: var(--fontSize-2);
+  font-weight: var(--fontWeight-bold);
+  color: var(--ink-1);
+  margin-bottom: var(--spacing-1);
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: var(--spacing-2) var(--spacing-3);
+  border: 1.5px solid var(--border-2);
+  border-radius: var(--radius-1);
+  font-size: var(--fontSize-2);
+  font-family: inherit;
+  color: var(--ink-1);
+  background: var(--surface-1);
+  outline: none;
+  transition: border-color var(--duration-1) ease;
+}
+
+.textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: var(--accent);
+}
+
+.fieldError {
+  font-size: var(--fontSize-1);
+  color: var(--error);
+}
+
+.formError {
+  font-size: var(--fontSize-2);
+  color: var(--error);
+}
+
+.success {
+  font-size: var(--fontSize-2);
+  color: var(--success);
+}
+
+.scheduleBtn {
+  display: inline-block;
+  text-align: center;
+  padding: var(--spacing-2) var(--spacing-3);
+  border: 1.5px solid var(--accent);
+  border-radius: var(--radius-1);
+  color: var(--accent);
+  font-weight: var(--fontWeight-bold);
+  text-decoration: none;
+}
+
+.scheduleBtn:hover {
+  background: var(--accent);
+  color: var(--surface-1);
+}
+
+.submit {
+  width: 100%;
+  background: var(--accent);
+  color: var(--surface-1);
+  font-size: var(--fontSize-2);
+  font-weight: var(--fontWeight-bold);
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--radius-1);
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background var(--duration-1) ease;
+}
+
+.submit:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.nextRung {
+  text-align: center;
+  font-size: var(--fontSize-2);
+  color: var(--ink-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.nextRungLink {
+  color: var(--accent);
+  font-weight: var(--fontWeight-bold);
+}
