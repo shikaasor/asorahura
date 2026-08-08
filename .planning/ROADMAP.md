@@ -189,12 +189,25 @@ Plans:
 ### Phase 09.1: Automations Page — catalog of automations with detail pages per offering (INSERTED)
 
 **Goal:** A new catalog page lists all five automation offerings (Instagram comment-to-DM, Email triage on Telegram, Writing constitution + content, Rate-aware invoice and quote, Client onboarding agent); each has its own detail page built on the Phase 7 `/automate` pattern, with Product #1 linking to the existing live page.
-**Requirements**: TBD
+**Requirements**: TBD (no REQ-IDs exist for this urgently-inserted phase; REQUIREMENTS.md was not updated — flagged for roadmap owner)
 **Depends on:** Phase 9
-**Plans:** 0 plans
+**Success Criteria** (what must be TRUE):
+  1. A visitor at /automate sees all five offerings as cards; Instagram comment-to-DM links to its existing live Phase 7 page at /automate/instagram, unmodified
+  2. Each of the four remaining offerings (email-triage, writing-constitution, rate-aware-invoice, client-onboarding) has its own detail page at /automate/[slug] with real, locked pricing and non-placeholder copy — no Paddle checkout, a Join Waitlist CTA to /engage instead
+  3. Offering #2's copy never implies instant multi-client Gmail onboarding; offering #4's copy never frames itself as AI price research
+  4. No dead links: the retired /automate/success URL redirects to /automate/instagram/success
+**Plans:** 5 plans across 3 waves — see `.planning/phases/09.1-automations-page-catalog-of-automations-with-detail-pages-pe/`
 
 Plans:
-- [ ] TBD (run /gsd-plan-phase 09.1 to break down)
+- [ ] 09.1-01-PLAN.md — Offerings data layer in checkout.ts (5 offerings, locked pricing/copy) + analytics event names
+- [ ] 09.1-02-PLAN.md — Shared components: Breadcrumb, OfferingCard, CatalogGrid
+- [ ] 09.1-03-PLAN.md — Move Instagram offering to /automate/instagram (+ success page move, redirect, hardcoded reference fixes)
+- [ ] 09.1-04-PLAN.md — Generic /automate/[slug] detail page for the four waitlist offerings
+- [ ] 09.1-05-PLAN.md — Catalog page (/automate) composition
+**UI hint**: yes
+
+**Note**: Planner resolution on the CONTEXT.md routing/redirect conflict — `/automate` is the catalog page (per the Routing decision and this phase's core goal); no blanket redirect is added on the bare `/automate` path, since that would make the catalog permanently unreachable at its own URL. Old Reel-driven traffic lands on the catalog and reaches Instagram Comment-to-DM one click away via the first card. Flagged for user confirmation — see 09.1-03-PLAN.md objective.
+**Note**: Full Paddle checkout parity for offerings 2–5 remains deferred (per CONTEXT.md); reconciling PROJECT.md/STATE.md's "Product #2 deferred" framing against this five-offering catalog is a roadmap-owner decision, not resolved by this plan set.
 
 ### Phase 10: Assessment Re-point + Enterprise Track
 **Goal**: The assessment serves the new ICP and feeds the ladder; enterprise work keeps a home.
