@@ -79,7 +79,7 @@ describe("POST /api/paddle/webhook", () => {
   it("returns 200 { ok: true } for a valid signature and transaction.completed event", async () => {
     const body = JSON.stringify({
       event_id: "evt_1",
-      event_type: "transaction.completed",
+      type: "transaction.completed",
       data: { id: "txn_123" },
     });
     const signature = sign(body, SECRET);
@@ -92,7 +92,7 @@ describe("POST /api/paddle/webhook", () => {
   });
 
   it("returns 401 { error: 'Unauthorized' } when the signature header is missing", async () => {
-    const body = JSON.stringify({ event_type: "transaction.completed", data: { id: "txn_1" } });
+    const body = JSON.stringify({ type: "transaction.completed", data: { id: "txn_1" } });
 
     const res = await POST(makeRequest(body, null));
     const json = await res.json();
@@ -102,7 +102,7 @@ describe("POST /api/paddle/webhook", () => {
   });
 
   it("returns 401 { error: 'Unauthorized' } when the signature is invalid", async () => {
-    const body = JSON.stringify({ event_type: "transaction.completed", data: { id: "txn_1" } });
+    const body = JSON.stringify({ type: "transaction.completed", data: { id: "txn_1" } });
 
     const res = await POST(makeRequest(body, "ts=123;h1=badhash"));
     const json = await res.json();
@@ -114,7 +114,7 @@ describe("POST /api/paddle/webhook", () => {
   it("returns 200 { ok: true } for a valid signature but unrecognized event type", async () => {
     const body = JSON.stringify({
       event_id: "evt_2",
-      event_type: "subscription.created",
+      type: "subscription.created",
       data: { id: "sub_123" },
     });
     const signature = sign(body, SECRET);
