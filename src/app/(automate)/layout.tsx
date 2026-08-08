@@ -25,7 +25,7 @@ export default function AutomateLayout({
                     <Link href="/terms" className={styles.link}>
                         Terms of Service
                     </Link>
-                    <Link href="/automate#faq" className={styles.link}>
+                    <Link href="/refund" className={styles.link}>
                         Refund Policy
                     </Link>
                 </nav>
