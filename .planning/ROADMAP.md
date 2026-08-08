@@ -145,7 +145,7 @@ Plans:
 - [x] 07-10-PLAN.md — Differentiated DFY/DWY success page + onboarding API route
 - [x] 07-11-PLAN.md — Order confirmation + owner notification emails, automate-buyer segmentation, Purchase event
 - [x] 07-12-PLAN.md — Compose /automate page + closing section
-- [ ] 07-13-PLAN.md — End-to-end human verification checkpoint (real device, real Paddle/Resend/Plausible)
+- [ ] 07-13-PLAN.md — End-to-end human verification checkpoint (real device, real Paddle/Resend/Plausible) — BLOCKED: pending Paddle production approval + live device walkthrough
 **UI hint**: yes
 
 **Note**: `/automate` ships self-contained — logo-only header, own footer, no site nav — until Phase 9 lands. This is the critical path to revenue; Phases 8–11 can flex in priority once this ships.
@@ -228,7 +228,7 @@ Plans:
 | 4. Navigation & Content Polish | v1.0 | 5/5 | Complete | ✓ |
 | 5. Optimization & Launch Readiness | v1.0 | 4/4 | Complete | ✓ |
 | 6. Palette Decision + Token Foundation | v2.0 | 3/3 | Complete   | 2026-08-02 |
-| 7. Product #1 Live + Payments | v2.0 | 12/13 | In Progress|  |
+| 7. Product #1 Live + Payments | v2.0 | 12/13 | Blocked (Paddle prod approval) | - |
 | 8. Design System Rollout | v2.0 | 0/TBD | Not started | - |
 | 9. Homepage & Funnel Reposition | v2.0 | 0/TBD | Not started | - |
 | 10. Assessment Re-point + Enterprise Track | v2.0 | 0/TBD | Not started | - |
