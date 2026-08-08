@@ -35,4 +35,26 @@ describe("trackAnalyticsEvent", () => {
 
     expect(plausible).toHaveBeenCalledWith("Build Map Submit", { props: undefined });
   });
+
+  it("calls window.plausible with the exact event name and props for Offering Card Click", () => {
+    const plausible = vi.fn();
+    (globalThis as { window?: unknown }).window = { plausible };
+
+    trackAnalyticsEvent("Offering Card Click", { offering_id: "instagram" });
+
+    expect(plausible).toHaveBeenCalledWith("Offering Card Click", {
+      props: { offering_id: "instagram" },
+    });
+  });
+
+  it("calls window.plausible with the exact event name and props for Waitlist CTA Click", () => {
+    const plausible = vi.fn();
+    (globalThis as { window?: unknown }).window = { plausible };
+
+    trackAnalyticsEvent("Waitlist CTA Click", { offering_id: "email-triage" });
+
+    expect(plausible).toHaveBeenCalledWith("Waitlist CTA Click", {
+      props: { offering_id: "email-triage" },
+    });
+  });
 });

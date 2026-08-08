@@ -19,7 +19,9 @@ export function trackAnalyticsEvent(
     | "Build Map Submit"
     | "Checkout Opened"
     | "Purchase"
-    | "Success Page Submit",
+    | "Success Page Submit"
+    | "Offering Card Click"
+    | "Waitlist CTA Click",
   props?: Record<string, string | number>
 ): void {
   if (typeof window !== "undefined" && window.plausible) {
