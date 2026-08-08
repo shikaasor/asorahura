@@ -6,7 +6,7 @@ import { getSegment, DEFAULT_SECTOR, type Sector } from "@/lib/assessment";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const FROM = "Asor Ahura <hello@asorahura.com>";
-const CALENDLY_URL = "https://calendly.com/asorahura";
+export const CALENDLY_URL = "https://calendly.com/asorahura";
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://asorahura.vercel.app';
 
 function unsubscribeFooter(email: string) {
@@ -74,6 +74,34 @@ export async function sendBuildMapEmail(
     from: FROM,
     to: email,
     subject: "Your Build Map is ready",
+    text,
+  });
+
+  if (error) return { success: false, error: error.message };
+  return { success: true };
+}
+
+export async function sendOnboardingNotification(params: {
+  product: "dfy" | "dwy";
+  igHandle: string;
+  keyword: string;
+  leadMagnetLink: string;
+  voiceTone: string;
+}): Promise<{ success: boolean; error?: string }> {
+  const { product, igHandle, keyword, leadMagnetLink, voiceTone } = params;
+
+  const text = [
+    `New ${product.toUpperCase()} onboarding submission`,
+    `Instagram handle: ${igHandle}`,
+    `Keyword: ${keyword}`,
+    `Lead magnet link: ${leadMagnetLink}`,
+    `Voice/tone notes: ${voiceTone}`,
+  ].join("\n");
+
+  const { error } = await resend.emails.send({
+    from: FROM,
+    to: process.env.OWNER_EMAIL ?? "hello@asorahura.com",
+    subject: `New ${product.toUpperCase()} onboarding: ${igHandle}`,
     text,
   });
 
