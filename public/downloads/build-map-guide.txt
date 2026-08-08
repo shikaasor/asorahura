@@ -1,0 +1,29 @@
+PLACEHOLDER — Instagram Lead Automation Build Map
+==================================================
+
+This is a placeholder. Replace this file with the real deliverable (4 n8n
+workflow JSON exports, a .env.example template, and a step-by-step
+deployment guide) before this page is used to acquire real leads.
+
+---
+
+What the real Build Map delivers, by tier:
+
+The Build Map (DIY) — Free
+Four n8n workflow files, an environment template, and a deployment guide so
+you can self-host the same Instagram lead automation running live on
+@ai_learnt. You own the system end-to-end; the only ongoing cost is your
+own hosting (roughly $6/mo).
+
+Done For You — $500 one-time
+We provision the server, connect your Meta app and Instagram account, and
+write the messaging in your voice. Live in 3-5 days, no setup work on
+your end.
+
+Done With You — $800 one-time
+We build it alongside you, screen-to-screen, so you understand and can
+maintain every part of the system after launch.
+
+Care Plan — $9.99/mo (optional add-on)
+Token renewals, uptime monitoring, and small copy changes so the system
+keeps running without your attention.
