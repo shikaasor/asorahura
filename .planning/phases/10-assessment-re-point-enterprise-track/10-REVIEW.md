@@ -2,7 +2,7 @@
 phase: 10-assessment-re-point-enterprise-track
 reviewed: 2026-08-09T00:00:00Z
 depth: standard
-files_reviewed: 28
+files_reviewed: 22
 files_reviewed_list:
   - src/app/assessment/deep/actions.ts
   - src/app/assessment/deep/page.tsx
@@ -26,128 +26,115 @@ files_reviewed_list:
   - src/lib/pdf.ts
   - src/lib/prompts.ts
   - src/lib/revenueCalculation.ts
-  - tests/test-assessment-gate-wiring.test.ts
-  - tests/test-assessment-route-consolidation.test.ts
-  - tests/test-assessment-sector-gate.test.ts
-  - tests/test-calendly-removal-emails.test.ts
-  - tests/test-calendly-removal-pages.test.ts
-  - tests/test-engage-enterprise-routing.test.ts
-  - tests/test-enterprise-page.test.ts
-  - tests/test-enterprise-reachability.test.ts
-  - tests/test-revenue-calculation.test.ts
-  - tests/test-revenue-results-screen.test.ts
 findings:
-  critical: 1
-  warning: 6
-  info: 1
-  total: 8
+  critical: 2
+  warning: 5
+  info: 2
+  total: 9
 status: issues_found
 ---
 
 # Phase 10: Code Review Report
 
-**Reviewed:** 2026-08-09
+**Reviewed:** 2026-08-09T00:00:00Z
 **Depth:** standard
-**Files Reviewed:** 28 (some libraries pulled in for cross-reference: `src/lib/assessment.ts`, `src/lib/deepAssessment.ts`, `src/lib/checkout.ts`)
+**Files Reviewed:** 22 source files (+ 10 test files read for context, not separately findable)
 **Status:** issues_found
 
 ## Summary
 
-The phase re-points the assessment flow to a sector gate (`AssessmentSectorGate`) that routes self-serve users through a default-sector quick/deep assessment and routes "Enterprise" clicks to `/enterprise`. Route consolidation (`/assessment/deep` → `/assessment?depth=deep`), Calendly removal from the self-serve funnel, and revenue-opportunity display all work as advertised by the accompanying test suite. However, tracing the actual runtime behavior (not just the string-matching tests) surfaces one real correctness bug in the deep-assessment email path, plus several dead/unreachable code paths left over from the pivot that should be cleaned up or explained, and a couple of quality/robustness gaps.
+Reviewed the assessment/enterprise re-point implementation: the `/assessment` route consolidation, the sector gate, the deep-assessment email pipeline, and the checkout/engage/enterprise routing changes. The route-consolidation and Calendly-removal work matches what the test suite asserts and is internally consistent. Two correctness/security issues were found in `src/app/assessment/deep/actions.ts` (unescaped HTML injection into an email template, and a success response that doesn't reflect actual email delivery outcome), plus several dead-code and validation gaps left over from the checkout/engage refactor.
 
 ## Critical Issues
 
-### CR-01: Deep assessment email always reports success, even on failure
+### CR-01: Unescaped user input interpolated into raw HTML email (HTML injection)
+
+**File:** `src/app/assessment/deep/actions.ts:40-58` (specifically line 44)
+**Issue:** `submitDeepAssessmentForEmail` builds the deep-assessment scorecard email by interpolating `firstName` directly into a raw HTML template string:
+```ts
+<p style="color:#6b7280;margin:0 0 24px">Prepared for ${firstName} · ${sector}</p>
+```
+`firstName` comes from `emailGateSchema`, which only constrains length (`min(1).max(50)`) — it permits any characters, including `<`, `>`, and `"`. Because this string is sent as `html` in `resend.emails.send`, a user can inject arbitrary markup (e.g. `<a href="...">`, `<img onerror=...>`, layout-breaking tags) into the email that is rendered by the recipient's mail client. This is inconsistent with the sibling quick-assessment path, which renders through the `AssessmentReport` React Email component (auto-escaped by JSX).
+**Fix:** Either switch this email to a React Email component (JSX auto-escapes text nodes), or manually HTML-escape `firstName` (and any other interpolated user-controlled string) before building the template, e.g.:
+```ts
+function escapeHtml(s: string) {
+  return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!));
+}
+// ...
+<p ...>Prepared for ${escapeHtml(firstName)} · ${sector}</p>
+```
+
+### CR-02: `submitDeepAssessmentForEmail` reports success even when the email send fails
 
 **File:** `src/app/assessment/deep/actions.ts:82-93`
-**Issue:** `submitDeepAssessmentForEmail` sends the scorecard email like this:
+**Issue:** The `resend.emails.send` call is wrapped in try/catch, but the catch only logs — the function still returns `{ success: true }` unconditionally on line 93 regardless of whether the send succeeded:
 ```ts
 try {
-  await resend.emails.send({ from: "...", to: email, subject: `...`, html });
+  await resend.emails.send({ ... });
 } catch (err) {
   console.error("Deep assessment email failed:", err);
 }
-
 return { success: true };
 ```
-Two problems compound here:
-1. The Resend SDK resolves with `{ data, error }` rather than throwing on API-level failures (invalid recipient, rate limit, etc.) — the code never inspects `error`, so those failures are invisible.
-2. Even for a thrown/rejected promise (network failure), the `catch` block only logs and falls through to the unconditional `return { success: true }` on line 93 — there is no `return` inside the catch, and no `success: false` path exists anywhere in this function.
-
-The caller (`DeepAssessmentShell.handleEmailSubmit`) treats `res.success` as the signal to persist identity to `localStorage` and render `RevenueResultsScreen`, which shows `"Full Scorecard Sent to {firstName}"` (see `RevenueResultsScreen.tsx:112-118`). Because this function can never return `success:false` for an email-send failure, a paying prospect can be told their report was emailed when it was not, with no retry path and no visibility into the failure (the `GOOGLE_SCRIPT_URL` CRM log is also fire-and-forget, so the lead may not be captured anywhere).
-
-**Fix:**
+Callers rely on this signal: `DeepAssessmentShell.handleEmailSubmit` sets `step("results")` and `RevenueResultsScreen` unconditionally renders "Full Scorecard Sent to {firstName}" as soon as `res.success` is true. A transient Resend outage or invalid recipient means the user sees a false confirmation that their report was emailed, with no retry path and no error surfaced. Also note `resend.emails.send` can return `{ error }` without throwing (see the pattern used correctly in `src/lib/email.ts`'s `sendAssessmentEmail`/`sendPurchaseConfirmationEmail`), which this function doesn't check at all.
+**Fix:** Check the returned `error` field and propagate failure to the caller:
 ```ts
-try {
-  const { error } = await resend.emails.send({
-    from: "Asor Ahura <hello@asorahura.com>",
-    to: email,
-    subject: `Your Full AI Opportunity Discovery Scorecard — ${total}/${DEEP_MAX_SCORE} · ${tier.name}`,
-    html,
-  });
-  if (error) {
-    console.error("Deep assessment email failed:", error.message);
-    return { success: false, error: "Could not send your scorecard email. Please try again." };
-  }
-} catch (err) {
-  console.error("Deep assessment email threw:", err);
-  return { success: false, error: "Could not send your scorecard email. Please try again." };
+const { error } = await resend.emails.send({ ... });
+if (error) {
+  console.error("Deep assessment email failed:", error.message);
+  return { success: false, error: "We couldn't send your scorecard email. Please try again." };
 }
-
 return { success: true };
 ```
-This matches the `{ error }`-checking pattern already used elsewhere in `src/lib/email.ts` (`sendAssessmentEmail`, `sendPurchaseConfirmationEmail`, etc.).
 
 ## Warnings
 
-### WR-01: `checkout/page.tsx` enterprise CTA branch is permanently dead code
+### WR-01: `engage` success/error UI is dead code — `submitInquiry` always redirects
 
-**File:** `src/app/checkout/page.tsx:24,115-129`
-**Issue:** `const isEnterprise = false;` is a hardcoded literal — it is never derived from `selectedTier`, a query param, or any other state. `TierId` (`src/lib/checkout.ts:1`) only ever contains `"discovery" | "strategy"`, so there is no way for this flag to become `true`. The entire `enterpriseCta` JSX block (lines 115-123), including the `/engage?enterprise=true` link that `tests/test-calendly-removal-pages.test.ts` asserts exists via plain string matching, is unreachable in the running app.
-**Fix:** Either remove the dead branch and its CSS (`enterpriseCta`, `enterpriseCtaText`, `enterpriseBtn` in `checkout.module.css`) if enterprise tiers are never sold through `/checkout`, or wire `isEnterprise` to a real condition (e.g. an `enterprise` tier added to `tiers`, or a `?tier=enterprise` redirect from `/services`) if the intent was to support it.
+**File:** `src/app/engage/actions.ts:5,40-44`, `src/app/engage/page.tsx:19-27,45-48`
+**Issue:** `submitInquiry` is typed `Promise<{ success: boolean; message: string } | never>`, but every code path ends in `redirect(...)` (line 41 or 43), which throws internally — the function never actually resolves to the `{ success, message }` object. `EngageFormInner.handleSubmit` (page.tsx:19-27) awaits the result and branches on `result.success` / `result.message`, and the JSX even has a dedicated `status === "success"` render branch (`styles.successMessage`, lines 45-48) that can never be reached in practice. This is misleading: a future maintainer could reasonably assume the success/error UI is live and reachable.
+**Fix:** Either make `submitInquiry` genuinely return a result object (validate and return `{success:false, message}` on validation errors instead of redirecting) and drop the `never` union, or remove the now-unreachable success/error state handling from `page.tsx` and document that the action always navigates away.
 
-### WR-02: `engage` server action's declared return type is never actually produced — client success/error UI is unreachable
+### WR-02: Checkout page carries dead "enterprise" CTA branch from the pre-refactor flow
 
-**File:** `src/app/engage/actions.ts:5,40-44`, `src/app/engage/page.tsx:19-27,45-48,146`
-**Issue:** `submitInquiry` is typed `Promise<{ success: boolean; message: string } | never>`, but every code path ends in `redirect(...)` (either to Calendly for enterprise or to `/engage/confirmation`). Next.js's `redirect()` inside a Server Action always short-circuits normal return via navigation — the calling client code never receives a plain `{ success, message }` object. As a result, `engage/page.tsx`'s `status === "success"` / `status === "error"` branches (rendering `message`) can never be reached in practice; a submission either navigates away or the CRM webhook silently fails (caught and swallowed at `actions.ts:35-37`) while the user is redirected anyway with no error surfaced.
-**Fix:** Remove the dead success/error UI and the misleading return type, or restructure to actually return a result object (skip `redirect()` and let the client navigate via `router.push` after checking a real success/failure result) if inline error feedback is a requirement.
+**File:** `src/app/checkout/page.tsx:24,115-123`; `src/app/checkout/checkout.module.css:293-321`
+**Issue:** `const isEnterprise = false;` is a hardcoded literal that is never reassigned or derived from anything (checkout's `TierId` is now only `"discovery" | "strategy"` per `src/lib/checkout.ts` — there is no enterprise tier left in checkout). This makes the entire `isEnterprise ? ... : ...` branch (lines 115-123) and its CSS classes (`.enterpriseCta`, `.enterpriseCtaText`, `.enterpriseBtn`) permanently unreachable dead code.
+**Fix:** Remove the `isEnterprise` flag, the dead JSX branch, and the associated unused CSS rules, since enterprise engagement is now routed exclusively through `/engage?enterprise=true` from `/enterprise` and `/services`.
 
-### WR-03: Sector persistence (`asor_user_sector`) is dead code — read but never written
-
-**File:** `src/components/assessment/AssessmentShell.tsx:26,46-53`, `src/components/assessment/DeepAssessmentShell.tsx:25,50-55`
-**Issue:** Both shells read `localStorage.getItem("asor_user_sector")` on mount to restore a previously selected sector, but no code anywhere in the repository ever calls `localStorage.setItem("asor_user_sector", ...)`. `AssessmentSectorGate` (the only entry point) does not collect or persist a sector — "Small Business" just calls `onContinue()` and sector stays at `DEFAULT_SECTOR` for the whole flow, per the comment at `AssessmentShell.tsx:28-29`. Combined, this means:
-  - The `SECTOR_KEY` restore branches are unreachable dead code.
-  - All `sectorSpecific` question overrides for Law/Finance/Real Estate/Construction in `src/lib/assessment.ts` and the sector-specific F-dimension questions (ids 21-36) in `src/lib/deepAssessment.ts` are unreachable from the self-serve assessment shells — only the "Other / Cross-Industry" defaults are ever served.
-**Fix:** If self-serve users are intentionally locked to the default sector post-pivot, delete the dead `SECTOR_KEY` read logic (and consider whether the unused sector-specific question data should be removed or documented as reserved for a future/enterprise flow). If sector selection was meant to survive the pivot, wire `AssessmentSectorGate` (or another entry point) to actually persist the chosen sector.
-
-### WR-04: `DeepAssessmentShell` silently discards the email-submission result on the repeat-user fast path
-
-**File:** `src/components/assessment/DeepAssessmentShell.tsx:102-109`
-**Issue:** When `savedIdentity` exists, `await submitDeepAssessmentForEmail(...)` is called but its result is never checked — unlike `handleEmailSubmit` just below, which checks `res.success` and sets `emailError`. Given CR-01 (the action can silently fail while still often reporting non-actionable state), a repeat visitor who hits an email failure gets no error feedback at all and is taken straight to the results screen claiming the email was sent.
-**Fix:** Check the result the same way `handleEmailSubmit` does, or explicitly document why this path intentionally ignores the outcome.
-
-### WR-05: Engage form fields are forwarded to an external webhook with no schema validation or sanitization
+### WR-03: `engage` inquiry form has no server-side validation
 
 **File:** `src/app/engage/actions.ts:8-25`
-**Issue:** All form fields (`name`, `email`, `company`, `role`, `challenge`, `context`, etc.) are read via `formData.get(...) as string` with no server-side validation (no email format check, no length limits) before being JSON-posted to `GOOGLE_SCRIPT_URL`. The only validation is client-side HTML `required`/`type="email"`, which is trivially bypassable. If the receiving Google Apps Script writes these values into a spreadsheet, unsanitized leading characters (e.g. `=`, `+`, `-`, `@`) in `name`/`company`/`challenge`/`context` create a classic CSV/spreadsheet-formula-injection risk when the sheet is later opened in Excel/Sheets by a human.
-**Fix:** Validate the inbound fields with a schema (e.g. zod, similar to `emailGateSchema` used elsewhere) before forwarding, and/or prefix values that start with `=`, `+`, `-`, `@` with a `'` (or strip them) before sending to the spreadsheet-backed webhook.
+**Issue:** Every field is read via `formData.get(x) as string` and forwarded directly to the CRM webhook (`GOOGLE_SCRIPT_URL`). There is no server-side validation of required fields, email format, or string length — validation exists only via the browser's HTML5 `required` attributes on the client (`src/app/engage/page.tsx`), which can trivially be bypassed (disabled JS, direct POST, devtools). Malformed or empty data can reach the CRM record undetected.
+**Fix:** Validate `formData` with a zod schema (similar to `emailGateSchema`) before constructing `inquiry`, and return an error result instead of proceeding to `redirect()` when validation fails.
 
-### WR-06: `AssessmentReport.tsx` "Download Full Scorecard PDF" button links to an unrelated static asset, not the generated report
+### WR-04: Deep-assessment "returning user" resubmission ignores send failure entirely
+
+**File:** `src/components/assessment/DeepAssessmentShell.tsx:100-109`
+**Issue:** When a user has a `savedIdentity` in localStorage, `handleAnswer` calls `submitDeepAssessmentForEmail(...)` but never inspects the returned `{ success, error }` — it unconditionally proceeds to `setStep("results")` and the results screen displays "Full Scorecard Sent to {firstName}". Combined with CR-02, this compounds the risk of users being told their report was sent when it wasn't, with no error path at all for this branch (unlike the `email-gate` branch, which does check `res.success`).
+**Fix:** Check the result and, on failure, fall back to the `email-gate` step (or show an inline retry) instead of silently proceeding to "results".
+
+### WR-05: Static "Download Full Scorecard PDF" link is unrelated to the personalized PDF actually generated/attached
 
 **File:** `src/emails/AssessmentReport.tsx:82-96`
-**Issue:** The first CTA button hardcodes `href="https://asorahura.com/ai-readiness-scorecard.pdf"` — a generic, presumably static file — while the actual personalized PDF (built per-recipient in `src/lib/pdf.ts` via `generateAssessmentPDF`) is attached to the email separately (see `email.ts:53-59`, `232-238`). The button text ("Download Full Scorecard PDF") implies it links to the recipient's own report, which it does not; if that static path doesn't exist/isn't maintained, this is a dead link inside every assessment email sent.
-**Fix:** Either remove this button (the personalized PDF is already attached) or point it at something that actually resolves for this recipient.
+**Issue:** The email includes a button linking to a hardcoded static asset (`https://asorahura.com/ai-readiness-scorecard.pdf`), while the actual personalized PDF (generated per-user in `src/lib/pdf.ts::generateAssessmentPDF`) is sent as an email attachment via `sendAssessmentEmail`/`sendAssessmentEmailSequence`. These are two different files with no guarantee the static asset exists or is current, and the button's copy ("Download Full Scorecard PDF") implies it's the user's personalized report when it isn't.
+**Fix:** Either remove this button (the attachment already delivers the personalized PDF) or point it at the same generated PDF via a signed/download URL, and clarify the copy if the two are intentionally different documents.
 
 ## Info
 
-### IN-01: `deep/actions.ts` GOOGLE_SCRIPT_URL POST is fire-and-forget with no `await`
+### IN-01: `FormData.get()` can return `null`, silently mis-typed via `as string`
 
-**File:** `src/app/assessment/deep/actions.ts:60-80`
-**Issue:** Unlike `engage/actions.ts`, which `await`s its `GOOGLE_SCRIPT_URL` POST (allowing the request to actually complete before the serverless function may be torn down), this call is not awaited — only `.catch(() => {})` is attached. On some serverless runtimes, an un-awaited fetch can be aborted when the response is returned to the caller, silently dropping the CRM log entry.
-**Fix:** `await` the fetch (already wrapped in a `.catch`, so this is low-risk) to ensure the log write completes before the function returns, consistent with `engage/actions.ts`.
+**File:** `src/app/engage/actions.ts:13-24`
+**Issue:** `formData.get("name") as string` etc. type-casts away the `FormDataEntryValue | null` return type. If a field is absent (e.g. a malicious/bypassed request omits it), `null` flows through as if it were a `string`, and gets serialized into the CRM JSON payload as `null` without any TypeScript warning, since the cast suppresses the check.
+**Fix:** Use a small helper (`String(formData.get("name") ?? "")`) or validate via zod (see WR-03) rather than blind `as string` casts.
+
+### IN-02: Hardcoded Calendly URL duplicates the exported `CALENDLY_URL` constant
+
+**File:** `src/app/engage/actions.ts:41`; `src/lib/email.ts:11`
+**Issue:** `src/lib/email.ts` exports `CALENDLY_URL` and it's already imported/used elsewhere (`src/app/automate/instagram/success/page.tsx`), but `engage/actions.ts` hardcodes the same literal string `"https://calendly.com/asorahura"` instead of importing the constant. If the URL ever changes, this call site is easy to miss.
+**Fix:** `import { CALENDLY_URL } from "@/lib/email"; redirect(CALENDLY_URL);`
 
 ---
 
-_Reviewed: 2026-08-09_
+_Reviewed: 2026-08-09T00:00:00Z_
 _Reviewer: Claude (gsd-code-reviewer)_
 _Depth: standard_
