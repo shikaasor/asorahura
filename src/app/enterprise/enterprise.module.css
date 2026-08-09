@@ -1,0 +1,156 @@
+.page {
+  background: var(--surface-1);
+  color: var(--ink-1);
+}
+
+.hero {
+  padding: var(--spacing-6) 0;
+  background: var(--surface-1);
+  text-align: center;
+}
+
+.heroTitle {
+  font-size: var(--fontSize-7);
+  color: var(--ink-1);
+  margin-bottom: var(--spacing-3);
+}
+
+.heroTagline {
+  font-size: var(--fontSize-4);
+  color: var(--ink-2);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.sectionHeading {
+  font-size: var(--fontSize-6);
+  color: var(--ink-1);
+  margin-bottom: var(--spacing-5);
+  text-align: center;
+}
+
+.verticalsSection {
+  padding: var(--spacing-6) 0;
+  background: var(--surface-2);
+}
+
+.verticalsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--spacing-4);
+}
+
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--surface-3);
+  border-radius: var(--radius-2);
+  padding: var(--spacing-4);
+}
+
+.cardTitle {
+  font-size: var(--fontSize-4);
+  color: var(--ink-1);
+  margin-bottom: var(--spacing-2);
+}
+
+.regulation {
+  font-size: var(--fontSize-3);
+  color: var(--ink-3);
+  font-weight: 400;
+}
+
+.cardDescription {
+  color: var(--ink-2);
+  margin-bottom: var(--spacing-3);
+}
+
+.cardCta {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.cardCta:hover {
+  color: var(--accent-hover);
+}
+
+.caseStudiesSection {
+  padding: var(--spacing-6) 0;
+  background: var(--surface-1);
+}
+
+.caseStudiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+}
+
+.caseHeadline {
+  color: var(--ink-2);
+}
+
+.sectionCta {
+  display: block;
+  text-align: center;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.sectionCta:hover {
+  color: var(--accent-hover);
+}
+
+.tiersSection {
+  padding: var(--spacing-6) 0;
+  background: var(--surface-2);
+}
+
+.tiersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--spacing-4);
+}
+
+.tierCard {
+  display: block;
+  background: var(--surface-1);
+  border: 1px solid var(--surface-3);
+  border-radius: var(--radius-2);
+  padding: var(--spacing-4);
+  text-decoration: none;
+}
+
+.tierName {
+  color: var(--ink-1);
+  font-weight: 600;
+  margin-bottom: var(--spacing-2);
+}
+
+.tierPrice {
+  color: var(--accent);
+}
+
+.ctaSection {
+  padding: var(--spacing-6) 0;
+  background: var(--surface-1);
+  text-align: center;
+}
+
+.ctaSubtext {
+  color: var(--ink-2);
+  margin-bottom: var(--spacing-4);
+}
+
+.primaryCta {
+  display: inline-block;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: var(--fontSize-4);
+}
+
+.primaryCta:hover {
+  color: var(--accent-hover);
+}
