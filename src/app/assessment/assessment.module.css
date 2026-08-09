@@ -1,13 +1,13 @@
 .page {
   min-height: 100vh;
-  background: #fff;
+  background: var(--surface-1);
   overflow-x: hidden;
 }
 
 .hero {
-  background: #0a0a0a;
-  color: #fff;
-  padding: 5rem 2rem 4rem;
+  background: var(--surface-1);
+  color: var(--ink-1);
+  padding: var(--spacing-6) var(--spacing-4) var(--spacing-5);
 }
 
 .heroInner {
@@ -20,16 +20,16 @@
 }
 
 .heroTitle {
-  font-size: clamp(1.75rem, 4vw, 2.75rem);
-  font-weight: 800;
+  font-size: var(--fontSize-6);
+  font-weight: var(--fontWeight-bold);
   line-height: 1.15;
   letter-spacing: -0.03em;
-  color: #fff;
+  color: var(--ink-1);
 }
 
 .heroSub {
-  font-size: 1.1rem;
-  color: #9ca3af;
+  font-size: var(--fontSize-3);
+  color: var(--ink-3);
   line-height: 1.6;
   max-width: 520px;
   margin: 0 auto;
@@ -44,23 +44,27 @@
 }
 
 .pill {
-  border: 1px solid #374151;
+  border: 1px solid var(--border-2);
   border-radius: 999px;
   padding: 0.3rem 0.85rem;
   font-size: 0.8rem;
-  color: #9ca3af;
+  color: var(--ink-3);
   letter-spacing: 0.01em;
 }
 
 .shell {
   max-width: 640px;
   margin: 0 auto;
-  padding: 4rem 2rem 6rem;
+  padding: var(--spacing-6) var(--spacing-4) var(--spacing-6);
 }
 
 @media (max-width: 640px) {
   .hero {
     padding: 3rem 1.25rem 2.5rem;
+  }
+
+  .heroTitle {
+    font-size: var(--fontSize-5);
   }
 
   .shell {

@@ -11,21 +11,21 @@ export default function CheckoutSuccessPage() {
         {/* Confirmation header */}
         <div className="text-center space-y-4">
           <div className="text-5xl">&#x2705;</div>
-          <h1 className="text-3xl font-bold text-gray-900">Payment confirmed.</h1>
-          <p className="text-gray-600 text-lg">
+          <h1 className="text-3xl font-bold text-[var(--ink-1)]">Payment confirmed.</h1>
+          <p className="text-[var(--ink-2)] text-lg">
             Now book your discovery call so we can map out exactly how AI will work for your
             business.
           </p>
-          <p className="text-gray-500 text-sm">
+          <p className="text-[var(--ink-2)] text-sm">
             Check your inbox for a receipt from Paddle. Questions?{" "}
-            <a href="mailto:hello@asorahura.com" className="underline text-gray-700">
+            <a href="mailto:hello@asorahura.com" className="underline text-[var(--ink-1)]">
               hello@asorahura.com
             </a>
           </p>
         </div>
 
         {/* Embedded Calendly */}
-        <div className="rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+        <div className="rounded-xl overflow-hidden border border-[var(--border-1)] shadow-sm">
           <iframe
             src="https://calendly.com/asorahura"
             width="100%"
@@ -38,7 +38,7 @@ export default function CheckoutSuccessPage() {
         <div className="text-center">
           <Link
             href="/"
-            className="text-sm text-gray-400 underline hover:text-gray-600 transition-colors"
+            className="text-sm text-[var(--ink-3)] underline hover:text-[var(--ink-2)] transition-colors"
           >
             Return to homepage
           </Link>

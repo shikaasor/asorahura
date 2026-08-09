@@ -10,7 +10,7 @@ export function TrustBadges() {
       {badges.map((b) => (
         <div
           key={b.label}
-          className="flex items-center gap-2 border border-gray-200 rounded-full px-4 py-2 text-sm text-gray-600"
+          className="flex items-center gap-2 border border-[var(--border-1)] rounded-full px-4 py-2 text-sm text-[var(--ink-2)]"
         >
           <span>{b.icon}</span>
           <span>{b.label}</span>
