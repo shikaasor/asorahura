@@ -1,0 +1,253 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+/* Revenue score block */
+.scoreBlock {
+  text-align: center;
+  padding: var(--spacing-6) var(--spacing-4);
+  background: var(--surface-2);
+  border-radius: var(--radius-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  align-items: center;
+}
+
+.scoreLabel {
+  font-size: var(--fontSize-2);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.revenueAmount {
+  font-size: var(--fontSize-7);
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.revenuePeriod {
+  font-size: var(--fontSize-4);
+  font-weight: 400;
+  color: var(--ink-2);
+  margin-left: 0.1em;
+}
+
+.tier {
+  font-size: var(--fontSize-3);
+  font-weight: 600;
+  color: var(--ink-1);
+  margin-top: var(--spacing-2);
+}
+
+/* Description */
+.description {
+  background: var(--surface-1);
+  border-radius: var(--radius-2);
+  padding: var(--spacing-4);
+  font-size: var(--fontSize-2);
+  color: var(--ink-2);
+  line-height: 1.7;
+  border: 1px solid var(--surface-3);
+}
+
+/* Automations */
+.automations {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.automationsTitle {
+  font-size: var(--fontSize-4);
+  font-weight: 700;
+  color: var(--ink-1);
+  margin-bottom: var(--spacing-2);
+}
+
+.automationRow {
+  padding: var(--spacing-3);
+  border: 1px solid var(--surface-3);
+  border-radius: var(--radius-2);
+  background: var(--surface-1);
+}
+
+.automationText {
+  font-size: var(--fontSize-2);
+  color: var(--ink-1);
+  line-height: 1.5;
+}
+
+/* Dimension breakdown (deep mode) */
+.sectionTitle {
+  font-size: var(--fontSize-2);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+  margin-bottom: var(--spacing-2);
+}
+
+.dimensions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.dimCard {
+  border: 1px solid var(--surface-3);
+  border-radius: var(--radius-2);
+  padding: var(--spacing-3);
+  background: var(--surface-1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.dimCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+}
+
+.dimCardLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.dimCode {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: var(--radius-2);
+  background: var(--accent);
+  color: var(--surface-1);
+  font-size: 0.7rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.dimName {
+  font-size: var(--fontSize-2);
+  font-weight: 700;
+  color: var(--ink-1);
+}
+
+.dimScore {
+  font-size: var(--fontSize-2);
+  font-weight: 800;
+  color: var(--ink-1);
+  white-space: nowrap;
+}
+
+.dimBar {
+  height: 4px;
+  background: var(--surface-3);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.dimFill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.dimInterpret {
+  font-size: var(--fontSize-2);
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: var(--surface-3);
+}
+
+/* Email banner */
+.emailBanner {
+  display: flex;
+  gap: var(--spacing-3);
+  align-items: flex-start;
+  background: var(--surface-2);
+  border: 1px solid var(--surface-3);
+  border-radius: var(--radius-2);
+  padding: var(--spacing-3) var(--spacing-4);
+}
+
+.emailCheck {
+  font-size: var(--fontSize-3);
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.emailBannerTitle {
+  font-size: var(--fontSize-2);
+  font-weight: 700;
+  color: var(--ink-1);
+}
+
+.emailBannerSub {
+  font-size: var(--fontSize-2);
+  color: var(--ink-2);
+  margin-top: 0.2rem;
+  line-height: 1.5;
+}
+
+/* CTA */
+.cta {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.ctaBtn {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--surface-1);
+  padding: var(--spacing-3) var(--spacing-5);
+  border-radius: var(--radius-2);
+  font-size: var(--fontSize-3);
+  font-weight: 700;
+  transition: background 0.15s ease;
+}
+
+.ctaBtn:hover {
+  background: var(--accent-hover);
+}
+
+@media (max-width: 640px) {
+  .wrap {
+    gap: var(--spacing-4);
+  }
+
+  .scoreBlock {
+    padding: var(--spacing-5) var(--spacing-3);
+  }
+
+  .description {
+    padding: var(--spacing-3);
+  }
+
+  .ctaBtn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .cta {
+    width: 100%;
+  }
+}
