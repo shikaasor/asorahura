@@ -12,7 +12,7 @@
 .skeleton {
   position: absolute;
   inset: 0;
-  background: #f3f4f6;
+  background: var(--surface-3);
   border-radius: 0.75rem;
   display: flex;
   align-items: center;
@@ -23,20 +23,20 @@
 
 .skeletonText {
   font-size: 0.875rem;
-  color: #9ca3af;
+  color: var(--ink-3);
 }
 
 .error {
   padding: 1rem 1.25rem;
-  border: 1px solid #fecaca;
+  border: 1px solid var(--error);
   border-radius: 0.75rem;
-  background: #fef2f2;
-  color: #dc2626;
+  background: var(--surface-1);
+  color: var(--error);
   font-size: 0.875rem;
 }
 
 .testNote {
   font-size: 0.75rem;
-  color: #9ca3af;
+  color: var(--ink-3);
   text-align: center;
 }
