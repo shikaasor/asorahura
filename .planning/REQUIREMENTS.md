@@ -93,8 +93,8 @@
 
 ### Enterprise Track
 
-- [ ] **ENT-01**: An enterprise track page carries the case studies, the four regulated verticals, the `/engage` intake, and the `/services` tiers
-- [ ] **ENT-02**: The enterprise track is reachable from the footer and a secondary nav slot, never the primary path
+- [x] **ENT-01**: An enterprise track page carries the case studies, the four regulated verticals, the `/engage` intake, and the `/services` tiers
+- [x] **ENT-02**: The enterprise track is reachable from the footer and a secondary nav slot, never the primary path
 
 ### Cleanup and Consistency
 
@@ -201,8 +201,8 @@ Deferred to a later milestone. Tracked but not in this roadmap.
 | ASSESS-14 | Phase 10 | Pending |
 | ASSESS-15 | Phase 10 | Pending |
 | ASSESS-16 | Phase 10 | Pending |
-| ENT-01 | Phase 10 | Pending |
-| ENT-02 | Phase 10 | Pending |
+| ENT-01 | Phase 10 | Complete |
+| ENT-02 | Phase 10 | Complete |
 | POLISH-01 | Phase 11 | Pending |
 | POLISH-02 | Phase 11 | Pending |
 | POLISH-03 | Phase 11 | Pending |
