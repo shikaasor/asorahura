@@ -1,6 +1,6 @@
 .section {
   padding: 7rem 0;
-  background: var(--bg-surface, #080E1A);
+  background: var(--surface-2);
   position: relative;
   overflow: hidden;
 }
@@ -30,39 +30,39 @@
 
 .sectionLabel {
   text-align: center;
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: var(--fontSize-1);
+  font-weight: var(--fontWeight-bold);
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--gold, #C9A060);
-  margin-bottom: 1rem;
+  color: var(--accent);
+  margin-bottom: var(--spacing-3);
 }
 
 .heading {
   font-family: var(--font-serif);
-  font-size: 2.5rem;
+  font-size: var(--fontSize-6);
   font-weight: 700;
   text-align: center;
-  color: #EDF2F7;
-  margin-bottom: 3.5rem;
+  color: var(--ink-1);
+  margin-bottom: var(--spacing-6);
   letter-spacing: -0.01em;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  gap: var(--spacing-4);
 }
 
 .card {
-  background: var(--bg-card, #0D1525);
+  background: var(--surface-3);
   border-radius: 1rem;
-  padding: 2.5rem;
+  padding: var(--spacing-6);
   border: 1px solid rgba(255, 255, 255, 0.07);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 1.75rem;
+  gap: var(--spacing-5);
   margin: 0;
   position: relative;
   transition: box-shadow 0.25s ease, border-color 0.25s ease;
@@ -90,29 +90,29 @@
 .quote {
   font-family: var(--font-sans);
   font-style: normal;
-  font-size: 0.9375rem;
+  font-size: var(--fontSize-2);
   line-height: 1.8;
-  color: #8B9BB4;
+  color: var(--ink-2);
   flex: 1;
 }
 
 .attribution {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  padding-top: 1.25rem;
+  gap: var(--spacing-1);
+  padding-top: var(--spacing-4);
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .attribution strong {
-  font-size: 0.9375rem;
+  font-size: var(--fontSize-2);
   font-weight: 700;
-  color: #EDF2F7;
+  color: var(--ink-1);
 }
 
 .role {
-  font-size: 0.8125rem;
-  color: var(--gold, #C9A060);
+  font-size: var(--fontSize-1);
+  color: var(--accent);
   letter-spacing: 0.02em;
 }
 
@@ -128,6 +128,6 @@
   }
 
   .heading {
-    font-size: 2rem;
+    font-size: var(--fontSize-5);
   }
 }

@@ -1,6 +1,6 @@
 .section {
   padding: 8rem 0 7rem;
-  background: var(--bg-base, #04080F);
+  background: var(--surface-1);
   position: relative;
   overflow: hidden;
 }
@@ -48,18 +48,18 @@
 .copy {
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+  gap: var(--spacing-5);
 }
 
 .eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 600;
+  gap: var(--spacing-2);
+  font-size: var(--fontSize-1);
+  font-weight: var(--fontWeight-bold);
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--gold, #C9A060);
+  color: var(--accent);
   margin: 0;
 }
 
@@ -68,42 +68,42 @@
   display: inline-block;
   width: 24px;
   height: 1px;
-  background: var(--gold, #C9A060);
+  background: var(--accent);
   flex-shrink: 0;
 }
 
 .headline {
   font-family: var(--font-serif);
-  font-size: 3.25rem;
+  font-size: var(--fontSize-7);
   line-height: 1.12;
   font-weight: 700;
   letter-spacing: -0.01em;
-  color: #EDF2F7;
+  color: var(--ink-1);
   margin: 0;
 }
 
 .subheading {
-  font-size: 1.0625rem;
+  font-size: var(--fontSize-3);
   line-height: 1.7;
-  color: #7A8FA8;
+  color: var(--ink-2);
   max-width: 490px;
   margin: 0;
 }
 
 .actions {
   display: flex;
-  gap: 1rem;
+  gap: var(--spacing-3);
   flex-wrap: wrap;
 }
 
 .primaryBtn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  background: var(--gold, #C9A060);
-  color: #04080F;
-  padding: 0.9rem 1.875rem;
-  font-size: 0.9375rem;
+  gap: var(--spacing-2);
+  background: var(--accent);
+  color: var(--ink-1);
+  padding: var(--spacing-3) var(--spacing-5);
+  font-size: var(--fontSize-2);
   font-weight: 700;
   border-radius: 6px;
   text-decoration: none;
@@ -115,7 +115,7 @@
 }
 
 .primaryBtn:hover {
-  background: var(--gold-light, #E0B878);
+  background: var(--accent-hover);
   box-shadow: 0 6px 28px rgba(201, 160, 96, 0.45);
   transform: translateY(-2px);
   opacity: 1;
@@ -124,12 +124,12 @@
 .secondaryBtn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--spacing-2);
   background: transparent;
-  color: #94A3B8;
-  padding: 0.9rem 1.875rem;
-  font-size: 0.9375rem;
-  font-weight: 600;
+  color: var(--ink-2);
+  padding: var(--spacing-3) var(--spacing-5);
+  font-size: var(--fontSize-2);
+  font-weight: var(--fontWeight-bold);
   border-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   text-decoration: none;
@@ -140,7 +140,7 @@
 
 .secondaryBtn:hover {
   border-color: rgba(201, 160, 96, 0.4);
-  color: #E2E8F0;
+  color: var(--ink-1);
   transform: translateY(-2px);
   opacity: 1;
 }
@@ -178,7 +178,7 @@
 /* Responsive */
 @media (max-width: 1024px) {
   .headline {
-    font-size: 2.75rem;
+    font-size: var(--fontSize-7);
   }
 }
 
@@ -189,7 +189,7 @@
 
   .grid {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: var(--spacing-6);
   }
 
   .copy {
@@ -219,7 +219,7 @@
   }
 
   .headline {
-    font-size: 2.25rem;
+    font-size: var(--fontSize-6);
   }
 
   .imageWrapper {
@@ -244,7 +244,7 @@
   }
 
   .grid {
-    gap: 2rem;
+    gap: var(--spacing-5);
     width: 100%;
     max-width: 100%;
   }
@@ -256,33 +256,33 @@
   }
 
   .eyebrow {
-    font-size: 0.7rem;
+    font-size: var(--fontSize-1);
     letter-spacing: 0.1em;
   }
 
   .headline {
-    font-size: 1.875rem;
+    font-size: var(--fontSize-6);
     line-height: 1.15;
     overflow-wrap: anywhere;
   }
 
   .subheading {
-    font-size: 0.9375rem;
+    font-size: var(--fontSize-2);
     max-width: 100%;
   }
 
   .actions {
     width: 100%;
     max-width: 100%;
-    gap: 0.625rem;
+    gap: var(--spacing-2);
   }
 
   .primaryBtn,
   .secondaryBtn {
     width: 100%;
     max-width: 100%;
-    padding: 0.875rem 1rem;
-    font-size: 0.875rem;
+    padding: var(--spacing-3) var(--spacing-3);
+    font-size: var(--fontSize-2);
     white-space: normal;
     text-align: center;
     overflow-wrap: anywhere;
@@ -310,7 +310,7 @@
 
 @media (max-width: 380px) {
   .headline {
-    font-size: 1.625rem;
+    font-size: var(--fontSize-5);
   }
 
   .photo {
