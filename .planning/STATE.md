@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Reposition to Small Business Owners
 status: executing
-stopped_at: "Completed 10-04-PLAN.md: Calendly removed from services/checkout, engage enterprise-gated, BOOKING_SLOTS retired"
-last_updated: "2026-08-09T06:06:07.760Z"
+stopped_at: "Completed 10-05-PLAN.md: Calendly removed from assessment emails, PDF, and LLM prompts"
+last_updated: "2026-08-09T06:13:41.673Z"
 last_activity: 2026-08-09
 progress:
   total_phases: 12
   completed_phases: 6
-  total_plans: 45
-  completed_plans: 40
+  total_plans: 51
+  completed_plans: 41
   percent: 50
 ---
 
@@ -26,11 +26,11 @@ See: `.planning/PROJECT.md` (updated 2026-07-31)
 ## Current Position
 
 Phase: 10 (assessment-re-point-enterprise-track) — EXECUTING
-Plan: 4 of 5
+Plan: 5 of 5
 Status: Ready to execute
 Last activity: 2026-08-09
 
-Progress: [█████████░] 91%
+Progress: [████████░░] 80%
 
 ## Performance Metrics
 
@@ -60,6 +60,8 @@ Full decision log in `.planning/PROJECT.md` Key Decisions table. Recent decision
 - [Phase 10]: Enterprise gate uses hardcoded router.push('/enterprise') literal to close open-redirect threat T-10-02
 - [Phase 10]: Enterprise page transcribes case-study/service-tier data locally rather than importing unexported consts from work/services pages
 - [Phase 10]: engage/actions.ts redirect gate switched from score >= 40/70 thresholds to a strict enterprise === 'true' form field check, closing the open-redirect/spoofed-score risk (T-10-08)
+- [Phase 10]: CALENDLY_URL export kept in email.ts (still used by automate/instagram/success page, out of scope for Phase 10)
+- [Phase 10]: Enterprise track (engage/actions.ts) and post-purchase DWY scheduling (checkout/success/page.tsx) intentionally retain Calendly per PROJECT.md constraints
 
 ### Pending Todos
 
@@ -82,11 +84,12 @@ None yet.
 | Phase 10 P01 | 25min | 3 tasks | 8 files |
 | Phase 10 P03 | 12min | 2 tasks | 6 files |
 | Phase 10 P04 | 6min | 3 tasks | 7 files |
+| Phase 10 P05 | 15min | 3 tasks | 6 files |
 
 ## Session Continuity
 
-Last session: 2026-08-09T06:06:07.740Z
-Stopped at: Completed 10-04-PLAN.md: Calendly removed from services/checkout, engage enterprise-gated, BOOKING_SLOTS retired
+Last session: 2026-08-09T06:13:41.661Z
+Stopped at: Completed 10-05-PLAN.md: Calendly removed from assessment emails, PDF, and LLM prompts
 Resume file: None
 
 Next action: `/gsd-plan-phase 6`

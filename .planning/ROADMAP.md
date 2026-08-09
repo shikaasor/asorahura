@@ -289,7 +289,7 @@ Plans:
 - [x] 10-01-PLAN.md — Revenue-calculation utility, sector entry gate, unified RevenueResultsScreen (foundation for Plan 02)
 - [x] 10-03-PLAN.md — /enterprise track page (verticals, case studies, service tiers, intake CTA) + footer/secondary-nav reachability
 - [x] 10-04-PLAN.md — Engage/services/checkout Calendly removal + BOOKING_SLOTS retirement
-- [ ] 10-05-PLAN.md — Assessment emails/PDF/LLM-prompt Calendly removal
+- [x] 10-05-PLAN.md — Assessment emails/PDF/LLM-prompt Calendly removal
 
 **Wave 2** *(blocked on Wave 1 / 10-01 completion)*
 
@@ -333,7 +333,7 @@ Plans:
 | 7. Product #1 Live + Payments | v2.0 | 12/13 | Blocked (Paddle prod approval) | - |
 | 8. Design System Rollout | v2.0 | 0/7 | Planned | - |
 | 9. Homepage & Funnel Reposition | v2.0 | 0/TBD | Not started | - |
-| 10. Assessment Re-point + Enterprise Track | v2.0 | 3/5 | In Progress|  |
+| 10. Assessment Re-point + Enterprise Track | v2.0 | 4/5 | In Progress|  |
 | 11. Cleanup & Consistency | v2.0 | 0/TBD | Not started | - |
 
 ## Requirement Coverage Summary (v2.0)
