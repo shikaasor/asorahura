@@ -48,6 +48,9 @@ export default function Navigation() {
                     <Link href="/blog" className={pathname.startsWith("/blog") ? styles.active : ""}>
                         Blog
                     </Link>
+                    <Link href="/enterprise" className={pathname.startsWith("/enterprise") ? styles.active : ""}>
+                        Enterprise
+                    </Link>
                     <Link href="/assessment" className={styles.cta}>
                         Start AI Opportunity Discovery
                     </Link>
@@ -72,6 +75,7 @@ export default function Navigation() {
                     <Link href="/work" className={pathname === "/work" ? styles.mobileActive : ""} onClick={() => setMenuOpen(false)}>Work</Link>
                     <Link href="/assessment" className={pathname.startsWith("/assessment") ? styles.mobileActive : ""} onClick={() => setMenuOpen(false)}>Discovery</Link>
                     <Link href="/blog" className={pathname.startsWith("/blog") ? styles.mobileActive : ""} onClick={() => setMenuOpen(false)}>Blog</Link>
+                    <Link href="/enterprise" className={pathname.startsWith("/enterprise") ? styles.mobileActive : ""} onClick={() => setMenuOpen(false)}>Enterprise</Link>
                     <Link href="/assessment" className={styles.mobileCta} onClick={() => setMenuOpen(false)}>Start AI Opportunity Discovery</Link>
                 </div>
             )}
