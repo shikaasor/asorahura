@@ -74,8 +74,6 @@ const serviceTiers = [
 ];
 
 export default function ServicesPage() {
-  const year = new Date().getFullYear();
-
   return (
     <main className={styles.page}>
       {/* Hero */}
