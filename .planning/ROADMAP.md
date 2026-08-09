@@ -200,7 +200,7 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 08-01-PLAN.md — Dead code deletion (components, CSS modules, lloydlist images, dead const year/isEnterprise)
+- [x] 08-01-PLAN.md — Dead code deletion (components, CSS modules, lloydlist images, dead const year/isEnterprise)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -331,7 +331,7 @@ Plans:
 | 5. Optimization & Launch Readiness | v1.0 | 4/4 | Complete | ✓ |
 | 6. Palette Decision + Token Foundation | v2.0 | 3/3 | Complete   | 2026-08-02 |
 | 7. Product #1 Live + Payments | v2.0 | 12/13 | Blocked (Paddle prod approval) | - |
-| 8. Design System Rollout | v2.0 | 0/7 | Planned | - |
+| 8. Design System Rollout | v2.0 | 1/7 | In Progress|  |
 | 9. Homepage & Funnel Reposition | v2.0 | 0/TBD | Not started | - |
 | 10. Assessment Re-point + Enterprise Track | v2.0 | 5/5 | Complete    | 2026-08-09 |
 | 11. Cleanup & Consistency | v2.0 | 0/TBD | Not started | - |
