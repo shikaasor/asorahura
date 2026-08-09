@@ -102,8 +102,15 @@ export function DeepAssessmentShell() {
     if (savedIdentity) {
       // Skip gate — submit with stored identity
       setIsLoading(true);
-      await submitDeepAssessmentForEmail(savedIdentity.firstName, savedIdentity.email, newAnswers, sector);
+      const res = await submitDeepAssessmentForEmail(savedIdentity.firstName, savedIdentity.email, newAnswers, sector);
       setIsLoading(false);
+
+      if (!res.success) {
+        setEmailError(res.error || "Something went wrong. Please try again.");
+        setStep("email-gate");
+        return;
+      }
+
       const scored = calculateDeepScore(newAnswers, sector);
       setResult({ total: scored.total, byDimension: scored.byDimension, firstName: savedIdentity.firstName });
       setStep("results");
