@@ -6,7 +6,7 @@ export async function submitInquiry(formData: FormData): Promise<{ success: bool
     const scriptUrl = process.env.GOOGLE_SCRIPT_URL;
 
     const scoreRaw = formData.get("score") as string;
-    const score = parseInt(scoreRaw || "0", 10);
+    const isEnterprise = formData.get("enterprise") === "true";
 
     const inquiry = {
         formType: "inquiry",
@@ -37,9 +37,7 @@ export async function submitInquiry(formData: FormData): Promise<{ success: bool
         }
     }
 
-    if (score >= 70) {
-        redirect("https://calendly.com/asorahura");
-    } else if (score >= 40) {
+    if (isEnterprise) {
         redirect("https://calendly.com/asorahura");
     } else {
         redirect("/engage/confirmation");

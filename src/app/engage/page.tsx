@@ -7,6 +7,7 @@ import styles from "./engage.module.css";
 function EngageFormInner() {
     const score = useSearchParams().get("score");
     const tierParam = useSearchParams().get("tier");
+    const isEnterprise = useSearchParams().get("enterprise") === "true";
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
     const [message, setMessage] = useState("");
 
@@ -31,8 +32,8 @@ function EngageFormInner() {
             <div className="container">
                 <section className={styles.content}>
                     <div className={styles.header}>
-                        <p className={styles.eyebrow}>Discovery Brief</p>
-                        <h1 className={styles.headline}>Tell Me About Your Problem</h1>
+                        <p className={styles.eyebrow}>{isEnterprise ? "Enterprise Discovery Brief" : "Discovery Brief"}</p>
+                        <h1 className={styles.headline}>{isEnterprise ? "Discuss Your Enterprise Challenges" : "Tell Me About Your Problem"}</h1>
                         <p className={styles.subhead}>
                             Describe what&apos;s slowing your operations down. I&apos;ll tell you what can be built, how long, and what it costs.
                         </p>
@@ -138,6 +139,7 @@ function EngageFormInner() {
                                     ></textarea>
                                 </div>
                                 <input type="hidden" name="score" value={score ?? ""} />
+                                <input type="hidden" name="enterprise" value={isEnterprise ? "true" : "false"} />
                                 <button type="submit" className={styles.submitBtn} disabled={status === "loading"}>
                                     {status === "loading" ? "Submitting..." : "Submit My Project Brief"}
                                 </button>
