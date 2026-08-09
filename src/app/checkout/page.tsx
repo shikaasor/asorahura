@@ -117,8 +117,8 @@ function CheckoutInner() {
                 <p className={styles.enterpriseCtaText}>
                   Enterprise engagements are scoped individually. Let&apos;s start with a conversation — no commitment required.
                 </p>
-                <Link href="https://calendly.com/asorahura" target="_blank" rel="noopener noreferrer" className={styles.enterpriseBtn}>
-                  Schedule an Intro Call
+                <Link href="/engage?enterprise=true" className={styles.enterpriseBtn}>
+                  Discuss Your Needs
                 </Link>
               </div>
             ) : (

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { TestimonialCard } from "@/components/shared/TestimonialCard";
-import { BookingUrgency } from "@/components/services/BookingUrgency";
 import styles from "./services.module.css";
 
 import testimonials from "@/content/testimonials.json";
@@ -21,7 +20,7 @@ const serviceTiers = [
       "1 round of revisions post-delivery",
     ],
     timeline: "2–3 weeks",
-    cta: { text: "Book Strategy Session", href: "https://calendly.com/asorahura" },
+    cta: { text: "Schedule a Call", href: "/engage?tier=starter" },
     enterprise: false,
   },
   {
@@ -37,7 +36,7 @@ const serviceTiers = [
       "Team handover and async support (30 days)",
     ],
     timeline: "4–8 weeks",
-    cta: { text: "Book Strategy Session", href: "https://calendly.com/asorahura" },
+    cta: { text: "Schedule a Call", href: "/engage?tier=ops" },
     enterprise: false,
   },
   {
@@ -53,7 +52,7 @@ const serviceTiers = [
       "Dedicated async support (60 days post-delivery)",
     ],
     timeline: "8–14 weeks",
-    cta: { text: "Book Strategy Session", href: "https://calendly.com/asorahura" },
+    cta: { text: "Schedule a Call", href: "/engage?tier=systems" },
     enterprise: false,
   },
   {
@@ -69,7 +68,7 @@ const serviceTiers = [
       "Long-term retainer and maintenance available",
     ],
     timeline: "Scoped after discovery call",
-    cta: { text: "Book Strategy Session", href: "https://calendly.com/asorahura" },
+    cta: { text: "Schedule a Call", href: "/engage?tier=enterprise" },
     enterprise: true,
   },
 ];
@@ -135,7 +134,6 @@ export default function ServicesPage() {
               </div>
             ))}
           </div>
-          <BookingUrgency />
         </div>
       </section>
 
