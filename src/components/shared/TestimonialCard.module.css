@@ -1,23 +1,23 @@
 .card {
-  background: var(--bg-card, #0D1525);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-left: 3px solid var(--gold, #C9A060);
+  background: var(--surface-2);
+  border: 1px solid var(--border-1);
+  border-left: 3px solid var(--accent);
   border-radius: 10px;
-  padding: 1.5rem;
+  padding: var(--spacing-4);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  gap: var(--spacing-3);
+  box-shadow: var(--shadow-3);
 }
 
 .headshot {
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 0 0 2px rgba(201, 160, 96, 0.3);
+  box-shadow: 0 0 0 2px rgba(201, 168, 109, 0.3);
 }
 
 .quote {
-  color: #8B9BB4;
+  color: var(--ink-2);
   font-size: 0.9375rem;
   line-height: 1.75;
   font-style: normal;
@@ -34,19 +34,19 @@
 }
 
 .name {
-  color: #EDF2F7;
+  color: var(--ink-1);
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: var(--fontWeight-bold);
 }
 
 .separator {
-  color: #3D4F66;
+  color: var(--ink-3);
   font-size: 0.875rem;
   margin: 0 0.375rem;
 }
 
 .title {
-  color: var(--gold, #C9A060);
+  color: var(--accent);
   font-size: 0.8125rem;
 }
 
