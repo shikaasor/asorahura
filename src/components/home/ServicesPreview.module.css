@@ -1,6 +1,6 @@
 .section {
   padding: 7rem 0;
-  background: var(--bg-base, #04080F);
+  background: var(--surface-1);
   position: relative;
   overflow: hidden;
 }
@@ -14,35 +14,35 @@
 
 .sectionLabel {
   text-align: center;
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: var(--fontSize-1);
+  font-weight: var(--fontWeight-bold);
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--gold, #C9A060);
-  margin-bottom: 1rem;
+  color: var(--accent);
+  margin-bottom: var(--spacing-3);
 }
 
 .heading {
   font-family: var(--font-serif);
-  font-size: 2.5rem;
+  font-size: var(--fontSize-6);
   font-weight: 700;
   text-align: center;
-  color: #EDF2F7;
-  margin-bottom: 3.5rem;
+  color: var(--ink-1);
+  margin-bottom: var(--spacing-6);
   letter-spacing: -0.01em;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  gap: var(--spacing-4);
   align-items: stretch;
 }
 
 .card {
-  background: var(--bg-card, #0D1525);
+  background: var(--surface-3);
   border-radius: 1rem;
-  padding: 2.5rem;
+  padding: var(--spacing-6);
   border: 1px solid rgba(255, 255, 255, 0.07);
   display: flex;
   flex-direction: column;
@@ -78,54 +78,54 @@
 
 .cardTop {
   flex: 1;
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-5);
 }
 
 .cardTitle {
-  font-size: 1.1875rem;
+  font-size: var(--fontSize-3);
   font-weight: 700;
-  color: #EDF2F7;
-  margin-bottom: 1rem;
+  color: var(--ink-1);
+  margin-bottom: var(--spacing-3);
   letter-spacing: -0.01em;
 }
 
 .cardBody {
-  font-size: 0.9375rem;
+  font-size: var(--fontSize-2);
   line-height: 1.7;
-  color: #5A6B84;
+  color: var(--ink-2);
 }
 
 .cardBottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: var(--spacing-3);
   flex-wrap: wrap;
-  padding-top: 1.5rem;
+  padding-top: var(--spacing-5);
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .price {
-  font-size: 1.0625rem;
+  font-size: var(--fontSize-3);
   font-weight: 700;
-  color: var(--gold, #C9A060);
+  color: var(--accent);
   letter-spacing: -0.01em;
 }
 
 .learnMore {
   display: inline-flex;
   align-items: center;
-  gap: 0.375rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #8B9BB4;
+  gap: var(--spacing-1);
+  font-size: var(--fontSize-2);
+  font-weight: var(--fontWeight-bold);
+  color: var(--ink-2);
   text-decoration: none;
   transition: color 0.2s ease;
   cursor: pointer;
 }
 
 .learnMore:hover {
-  color: var(--gold, #C9A060);
+  color: var(--accent);
   opacity: 1;
 }
 
@@ -141,54 +141,54 @@
   }
 
   .heading {
-    font-size: 2rem;
+    font-size: var(--fontSize-5);
   }
 }
 
 /* Sector tracks strip — surfaces sector-aware assessment routes */
 .sectorStrip {
-  margin-top: 3.5rem;
+  margin-top: var(--spacing-5);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: var(--spacing-3);
   text-align: center;
 }
 
 .sectorLabel {
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: var(--fontSize-1);
+  font-weight: var(--fontWeight-bold);
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--gold, #C9A060);
+  color: var(--accent);
 }
 
 .sectorChips {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.5rem 0.75rem;
+  gap: var(--spacing-2) var(--spacing-3);
 }
 
 .sectorChip {
-  padding: 0.375rem 0.875rem;
+  padding: var(--spacing-2) var(--spacing-3);
   border-radius: 999px;
   border: 1px solid rgba(201, 160, 96, 0.25);
   background: rgba(201, 160, 96, 0.06);
-  color: #EDF2F7;
-  font-size: 0.8125rem;
+  color: var(--ink-1);
+  font-size: var(--fontSize-1);
   font-weight: 500;
   letter-spacing: -0.005em;
 }
 
 .sectorLink {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #8B9BB4;
+  font-size: var(--fontSize-2);
+  font-weight: var(--fontWeight-bold);
+  color: var(--ink-2);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .sectorLink:hover {
-  color: var(--gold, #C9A060);
+  color: var(--accent);
 }

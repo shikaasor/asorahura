@@ -1,6 +1,6 @@
 .section {
   padding: 7rem 0;
-  background: var(--bg-base, #04080F);
+  background: var(--surface-1);
   position: relative;
   overflow: hidden;
 }
@@ -12,115 +12,75 @@
   width: 100%;
 }
 
-.sectionLabel {
-  text-align: center;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--gold, #C9A060);
-  margin-bottom: 1rem;
-}
-
 .heading {
   font-family: var(--font-serif);
-  font-size: 2.5rem;
+  font-size: var(--fontSize-6);
   font-weight: 700;
   text-align: center;
-  color: #EDF2F7;
-  margin-bottom: 4rem;
+  color: var(--ink-1);
+  margin-bottom: var(--spacing-6);
   letter-spacing: -0.01em;
 }
 
-.timeline {
-  display: flex;
-  align-items: flex-start;
-  gap: 0;
-  position: relative;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-4);
 }
 
-.step {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  position: relative;
-  padding: 0 1.25rem;
+.card {
+  background: var(--surface-3);
+  border-radius: 1rem;
+  padding: var(--spacing-6);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-left: 3px solid var(--accent);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  cursor: default;
 }
 
-.badge {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  background: var(--bg-card, #0D1525);
-  border: 2px solid var(--gold, #C9A060);
-  color: var(--gold, #C9A060);
-  font-size: 1rem;
-  font-weight: 700;
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(201, 160, 96, 0.15);
+}
+
+.icon {
+  width: 2.75rem;
+  height: 2.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  margin-bottom: 1.5rem;
-  z-index: 1;
-  position: relative;
-  box-shadow: 0 0 16px rgba(201, 160, 96, 0.2);
+  border-radius: 0.625rem;
+  background: rgba(201, 160, 96, 0.1);
+  color: var(--accent);
+  margin-bottom: var(--spacing-4);
 }
 
-.connector {
-  position: absolute;
-  top: 1.5rem;
-  left: 50%;
-  right: calc(-50% + 1.5rem);
-  height: 2px;
-  background: linear-gradient(90deg, rgba(201, 160, 96, 0.4), rgba(201, 160, 96, 0.1));
-  z-index: 0;
-}
-
-.content {
-  flex: 1;
-}
-
-.stepName {
-  font-size: 1rem;
+.cardTitle {
+  font-size: var(--fontSize-3);
   font-weight: 700;
-  color: #EDF2F7;
-  margin-bottom: 0.625rem;
+  color: var(--ink-1);
+  margin-bottom: var(--spacing-2);
   letter-spacing: -0.01em;
 }
 
-.stepDesc {
-  font-size: 0.875rem;
+.cardBody {
+  font-size: var(--fontSize-2);
   line-height: 1.7;
-  color: #5A6B84;
+  color: var(--ink-2);
 }
 
-@media (max-width: 768px) {
-  .timeline {
-    flex-direction: column;
-    gap: 2.5rem;
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
   }
+}
 
-  .step {
-    flex-direction: row;
-    text-align: left;
-    align-items: flex-start;
-    gap: 1.25rem;
-    padding: 0;
-    width: 100%;
-  }
-
-  .badge {
-    margin-bottom: 0;
-    flex-shrink: 0;
-  }
-
-  .connector {
-    display: none;
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
   }
 
   .heading {
-    font-size: 2rem;
+    font-size: var(--fontSize-5);
   }
 }
