@@ -289,38 +289,6 @@
   margin-bottom: 1rem;
 }
 
-/* Enterprise CTA */
-.enterpriseCta {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  border-top: 1px solid #e5e7eb;
-}
-
-.enterpriseCtaText {
-  font-size: 0.875rem;
-  color: #6b7280;
-  line-height: 1.6;
-}
-
-.enterpriseBtn {
-  display: inline-block;
-  background: #0a0a0a;
-  color: #fff;
-  padding: 0.875rem 1.5rem;
-  border-radius: 0.625rem;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-align: center;
-  transition: background 0.15s ease;
-}
-
-.enterpriseBtn:hover {
-  background: #1f1f1f;
-  opacity: 1;
-}
-
 /* Trust badges */
 .trust {
   display: flex;

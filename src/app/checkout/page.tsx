@@ -2,7 +2,6 @@
 
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import Link from "next/link";
 import { PaddleCheckout } from "@/components/checkout/PaddleCheckout";
 import { tiers, getTierById, type TierId } from "@/lib/checkout";
 import styles from "./checkout.module.css";
@@ -21,7 +20,6 @@ function CheckoutInner() {
 
   const [selectedTier, setSelectedTier] = useState<TierId>(initialTier);
   const tier = getTierById(selectedTier);
-  const isEnterprise = false;
 
   return (
     <main className={styles.page}>
@@ -111,22 +109,11 @@ function CheckoutInner() {
               </div>
             </div>
 
-            {/* Payment or enterprise CTA */}
-            {isEnterprise ? (
-              <div className={styles.enterpriseCta}>
-                <p className={styles.enterpriseCtaText}>
-                  Enterprise engagements are scoped individually. Let&apos;s start with a conversation — no commitment required.
-                </p>
-                <Link href="/engage?enterprise=true" className={styles.enterpriseBtn}>
-                  Discuss Your Needs
-                </Link>
-              </div>
-            ) : (
-              <div className={styles.paymentPanel}>
-                <p className={styles.paymentLabel}>Secure payment</p>
-                <PaddleCheckout key={tier.paddlePriceId} priceId={tier.paddlePriceId} />
-              </div>
-            )}
+            {/* Payment */}
+            <div className={styles.paymentPanel}>
+              <p className={styles.paymentLabel}>Secure payment</p>
+              <PaddleCheckout key={tier.paddlePriceId} priceId={tier.paddlePriceId} />
+            </div>
           </div>
 
           {/* Trust */}
