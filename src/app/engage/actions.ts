@@ -1,27 +1,38 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { inquirySchema } from "@/lib/validation";
 
 export async function submitInquiry(formData: FormData): Promise<{ success: boolean; message: string } | never> {
     const scriptUrl = process.env.GOOGLE_SCRIPT_URL;
 
-    const scoreRaw = formData.get("score") as string;
     const isEnterprise = formData.get("enterprise") === "true";
+
+    const parsed = inquirySchema.safeParse({
+        name: formData.get("name") ?? "",
+        email: formData.get("email") ?? "",
+        company: formData.get("company") ?? "",
+        role: formData.get("role") ?? "",
+        companySize: formData.get("companySize") ?? "",
+        serviceInterest: formData.get("serviceInterest") ?? "",
+        operationalVolume: formData.get("operationalVolume") ?? "",
+        challenge: formData.get("challenge") ?? "",
+        timeline: formData.get("timeline") ?? "",
+        budget: formData.get("budget") ?? "",
+        context: formData.get("context") ?? "",
+        score: formData.get("score") ?? "",
+    });
+
+    if (!parsed.success) {
+        return {
+            success: false,
+            message: parsed.error.issues[0]?.message || "Please check your inputs and try again.",
+        };
+    }
 
     const inquiry = {
         formType: "inquiry",
-        name: formData.get("name") as string,
-        email: formData.get("email") as string,
-        company: formData.get("company") as string,
-        role: formData.get("role") as string,
-        companySize: formData.get("companySize") as string,
-        serviceInterest: formData.get("serviceInterest") as string,
-        operationalVolume: formData.get("operationalVolume") as string,
-        challenge: formData.get("challenge") as string,
-        timeline: formData.get("timeline") as string,
-        budget: formData.get("budget") as string,
-        context: formData.get("context") as string,
-        score: scoreRaw,
+        ...parsed.data,
     };
 
     if (scriptUrl) {
