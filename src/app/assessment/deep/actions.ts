@@ -14,6 +14,10 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://asorahura.vercel.app';
 
+function escapeHtml(s: string) {
+  return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!));
+}
+
 export async function submitDeepAssessmentForEmail(
   firstName: string,
   email: string,
@@ -41,7 +45,7 @@ export async function submitDeepAssessmentForEmail(
     <div style="font-family:sans-serif;background:#f9fafb;padding:24px">
       <div style="background:#fff;border-radius:8px;padding:32px;max-width:600px;margin:0 auto">
         <h1 style="font-size:22px;color:#0a0a0a;margin:0 0 4px">Your Full AI Opportunity Discovery Scorecard</h1>
-        <p style="color:#6b7280;margin:0 0 24px">Prepared for ${firstName} · ${sector}</p>
+        <p style="color:#6b7280;margin:0 0 24px">Prepared for ${escapeHtml(firstName)} · ${sector}</p>
         <div style="background:#0a0a0a;border-radius:8px;padding:24px;text-align:center;margin-bottom:24px">
           <div style="font-size:56px;font-weight:900;color:#fff;line-height:1">${total}<span style="font-size:24px;color:#6b7280">/${DEEP_MAX_SCORE}</span></div>
           <div style="font-size:16px;font-weight:600;color:#d1d5db;margin-top:8px">${tier.name}</div>
@@ -80,14 +84,19 @@ export async function submitDeepAssessmentForEmail(
   }
 
   try {
-    await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: "Asor Ahura <hello@asorahura.com>",
       to: email,
       subject: `Your Full AI Opportunity Discovery Scorecard — ${total}/${DEEP_MAX_SCORE} · ${tier.name}`,
       html,
     });
+    if (error) {
+      console.error("Deep assessment email failed:", error.message);
+      return { success: false, error: "We couldn't send your scorecard email. Please try again." };
+    }
   } catch (err) {
     console.error("Deep assessment email failed:", err);
+    return { success: false, error: "We couldn't send your scorecard email. Please try again." };
   }
 
   return { success: true };
