@@ -13,13 +13,13 @@
 .title {
   font-size: 1.75rem;
   font-weight: 800;
-  color: #0a0a0a;
+  color: var(--ink-1);
   letter-spacing: -0.03em;
 }
 
 .sub {
   font-size: 0.975rem;
-  color: #6b7280;
+  color: var(--ink-2);
   line-height: 1.6;
 }
 
@@ -38,42 +38,42 @@
 .input {
   width: 100%;
   padding: 0.875rem 1rem;
-  border: 1.5px solid #e5e7eb;
+  border: 1.5px solid var(--border-1);
   border-radius: 0.625rem;
   font-size: 0.975rem;
   font-family: inherit;
-  color: #0a0a0a;
-  background: #fff;
+  color: var(--ink-1);
+  background: var(--surface-1);
   outline: none;
   transition: border-color 0.15s ease;
 }
 
 .input:focus {
-  border-color: #0a0a0a;
+  border-color: var(--accent);
 }
 
 .inputError {
-  border-color: #ef4444;
+  border-color: var(--error);
 }
 
 .fieldError {
   font-size: 0.8rem;
-  color: #ef4444;
+  color: var(--error);
 }
 
 .formError {
   font-size: 0.875rem;
-  color: #ef4444;
+  color: var(--error);
   padding: 0.75rem 1rem;
-  background: #fef2f2;
+  background: var(--surface-1);
   border-radius: 0.5rem;
-  border: 1px solid #fecaca;
+  border: 1px solid var(--error);
 }
 
 .submit {
   width: 100%;
-  background: #0a0a0a;
-  color: #fff;
+  background: var(--accent);
+  color: var(--surface-1);
   font-size: 1rem;
   font-weight: 700;
   padding: 1rem;
@@ -86,7 +86,7 @@
 }
 
 .submit:hover:not(:disabled) {
-  background: #1f1f1f;
+  background: var(--accent-hover);
 }
 
 .submit:disabled {
@@ -96,7 +96,7 @@
 
 .privacy {
   font-size: 0.75rem;
-  color: #9ca3af;
+  color: var(--ink-3);
   text-align: center;
 }
 
