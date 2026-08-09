@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { QuestionCard } from "./QuestionCard";
 import { ProgressBar } from "./ProgressBar";
 import { EmailGate } from "./EmailGate";
-import { ResultsScreen } from "./ResultsScreen";
-import { SectorPicker } from "./SectorPicker";
+import { RevenueResultsScreen } from "./RevenueResultsScreen";
+import { AssessmentSectorGate } from "./AssessmentSectorGate";
 import {
   assessmentQuestions,
   getQuestionOptions,
@@ -18,19 +19,19 @@ import { submitAssessmentForEmail } from "@/app/assessment/actions";
 import type { EmailGateInput } from "@/lib/validation";
 import styles from "./AssessmentShell.module.css";
 
-type Step = "intro" | "sector" | "questions" | "email-gate" | "results";
+type Step = "gate" | "intro" | "questions" | "email-gate" | "results";
 
 const STORAGE_KEY = "asor_assessment_answers_v3";
 const IDENTITY_KEY = "asor_user_identity";
 const SECTOR_KEY = "asor_user_sector";
 
-// Q1 in assessmentQuestions is the sector routing question (served by SectorPicker).
-// The questions step iterates from index 1 onward.
+// Q1 in assessmentQuestions is the sector routing question; sector now stays at
+// its DEFAULT_SECTOR value for the whole flow. The questions step iterates from index 1 onward.
 const FIRST_QUESTION_INDEX = 1;
 const SCORED_TOTAL = assessmentQuestions.length - FIRST_QUESTION_INDEX;
 
 export function AssessmentShell() {
-  const [step, setStep] = useState<Step>("intro");
+  const [step, setStep] = useState<Step>("gate");
   const [currentQ, setCurrentQ] = useState(FIRST_QUESTION_INDEX);
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [sector, setSector] = useState<Sector>(DEFAULT_SECTOR);
@@ -79,14 +80,6 @@ export function AssessmentShell() {
     }
   }, [answers, currentQ, step, sector]);
 
-  function handleSectorSelect(s: Sector) {
-    setSector(s);
-    setAnswers((a) => ({ ...a, 1: s }));
-    try { localStorage.setItem(SECTOR_KEY, s); } catch { /* ignore */ }
-    setCurrentQ(FIRST_QUESTION_INDEX);
-    setStep("questions");
-  }
-
   function handleAnswer(answer: string) {
     const q = assessmentQuestions[currentQ];
     const newAnswers = { ...answers, [q.id]: answer };
@@ -129,27 +122,23 @@ export function AssessmentShell() {
   // Position within the scored set (1..SCORED_TOTAL), used for progress display.
   const displayQuestionNumber = currentQ - FIRST_QUESTION_INDEX + 1;
 
+  if (step === "gate") {
+    return <AssessmentSectorGate onContinue={() => setStep("intro")} />;
+  }
+
   if (step === "intro") {
     return (
       <div className={styles.intro}>
         <h2 className={styles.introTitle}>Ready to find your score?</h2>
         <p className={styles.introSub}>
-          Pick your sector, then answer 7 questions · about 4 minutes · personalized score at the end
+          Answer 7 questions · about 4 minutes · personalized score at the end
         </p>
-        <button className={styles.startBtn} onClick={() => setStep("sector")}>
+        <button className={styles.startBtn} onClick={() => setStep("questions")}>
           Start Discovery
         </button>
-      </div>
-    );
-  }
-
-  if (step === "sector") {
-    return (
-      <div className={styles.questionWrap}>
-        <SectorPicker
-          selectedSector={sector}
-          onSelect={handleSectorSelect}
-        />
+        <Link href="/assessment?depth=deep" className={styles.introSub}>
+          Want the full 24-question scorecard instead? →
+        </Link>
       </div>
     );
   }
@@ -180,9 +169,9 @@ export function AssessmentShell() {
 
   if (step === "results" && result) {
     return (
-      <ResultsScreen
+      <RevenueResultsScreen
+        assessmentType="quick"
         score={result.score}
-        tier={result.tier}
         firstName={result.firstName}
         sector={sector}
       />
