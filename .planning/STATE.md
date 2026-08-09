@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Reposition to Small Business Owners
-status: executing
-stopped_at: "Completed 10-05-PLAN.md: Calendly removed from assessment emails, PDF, and LLM prompts"
-last_updated: "2026-08-09T06:13:41.673Z"
+status: verifying
+stopped_at: "Completed 10-02-PLAN.md: wired sector gate + revenue results into live assessment flow, consolidated /assessment routes"
+last_updated: "2026-08-09T06:26:01.066Z"
 last_activity: 2026-08-09
 progress:
   total_phases: 12
-  completed_phases: 6
+  completed_phases: 7
   total_plans: 51
-  completed_plans: 41
-  percent: 50
+  completed_plans: 42
+  percent: 58
 ---
 
 # Project State
@@ -27,10 +27,10 @@ See: `.planning/PROJECT.md` (updated 2026-07-31)
 
 Phase: 10 (assessment-re-point-enterprise-track) — EXECUTING
 Plan: 5 of 5
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-08-09
 
-Progress: [████████░░] 80%
+Progress: [████████░░] 82%
 
 ## Performance Metrics
 
@@ -62,6 +62,8 @@ Full decision log in `.planning/PROJECT.md` Key Decisions table. Recent decision
 - [Phase 10]: engage/actions.ts redirect gate switched from score >= 40/70 thresholds to a strict enterprise === 'true' form field check, closing the open-redirect/spoofed-score risk (T-10-08)
 - [Phase 10]: CALENDLY_URL export kept in email.ts (still used by automate/instagram/success page, out of scope for Phase 10)
 - [Phase 10]: Enterprise track (engage/actions.ts) and post-purchase DWY scheduling (checkout/success/page.tsx) intentionally retain Calendly per PROJECT.md constraints
+- [Phase 10]: sector state remains at DEFAULT_SECTOR for the whole SMB flow now that the in-flow SectorPicker step is gone; Enterprise routing handled entirely by AssessmentSectorGate before either shell mounts
+- [Phase 10]: RevenueResultsScreen is called without a tier prop since it derives tier internally from score + sector
 
 ### Pending Todos
 
@@ -85,11 +87,12 @@ None yet.
 | Phase 10 P03 | 12min | 2 tasks | 6 files |
 | Phase 10 P04 | 6min | 3 tasks | 7 files |
 | Phase 10 P05 | 15min | 3 tasks | 6 files |
+| Phase 10 P02 | 20min | 3 tasks | 6 files |
 
 ## Session Continuity
 
-Last session: 2026-08-09T06:13:41.661Z
-Stopped at: Completed 10-05-PLAN.md: Calendly removed from assessment emails, PDF, and LLM prompts
+Last session: 2026-08-09T06:26:01.012Z
+Stopped at: Completed 10-02-PLAN.md: wired sector gate + revenue results into live assessment flow, consolidated /assessment routes
 Resume file: None
 
 Next action: `/gsd-plan-phase 6`

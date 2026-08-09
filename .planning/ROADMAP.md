@@ -293,7 +293,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 / 10-01 completion)*
 
-- [ ] 10-02-PLAN.md — Wire sector gate + RevenueResultsScreen into both assessment shells; consolidate /assessment + /assessment/deep into one canonical route
+- [x] 10-02-PLAN.md — Wire sector gate + RevenueResultsScreen into both assessment shells; consolidate /assessment + /assessment/deep into one canonical route
 
 **UI hint**: yes
 
@@ -333,7 +333,7 @@ Plans:
 | 7. Product #1 Live + Payments | v2.0 | 12/13 | Blocked (Paddle prod approval) | - |
 | 8. Design System Rollout | v2.0 | 0/7 | Planned | - |
 | 9. Homepage & Funnel Reposition | v2.0 | 0/TBD | Not started | - |
-| 10. Assessment Re-point + Enterprise Track | v2.0 | 4/5 | In Progress|  |
+| 10. Assessment Re-point + Enterprise Track | v2.0 | 5/5 | Complete   | 2026-08-09 |
 | 11. Cleanup & Consistency | v2.0 | 0/TBD | Not started | - |
 
 ## Requirement Coverage Summary (v2.0)
