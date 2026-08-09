@@ -23,3 +23,27 @@
 **Action taken:** Not fixed. Logged here for a future phase/task. This means `npm run build` will continue to fail through Phase 8's post-merge test gates for reasons unrelated to this phase's work; treat repeated failures in this specific `pdfkit`/`fs` trace as this known issue, not a Phase 8 regression.
 
 **Status:** Deferred, not fixed.
+
+## Pre-existing dependency install gaps: `prettier`, `next-mdx-remote/rsc`
+
+**Found during:** Orchestrator post-Wave-2 verification (`npx tsc --noEmit`).
+
+**Issue:** `npx tsc --noEmit` failed with `Cannot find module 'next-mdx-remote/rsc'` in `src/app/blog/[slug]/page.tsx`. `node_modules/next-mdx-remote` existed but was an empty directory (no files) despite being correctly pinned in `package.json`/`package-lock.json` — same class of stale/incomplete install as the `prettier` issue above.
+
+**Scope determination:** Out of scope for Phase 8. Unrelated to any file this phase's plans touch.
+
+**Action taken:** Resolved by orchestrator — ran `npm install next-mdx-remote@^6.0.0 --no-save` (already pinned at this version; no dependency change) to restore the package contents. `npx tsc --noEmit` now passes clean.
+
+**Status:** Resolved.
+
+## Pre-existing test failure: checkout enterprise-CTA test contradicts Phase 10 WR-02
+
+**Found during:** Orchestrator post-Wave-2 verification (`npm run test`).
+
+**Issue:** `tests/test-calendly-removal-pages.test.ts` (added in Phase 10 commit `104b852`, "route services and checkout CTAs through /engage instead of Calendly") asserts `checkout/page.tsx` contains `/engage?enterprise=true`. A later Phase 10 commit, `2c48588` ("fix(10): WR-02 remove dead enterprise CTA branch from checkout page"), removed that exact branch and its `/engage` routing text as dead code — but did not update this test. The two Phase 10 commits are now mutually inconsistent.
+
+**Scope determination:** Out of scope for Phase 8. Pre-existing since Phase 10; none of Phase 8's plans touch checkout CTA routing logic (08-01 confirmed the `isEnterprise` branch was already gone before Phase 8 started; 08-02 only touched CSS token values in the same file).
+
+**Action taken:** Not fixed. Logged here for a future phase/task to resolve (either restore the enterprise routing or update/remove the outdated test assertion).
+
+**Status:** Deferred, not fixed. 1 test file / 1 test fails in `npm run test` for this reason — treat it as this known pre-existing issue, not a Phase 8 regression.
