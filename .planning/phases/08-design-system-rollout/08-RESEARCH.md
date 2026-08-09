@@ -468,22 +468,19 @@ npm run verify:contrast
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
-1. **Gold collision location:** The requirement mentions "two golds → one accent" but the audit didn't locate gold hex values. Where are they?
+1. **Gold collision location:** RESOLVED — Planning-time investigation located the two golds: the legacy `var(--gold, #C9A060)` fallback syntax (~30 occurrences) vs. the Phase 6 canonical `--accent: #C9A86D`. Plans 08-04 and 08-06 convert every `var(--gold*, ...)` occurrence to `var(--accent)`.
    - What we know: Phase 6 accent is `#C9A86D` (medium gold)
-   - What's unclear: Are the "two golds" hardcoded in CSS, or in Tailwind classes, or in design assets?
-   - Recommendation: Run extended grep for amber/gold variations (`#[dD][0-9a-fA-F]{2}[aA-fF][0-9a-fA-F]`, `#FFD700`, `#DAA520`, `text-amber-*`, `bg-yellow-*`) during execution phase. User may need to point out which colors qualify as "gold."
+   - Resolution: All `var(--gold, #C9A060)` / `var(--gold-light, #E0B878)` legacy fallbacks → `var(--accent)`. No hardcoded gold hex or Tailwind amber/yellow classes were found outside this fallback pattern.
 
-2. **Legacy `--bg-base` usage:** Some files use `var(--bg-base, #04080F)` syntax. Was `--bg-base` deleted in Phase 6, or is it still defined?
+2. **Legacy `--bg-base` usage:** RESOLVED — `--bg-base` was deleted in Phase 6 (cleanup, not a bug); its fallback usages are migration debt. Every `var(--bg-base, #04080F)` occurrence converts to `var(--surface-1)`.
    - What we know: It's not in current globals.css
-   - What's unclear: Whether this is a migration bug or if Phase 6 intentionally left it out
-   - Recommendation: Planner must verify Phase 6 token list is complete; if `--bg-base` was intended to be a token, restore it; if it was cleaned up, convert all `var(--bg-base, ...)` usages to explicit token names.
+   - Resolution: Treat as intentionally deleted. Plans 08-04 and 08-06 convert all `var(--bg-base, ...)` usages to `var(--surface-1)` directly (no fallback needed once conversion is complete).
 
-3. **Scale application scope (STYLE-05):** Does "type and spacing scales applied" mean replace ALL font-size/padding/margin values, or only obviously ad-hoc ones?
+3. **Scale application scope (STYLE-05):** RESOLVED — Apply scales to all CSS values (font-size, font-weight, padding/margin/gap) touched by this phase's conversion work, not just grossly inconsistent ones — since every Wave 2 plan is already rewriting these files' color declarations, normalizing spacing/type in the same pass avoids a second touch of the same files.
    - What we know: ~10 sizing values are already in use (`padding: 1.5rem`, `font-size: 1.125rem`)
-   - What's unclear: Is 1.5rem close enough to `--spacing-3: 16px` (within 2px) that it should be replaced, or leave it alone if it's intentional?
-   - Recommendation: Apply scales to new page additions (e.g., /automate section padding); for legacy pages, standardize only grossly inconsistent values (e.g., `padding: 3rem` → `--spacing-6: 48px`) to avoid unintended visual changes.
+   - Resolution: All Wave 2 plans (08-02 through 08-06) normalize spacing/type to the nearest token in files they already modify for color conversion; files untouched by color conversion are left alone (out of scope for this phase).
 
 ---
 
