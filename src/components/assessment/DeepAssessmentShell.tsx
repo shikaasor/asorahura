@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
+import Link from "next/link";
 import { ProgressBar } from "./ProgressBar";
 import { EmailGate } from "./EmailGate";
-import { DeepResultsScreen } from "./DeepResultsScreen";
-import { SectorPicker } from "./SectorPicker";
+import { RevenueResultsScreen } from "./RevenueResultsScreen";
+import { AssessmentSectorGate } from "./AssessmentSectorGate";
 import {
   DIMENSIONS,
   calculateDeepScore,
@@ -17,18 +18,17 @@ import { submitDeepAssessmentForEmail } from "@/app/assessment/deep/actions";
 import type { EmailGateInput } from "@/lib/validation";
 import styles from "./DeepAssessmentShell.module.css";
 
-type Step = "intro" | "sector" | "questions" | "email-gate" | "results";
+type Step = "gate" | "intro" | "questions" | "email-gate" | "results";
 
 const STORAGE_KEY = "asor_deep_assessment_answers_v3";
 const IDENTITY_KEY = "asor_user_identity";
 const SECTOR_KEY = "asor_user_sector";
 
 export function DeepAssessmentShell() {
-  const [step, setStep] = useState<Step>("intro");
+  const [step, setStep] = useState<Step>("gate");
   const [currentQ, setCurrentQ] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [sector, setSector] = useState<Sector>(DEFAULT_SECTOR);
-  const [sectorChosen, setSectorChosen] = useState(false);
   const [result, setResult] = useState<{
     total: number;
     byDimension: Record<Dimension, number>;
@@ -51,7 +51,6 @@ export function DeepAssessmentShell() {
       const storedSector = localStorage.getItem(SECTOR_KEY);
       if (storedSector && isValidSector(storedSector)) {
         setSector(storedSector);
-        setSectorChosen(true);
       }
     } catch { /* ignore */ }
 
@@ -69,7 +68,6 @@ export function DeepAssessmentShell() {
           setCurrentQ(parsed.currentQ ?? 0);
           if (parsed.sector && isValidSector(parsed.sector)) {
             setSector(parsed.sector);
-            setSectorChosen(true);
           }
           setStep("questions");
         }
@@ -83,21 +81,9 @@ export function DeepAssessmentShell() {
     }
   }, [answers, currentQ, step, sector]);
 
-  function handleSectorSelect(s: Sector) {
-    setSector(s);
-    setSectorChosen(true);
-    try { localStorage.setItem(SECTOR_KEY, s); } catch { /* ignore */ }
+  function startFlow() {
     setCurrentQ(0);
     setStep("questions");
-  }
-
-  function startFlow() {
-    if (sectorChosen) {
-      setCurrentQ(0);
-      setStep("questions");
-    } else {
-      setStep("sector");
-    }
   }
 
   async function handleAnswer(value: number) {
@@ -158,12 +144,15 @@ export function DeepAssessmentShell() {
     );
   }
 
+  if (step === "gate") {
+    return <AssessmentSectorGate onContinue={() => setStep("intro")} />;
+  }
+
   if (step === "intro") {
     return (
       <div className={styles.intro}>
         <h2 className={styles.introTitle}>The full scorecard — 6 dimensions, 24 questions</h2>
         <p className={styles.introSub}>
-          {sectorChosen ? `Sector: ${sector}. ` : ""}
           Score yourself 0–3 on each question. Be honest — inflating scores only misleads your own planning.
         </p>
         <div className={styles.dimensions}>
@@ -176,19 +165,11 @@ export function DeepAssessmentShell() {
           ))}
         </div>
         <button className={styles.startBtn} onClick={startFlow}>
-          {sectorChosen ? "Start Full Scorecard" : "Pick Sector & Start"}
+          Start Full Scorecard
         </button>
-      </div>
-    );
-  }
-
-  if (step === "sector") {
-    return (
-      <div className={styles.questionWrap}>
-        <SectorPicker
-          selectedSector={sector}
-          onSelect={handleSectorSelect}
-        />
+        <Link href="/assessment" className={styles.introSub}>
+          Prefer the quick 4-minute version instead? →
+        </Link>
       </div>
     );
   }
@@ -238,8 +219,9 @@ export function DeepAssessmentShell() {
 
   if (step === "results" && result) {
     return (
-      <DeepResultsScreen
-        total={result.total}
+      <RevenueResultsScreen
+        assessmentType="deep"
+        score={result.total}
         byDimension={result.byDimension}
         firstName={result.firstName}
         sector={sector}
