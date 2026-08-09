@@ -20,14 +20,14 @@ export const SEGMENT_CASE_STUDY: Record<"cold" | "warm" | "hot", string> = {
 
 export const SEGMENT_CTA: Record<"cold" | "warm" | "hot", string> = {
   cold: "https://asorahura.com/blog",
-  warm: "https://calendly.com/asorahura",
-  hot: "https://calendly.com/asorahura",
+  warm: "https://asorahura.com/checkout",
+  hot: "https://asorahura.com/checkout",
 };
 
 export const PDF_CTA: Record<"cold" | "warm" | "hot", string> = {
   cold: "Reply to this email with your top 3 recurring tasks. I'll tell you — for free — which ones are costing you the most every week they stay manual.",
-  warm: "Stop guessing which processes to automate. Book a Discovery Call and I'll map the exact 3 that will recover the most hours in your business: https://calendly.com/asorahura",
-  hot: "You're not 'thinking about' AI anymore — you're ready to build. Book a Strategy Session and we'll scope your first system this week: https://calendly.com/asorahura",
+  warm: "Stop guessing which processes to automate. See your purchase options and I'll map the exact 3 that will recover the most hours in your business: https://asorahura.com/checkout",
+  hot: "You're not 'thinking about' AI anymore — you're ready to build. See your purchase options and we'll scope your first system this week: https://asorahura.com/checkout",
 };
 
 export function formatAnswers(answers: Record<number, string>): string {
@@ -43,7 +43,7 @@ export function segmentAngle(segment: "cold" | "warm" | "hot"): string {
   if (segment === "warm") {
     return "Proof-of-result angle — they already see the gap. Show them someone with their exact context who closed it. Specific numbers, specific timeframe, specific outcome. Social proof first, soft CTA second.";
   }
-  return "Urgency + ROI angle — they're ready. Every week of delay is leaking money. Primary CTA is direct: https://calendly.com/asorahura. No free options, no soft asks, no 'learn more'. Frame the strategy session as the cheapest, fastest path to a working system.";
+  return "Urgency + ROI angle — they're ready. Every week of delay is leaking money. Primary CTA is direct: https://asorahura.com/checkout. No free options, no soft asks, no 'learn more'. Frame the purchase as the cheapest, fastest path to a working system.";
 }
 
 export function nurtureSegmentAngle(segment: "cold" | "warm" | "hot"): string {
@@ -51,9 +51,9 @@ export function nurtureSegmentAngle(segment: "cold" | "warm" | "hot"): string {
     return "Educational + opportunity-cost angle — every email surfaces a specific, costly problem manual operations create. Show them what's possible. Soft CTA only: read a blog post or re-run the discovery as their team grows. Do NOT pitch services or ask for a call. Goal: become the trusted voice in their inbox.";
   }
   if (segment === "warm") {
-    return "Proof + identity angle — share case study results from someone with their context. Show what a person at their readiness level looks like 90 days from now after working with Asor. CTA to book a discovery call at https://calendly.com/asorahura — frame it as 'the conversation that costs nothing but reveals everything'.";
+    return "Proof + identity angle — share case study results from someone with their context. Show what a person at their readiness level looks like 90 days from now after working with Asor. CTA to see purchase options at https://asorahura.com/checkout — frame it as 'the fastest path from where you are to a working system'.";
   }
-  return "Urgency + cost-of-inaction angle — they're AI-ready. Every week they wait, competitors are compounding. Direct CTA to a strategy session at https://calendly.com/asorahura. Emphasize: timeline (when they'll see results), ROI (what one automated workflow returns annually), and risk reversal (the session itself produces a scoped plan they can take anywhere). No soft options. No 'maybe later'.";
+  return "Urgency + cost-of-inaction angle — they're AI-ready. Every week they wait, competitors are compounding. Direct CTA to purchase at https://asorahura.com/checkout. Emphasize: timeline (when they'll see results), ROI (what one automated workflow returns annually), and risk reversal (the session itself produces a scoped plan they can take anywhere). No soft options. No 'maybe later'.";
 }
 
 // ── PDF content prompt ────────────────────────────────────────────────────────

@@ -157,10 +157,10 @@ export async function generateAssessmentPDF(params: {
         "Step 1: Complete the free discovery (done). Step 2: Watch how similar businesses automated their top 3 manual tasks — reply to your report email and I'll send you a short video.";
     } else if (segment === "warm") {
       nextStep =
-        "Book a Discovery Call — see how others at your readiness level achieved 40–60% reduction in manual effort. Visit asorahura.com to schedule.";
+        "See Your Purchase Options — see how others at your readiness level achieved 40–60% reduction in manual effort. Visit asorahura.com/checkout to get started.";
     } else {
       nextStep =
-        "You're ready to build. Book a Strategy Session to define your exact build scope: calendly.com/asorahura";
+        "You're ready to build. See your purchase options and get started today: asorahura.com/checkout";
     }
 
     doc
