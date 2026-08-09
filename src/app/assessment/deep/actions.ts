@@ -12,6 +12,7 @@ import { isValidSector, DEFAULT_SECTOR, type Sector } from "@/lib/assessment";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://asorahura.vercel.app';
 
 export async function submitDeepAssessmentForEmail(
   firstName: string,
@@ -51,7 +52,7 @@ export async function submitDeepAssessmentForEmail(
           ${dimensionRows}
         </table>
         <p style="font-size:13px;color:#6b7280;margin-bottom:16px">${tier.action}</p>
-        <a href="https://calendly.com/asorahura" style="display:inline-block;background:#0a0a0a;color:#fff;padding:12px 24px;border-radius:6px;font-size:14px;font-weight:600;text-decoration:none">Book a Discovery Call</a>
+        <a href="${BASE_URL}/checkout?assessment=deep" style="display:inline-block;background:#0a0a0a;color:#fff;padding:12px 24px;border-radius:6px;font-size:14px;font-weight:600;text-decoration:none">View Your Roadmap</a>
       </div>
     </div>
   `;

@@ -220,7 +220,7 @@ export async function sendAssessmentEmailSequence(params: {
   try {
     const initialBody =
       (sequence?.initial.body ?? `Hey ${firstName}, your score is ${score}/100.`) +
-      `\n\nBook a call: ${CALENDLY_URL}` +
+      `\n\nSee your purchase options: ${BASE_URL}/checkout` +
       unsubscribeFooter(email);
     const { error } = await resend.emails.send({
       from: FROM,
