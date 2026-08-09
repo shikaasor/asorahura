@@ -10,7 +10,7 @@ interface Props {
 export function TierSelector({ selected, onChange }: Props) {
   return (
     <div className="space-y-3">
-      <p className="text-sm font-semibold text-gray-700">Select your tier</p>
+      <p className="text-sm font-semibold text-[var(--ink-1)]">Select your tier</p>
       <div className="grid gap-3">
         {tiers.map((tier) => (
           <button
@@ -18,13 +18,13 @@ export function TierSelector({ selected, onChange }: Props) {
             onClick={() => onChange(tier.id)}
             className={`w-full text-left px-4 py-3 rounded-xl border-2 transition-all ${
               selected === tier.id
-                ? "border-gray-900 bg-gray-900 text-white"
-                : "border-gray-200 hover:border-gray-400 text-gray-800"
+                ? "border-[var(--ink-1)] bg-[var(--ink-1)] text-[var(--surface-1)]"
+                : "border-[var(--border-1)] hover:border-[var(--border-2)] text-[var(--ink-1)]"
             }`}
           >
             <div className="flex justify-between items-center">
               <span className="font-medium">{tier.name}</span>
-              <span className={`text-sm ${selected === tier.id ? "text-gray-300" : "text-gray-500"}`}>
+              <span className={`text-sm ${selected === tier.id ? "text-[var(--surface-3)]" : "text-[var(--ink-2)]"}`}>
                 {tier.price}
               </span>
             </div>
