@@ -1,6 +1,6 @@
 .section {
   padding: 7rem 0;
-  background: var(--bg-surface, #080E1A);
+  background: var(--surface-2);
   position: relative;
   overflow: hidden;
 }
@@ -62,23 +62,23 @@
   height: 200px;
   position: relative;
   z-index: 1;
-  box-shadow: 0 0 0 3px var(--bg-surface, #080E1A);
+  box-shadow: 0 0 0 3px var(--surface-2);
 }
 
 .heading {
   font-family: var(--font-serif);
-  font-size: 2rem;
+  font-size: var(--fontSize-6);
   font-weight: 700;
-  color: #EDF2F7;
-  margin-bottom: 1.75rem;
+  color: var(--ink-1);
+  margin-bottom: var(--spacing-5);
   letter-spacing: -0.01em;
 }
 
 .text {
-  font-size: 1rem;
+  font-size: var(--fontSize-2);
   line-height: 1.8;
-  color: #5A6B84;
-  margin-bottom: 1.125rem;
+  color: var(--ink-2);
+  margin-bottom: var(--spacing-3);
 }
 
 .text:last-of-type {
@@ -88,11 +88,11 @@
 .workWithMe {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-top: 2rem;
-  color: var(--gold, #C9A060);
-  font-size: 0.9375rem;
-  font-weight: 600;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-4);
+  color: var(--accent);
+  font-size: var(--fontSize-2);
+  font-weight: var(--fontWeight-bold);
   text-decoration: none;
   border-bottom: 1px solid rgba(201, 160, 96, 0.3);
   padding-bottom: 2px;
@@ -101,15 +101,15 @@
 }
 
 .workWithMe:hover {
-  color: var(--gold-light, #E0B878);
-  border-color: var(--gold-light, #E0B878);
+  color: var(--accent-hover);
+  border-color: var(--accent-hover);
   opacity: 1;
 }
 
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: var(--spacing-5);
     text-align: center;
   }
 
