@@ -196,7 +196,24 @@ Plans:
   4. Every route renders on one theme — `/articles`, `/privacy`, `/terms`, `/checkout`, `/assessment` no longer flip light/dark
   5. The Phase 6 contrast script passes on every text/surface pairing site-wide
 
-**Plans**: TBD
+**Plans**: 7 plans across 3 waves — see `.planning/phases/08-design-system-rollout/`
+Plans:
+**Wave 1**
+
+- [ ] 08-01-PLAN.md — Dead code deletion (components, CSS modules, lloydlist images, dead const year/isEnterprise)
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 08-02-PLAN.md — Checkout + core assessment shell token conversion, hero theme unification (checkout, assessment)
+- [ ] 08-03-PLAN.md — Deep assessment + results-screen token conversion
+- [ ] 08-04-PLAN.md — Homepage section components token conversion (gold/dark-surface legacy fallback cleanup)
+- [ ] 08-05-PLAN.md — Legal pages + blog/articles token conversion (legacy --foreground/--muted/--border cleanup)
+- [ ] 08-06-PLAN.md — Services/work/engage pages + Navigation + shared components token conversion
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [ ] 08-07-PLAN.md — Sitewide straggler sweep, build/contrast/test gate, human visual verification of the 5 STYLE-04 routes
+
 **UI hint**: yes
 
 **Note**: Does not block revenue (Phase 7 already shipped) but blocks Phase 9 — the homepage rewrite happens on top of the rolled-out system, not before it.
@@ -314,7 +331,7 @@ Plans:
 | 5. Optimization & Launch Readiness | v1.0 | 4/4 | Complete | ✓ |
 | 6. Palette Decision + Token Foundation | v2.0 | 3/3 | Complete   | 2026-08-02 |
 | 7. Product #1 Live + Payments | v2.0 | 12/13 | Blocked (Paddle prod approval) | - |
-| 8. Design System Rollout | v2.0 | 0/TBD | Not started | - |
+| 8. Design System Rollout | v2.0 | 0/7 | Planned | - |
 | 9. Homepage & Funnel Reposition | v2.0 | 0/TBD | Not started | - |
 | 10. Assessment Re-point + Enterprise Track | v2.0 | 3/5 | In Progress|  |
 | 11. Cleanup & Consistency | v2.0 | 0/TBD | Not started | - |
