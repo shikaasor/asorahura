@@ -204,11 +204,11 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 08-02-PLAN.md — Checkout + core assessment shell token conversion, hero theme unification (checkout, assessment)
-- [ ] 08-03-PLAN.md — Deep assessment + results-screen token conversion
-- [ ] 08-04-PLAN.md — Homepage section components token conversion (gold/dark-surface legacy fallback cleanup)
-- [ ] 08-05-PLAN.md — Legal pages + blog/articles token conversion (legacy --foreground/--muted/--border cleanup)
-- [ ] 08-06-PLAN.md — Services/work/engage pages + Navigation + shared components token conversion
+- [x] 08-02-PLAN.md — Checkout + core assessment shell token conversion, hero theme unification (checkout, assessment)
+- [x] 08-03-PLAN.md — Deep assessment + results-screen token conversion
+- [x] 08-04-PLAN.md — Homepage section components token conversion (gold/dark-surface legacy fallback cleanup)
+- [x] 08-05-PLAN.md — Legal pages + blog/articles token conversion (legacy --foreground/--muted/--border cleanup)
+- [x] 08-06-PLAN.md — Services/work/engage pages + Navigation + shared components token conversion
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
@@ -331,7 +331,7 @@ Plans:
 | 5. Optimization & Launch Readiness | v1.0 | 4/4 | Complete | ✓ |
 | 6. Palette Decision + Token Foundation | v2.0 | 3/3 | Complete   | 2026-08-02 |
 | 7. Product #1 Live + Payments | v2.0 | 12/13 | Blocked (Paddle prod approval) | - |
-| 8. Design System Rollout | v2.0 | 1/7 | In Progress|  |
+| 8. Design System Rollout | v2.0 | 6/7 | In Progress|  |
 | 9. Homepage & Funnel Reposition | v2.0 | 0/TBD | Not started | - |
 | 10. Assessment Re-point + Enterprise Track | v2.0 | 5/5 | Complete    | 2026-08-09 |
 | 11. Cleanup & Consistency | v2.0 | 0/TBD | Not started | - |
