@@ -95,7 +95,7 @@ export function AssessmentReport({
             Download Full Scorecard PDF
           </Button>
           <Button
-            href="https://calendly.com/asorahura"
+            href={`${BASE_URL}/checkout`}
             style={{
               backgroundColor: "#111",
               color: "#fff",
@@ -105,7 +105,7 @@ export function AssessmentReport({
               textDecoration: "none",
             }}
           >
-            Book a Discovery Call
+            See Your Purchase Options
           </Button>
           <Hr style={{ borderColor: "#e5e7eb", margin: "24px 0" }} />
           <Text style={{ fontSize: "12px", color: "#9ca3af", textAlign: "center" }}>
