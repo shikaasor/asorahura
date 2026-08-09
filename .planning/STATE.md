@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Reposition to Small Business Owners
 status: executing
-stopped_at: "Phase 10 planned: 5 plans across 2 waves, checker blocker resolved by direct plan edit"
-last_updated: "2026-08-09T05:57:54.133Z"
+stopped_at: "Completed 10-04-PLAN.md: Calendly removed from services/checkout, engage enterprise-gated, BOOKING_SLOTS retired"
+last_updated: "2026-08-09T06:06:07.760Z"
 last_activity: 2026-08-09
 progress:
   total_phases: 12
   completed_phases: 6
-  total_plans: 44
-  completed_plans: 39
+  total_plans: 45
+  completed_plans: 40
   percent: 50
 ---
 
@@ -26,11 +26,11 @@ See: `.planning/PROJECT.md` (updated 2026-07-31)
 ## Current Position
 
 Phase: 10 (assessment-re-point-enterprise-track) — EXECUTING
-Plan: 3 of 5
+Plan: 4 of 5
 Status: Ready to execute
 Last activity: 2026-08-09
 
-Progress: [█████████░] 89%
+Progress: [█████████░] 91%
 
 ## Performance Metrics
 
@@ -59,6 +59,7 @@ Full decision log in `.planning/PROJECT.md` Key Decisions table. Recent decision
 - [Phase 10]: getRevenueOpportunities always takes tierLevel derived from deepScoreToTierLevel/quickScoreToTierLevel, never the raw score
 - [Phase 10]: Enterprise gate uses hardcoded router.push('/enterprise') literal to close open-redirect threat T-10-02
 - [Phase 10]: Enterprise page transcribes case-study/service-tier data locally rather than importing unexported consts from work/services pages
+- [Phase 10]: engage/actions.ts redirect gate switched from score >= 40/70 thresholds to a strict enterprise === 'true' form field check, closing the open-redirect/spoofed-score risk (T-10-08)
 
 ### Pending Todos
 
@@ -80,11 +81,12 @@ None yet.
 | Ladder | LADDER-01/02 — Product #2 and post-purchase upsell sequence | Deferred to future milestone | v2.0 requirements definition |
 | Phase 10 P01 | 25min | 3 tasks | 8 files |
 | Phase 10 P03 | 12min | 2 tasks | 6 files |
+| Phase 10 P04 | 6min | 3 tasks | 7 files |
 
 ## Session Continuity
 
-Last session: 2026-08-09T05:54:56.785Z
-Stopped at: Phase 10 planned: 5 plans across 2 waves, checker blocker resolved by direct plan edit
+Last session: 2026-08-09T06:06:07.740Z
+Stopped at: Completed 10-04-PLAN.md: Calendly removed from services/checkout, engage enterprise-gated, BOOKING_SLOTS retired
 Resume file: None
 
 Next action: `/gsd-plan-phase 6`

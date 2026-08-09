@@ -88,8 +88,8 @@
 - [x] **ASSESS-12**: The output is revenue-framed — "here are three automations worth ~$X/month to you" — naming a number rather than an AI readiness score
 - [ ] **ASSESS-13**: The results screen routes to purchase instead of the 10-field form (§C4)
 - [ ] **ASSESS-14**: `/assessment` and `/assessment/deep` are resolved to one canonical route; the other is merged or deleted (§D3)
-- [ ] **ASSESS-15**: Calendly is removed from the primary path — all five hardcoded occurrences — and appears on the enterprise track only (§C5)
-- [ ] **ASSESS-16**: `BOOKING_SLOTS` manual scarcity is retired or automated so it cannot go stale (§C6)
+- [x] **ASSESS-15**: Calendly is removed from the primary path — all five hardcoded occurrences — and appears on the enterprise track only (§C5)
+- [x] **ASSESS-16**: `BOOKING_SLOTS` manual scarcity is retired or automated so it cannot go stale (§C6)
 
 ### Enterprise Track
 
@@ -199,8 +199,8 @@ Deferred to a later milestone. Tracked but not in this roadmap.
 | ASSESS-12 | Phase 10 | Complete |
 | ASSESS-13 | Phase 10 | Pending |
 | ASSESS-14 | Phase 10 | Pending |
-| ASSESS-15 | Phase 10 | Pending |
-| ASSESS-16 | Phase 10 | Pending |
+| ASSESS-15 | Phase 10 | Complete |
+| ASSESS-16 | Phase 10 | Complete |
 | ENT-01 | Phase 10 | Complete |
 | ENT-02 | Phase 10 | Complete |
 | POLISH-01 | Phase 11 | Pending |
