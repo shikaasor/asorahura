@@ -1,14 +1,14 @@
 .page {
   min-height: 100vh;
-  background: #0a0a0a;
-  color: #fff;
+  background: var(--surface-1);
+  color: var(--ink-1);
 }
 
 /* Hero */
 .hero {
-  background: #0a0a0a;
+  background: var(--surface-1);
   padding: 5rem 2rem 4rem;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid var(--border-2);
 }
 
 .heroInner {
@@ -19,16 +19,16 @@
 
 .heroTitle {
   font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 800;
+  font-weight: var(--fontWeight-bold);
   letter-spacing: -0.03em;
   line-height: 1.1;
-  color: #fff;
+  color: var(--ink-1);
   margin-bottom: 1.25rem;
 }
 
 .heroSub {
   font-size: 1.1rem;
-  color: #9ca3af;
+  color: var(--ink-2);
   line-height: 1.65;
   max-width: 600px;
   margin: 0 auto;
@@ -64,10 +64,10 @@
 
 /* Card */
 .card {
-  background: #111;
-  border: 1px solid #222;
-  border-radius: 8px;
-  padding: 2rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-2);
+  padding: var(--spacing-5);
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -76,63 +76,63 @@
 }
 
 .card:hover {
-  border-color: #C9A84C;
+  border-color: var(--accent);
 }
 
 .cardEnterprise {
-  border-color: #C9A84C;
+  border-color: var(--accent);
 }
 
 .enterpriseBadge {
   position: absolute;
   top: -0.75rem;
   right: 1rem;
-  background: #C9A84C;
-  color: #0a0a0a;
+  background: var(--accent);
+  color: var(--ink-1);
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 0.2rem 0.6rem;
-  border-radius: 4px;
+  border-radius: var(--radius-1);
 }
 
 /* Card header */
 .cardHeader {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--spacing-2);
 }
 
 .tierName {
-  font-size: 1rem;
+  font-size: var(--fontSize-2);
   font-weight: 700;
-  color: #e5e7eb;
+  color: var(--ink-1);
   letter-spacing: 0.01em;
 }
 
 .priceRow {
   display: flex;
   align-items: baseline;
-  gap: 0.5rem;
+  gap: var(--spacing-2);
   flex-wrap: wrap;
 }
 
 .price {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--ink-1);
   line-height: 1;
 }
 
 .priceNote {
-  font-size: 0.75rem;
-  color: #6b7280;
+  font-size: var(--fontSize-1);
+  color: var(--ink-3);
 }
 
 .tagline {
   font-size: 0.875rem;
-  color: #9ca3af;
+  color: var(--ink-2);
   font-style: italic;
   line-height: 1.5;
 }
@@ -149,15 +149,15 @@
 .bullet {
   display: flex;
   align-items: flex-start;
-  gap: 0.5rem;
+  gap: var(--spacing-2);
   font-size: 0.85rem;
-  color: #d1d5db;
+  color: var(--ink-2);
   line-height: 1.5;
 }
 
 .bulletCheck {
-  color: #C9A84C;
-  font-size: 0.75rem;
+  color: var(--accent);
+  font-size: var(--fontSize-1);
   margin-top: 0.1rem;
   flex-shrink: 0;
 }
@@ -172,12 +172,12 @@
 
 .timeline {
   font-size: 0.8rem;
-  color: #6b7280;
+  color: var(--ink-3);
 }
 
 .timelineLabel {
-  font-weight: 600;
-  color: #9ca3af;
+  font-weight: var(--fontWeight-bold);
+  color: var(--ink-2);
 }
 
 /* CTA buttons */
@@ -187,7 +187,7 @@
   padding: 0.625rem 1rem;
   border-radius: 6px;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: var(--fontWeight-bold);
   text-decoration: none;
   transition: opacity 0.15s ease;
 }
@@ -197,34 +197,34 @@
 }
 
 .ctaDefault {
-  background: #C9A84C;
-  color: #0a0a0a;
-  border: 1px solid #C9A84C;
+  background: var(--accent);
+  color: var(--ink-1);
+  border: 1px solid var(--accent);
 }
 
 .ctaEnterprise {
-  background: #C9A84C;
-  color: #0a0a0a;
-  border: 1px solid #C9A84C;
+  background: var(--accent);
+  color: var(--ink-1);
+  border: 1px solid var(--accent);
 }
 
 /* Hero CTAs */
 .heroActions {
   display: flex;
   flex-direction: row;
-  gap: 1rem;
-  margin-top: 1.5rem;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-4);
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
 
 .workWithMeBtn {
-  background: #ffffff;
-  color: #0a0a0a;
+  background: var(--ink-1);
+  color: var(--surface-1);
   padding: 0.875rem 2rem;
-  border-radius: 8px;
-  font-weight: 600;
+  border-radius: var(--radius-2);
+  font-weight: var(--fontWeight-bold);
   font-size: 0.9375rem;
   text-decoration: none;
   transition: opacity 0.15s ease;
@@ -235,11 +235,11 @@
 }
 
 .heroSecondary {
-  color: #ffffff;
+  color: var(--ink-1);
   font-size: 0.9375rem;
   text-decoration: underline;
   text-underline-offset: 3px;
-  font-weight: 500;
+  font-weight: var(--fontWeight-bold);
 }
 
 /* Testimonials section */
@@ -252,14 +252,14 @@
 .testimonialsInner {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+  gap: var(--spacing-4);
 }
 
 /* Footer */
 .footer {
   text-align: center;
-  padding: 2rem;
+  padding: var(--spacing-5);
   font-size: 0.8rem;
-  color: #4b5563;
-  border-top: 1px solid #1a1a1a;
+  color: var(--ink-3);
+  border-top: 1px solid var(--border-2);
 }

@@ -1,32 +1,32 @@
 .main {
     min-height: 100vh;
-    background: var(--bg-base, #04080F);
+    background: var(--surface-1);
     padding-top: 10rem;
 }
 
 /* ── Hero ── */
 .hero {
     padding: 4rem 0 5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    border-bottom: 1px solid var(--border-1);
 }
 
 .headline {
     font-family: var(--font-serif);
-    font-size: 3rem;
+    font-size: var(--fontSize-7);
     font-weight: 700;
     max-width: 800px;
     line-height: 1.15;
     letter-spacing: -0.01em;
-    margin-bottom: 1.5rem;
-    color: #EDF2F7;
+    margin-bottom: var(--spacing-4);
+    color: var(--ink-1);
 }
 
 .subhead {
-    font-size: 1.125rem;
-    color: #5A6B84;
+    font-size: var(--fontSize-3);
+    color: var(--ink-2);
     max-width: 600px;
     line-height: 1.7;
-    margin-bottom: 3rem;
+    margin-bottom: var(--spacing-6);
 }
 
 /* ── Case study cards ── */
@@ -35,7 +35,7 @@
 }
 
 .caseStudyCard {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    border-bottom: 1px solid var(--border-1);
     padding: 3.5rem 0;
 }
 
@@ -45,10 +45,10 @@
 
 .caseHeadline {
     font-family: var(--font-serif);
-    font-size: 1.5rem;
+    font-size: var(--fontSize-5);
     font-weight: 700;
-    color: #EDF2F7;
-    margin-bottom: 2rem;
+    color: var(--ink-1);
+    margin-bottom: var(--spacing-5);
     line-height: 1.45;
     max-width: 860px;
 }
@@ -56,7 +56,7 @@
 .caseBody {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem 3rem;
+    gap: var(--spacing-4) var(--spacing-6);
 }
 
 .caseSection {
@@ -67,29 +67,29 @@
     font-size: 0.6875rem;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: var(--gold, #C9A060);
-    margin-bottom: 0.5rem;
+    color: var(--accent);
+    margin-bottom: var(--spacing-2);
     font-weight: 700;
 }
 
 .caseSection p {
     font-size: 0.9375rem;
     line-height: 1.75;
-    color: #5A6B84;
+    color: var(--ink-2);
 }
 
 .caseStack {
     grid-column: 1 / -1;
     margin-top: 0.5rem;
     font-size: 0.8125rem;
-    color: #3D4F66;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--ink-3);
+    border-top: 1px solid var(--border-1);
     padding-top: 1.25rem;
 }
 
 .caseStackLabel {
     font-weight: 700;
-    color: #5A6B84;
+    color: var(--ink-2);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     font-size: 0.6875rem;
@@ -98,24 +98,24 @@
 
 /* ── Bottom CTA ── */
 .bottomCta {
-    background: var(--bg-surface, #080E1A);
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    background: var(--surface-2);
+    border-top: 1px solid var(--border-1);
     padding: 5.5rem 2rem;
     text-align: center;
 }
 
 .bottomCtaHeadline {
     font-family: var(--font-serif);
-    font-size: 2rem;
+    font-size: var(--fontSize-6);
     font-weight: 700;
-    color: #EDF2F7;
-    margin-bottom: 1rem;
+    color: var(--ink-1);
+    margin-bottom: var(--spacing-3);
     letter-spacing: -0.01em;
 }
 
 .bottomCtaSub {
-    font-size: 1rem;
-    color: #5A6B84;
+    font-size: var(--fontSize-2);
+    color: var(--ink-2);
     max-width: 520px;
     margin: 0 auto;
     line-height: 1.65;
@@ -123,8 +123,8 @@
 
 .bottomCtaBtn {
     display: inline-block;
-    background: var(--gold, #C9A060);
-    color: #04080F;
+    background: var(--accent);
+    color: var(--ink-1);
     padding: 0.9375rem 2.25rem;
     font-weight: 700;
     font-size: 0.9375rem;
@@ -132,29 +132,29 @@
     text-decoration: none;
     margin-top: 1.75rem;
     transition: background 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 20px rgba(201, 160, 96, 0.28);
+    box-shadow: 0 4px 20px rgba(201, 168, 109, 0.28);
     cursor: pointer;
 }
 
 .bottomCtaBtn:hover {
-    background: var(--gold-light, #E0B878);
-    box-shadow: 0 6px 28px rgba(201, 160, 96, 0.42);
+    background: var(--accent-hover);
+    box-shadow: 0 6px 28px rgba(201, 168, 109, 0.42);
     opacity: 1;
 }
 
 /* ── Footer ── */
 .footer {
-    padding: 3rem 0;
+    padding: var(--spacing-6) 0;
     text-align: center;
     font-size: 0.8125rem;
-    color: #2E3D52;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--ink-3);
+    border-top: 1px solid var(--border-1);
 }
 
 /* ── Legacy classes kept for any other usage ── */
 .nav { display: flex; justify-content: space-between; align-items: center; padding: 2rem 4rem; }
-.logo { font-family: var(--font-serif); font-size: 1.5rem; letter-spacing: -0.05em; color: #EDF2F7; }
-.backLink { font-size: 0.9rem; color: #5A6B84; }
+.logo { font-family: var(--font-serif); font-size: 1.5rem; letter-spacing: -0.05em; color: var(--ink-1); }
+.backLink { font-size: 0.9rem; color: var(--ink-2); }
 
 @media (max-width: 900px) {
     .caseBody {
@@ -173,7 +173,7 @@
     }
 
     .caseHeadline {
-        font-size: 1.25rem;
+        font-size: var(--fontSize-4);
     }
 
     .bottomCtaHeadline {
