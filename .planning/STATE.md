@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Reposition to Small Business Owners
-status: ready_to_plan
-stopped_at: Phase 09.1 complete (5/5) — ready to discuss Phase 10
-last_updated: 2026-08-08T12:48:23.849Z
-last_activity: 2026-08-08 -- Phase 09.1 execution started
+status: executing
+stopped_at: "Phase 10 planned: 5 plans across 2 waves, checker blocker resolved by direct plan edit"
+last_updated: "2026-08-09T05:50:25.950Z"
+last_activity: 2026-08-09
 progress:
   total_phases: 12
-  completed_phases: 5
-  total_plans: 39
-  completed_plans: 37
-  percent: 42
+  completed_phases: 6
+  total_plans: 44
+  completed_plans: 38
+  percent: 50
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: `.planning/PROJECT.md` (updated 2026-07-31)
 
 **Core value:** Grow your income through small automations — start with one automation that visibly makes money, then ascend.
-**Current focus:** Phase 10 — assessment re point + enterprise track
+**Current focus:** Phase 10 — assessment-re-point-enterprise-track
 
 ## Current Position
 
-Phase: 10
-Plan: Not started
-Status: Ready to plan
-Last activity: 2026-08-08
+Phase: 10 (assessment-re-point-enterprise-track) — EXECUTING
+Plan: 2 of 5
+Status: Ready to execute
+Last activity: 2026-08-09
 
-Progress: [███░░░░░░░] 36% (v2.0)
+Progress: [█████████░] 86%
 
 ## Performance Metrics
 
@@ -56,6 +56,8 @@ Full decision log in `.planning/PROJECT.md` Key Decisions table. Recent decision
 - Palette decision precedes the product page — `/automate` is the pilot for the new token system (2026-07-30)
 - Care Plan corrected to $9.99/mo (site currently shows $99/mo, a 10x error) — must ship fixed in Phase 7 before any other page work
 - `/automate` ships self-contained (no site nav) until Phase 9 lands
+- [Phase 10]: getRevenueOpportunities always takes tierLevel derived from deepScoreToTierLevel/quickScoreToTierLevel, never the raw score
+- [Phase 10]: Enterprise gate uses hardcoded router.push('/enterprise') literal to close open-redirect threat T-10-02
 
 ### Pending Todos
 
@@ -75,11 +77,12 @@ None yet.
 | Segment Expansion | SEG-01..04 — local services, agencies, e-commerce segment pages | Deferred to future milestone | v2.0 requirements definition |
 | Proof | PROOF-01/02 — before/after results, revenue-impact testimonials | Deferred (no proof exists yet) | v2.0 requirements definition |
 | Ladder | LADDER-01/02 — Product #2 and post-purchase upsell sequence | Deferred to future milestone | v2.0 requirements definition |
+| Phase 10 P01 | 25min | 3 tasks | 8 files |
 
 ## Session Continuity
 
-Last session: 2026-08-08T10:50:53.620Z
-Stopped at: Phase 09.1 UI-SPEC approved
-Resume file: .planning/phases/09.1-automations-page-catalog-of-automations-with-detail-pages-pe/09.1-UI-SPEC.md
+Last session: 2026-08-09T05:46:47.203Z
+Stopped at: Phase 10 planned: 5 plans across 2 waves, checker blocker resolved by direct plan edit
+Resume file: None
 
 Next action: `/gsd-plan-phase 6`
