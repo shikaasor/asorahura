@@ -265,10 +265,23 @@ Plans:
   4. Calendly is removed from the primary path (all five hardcoded occurrences) and `BOOKING_SLOTS` manual scarcity is retired or automated
   5. An enterprise track page carries the case studies, the four regulated verticals, the `/engage` intake, and the `/services` tiers, reachable only from the footer and a secondary nav slot
 
-**Plans**: TBD
+**Plans**: 5 plans across 2 waves — see `.planning/phases/10-assessment-re-point-enterprise-track/`
+Plans:
+**Wave 1**
+
+- [ ] 10-01-PLAN.md — Revenue-calculation utility, sector entry gate, unified RevenueResultsScreen (foundation for Plan 02)
+- [ ] 10-03-PLAN.md — /enterprise track page (verticals, case studies, service tiers, intake CTA) + footer/secondary-nav reachability
+- [ ] 10-04-PLAN.md — Engage/services/checkout Calendly removal + BOOKING_SLOTS retirement
+- [ ] 10-05-PLAN.md — Assessment emails/PDF/LLM-prompt Calendly removal
+
+**Wave 2** *(blocked on Wave 1 / 10-01 completion)*
+
+- [ ] 10-02-PLAN.md — Wire sector gate + RevenueResultsScreen into both assessment shells; consolidate /assessment + /assessment/deep into one canonical route
+
 **UI hint**: yes
 
 **Note**: Once this phase lands, `/automate`'s closing section (PROD-12) can link directly into the assessment instead of relying on the `automate-buyer` tag alone.
+**Note**: Per RESEARCH.md Pitfall 2, the quick (7-question) and deep (24-question) assessment engines are kept separate — only the entry gate and results rendering are unified into one component (`RevenueResultsScreen`) and one canonical route (`/assessment`, with `/assessment/deep` redirecting to `/assessment?depth=deep`).
 
 ### Phase 11: Cleanup & Consistency
 
@@ -303,7 +316,7 @@ Plans:
 | 7. Product #1 Live + Payments | v2.0 | 12/13 | Blocked (Paddle prod approval) | - |
 | 8. Design System Rollout | v2.0 | 0/TBD | Not started | - |
 | 9. Homepage & Funnel Reposition | v2.0 | 0/TBD | Not started | - |
-| 10. Assessment Re-point + Enterprise Track | v2.0 | 0/TBD | Not started | - |
+| 10. Assessment Re-point + Enterprise Track | v2.0 | 0/5 | Planned | - |
 | 11. Cleanup & Consistency | v2.0 | 0/TBD | Not started | - |
 
 ## Requirement Coverage Summary (v2.0)
@@ -339,4 +352,4 @@ Plans:
 
 *Roadmap v1.0 created: 2026-05-13*
 *Roadmap v2.0 (Phases 6–11) created: 2026-07-31 from IMPLEMENTATION_PLAN.md and WEBSITE_AUDIT.md*
-*Next action: `/gsd-execute-phase 07`*
+*Next action: `/gsd-execute-phase 10`*
