@@ -80,21 +80,6 @@ export function AssessmentReport({
           ))}
           <Hr style={{ borderColor: "#e5e7eb", margin: "24px 0" }} />
           <Button
-            href="https://asorahura.com/ai-readiness-scorecard.pdf"
-            style={{
-              backgroundColor: "#f3f4f6",
-              color: "#111",
-              padding: "12px 24px",
-              borderRadius: "6px",
-              fontSize: "14px",
-              textDecoration: "none",
-              display: "inline-block",
-              marginBottom: "12px",
-            }}
-          >
-            Download Full Scorecard PDF
-          </Button>
-          <Button
             href={`${BASE_URL}/checkout`}
             style={{
               backgroundColor: "#111",
