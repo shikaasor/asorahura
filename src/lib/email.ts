@@ -2,13 +2,13 @@ import { Resend } from "resend";
 import { draftEmailSequence, draftNurtureEmailSequence, generatePDFContent } from "@/lib/llm";
 import { generateAssessmentPDF } from "@/lib/pdf";
 import { getSegment, DEFAULT_SECTOR, type Sector } from "@/lib/assessment";
+export { CALENDLY_URL } from "@/lib/constants";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const FROM = "Asor Ahura <hello@asorahura.com>";
 const RESOURCES_FROM = "Asor Ahura <resources@asorahura.com>";
 const BUILD_MAP_DOWNLOAD_URL = "https://drive.google.com/file/d/1jDFFWWg2JsEy9vlRtMVwkdeLggqStcOZ/view?usp=drive_link";
-export const CALENDLY_URL = "https://calendly.com/asorahura";
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://asorahura.vercel.app';
 
 function unsubscribeFooter(email: string) {

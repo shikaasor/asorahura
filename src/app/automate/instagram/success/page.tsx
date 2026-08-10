@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { automateSuccessSchema, type AutomateSuccessFormData } from "@/lib/schemas";
-import { CALENDLY_URL } from "@/lib/email";
+import { CALENDLY_URL } from "@/lib/constants";
 import { getAutomateTierById } from "@/lib/checkout";
 import { trackAnalyticsEvent } from "@/lib/analytics";
 import styles from "./success.module.css";

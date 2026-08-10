@@ -20,9 +20,9 @@
 
 **Scope determination:** Out of scope for Phase 8 (design-system-rollout / color-token conversion). This is a pre-existing server/client boundary bug unrelated to CSS or color tokens — fixing it requires either marking the page/import as server-only, dynamic-importing `pdf.ts` inside a server action, or restructuring the `email.ts`/`pdf.ts` import graph so `pdfkit` never reaches the client bundle. None of Phase 8's plans touch these files.
 
-**Action taken:** Not fixed. Logged here for a future phase/task. This means `npm run build` will continue to fail through Phase 8's post-merge test gates for reasons unrelated to this phase's work; treat repeated failures in this specific `pdfkit`/`fs` trace as this known issue, not a Phase 8 regression.
+**Action taken:** Fixed post-phase-close, at user request, by extracting `CALENDLY_URL` out of `src/lib/email.ts` (server-only: imports `resend`, `@/lib/llm`, `@/lib/pdf`) into a new `src/lib/constants.ts` with no server-only imports. Updated `src/app/automate/instagram/success/page.tsx` (a Client Component) to import `CALENDLY_URL` from `@/lib/constants` instead of `@/lib/email`, so the client bundle graph never reaches `pdf.ts`/`pdfkit`. `email.ts` re-exports `CALENDLY_URL` from `constants.ts` for any other consumer. `npm run build` now exits 0; `npx tsc --noEmit` and `npm run test` (178/179, only the pre-existing checkout-CTA test below still fails) both re-verified clean.
 
-**Status:** Deferred, not fixed.
+**Status:** Resolved.
 
 ## Pre-existing dependency install gaps: `prettier`, `next-mdx-remote/rsc`
 
