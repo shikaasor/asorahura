@@ -37,7 +37,7 @@ export default function Navigation() {
 
                 <div className={styles.links}>
                     <Link href="/services" className={pathname === "/services" ? styles.active : ""}>
-                        Services
+                        Pricing
                     </Link>
                     <Link href="/work" className={pathname === "/work" ? styles.active : ""}>
                         Work
@@ -51,8 +51,8 @@ export default function Navigation() {
                     <Link href="/enterprise" className={pathname.startsWith("/enterprise") ? styles.active : ""}>
                         Enterprise
                     </Link>
-                    <Link href="/assessment" className={styles.cta}>
-                        Start AI Opportunity Discovery
+                    <Link href="/automate" className={styles.cta}>
+                        See Automations
                     </Link>
                 </div>
 
@@ -71,12 +71,12 @@ export default function Navigation() {
 
             {menuOpen && (
                 <div className={styles.mobileMenu}>
-                    <Link href="/services" className={pathname === "/services" ? styles.mobileActive : ""} onClick={() => setMenuOpen(false)}>Services</Link>
+                    <Link href="/services" className={pathname === "/services" ? styles.mobileActive : ""} onClick={() => setMenuOpen(false)}>Pricing</Link>
                     <Link href="/work" className={pathname === "/work" ? styles.mobileActive : ""} onClick={() => setMenuOpen(false)}>Work</Link>
                     <Link href="/assessment" className={pathname.startsWith("/assessment") ? styles.mobileActive : ""} onClick={() => setMenuOpen(false)}>Discovery</Link>
                     <Link href="/blog" className={pathname.startsWith("/blog") ? styles.mobileActive : ""} onClick={() => setMenuOpen(false)}>Blog</Link>
                     <Link href="/enterprise" className={pathname.startsWith("/enterprise") ? styles.mobileActive : ""} onClick={() => setMenuOpen(false)}>Enterprise</Link>
-                    <Link href="/assessment" className={styles.mobileCta} onClick={() => setMenuOpen(false)}>Start AI Opportunity Discovery</Link>
+                    <Link href="/automate" className={styles.mobileCta} onClick={() => setMenuOpen(false)}>See Automations</Link>
                 </div>
             )}
         </div>
