@@ -104,6 +104,14 @@
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+.headshot {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: var(--spacing-2);
+}
+
 .attribution strong {
   font-size: var(--fontSize-2);
   font-weight: 700;
@@ -114,6 +122,23 @@
   font-size: var(--fontSize-1);
   color: var(--accent);
   letter-spacing: 0.02em;
+}
+
+.enterpriseNote {
+  text-align: center;
+  margin-top: var(--spacing-5);
+  color: var(--ink-2);
+  font-size: var(--fontSize-2);
+  font-weight: var(--fontWeight-bold);
+}
+
+.enterpriseNote a {
+  color: var(--ink-2);
+  text-decoration: underline;
+}
+
+.enterpriseNote a:hover {
+  color: var(--accent);
 }
 
 @media (max-width: 1024px) {

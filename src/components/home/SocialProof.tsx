@@ -1,25 +1,8 @@
+import Link from "next/link";
 import styles from "./SocialProof.module.css";
+import testimonials from "@/content/testimonials.json";
 
-const testimonials = [
-  {
-    quote:
-      "Asor extracted and structured 7,826 pages of data from 260 years of Lloyd's List maritime records in a fraction of the time any team could manage manually. The system he built changed how we approach archival research.",
-    name: "P.J.",
-    role: "Assistant Professor, Kellogg School of Management",
-  },
-  {
-    quote:
-      "Asor mapped our entire client delivery process and identified three workflows we were doing manually every week. Within 60 days those were fully automated. Our team now handles 40% more clients without adding headcount.",
-    name: "T.N.",
-    role: "Founder, Professional Services",
-  },
-  {
-    quote:
-      "We reclaimed over 40 hours per month in manual operations tasks within the first 90 days. Asor didn't just automate a process — he redesigned how our team works.",
-    name: "R.O.",
-    role: "COO, B2B SaaS",
-  },
-];
+const proofItems = [testimonials.services[0], testimonials.services[1], testimonials.hero];
 
 export default function SocialProof() {
   return (
@@ -27,16 +10,22 @@ export default function SocialProof() {
       <div className={styles.container}>
         <h2 className={styles.heading}>What clients say</h2>
         <div className={styles.grid}>
-          {testimonials.map((t) => (
+          {proofItems.map((t) => (
             <blockquote key={t.name} className={styles.card}>
               <p className={styles.quote}>&ldquo;{t.quote}&rdquo;</p>
               <footer className={styles.attribution}>
+                {t.headshot && (
+                  <img src={t.headshot} alt={t.name} className={styles.headshot} />
+                )}
                 <strong>{t.name}</strong>
-                <span className={styles.role}>{t.role}</span>
+                <span className={styles.role}>{t.title}</span>
               </footer>
             </blockquote>
           ))}
         </div>
+        <p className={styles.enterpriseNote}>
+          <Link href="/enterprise">Looking for enterprise case studies? →</Link>
+        </p>
       </div>
     </section>
   );
