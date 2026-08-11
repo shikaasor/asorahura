@@ -1,63 +1,51 @@
 import Link from "next/link";
 import styles from "./ServicesPreview.module.css";
 
-const services = [
+const ladder = [
   {
-    title: "AI Opportunity Discovery",
-    description:
-      "A structured exploration of your current operations. I identify where AI automation delivers the highest ROI and produce a prioritised implementation roadmap.",
-    price: "$5,000",
-    href: "/engage",
+    tier: 1,
+    title: "Instagram Lead Automation",
+    description: "Capture leads from Instagram comments, convert to DMs, nurture in email.",
+    entry: "Free (DIY) or $500 (Done For You)",
+    cta: "Get Started",
+    href: "/automate/instagram",
   },
   {
-    title: "Ops Automation Build",
+    tier: 2,
+    title: "The Next Four",
     description:
-      "End-to-end build of the highest-impact automation identified in your discovery. Covers workflow design, integration, testing, and handover documentation.",
-    price: "$5,000 – $15,000",
-    href: "/engage",
-  },
-  {
-    title: "Systems Architecture",
-    description:
-      "Comprehensive AI systems design for complex, multi-workflow operations. Ideal for organisations ready to transform their operational infrastructure at scale.",
-    price: "$15,000 – $30,000+",
-    href: "/engage",
+      "Email triage on Telegram, writing constitution + content, rate-aware invoice, client onboarding agent.",
+    entry: "Coming soon.",
+    cta: "Join Waitlist",
+    href: "/automate",
   },
 ];
-
-const sectorTracks = ["Law", "Finance", "Real Estate", "Construction", "Other / Cross-Industry"];
 
 export default function ServicesPreview() {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <h2 className={styles.heading}>How I help</h2>
+        <h2 className={styles.heading}>The Automation Ladder</h2>
+        <p className={styles.subheading}>Start with one. Earn with it. Scale to five.</p>
         <div className={styles.grid}>
-          {services.map((service) => (
-            <div key={service.title} className={styles.card}>
+          {ladder.map((service) => (
+            <div
+              key={service.title}
+              className={`${styles.card} ${service.tier === 1 ? styles.featured : styles.coming}`}
+            >
+              <div className={styles.tier}>Rung {service.tier}</div>
               <div className={styles.cardTop}>
                 <h3 className={styles.cardTitle}>{service.title}</h3>
                 <p className={styles.cardBody}>{service.description}</p>
               </div>
               <div className={styles.cardBottom}>
-                <span className={styles.price}>{service.price}</span>
+                <span className={styles.price}>{service.entry}</span>
                 <Link href={service.href} className={styles.learnMore}>
-                  Learn More →
+                  {service.cta} →
                 </Link>
               </div>
             </div>
           ))}
-        </div>
-        <div className={styles.sectorStrip}>
-          <span className={styles.sectorLabel}>Sector-aware assessment tracks</span>
-          <div className={styles.sectorChips}>
-            {sectorTracks.map((s) => (
-              <span key={s} className={styles.sectorChip}>{s}</span>
-            ))}
-          </div>
-          <Link href="/assessment" className={styles.sectorLink}>
-            Take the free AI Opportunity Discovery →
-          </Link>
         </div>
       </div>
     </section>
