@@ -2,8 +2,8 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Reposition to Small Business Owners
-status: verifying
-stopped_at: Completed 09-04-PLAN.md
+status: completed
+stopped_at: Phase 09 verified PASSED
 last_updated: "2026-08-11T12:06:30.531Z"
 last_activity: 2026-08-11
 progress:
@@ -21,13 +21,13 @@ progress:
 See: `.planning/PROJECT.md` (updated 2026-07-31)
 
 **Core value:** Grow your income through small automations — start with one automation that visibly makes money, then ascend.
-**Current focus:** Phase 09 — homepage-funnel-reposition
+**Current focus:** Phase 09.1 — Automations Page (next in roadmap)
 
 ## Current Position
 
-Phase: 09 — homepage-funnel-reposition
+Phase: 09 — homepage-funnel-reposition — COMPLETE (verified PASSED)
 Plan: 4 of 4
-Status: Phase complete — ready for verification
+Status: Phase complete and verified
 Last activity: 2026-08-11
 
 Progress: [██████████] 96%
@@ -78,7 +78,6 @@ None yet.
 ### Blockers/Concerns
 
 - Paddle live status and price ID configuration in production is unverified — first task of Phase 7 (PAY-01)
-- `SocialProof.tsx` testimonials (T.N., R.O.) — real and anonymized, or placeholder? Blocks Phase 9 homepage rewrite (HOME-18)
 - **Phase 7 missing source assets**: `ai_learnt/assets/automate-landing-page.html` (PROD-01's copy/structure source) and the Build Map deliverable (4 n8n workflow files + env template + deploy guide, per PROJECT.md) do not exist anywhere in the repo. Planner/researcher will need to work from PROJECT.md + REQUIREMENTS.md content alone, or the user needs to supply the real files before launch.
 - Phase 7 has no CONTEXT.md — discuss-phase-7 was started (codebase scouted, gray areas identified: missing assets, new Paddle products for DFY/DWY/Care Plan, purchase notification mechanism, lead capture/analytics choices) but the user chose to skip straight to planning.
 
@@ -101,7 +100,7 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-08-11T12:06:30.495Z
-Stopped at: Completed 09-04-PLAN.md
+Stopped at: Phase 09 verified PASSED
 Resume file: None
 
-Next action: Execute `.planning/phases/09-homepage-funnel-reposition/09-04-PLAN.md`
+Next action: Plan Phase 09.1 (Automations Page) or Phase 10 (Assessment Re-point + Enterprise Track)

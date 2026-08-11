@@ -34,7 +34,7 @@ Full detail for Phases 1–5 lives in `.planning/phases/01-*` … `05-*` and is 
 - [ ] **Phase 6: Palette Decision + Token Foundation** - Committed light-first design system exists as tokens
 - [ ] **Phase 7: Product #1 Live + Payments (REVENUE)** - A visitor from the Reel can buy DFY/DWY or get the free Build Map, self-serve
 - [ ] **Phase 8: Design System Rollout** - One visual system across every page; dead code removed; no hardcoded colors
-- [ ] **Phase 9: Homepage & Funnel Reposition** - Cold visitor understands the offer and can buy without a call
+- [x] **Phase 9: Homepage & Funnel Reposition** - Cold visitor understands the offer and can buy without a call
 - [ ] **Phase 10: Assessment Re-point + Enterprise Track** - Assessment serves the new ICP and feeds the ladder; enterprise work keeps a home
 - [ ] **Phase 11: Cleanup & Consistency** - Redirects, accessibility, responsive, Lighthouse, token documentation
 
@@ -241,6 +241,8 @@ Plans:
 - [x] 09-04-PLAN.md — SocialProof testimonials.json sourcing + /engage enterprise reframe + /services CTA cleanup (HOME-15, HOME-17, HOME-18, HOME-19)
 
 **UI hint**: yes
+
+**Status**: Complete — verified PASSED (see `.planning/phases/09-homepage-funnel-reposition/VERIFICATION.md`)
 
 **Note**: This phase removes the need for `/automate`'s self-contained shell (PROD-02) — `/automate` can adopt the full site nav once this ships.
 
