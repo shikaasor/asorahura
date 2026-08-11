@@ -237,7 +237,7 @@ Plans:
 
 - [x] 09-01-PLAN.md — Hero income-framing + Navigation CTA consolidation/Pricing label (HOME-12, HOME-16, HOME-20, HOME-21)
 - [x] 09-02-PLAN.md — layout.tsx production metadataBase + Footer positioning statement/nav regrouping (HOME-21)
-- [ ] 09-03-PLAN.md — PainSection creator rewrite + ServicesPreview product ladder (HOME-13, HOME-14, HOME-15)
+- [x] 09-03-PLAN.md — PainSection creator rewrite + ServicesPreview product ladder (HOME-13, HOME-14, HOME-15)
 - [ ] 09-04-PLAN.md — SocialProof testimonials.json sourcing + /engage enterprise reframe + /services CTA cleanup (HOME-15, HOME-17, HOME-18, HOME-19)
 
 **UI hint**: yes
