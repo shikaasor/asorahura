@@ -15,19 +15,16 @@ export default function HeroSection() {
         <div className={styles.grid}>
           {/* Left column: pain-first copy */}
           <div className={styles.copy}>
-            <p className={styles.eyebrow}>AI Systems Consultant</p>
+            <p className={styles.eyebrow}>Automations that work like your best hire — reliable, consistent, and yours to keep.</p>
             <h1 className={styles.headline}>
-              You&rsquo;re spending more time managing your business than growing it.
+              Small automations that make measurable money.
             </h1>
             <p className={styles.subheading}>
-              AI-powered systems that eliminate the repetitive work keeping you stuck in operations.
+              Start with Instagram leads, scale to five offerings. Own the system. Own the profit.
             </p>
             <div className={styles.actions}>
-              <Link href="/assessment" className={styles.primaryBtn}>
-                Start Your Free AI Opportunity Discovery
-              </Link>
-              <Link href="/engage" className={styles.secondaryBtn}>
-                Work With Me
+              <Link href="/automate" className={styles.primaryBtn}>
+                See Automations
               </Link>
             </div>
             <TrustSignals />
