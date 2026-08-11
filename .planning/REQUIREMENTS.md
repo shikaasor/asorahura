@@ -74,11 +74,11 @@
 - [x] **HOME-12**: The hero leads with income growth, not hours saved (§A6)
 - [ ] **HOME-13**: `PainSection` speaks the new ICP's language; the four regulated-vertical cards (ABA Rule 1.6, SR 11-7, EU AI Act) move to the enterprise track (§A1)
 - [ ] **HOME-14**: `ServicesPreview` reads as a ladder with Product #1 as the visible entry rung at its real price, then what comes after (§A7)
-- [ ] **HOME-15**: One entry price story appears everywhere — the free/$50-per-hour/$5,000 contradiction is resolved and `/services` tiers become enterprise-track pricing (§A3, §C3)
+- [x] **HOME-15**: One entry price story appears everywhere — the free/$50-per-hour/$5,000 contradiction is resolved and `/services` tiers become enterprise-track pricing (§A3, §C3)
 - [x] **HOME-16**: The homepage presents one primary CTA, replacing the current four competing entry points (§C2)
-- [ ] **HOME-17**: Enterprise case studies appear as a credibility strip ("who I've built for"), not as primary proof (§A5)
-- [ ] **HOME-18**: Named testimonials with headshots from `content/testimonials.json` replace the anonymized `SocialProof.tsx` set, with T.N. and R.O. either attributed specifically or removed (§D2)
-- [ ] **HOME-19**: `/engage` is out of the primary path and reframed as the enterprise intake form
+- [x] **HOME-17**: Enterprise case studies appear as a credibility strip ("who I've built for"), not as primary proof (§A5)
+- [x] **HOME-18**: Named testimonials with headshots from `content/testimonials.json` replace the anonymized `SocialProof.tsx` set, with T.N. and R.O. either attributed specifically or removed (§D2)
+- [x] **HOME-19**: `/engage` is out of the primary path and reframed as the enterprise intake form
 - [x] **HOME-20**: Pricing appears in the navigation (§C7)
 - [x] **HOME-21**: One positioning statement runs across page metadata, hero eyebrow, and footer, and `metadataBase` points at the production domain rather than `vercel.app` (§A8)
 
@@ -188,11 +188,11 @@ Deferred to a later milestone. Tracked but not in this roadmap.
 | HOME-12 | Phase 9 | Complete |
 | HOME-13 | Phase 9 | Pending |
 | HOME-14 | Phase 9 | Pending |
-| HOME-15 | Phase 9 | Pending |
+| HOME-15 | Phase 9 | Complete |
 | HOME-16 | Phase 9 | Complete |
-| HOME-17 | Phase 9 | Pending |
-| HOME-18 | Phase 9 | Pending |
-| HOME-19 | Phase 9 | Pending |
+| HOME-17 | Phase 9 | Complete |
+| HOME-18 | Phase 9 | Complete |
+| HOME-19 | Phase 9 | Complete |
 | HOME-20 | Phase 9 | Complete |
 | HOME-21 | Phase 9 | Complete |
 | ASSESS-11 | Phase 10 | Complete |

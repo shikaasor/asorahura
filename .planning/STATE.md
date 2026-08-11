@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Reposition to Small Business Owners
-status: executing
-stopped_at: Completed 09-03-PLAN.md
-last_updated: "2026-08-11T10:34:33.464Z"
+status: verifying
+stopped_at: Completed 09-04-PLAN.md
+last_updated: "2026-08-11T12:06:30.531Z"
 last_activity: 2026-08-11
 progress:
   total_phases: 12
-  completed_phases: 8
+  completed_phases: 9
   total_plans: 55
-  completed_plans: 52
-  percent: 67
+  completed_plans: 53
+  percent: 75
 ---
 
 # Project State
@@ -27,10 +27,10 @@ See: `.planning/PROJECT.md` (updated 2026-07-31)
 
 Phase: 09 — homepage-funnel-reposition
 Plan: 4 of 4
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-08-11
 
-Progress: [██████████] 95%
+Progress: [██████████] 96%
 
 ## Performance Metrics
 
@@ -68,6 +68,8 @@ Full decision log in `.planning/PROJECT.md` Key Decisions table. Recent decision
 - [Phase 09]: Footer.tsx uses two separate nav blocks (Creator Path, Enterprise) to visibly separate the two funnels
 - [Phase 09]: Fixed pre-existing swapped CSS modules (PainSection/ProcessTimeline) from 08-04 before proceeding with Task 1
 - [Phase 09]: Used plain apostrophes instead of literal &apos; in JS string data (not JSX text nodes)
+- [Phase ?]: proofItems composed as [services[0], services[1], hero] from testimonials.json for SocialProof (Pawel Janas, Aamna Mansoor, Maria Rios)
+- [Phase ?]: isEnterprise variable and hidden field kept in /engage for actions.ts redirect compatibility; only visible copy ternaries made static
 
 ### Pending Todos
 
@@ -94,11 +96,12 @@ None yet.
 | Phase 10 P02 | 20min | 3 tasks | 6 files |
 | Phase 09 P02 | 20min | 2 tasks | 3 files |
 | Phase 09 P03 | 20min | 2 tasks | 5 files |
+| Phase 09 P04 | 25min | 3 tasks | 5 files |
 
 ## Session Continuity
 
-Last session: 2026-08-11T10:34:33.464Z
-Stopped at: Completed 09-03-PLAN.md
+Last session: 2026-08-11T12:06:30.495Z
+Stopped at: Completed 09-04-PLAN.md
 Resume file: None
 
 Next action: Execute `.planning/phases/09-homepage-funnel-reposition/09-04-PLAN.md`
