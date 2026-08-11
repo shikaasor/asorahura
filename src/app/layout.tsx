@@ -16,12 +16,12 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-    metadataBase: new URL("https://asorahura.vercel.app"),
-    title: "Asor Ahura | AI Automation Authority",
-    description: "Transforming Work into Flow. AI-powered automation systems that eliminate operational drag.",
+    metadataBase: new URL("https://asorahura.com"),
+    title: "Asor Ahura | Automations that work like your best hire",
+    description: "Automations that work like your best hire — reliable, consistent, and yours to keep.",
     openGraph: {
-        title: "Asor Ahura | AI Automation Authority",
-        description: "Transforming Work into Flow. AI-powered automation systems that eliminate operational drag.",
+        title: "Asor Ahura | Automations that work like your best hire",
+        description: "Automations that work like your best hire — reliable, consistent, and yours to keep.",
         images: [
             {
                 url: "/banner1.png",
