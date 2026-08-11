@@ -323,8 +323,25 @@ Plans:
   4. Every page is verified responsive at 360, 768, 1024, and 1440
   5. Lighthouse runs on `/` and `/automate` and meets agreed thresholds; the README documents the token system
 
-**Plans**: TBD
+**Plans**: 5 plans across 3 waves — see `.planning/phases/11-cleanup-consistency/`
+Plans:
+**Wave 1**
+
+- [ ] 11-01-PLAN.md — Redirect regression test, dynamic footer year, purchase-funnel icon migration to lucide-react (POLISH-01, POLISH-02, POLISH-03)
+- [ ] 11-02-PLAN.md — Site-wide :focus-visible + /automate heading-order fix + keyboard-nav checkpoint (POLISH-04)
+- [ ] 11-05-PLAN.md — Root README.md with Design System & Tokens documentation (POLISH-07)
+
+**Wave 2** *(blocked on 11-02 — same file, globals.css)*
+
+- [ ] 11-03-PLAN.md — 1024px/1440px breakpoint rules + responsive verification checkpoint (POLISH-05)
+
+**Wave 3** *(blocked on 11-02/11-03 — audits final state)*
+
+- [ ] 11-04-PLAN.md — Lighthouse CI setup + baseline checkpoint (POLISH-06)
+
 **UI hint**: yes
+
+**Note**: Alt text on all 7 flagged `<Image>` components was independently re-verified as already complete (see 11-PATTERNS.md correction) — no alt-text implementation task exists in this phase's plans, only regression awareness during the accessibility checkpoint.
 
 ---
 
@@ -344,7 +361,7 @@ Plans:
 | 8. Design System Rollout | v2.0 | 7/7 | Complete   | 2026-08-09 |
 | 9. Homepage & Funnel Reposition | v2.0 | 4/4 | Complete   | 2026-08-11 |
 | 10. Assessment Re-point + Enterprise Track | v2.0 | 5/5 | Complete    | 2026-08-09 |
-| 11. Cleanup & Consistency | v2.0 | 0/TBD | Not started | - |
+| 11. Cleanup & Consistency | v2.0 | 0/5 | Not started | - |
 
 ## Requirement Coverage Summary (v2.0)
 
@@ -379,4 +396,4 @@ Plans:
 
 *Roadmap v1.0 created: 2026-05-13*
 *Roadmap v2.0 (Phases 6–11) created: 2026-07-31 from IMPLEMENTATION_PLAN.md and WEBSITE_AUDIT.md*
-*Next action: `/gsd-execute-phase 10`*
+*Next action: `/gsd-execute-phase 11`*
