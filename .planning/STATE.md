@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Reposition to Small Business Owners
-status: completed
-stopped_at: "Completed 10-02-PLAN.md: wired sector gate + revenue results into live assessment flow, consolidated /assessment routes"
-last_updated: "2026-08-09T18:39:07.020Z"
-last_activity: 2026-08-09 -- Phase 08 marked complete
+status: executing
+stopped_at: Completed 09-01-PLAN.md
+last_updated: "2026-08-11T10:05:09.288Z"
+last_activity: 2026-08-11 -- Phase 09 Plan 01 executed (HeroSection + Navigation repositioning)
 progress:
   total_phases: 12
   completed_phases: 8
-  total_plans: 51
-  completed_plans: 49
-  percent: 67
+  total_plans: 55
+  completed_plans: 50
+  percent: 91
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: `.planning/PROJECT.md` (updated 2026-07-31)
 
 **Core value:** Grow your income through small automations — start with one automation that visibly makes money, then ascend.
-**Current focus:** Phase 08 — design-system-rollout
+**Current focus:** Phase 09 — homepage-funnel-reposition
 
 ## Current Position
 
-Phase: 08 — COMPLETE
-Plan: 1 of 7
-Status: Phase 08 complete
-Last activity: 2026-08-09 -- Phase 08 marked complete
+Phase: 09 — homepage-funnel-reposition
+Plan: 2 of 4
+Status: Plan 09-01 complete, ready to execute 09-02
+Last activity: 2026-08-11 -- Phase 09 Plan 01 executed (HeroSection + Navigation repositioning)
 
-Progress: [████████░░] 82%
+Progress: [█████████░] 91%
 
 ## Performance Metrics
 
@@ -64,6 +64,7 @@ Full decision log in `.planning/PROJECT.md` Key Decisions table. Recent decision
 - [Phase 10]: Enterprise track (engage/actions.ts) and post-purchase DWY scheduling (checkout/success/page.tsx) intentionally retain Calendly per PROJECT.md constraints
 - [Phase 10]: sector state remains at DEFAULT_SECTOR for the whole SMB flow now that the in-flow SectorPicker step is gone; Enterprise routing handled entirely by AssessmentSectorGate before either shell mounts
 - [Phase 10]: RevenueResultsScreen is called without a tier prop since it derives tier internally from score + sector
+- [Phase 09]: Positioning statement duplicated verbatim across Hero/Footer/layout.tsx by design (T-09-06 accepted risk, no shared constant per CLAUDE.md simplicity rule)
 
 ### Pending Todos
 
@@ -91,8 +92,8 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-08-09T06:26:01.012Z
-Stopped at: Completed 10-02-PLAN.md: wired sector gate + revenue results into live assessment flow, consolidated /assessment routes
+Last session: 2026-08-11T10:05:09.264Z
+Stopped at: Completed 09-01-PLAN.md
 Resume file: None
 
-Next action: `/gsd-plan-phase 6`
+Next action: Execute `.planning/phases/09-homepage-funnel-reposition/09-02-PLAN.md`
