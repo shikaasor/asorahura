@@ -231,7 +231,15 @@ Plans:
   4. One entry price story appears everywhere (`/services` tiers become enterprise pricing) and the homepage shows one primary CTA
   5. Enterprise case studies appear only as a credibility strip; named testimonials with headshots replace the anonymized set; `/engage` is reframed as enterprise intake; pricing appears in the nav; one positioning statement runs across metadata/hero/footer with `metadataBase` on the production domain
 
-**Plans**: TBD
+**Plans**: 4 plans, all in Wave 1 (no cross-file dependencies) — see `.planning/phases/09-homepage-funnel-reposition/`
+Plans:
+**Wave 1**
+
+- [ ] 09-01-PLAN.md — Hero income-framing + Navigation CTA consolidation/Pricing label (HOME-12, HOME-16, HOME-20, HOME-21)
+- [ ] 09-02-PLAN.md — layout.tsx production metadataBase + Footer positioning statement/nav regrouping (HOME-21)
+- [ ] 09-03-PLAN.md — PainSection creator rewrite + ServicesPreview product ladder (HOME-13, HOME-14, HOME-15)
+- [ ] 09-04-PLAN.md — SocialProof testimonials.json sourcing + /engage enterprise reframe + /services CTA cleanup (HOME-15, HOME-17, HOME-18, HOME-19)
+
 **UI hint**: yes
 
 **Note**: This phase removes the need for `/automate`'s self-contained shell (PROD-02) — `/automate` can adopt the full site nav once this ships.
@@ -332,7 +340,7 @@ Plans:
 | 6. Palette Decision + Token Foundation | v2.0 | 3/3 | Complete   | 2026-08-02 |
 | 7. Product #1 Live + Payments | v2.0 | 12/13 | Blocked (Paddle prod approval) | - |
 | 8. Design System Rollout | v2.0 | 7/7 | Complete   | 2026-08-09 |
-| 9. Homepage & Funnel Reposition | v2.0 | 0/TBD | Not started | - |
+| 9. Homepage & Funnel Reposition | v2.0 | 0/4 | Not started | - |
 | 10. Assessment Re-point + Enterprise Track | v2.0 | 5/5 | Complete    | 2026-08-09 |
 | 11. Cleanup & Consistency | v2.0 | 0/TBD | Not started | - |
 

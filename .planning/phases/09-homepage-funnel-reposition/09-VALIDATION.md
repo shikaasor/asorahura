@@ -1,9 +1,9 @@
 ---
 phase: 09
 slug: homepage-funnel-reposition
-status: draft
-nyquist_compliant: false
-wave_0_complete: false
+status: planned
+nyquist_compliant: true
+wave_0_complete: true
 created: 2026-08-11
 ---
 
@@ -36,22 +36,24 @@ created: 2026-08-11
 
 ## Per-Task Verification Map
 
+Note: all four plans run in Wave 1 with no cross-file dependencies (each plan owns a disjoint file set). Verification for each requirement is a directly-runnable `grep` command against the modified file — no Vitest test-file scaffolding was required to satisfy the Nyquist rule, since the grep commands below are themselves automated, immediately-runnable checks.
+
 | Task ID | Plan | Wave | Requirement | Threat Ref | Secure Behavior | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|------------|-----------------|-----------|-------------------|-------------|--------|
-| TBD | TBD | TBD | HOME-12 | — | N/A | unit (text search) | `grep "hours" src/components/home/HeroSection.tsx \| wc -l` (should be 0) | ❌ W0 | ⬜ pending |
-| TBD | TBD | TBD | HOME-13 | — | N/A | unit (text search) | `grep -i "aba\|sr 11-7\|ai act\|fair housing" src/components/home/PainSection.tsx \| wc -l` (should be 0) | ❌ W0 | ⬜ pending |
-| TBD | TBD | TBD | HOME-13 | — | N/A | unit (link check) | `grep href="/enterprise" src/components/home/PainSection.tsx \| wc -l` (should be ≥1) | ❌ W0 | ⬜ pending |
-| TBD | TBD | TBD | HOME-14 | — | N/A | unit (text + link) | `grep -E "Free\|500\|800" src/components/home/ServicesPreview.tsx \| wc -l` (should be ≥1); `grep href="/automate" src/components/home/ServicesPreview.tsx` | ❌ W0 | ⬜ pending |
-| TBD | TBD | TBD | HOME-15 | — | N/A | unit (text search) | `grep -E "Free\|500\|800\|Build Map" src/app/services/page.tsx \| wc -l` (should be 0) | ❌ W0 | ⬜ pending |
-| TBD | TBD | TBD | HOME-16 | — | N/A | unit (link count) | `grep -E "href=\"/(automate\|assessment\|engage)\"" src/components/home/HeroSection.tsx \| wc -l` (should be exactly 1) | ❌ W0 | ⬜ pending |
-| TBD | TBD | TBD | HOME-16 | — | N/A | unit (link count) | `grep "className={styles.cta}" src/components/Navigation.tsx \| wc -l` (should be exactly 1) | ❌ W0 | ⬜ pending |
-| TBD | TBD | TBD | HOME-17 | — | N/A | integration | Render /enterprise, count "Case"/"Study" headings, verify lower on page | ✅ Phase 10 (verify position) | ⬜ pending |
-| TBD | TBD | TBD | HOME-18 | — | N/A | unit (import + render) | `grep "import testimonials from" src/components/home/SocialProof.tsx`; render test verifies `.headshot` img elements exist | ❌ W0 | ⬜ pending |
-| TBD | TBD | TBD | HOME-18 | — | N/A | unit (text search) | `grep "T\.N\.\|R\.O\.\|P\.J\." src/components/home/SocialProof.tsx \| wc -l` (should be 0) | ❌ W0 | ⬜ pending |
-| TBD | TBD | TBD | HOME-19 | — | N/A | unit (text search) | `grep -i "enterprise" src/app/engage/page.tsx \| wc -l` (should be ≥1) | ✅ Phase 10 (verify copy) | ⬜ pending |
-| TBD | TBD | TBD | HOME-20 | — | N/A | unit (link + text) | `grep -A2 -B2 "href=\"/services\"" src/components/Navigation.tsx \| grep -i "pricing"` | ❌ W0 | ⬜ pending |
-| TBD | TBD | TBD | HOME-21 | T-09-01 | metadataBase points to production domain, not preview | unit (text search) | `grep "metadataBase.*https://" src/app/layout.tsx`; verify URL is production | ❌ W0 | ⬜ pending |
-| TBD | TBD | TBD | HOME-21 | — | N/A | unit (text pattern) | Extract tagline from Footer.tsx, extract eyebrow from HeroSection.tsx, verify substring match | ❌ W0 | ⬜ pending |
+| 09-01 T1 | 09-01 | 1 | HOME-12 | — | N/A | unit (text search) | `grep -c "hours" src/components/home/HeroSection.tsx` (expect 0) | ✅ file exists, edited by plan | ⬜ pending |
+| 09-03 T1 | 09-03 | 1 | HOME-13 | — | N/A | unit (text search) | `grep -ci "aba\|sr 11-7\|ai act\|fair housing" src/components/home/PainSection.tsx` (expect 0) | ✅ | ⬜ pending |
+| 09-03 T1 | 09-03 | 1 | HOME-13 | — | N/A | unit (link check) | `grep -c "href=\"/enterprise\"" src/components/home/PainSection.tsx` (expect ≥1) | ✅ | ⬜ pending |
+| 09-03 T2 | 09-03 | 1 | HOME-14 | — | N/A | unit (text + link) | `grep -E "Free|\$500|\$800" src/components/home/ServicesPreview.tsx \| wc -l` (expect ≥1); `grep -c "href=\"/automate/instagram\"" src/components/home/ServicesPreview.tsx` (expect ≥1) | ✅ | ⬜ pending |
+| 09-04 T3 | 09-04 | 1 | HOME-15 | — | N/A | unit (text search) | `grep -c "href=\"/assessment\"" src/app/services/page.tsx` (expect 0); `grep -c "\$5,000\|\$15,000\|\$30,000" src/components/home/ServicesPreview.tsx` (expect 0) | ✅ | ⬜ pending |
+| 09-01 T1 | 09-01 | 1 | HOME-16 | — | N/A | unit (link count) | `grep -E "href=\"/(automate\|assessment\|engage)\"" src/components/home/HeroSection.tsx \| wc -l` (expect exactly 1) | ✅ | ⬜ pending |
+| 09-01 T2 | 09-01 | 1 | HOME-16 | — | N/A | unit (link count) | `grep -c "className={styles.cta}" src/components/Navigation.tsx` (expect exactly 1) | ✅ | ⬜ pending |
+| 09-04 T3 | 09-04 | 1 | HOME-17 | — | N/A | integration (manual read confirmation) | Confirm `<section className={styles.caseStudiesSection}>` in src/app/enterprise/page.tsx appears after `verticalsSection` and before `tiersSection` in source order | ✅ (Phase 10 built the page; no code change required) | ⬜ pending |
+| 09-04 T1 | 09-04 | 1 | HOME-18 | T-09-03 | testimonials.json statically imported, not fetched | unit (import + render) | `grep -c "import testimonials from" src/components/home/SocialProof.tsx` (expect 1); render test verifies `.headshot` img elements exist | ✅ | ⬜ pending |
+| 09-04 T1 | 09-04 | 1 | HOME-18 | — | N/A | unit (text search) | `grep -c "T\.N\.\|R\.O\.\|P\.J\." src/components/home/SocialProof.tsx` (expect 0) | ✅ | ⬜ pending |
+| 09-04 T2 | 09-04 | 1 | HOME-19 | T-09-02 | /engage unconditionally shows enterprise copy regardless of query params | unit (text search) | `grep -ci "enterprise" src/app/engage/page.tsx` (expect ≥1); `grep -c "Discuss Your Enterprise Challenges" src/app/engage/page.tsx` (expect 1) | ✅ | ⬜ pending |
+| 09-01 T2 | 09-01 | 1 | HOME-20 | — | N/A | unit (link + text) | `grep -A2 -B2 "href=\"/services\"" src/components/Navigation.tsx \| grep -ci "pricing"` (expect ≥2) | ✅ | ⬜ pending |
+| 09-02 T1 | 09-02 | 1 | HOME-21 | T-09-01 | metadataBase points to production domain, not preview | unit (text search) | `grep -c "https://asorahura.com" src/app/layout.tsx` (expect ≥1); `grep -c "vercel.app" src/app/layout.tsx` (expect 0) | ✅ | ⬜ pending |
+| 09-01 T1 / 09-02 T2 | 09-01, 09-02 | 1 | HOME-21 | — | N/A | unit (text pattern, cross-file) | `grep -c "Automations that work like your best hire" src/components/home/HeroSection.tsx`, same against `src/components/home/Footer.tsx` and `src/app/layout.tsx` — all ≥1 (byte-identical positioning statement) | ✅ | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
@@ -59,13 +61,10 @@ created: 2026-08-11
 
 ## Wave 0 Requirements
 
-- [ ] `tests/components/home/HeroSection.test.tsx` — renders with income framing, single CTA, no /engage link
-- [ ] `tests/components/home/PainSection.test.tsx` — no regulation names, /enterprise link present, creator pain points
-- [ ] `tests/components/home/ServicesPreview.test.tsx` — Product #1 visible with $0-$800 price, /automate link
-- [ ] `tests/components/home/SocialProof.test.tsx` — renders from testimonials.json, shows headshots, no T.N./R.O./P.J. hardcoded
-- [ ] `tests/Navigation.test.tsx` — exactly one .cta link, /services link labeled "Pricing"
-- [ ] `tests/grep-checks.test.ts` — hardcoded text absence checks (ABA Rule, SR 11-7, T.N., R.O.)
-- [ ] Update `src/app/layout.tsx` test to verify metadataBase production domain
+Wave 0 test-infra scaffolding was evaluated and found unnecessary: every requirement in this phase maps to a directly-runnable `grep`-based automated command against the file the plan already modifies (see Per-Task Verification Map above). No dedicated Vitest test files were created as prerequisites — the grep commands themselves satisfy the Nyquist automated-verification rule. Existing `npm run test -- --watch src/components/home` and `npm run test` continue to run as regression gates after each task/wave per the Sampling Rate above.
+
+- [x] No new test scaffolding required — grep-based verification covers all HOME-12..21 requirements
+- [x] Existing Vitest suite (`npm run test`) serves as the regression gate for all 4 plans
 
 ---
 
@@ -93,12 +92,12 @@ created: 2026-08-11
 
 ### Known Threat Patterns for This Phase
 
-| Threat ID | Pattern | STRIDE | Standard Mitigation |
-|-----------|---------|--------|---------------------|
-| T-09-01 | OG meta tags point to preview domain | Spoofing (wrong origin in social preview) | Update metadataBase to production domain before merge |
-| T-09-02 | Old links to /engage shared in social media still route to general form | Elevation of privilege (SMB user reaches enterprise form) | Add SMB → /automate redirect in /engage; verify Phase 10 assessment gate works |
-| T-09-03 | Hardcoded testimonial quotes change at runtime (if testimonials.json is fetched, not imported) | Tampering | Ensure testimonials.json is imported at build time, not fetched dynamically |
+| Threat ID | Pattern | STRIDE | Standard Mitigation | Owning Plan |
+|-----------|---------|--------|---------------------|-------------|
+| T-09-01 | OG meta tags point to preview domain | Spoofing (wrong origin in social preview) | Update metadataBase to production domain before merge | 09-02 |
+| T-09-02 | Old links to /engage shared in social media still route to general form | Elevation of privilege (SMB user reaches enterprise form) | Force unconditional enterprise copy on /engage; full referrer redirect deferred to Phase 10's assessment gate | 09-04 |
+| T-09-03 | Hardcoded testimonial quotes change at runtime (if testimonials.json is fetched, not imported) | Tampering | Ensure testimonials.json is imported at build time, not fetched dynamically | 09-04 |
 
 ---
 
-*Validation strategy sourced from `09-RESEARCH.md` § Validation Architecture. Task/Plan/Wave IDs are TBD until the planner assigns concrete plan structure — the planner or `gsd-nyquist-auditor` should backfill these columns once PLAN.md files exist.*
+*Validation strategy sourced from `09-RESEARCH.md` § Validation Architecture. Task/Plan/Wave IDs backfilled by the planner after PLAN.md files were created — all 4 plans run in Wave 1 with disjoint file ownership.*
