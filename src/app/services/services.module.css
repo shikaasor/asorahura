@@ -234,14 +234,6 @@
   opacity: 0.85;
 }
 
-.heroSecondary {
-  color: var(--ink-1);
-  font-size: 0.9375rem;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  font-weight: var(--fontWeight-bold);
-}
-
 /* Testimonials section */
 .testimonialsSection {
   padding: 4rem 2rem;

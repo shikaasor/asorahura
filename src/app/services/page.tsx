@@ -85,7 +85,6 @@ export default function ServicesPage() {
           </p>
           <div className={styles.heroActions}>
             <Link href="/engage" className={styles.workWithMeBtn}>Work With Me</Link>
-            <Link href="/assessment" className={styles.heroSecondary}>Start the Discovery</Link>
           </div>
         </div>
       </section>
