@@ -1,26 +1,27 @@
-import { Scale, Landmark, Building2, HardHat } from "lucide-react";
+import { TrendingUp, Clock, Zap, DollarSign } from "lucide-react";
+import Link from "next/link";
 import styles from "./PainSection.module.css";
 
-const sectorCards = [
+const creatorPains = [
   {
-    icon: <Scale size={24} />,
-    title: "Law firms",
-    body: "You can't paste matter content into public LLMs without an ABA Rule 1.6 risk — but your competitors are already using Harvey on contract review and pulling ahead. The gap is privilege architecture, not ambition.",
+    icon: <TrendingUp size={24} />,
+    title: "Growing followers, not income",
+    body: "You've mastered ad spend and follower growth. But leads come in DMs and you're manually capturing them. That's not a business — that's a job.",
   },
   {
-    icon: <Landmark size={24} />,
-    title: "Finance & RIAs",
-    body: "Your model risk management was built for deterministic models. Now GenAI lands inside SR 11-7 and EU AI Act Annex III, and 44% of RIAs running AI tools have no formal validation. Governance has to catch up.",
+    icon: <Clock size={24} />,
+    title: "Your time is your bottleneck",
+    body: "Lead capture, qualification, follow-up — you're doing it all manually. Every lead that comes in while you're asleep is a lead you never reach.",
   },
   {
-    icon: <Building2 size={24} />,
-    title: "Real estate & property",
-    body: "Tenant screening, ad audience targeting, AVMs — every AI use case touches a protected class. Without a bias-impact review and standardised data, every pilot is a future enforcement action.",
+    icon: <Zap size={24} />,
+    title: "The systems exist, but they don't talk",
+    body: "Instagram, email, CRM, Calendly — they work. But building the flow between them yourself takes time you don't have.",
   },
   {
-    icon: <HardHat size={24} />,
-    title: "Construction",
-    body: "Procore here, ACC there, paper RFIs in between. 45% of construction firms have zero AI deployed because the data doesn't exist in a form models can use. Platform standardisation comes first — then the takeoff and schedule-risk wins are real.",
+    icon: <DollarSign size={24} />,
+    title: "One automation = time + money back",
+    body: "Instagram Comment-to-DM costs $6/mo owned, or $17–$99/mo with ManyChat. At $500, it pays for itself in 3 months.",
   },
 ];
 
@@ -30,18 +31,21 @@ export default function PainSection() {
       <div className={styles.container}>
         <h2 className={styles.heading}>Sound familiar?</h2>
         <p className={styles.subheading}>
-          Different sectors, same pattern — exposure without architecture. Different sector? The
-          general track captures the same dynamics for any operator.
+          Growing creators and coaches hit the same ceiling — manual lead capture while the rest
+          of your business runs on autopilot.
         </p>
         <div className={styles.grid}>
-          {sectorCards.map((card) => (
-            <div key={card.title} className={styles.card}>
-              <div className={styles.icon}>{card.icon}</div>
-              <h3 className={styles.cardTitle}>{card.title}</h3>
-              <p className={styles.cardBody}>{card.body}</p>
+          {creatorPains.map((pain) => (
+            <div key={pain.title} className={styles.card}>
+              <div className={styles.icon}>{pain.icon}</div>
+              <h3 className={styles.cardTitle}>{pain.title}</h3>
+              <p className={styles.cardBody}>{pain.body}</p>
             </div>
           ))}
         </div>
+        <p className={styles.cta}>
+          <Link href="/enterprise">Working in a regulated industry? →</Link>
+        </p>
       </div>
     </section>
   );

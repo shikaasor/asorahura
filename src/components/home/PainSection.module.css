@@ -69,6 +69,29 @@
   color: var(--ink-2);
 }
 
+.subheading {
+  text-align: center;
+  color: var(--ink-2);
+  font-size: var(--fontSize-2);
+  margin-bottom: var(--spacing-6);
+}
+
+.cta {
+  text-align: center;
+  margin-top: var(--spacing-5);
+}
+
+.cta a {
+  color: var(--ink-2);
+  font-size: var(--fontSize-2);
+  font-weight: var(--fontWeight-bold);
+  text-decoration: underline;
+}
+
+.cta a:hover {
+  color: var(--accent);
+}
+
 @media (max-width: 1024px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
