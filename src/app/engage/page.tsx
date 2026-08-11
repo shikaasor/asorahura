@@ -32,8 +32,8 @@ function EngageFormInner() {
             <div className="container">
                 <section className={styles.content}>
                     <div className={styles.header}>
-                        <p className={styles.eyebrow}>{isEnterprise ? "Enterprise Discovery Brief" : "Discovery Brief"}</p>
-                        <h1 className={styles.headline}>{isEnterprise ? "Discuss Your Enterprise Challenges" : "Tell Me About Your Problem"}</h1>
+                        <p className={styles.eyebrow}>Enterprise Discovery Brief</p>
+                        <h1 className={styles.headline}>Discuss Your Enterprise Challenges</h1>
                         <p className={styles.subhead}>
                             Describe what&apos;s slowing your operations down. I&apos;ll tell you what can be built, how long, and what it costs.
                         </p>
