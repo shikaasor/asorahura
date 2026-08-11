@@ -11,23 +11,32 @@ export default function Footer() {
           <div className={styles.brand}>
             <p className={styles.logo}>Asor Ahura</p>
             <p className={styles.tagline}>
-              Scale your business without scaling your payroll.
+              Automations that work like your best hire — reliable, consistent, and yours to keep.
             </p>
           </div>
 
-          {/* Column 2: Navigation */}
-          <nav className={styles.nav} aria-label="Footer navigation">
-            <p className={styles.navLabel}>Navigation</p>
+          {/* Column 2: Creator Path */}
+          <nav className={styles.nav} aria-label="Footer navigation — Creator Path">
+            <p className={styles.navLabel}>Creator Path</p>
             <ul className={styles.navList}>
               <li><Link href="/" className={styles.navLink}>Home</Link></li>
+              <li><Link href="/automate" className={styles.navLink}>Automations</Link></li>
+              <li><Link href="/blog" className={styles.navLink}>Learn</Link></li>
               <li><Link href="/assessment" className={styles.navLink}>Discovery</Link></li>
-              <li><Link href="/enterprise" className={styles.navLink}>Enterprise</Link></li>
-              <li><Link href="/engage" className={styles.navLink}>Engage</Link></li>
-              <li><Link href="/work" className={styles.navLink}>Work</Link></li>
             </ul>
           </nav>
 
-          {/* Column 3: Legal + Social */}
+          {/* Column 3: Enterprise */}
+          <nav className={styles.nav} aria-label="Footer navigation — Enterprise">
+            <p className={styles.navLabel}>Enterprise</p>
+            <ul className={styles.navList}>
+              <li><Link href="/enterprise" className={styles.navLink}>Enterprise Solutions</Link></li>
+              <li><Link href="/engage" className={styles.navLink}>Intake Form</Link></li>
+              <li><Link href="/work" className={styles.navLink}>Case Studies</Link></li>
+            </ul>
+          </nav>
+
+          {/* Column 4: Legal + Social */}
           <div className={styles.legal}>
             <p className={styles.navLabel}>Legal</p>
             <ul className={styles.navList}>
