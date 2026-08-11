@@ -1,7 +1,7 @@
 ---
 phase: 9
 slug: homepage-funnel-reposition
-status: draft
+status: approved
 shadcn_initialized: false
 preset: none
 created: 2026-08-11
@@ -105,7 +105,7 @@ No registry vetting required. Icon usage (lucide-react) is an existing sitewide 
 
 These are not new components — they are the six files 09-RESEARCH.md identifies for content/prop changes. Each note ties back to the tokens/copy above so the executor doesn't need to re-derive them:
 
-1. **HeroSection.tsx / .module.css** — eyebrow = positioning statement; h1 = income-framed headline; exactly one CTA link (`/automate`, label "See Automations"); TrustSignals + one TestimonialCard (`testimonials.hero` = Maria Rios) unchanged in structure, only surrounding copy changes.
+1. **HeroSection.tsx / .module.css** — eyebrow = positioning statement; h1 = income-framed headline; exactly one CTA link (`/automate`, label "See Automations"); TrustSignals + one TestimonialCard (`testimonials.hero` = Maria Rios) unchanged in structure, only surrounding copy changes. **Primary visual anchor: the h1 headline** (48px, `--fontWeight-bold`) — it is the largest, boldest element on the page; eyebrow and subheading are supporting text above/below it; the CTA sits below as a secondary visual element, not competing for attention.
 2. **PainSection.tsx / .module.css** — 4 creator/coach pain cards (per 09-RESEARCH.md Code Examples), heading uses `--fontWeight-bold`/`--fontSize-5-6`; escape-hatch link to `/enterprise` in `--ink-2`, not accent.
 3. **ServicesPreview.tsx / .module.css** — Rung 1 (Instagram Lead Automation) gets the accent-bordered "featured" card treatment; Rung 2 ("The Next Four") uses the empty/waitlist copy above, links to `/automate`.
 4. **SocialProof.tsx / .module.css** — pulls 3 entries from `testimonials.json` (no hardcoded T.N./R.O./P.J.); headshots rendered; escape-hatch link to `/enterprise`.
@@ -117,11 +117,11 @@ These are not new components — they are the six files 09-RESEARCH.md identifie
 
 ## Checker Sign-Off
 
-- [ ] Dimension 1 Copywriting: PASS
-- [ ] Dimension 2 Visuals: PASS
-- [ ] Dimension 3 Color: PASS
-- [ ] Dimension 4 Typography: PASS
-- [ ] Dimension 5 Spacing: PASS
-- [ ] Dimension 6 Registry Safety: PASS
+- [x] Dimension 1 Copywriting: PASS
+- [x] Dimension 2 Visuals: PASS (focal point declared per checker recommendation)
+- [x] Dimension 3 Color: PASS
+- [x] Dimension 4 Typography: PASS
+- [x] Dimension 5 Spacing: PASS
+- [x] Dimension 6 Registry Safety: PASS
 
-**Approval:** pending
+**Approval:** approved 2026-08-11
