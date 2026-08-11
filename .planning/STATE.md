@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Reposition to Small Business Owners
 status: executing
-stopped_at: Completed 09-01-PLAN.md
-last_updated: "2026-08-11T10:05:09.288Z"
-last_activity: 2026-08-11 -- Phase 09 Plan 01 executed (HeroSection + Navigation repositioning)
+stopped_at: Completed 09-02-PLAN.md
+last_updated: "2026-08-11T10:17:41.109Z"
+last_activity: 2026-08-11
 progress:
   total_phases: 12
   completed_phases: 8
   total_plans: 55
-  completed_plans: 50
-  percent: 91
+  completed_plans: 51
+  percent: 67
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: `.planning/PROJECT.md` (updated 2026-07-31)
 ## Current Position
 
 Phase: 09 — homepage-funnel-reposition
-Plan: 2 of 4
-Status: Plan 09-01 complete, ready to execute 09-02
-Last activity: 2026-08-11 -- Phase 09 Plan 01 executed (HeroSection + Navigation repositioning)
+Plan: 3 of 4
+Status: Ready to execute
+Last activity: 2026-08-11
 
-Progress: [█████████░] 91%
+Progress: [█████████░] 93%
 
 ## Performance Metrics
 
@@ -65,6 +65,7 @@ Full decision log in `.planning/PROJECT.md` Key Decisions table. Recent decision
 - [Phase 10]: sector state remains at DEFAULT_SECTOR for the whole SMB flow now that the in-flow SectorPicker step is gone; Enterprise routing handled entirely by AssessmentSectorGate before either shell mounts
 - [Phase 10]: RevenueResultsScreen is called without a tier prop since it derives tier internally from score + sector
 - [Phase 09]: Positioning statement duplicated verbatim across Hero/Footer/layout.tsx by design (T-09-06 accepted risk, no shared constant per CLAUDE.md simplicity rule)
+- [Phase 09]: Footer.tsx uses two separate nav blocks (Creator Path, Enterprise) to visibly separate the two funnels
 
 ### Pending Todos
 
@@ -89,11 +90,12 @@ None yet.
 | Phase 10 P04 | 6min | 3 tasks | 7 files |
 | Phase 10 P05 | 15min | 3 tasks | 6 files |
 | Phase 10 P02 | 20min | 3 tasks | 6 files |
+| Phase 09 P02 | 20min | 2 tasks | 3 files |
 
 ## Session Continuity
 
-Last session: 2026-08-11T10:05:09.264Z
-Stopped at: Completed 09-01-PLAN.md
+Last session: 2026-08-11T10:17:40.906Z
+Stopped at: Completed 09-02-PLAN.md
 Resume file: None
 
 Next action: Execute `.planning/phases/09-homepage-funnel-reposition/09-02-PLAN.md`

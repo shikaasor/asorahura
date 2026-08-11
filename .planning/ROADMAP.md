@@ -236,7 +236,7 @@ Plans:
 **Wave 1**
 
 - [x] 09-01-PLAN.md — Hero income-framing + Navigation CTA consolidation/Pricing label (HOME-12, HOME-16, HOME-20, HOME-21)
-- [ ] 09-02-PLAN.md — layout.tsx production metadataBase + Footer positioning statement/nav regrouping (HOME-21)
+- [x] 09-02-PLAN.md — layout.tsx production metadataBase + Footer positioning statement/nav regrouping (HOME-21)
 - [ ] 09-03-PLAN.md — PainSection creator rewrite + ServicesPreview product ladder (HOME-13, HOME-14, HOME-15)
 - [ ] 09-04-PLAN.md — SocialProof testimonials.json sourcing + /engage enterprise reframe + /services CTA cleanup (HOME-15, HOME-17, HOME-18, HOME-19)
 
@@ -340,7 +340,7 @@ Plans:
 | 6. Palette Decision + Token Foundation | v2.0 | 3/3 | Complete   | 2026-08-02 |
 | 7. Product #1 Live + Payments | v2.0 | 12/13 | Blocked (Paddle prod approval) | - |
 | 8. Design System Rollout | v2.0 | 7/7 | Complete   | 2026-08-09 |
-| 9. Homepage & Funnel Reposition | v2.0 | 1/4 | In Progress|  |
+| 9. Homepage & Funnel Reposition | v2.0 | 2/4 | In Progress|  |
 | 10. Assessment Re-point + Enterprise Track | v2.0 | 5/5 | Complete    | 2026-08-09 |
 | 11. Cleanup & Consistency | v2.0 | 0/TBD | Not started | - |
 
