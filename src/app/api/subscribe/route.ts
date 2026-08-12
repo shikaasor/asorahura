@@ -5,7 +5,7 @@ import { sendBuildMapEmail } from '../../../lib/email';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: NextRequest) {
-  const { email, source } = await req.json();
+  const { email, source, offer } = await req.json();
 
   if (!email || typeof email !== 'string' || !email.includes('@')) {
     return NextResponse.json({ error: 'Valid email required.' }, { status: 400 });
@@ -19,6 +19,7 @@ export async function POST(req: NextRequest) {
 
   const normalizedEmail = email.trim().toLowerCase();
   const isBuildMap = source === 'build-map';
+  const isWaitlist = source === 'waitlist';
   const properties = isBuildMap ? { segment: 'build-map-downloader' } : undefined;
 
   const { error } = await resend.contacts.create({
@@ -65,8 +66,9 @@ export async function POST(req: NextRequest) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        formType: isBuildMap ? 'build-map' : 'newsletter',
+        formType: isBuildMap ? 'build-map' : isWaitlist ? 'waitlist' : 'newsletter',
         email: normalizedEmail,
+        ...(isWaitlist ? { offer } : {}),
       }),
       redirect: 'follow',
     }).catch(() => {});

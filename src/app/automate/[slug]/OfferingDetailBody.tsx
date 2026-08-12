@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { trackAnalyticsEvent } from "@/lib/analytics";
 import type { OfferingMetadata } from "@/lib/checkout";
+import WaitlistModal from "@/components/automate/WaitlistModal";
 import styles from "./page.module.css";
 
 export default function OfferingDetailBody({ offering }: { offering: OfferingMetadata }) {
@@ -30,18 +31,45 @@ export default function OfferingDetailBody({ offering }: { offering: OfferingMet
           <p className={styles.pricingDescription}>
             Ready to automate? We&apos;ll schedule a time to build this for you.
           </p>
+
+          {offering.included.length > 0 && (
+            <ul className={styles.included}>
+              {offering.included.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          )}
+
+          <p className={styles.turnaround}>
+            {offering.turnaround
+              ? `Live in ${offering.turnaround}`
+              : "Timeline confirmed on your waitlist call"}
+          </p>
+
+          {offering.diyNote && <p className={styles.diyNote}>{offering.diyNote}</p>}
+          {offering.addonNote && <p className={styles.diyNote}>{offering.addonNote}</p>}
+
           {offering.scopeConstraint && (
             <p className={styles.scopeConstraint}>{offering.scopeConstraint}</p>
           )}
-          <Link
-            href={offering.ctaHref}
-            className={styles.cta}
-            onClick={() =>
-              trackAnalyticsEvent("Waitlist CTA Click", { offering_id: offering.id })
-            }
-          >
-            {offering.ctaLabel}
-          </Link>
+          {offering.hasLiveCheckout ? (
+            <Link
+              href={offering.ctaHref ?? "/automate"}
+              className={styles.cta}
+              onClick={() =>
+                trackAnalyticsEvent("Offering Card Click", { offering_id: offering.id })
+              }
+            >
+              {offering.ctaLabel}
+            </Link>
+          ) : (
+            <WaitlistModal
+              offeringId={offering.id}
+              offeringName={offering.name}
+              triggerLabel={offering.ctaLabel}
+              triggerClassName={styles.cta}
+            />
+          )}
         </div>
       </section>
 

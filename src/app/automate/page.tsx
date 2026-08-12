@@ -36,13 +36,14 @@ export default function AutomatePage() {
       </Suspense>
 
       <section className={styles.hero}>
-        <h1 className={styles.headline}>Automate Everything Automatable</h1>
+        <h1 className={styles.headline}>Automate the Bottlenecks That Cost You Margin</h1>
         <p className={styles.subheading}>
           Five ready-made automations for small businesses and creators
         </p>
         <p className={styles.intro}>
-          Choose the automation that fits your next growth opportunity. Start with one, scale to
-          all five.
+          We don&apos;t automate everything — we target the blockers slowing down your speed and
+          quality of work. Choose the automation that fits your biggest bottleneck. Start with
+          one, scale to all five.
         </p>
       </section>
 

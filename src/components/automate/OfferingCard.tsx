@@ -3,6 +3,7 @@
 import Link from "next/link";
 import type { OfferingMetadata } from "@/lib/checkout";
 import { trackAnalyticsEvent } from "@/lib/analytics";
+import WaitlistModal from "./WaitlistModal";
 import styles from "./OfferingCard.module.css";
 
 interface OfferingCardProps {
@@ -37,18 +38,37 @@ export default function OfferingCard({ offering }: OfferingCardProps) {
         )}
       </div>
 
-      <Link
-        href={offering.ctaHref}
-        className={styles.cta}
-        onClick={() =>
-          trackAnalyticsEvent(
-            offering.hasLiveCheckout ? "Offering Card Click" : "Waitlist CTA Click",
-            { offering_id: offering.id }
-          )
-        }
-      >
-        {offering.ctaLabel}
-      </Link>
+      {offering.included.length > 0 && (
+        <ul className={styles.included}>
+          {offering.included.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      )}
+
+      <p className={styles.turnaround}>
+        {offering.turnaround ? `Live in ${offering.turnaround}` : "Timeline confirmed on your call"}
+      </p>
+
+      {offering.diyNote && <p className={styles.diyNote}>{offering.diyNote}</p>}
+      {offering.addonNote && <p className={styles.diyNote}>{offering.addonNote}</p>}
+
+      {offering.hasLiveCheckout ? (
+        <Link
+          href={offering.ctaHref ?? "/automate"}
+          className={styles.cta}
+          onClick={() => trackAnalyticsEvent("Offering Card Click", { offering_id: offering.id })}
+        >
+          {offering.ctaLabel}
+        </Link>
+      ) : (
+        <WaitlistModal
+          offeringId={offering.id}
+          offeringName={offering.name}
+          triggerLabel={offering.ctaLabel}
+          triggerClassName={styles.cta}
+        />
+      )}
     </div>
   );
 }

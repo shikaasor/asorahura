@@ -71,6 +71,40 @@
   font-style: italic;
 }
 
+.included {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--fontSize-2);
+  color: var(--ink-2);
+}
+
+.included li {
+  padding-left: var(--spacing-3);
+  position: relative;
+}
+
+.included li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.turnaround {
+  font-size: var(--fontSize-1);
+  color: var(--ink-3);
+}
+
+.diyNote {
+  font-size: var(--fontSize-2);
+  color: var(--ink-1);
+  font-weight: var(--fontWeight-bold);
+}
+
 .cta {
   display: block;
   text-align: center;

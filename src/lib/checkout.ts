@@ -137,6 +137,14 @@ export interface OfferingMetadata {
   ctaLabel: string;
   ctaHref: string;
   scopeConstraint: string | null;
+  /** What's included in the DFY setup — shown as a short bullet list on tile and detail page. */
+  included: string[];
+  /** DFY delivery window, e.g. "3–5 days". Null when no timeline is confirmed yet — copy falls back to a non-committal line. */
+  turnaround: string | null;
+  /** Self-host/DIY availability note for the tile. Null when no DIY path exists for this offering. */
+  diyNote: string | null;
+  /** Optional low-cost add-on beyond the core DFY offer, e.g. a support retainer. Null when none exists. */
+  addonNote: string | null;
   faqs: OfferingFAQItem[];
 }
 
@@ -157,6 +165,10 @@ export const offerings: Record<OfferingSlug, OfferingMetadata> = {
     ctaLabel: "View Offering",
     ctaHref: "/automate/instagram",
     scopeConstraint: null,
+    included: ["Provisioned server", "Meta app setup", "Training call included"],
+    turnaround: "3–5 days",
+    diyNote: "DIY option: free Build Map, self-host from $6/mo",
+    addonNote: "Optional: $9.99/mo support retainer for ongoing help",
     faqs: [],
   },
   "email-triage": {
@@ -164,24 +176,42 @@ export const offerings: Record<OfferingSlug, OfferingMetadata> = {
     name: "Email Triage on Telegram",
     tagline: "The flagship",
     description:
-      "Triage 20–30 emails per day via Telegram. No new app to learn. Proven revenue driver.",
-    heroHeadline: "Email Triage on Telegram",
+      "A virtual email assistant that reads your inbox, pings you on Telegram the moment something urgent lands, and sends a daily brief of everything new at a time you choose.",
+    heroHeadline: "Your Virtual Email Assistant, on Telegram",
     heroSubheading:
-      "Twenty to thirty emails a day, sorted and routed to a Telegram bot you already know how to use.",
-    setupPrice: "$1,500",
-    setupLabel: "setup",
-    monthlyPrice: "$250/mo",
-    monthlyLabel: "monthly",
+      "It reads every email as it arrives, flags what's urgent the moment it lands, and sends a daily brief of everything new at whatever time you choose — all through Telegram, no new app to learn.",
+    setupPrice: "$500",
+    setupLabel: "DFY — one-time, no monthly fee",
+    monthlyPrice: null,
+    monthlyLabel: null,
     hasLiveCheckout: false,
     ctaLabel: "Join Waitlist",
     ctaHref: "/engage",
     scopeConstraint:
       "Gmail's API verification governs how fast we can onboard each new inbox. We'll confirm your setup timeline before you commit — not promise instant multi-client rollout.",
+    included: [
+      "Instant Telegram alert the moment an urgent email lands",
+      "Daily brief of all new mail at a time you choose",
+      "No cap on daily email volume",
+    ],
+    turnaround: null,
+    diyNote: null,
+    addonNote: "Optional: $9.99/mo support retainer for ongoing help",
     faqs: [
       {
         question: "Do I need to learn a new app?",
         answer:
-          "No. Triage runs through Telegram, an app you likely already have installed. There's no new dashboard to learn.",
+          "No. Your assistant runs through Telegram, an app you likely already have installed. There's no new dashboard to learn.",
+      },
+      {
+        question: "How does it decide what's urgent?",
+        answer:
+          "It reads each email as it arrives and pings you on Telegram immediately for anything urgent. Everything else waits for your daily brief instead of interrupting you.",
+      },
+      {
+        question: "Can I choose when I get my daily brief?",
+        answer:
+          "Yes. You set the time of day, and it sends one brief covering every new email since the last one — no need to check your inbox in between.",
       },
       {
         question: "How fast can this go live for my business?",
@@ -207,12 +237,20 @@ export const offerings: Record<OfferingSlug, OfferingMetadata> = {
     setupPrice: "$600",
     setupLabel: "Constitution — one-off",
     monthlyPrice: "$400/mo",
-    monthlyLabel: "Content subscription",
+    monthlyLabel: "Content subscription — 3x/week each on LinkedIn, Substack & X",
     hasLiveCheckout: false,
     ctaLabel: "Join Waitlist",
     ctaHref: "/engage",
     scopeConstraint:
       "This is not a 'we post for you' service. The constitution — an 8-module document capturing your voice — is the paid, differentiated deliverable. The content subscription runs on top of it once it exists.",
+    included: [
+      "8-module voice-capture document",
+      "Constitution stands alone as the paid deliverable",
+      "Optional: 3 posts/week each on LinkedIn, Substack & X",
+    ],
+    turnaround: null,
+    diyNote: null,
+    addonNote: "Optional: $9.99/mo support retainer for ongoing help",
     faqs: [
       {
         question: "What exactly is a writing constitution?",
@@ -241,14 +279,22 @@ export const offerings: Record<OfferingSlug, OfferingMetadata> = {
     heroSubheading:
       "Quote at current market rates instead of undercutting from ignorance — built on your rate card, not AI guesswork.",
     setupPrice: "$1,000",
-    setupLabel: "setup",
-    monthlyPrice: "$150/mo",
-    monthlyLabel: "monthly",
+    setupLabel: "DFY — one-time",
+    monthlyPrice: null,
+    monthlyLabel: null,
     hasLiveCheckout: false,
     ctaLabel: "Join Waitlist",
     ctaHref: "/engage",
     scopeConstraint:
       "This isn't AI-guessed pricing. You bring your own rate card and comparable jobs; the system structures the math, applies your markup logic, and cites every source it uses — flagging anything it isn't confident about instead of inventing a number.",
+    included: [
+      "Your rate card + comparable jobs, structured",
+      "Source-cited output, low-confidence items flagged",
+      "No AI-invented prices",
+    ],
+    turnaround: null,
+    diyNote: null,
+    addonNote: "Optional: $9.99/mo support retainer for ongoing help",
     faqs: [
       {
         question: "Does the AI make up prices?",
@@ -285,6 +331,14 @@ export const offerings: Record<OfferingSlug, OfferingMetadata> = {
     ctaHref: "/engage",
     scopeConstraint:
       "Built for agencies and consultancies onboarding clients regularly, not the small-business self-serve buyer of the other four offerings. Widest integration surface of the five — expect the most setup coordination.",
+    included: [
+      "Welcome pack, channel & folder auto-provisioned",
+      "~20 seconds per new client, live",
+      "Built for Slack, Drive & Zoom",
+    ],
+    turnaround: null,
+    diyNote: null,
+    addonNote: "Optional: $9.99/mo support retainer for ongoing help",
     faqs: [
       {
         question: "What does it actually provision?",

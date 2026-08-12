@@ -39,9 +39,9 @@ describe("offerings.instagram", () => {
 });
 
 describe("offerings pricing (locked figures)", () => {
-  it('"email-triage" setupPrice "$1,500" and monthlyPrice "$250/mo"', () => {
-    expect(offerings["email-triage"].setupPrice).toBe("$1,500");
-    expect(offerings["email-triage"].monthlyPrice).toBe("$250/mo");
+  it('"email-triage" setupPrice "$500" and monthlyPrice null', () => {
+    expect(offerings["email-triage"].setupPrice).toBe("$500");
+    expect(offerings["email-triage"].monthlyPrice).toBeNull();
   });
 
   it('"writing-constitution" setupPrice "$600" and monthlyPrice "$400/mo"', () => {
@@ -49,9 +49,9 @@ describe("offerings pricing (locked figures)", () => {
     expect(offerings["writing-constitution"].monthlyPrice).toBe("$400/mo");
   });
 
-  it('"rate-aware-invoice" setupPrice "$1,000" and monthlyPrice "$150/mo"', () => {
+  it('"rate-aware-invoice" setupPrice "$1,000" and monthlyPrice null (DFY only)', () => {
     expect(offerings["rate-aware-invoice"].setupPrice).toBe("$1,000");
-    expect(offerings["rate-aware-invoice"].monthlyPrice).toBe("$150/mo");
+    expect(offerings["rate-aware-invoice"].monthlyPrice).toBeNull();
   });
 
   it('"client-onboarding" setupPrice "$2,000" and monthlyPrice null', () => {

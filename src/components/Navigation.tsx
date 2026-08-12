@@ -14,7 +14,7 @@ export default function Navigation() {
         setMenuOpen(false);
     }, [pathname]);
 
-    if (pathname.startsWith("/internal") || pathname.startsWith("/automate")) {
+    if (pathname.startsWith("/internal")) {
         return null;
     }
 

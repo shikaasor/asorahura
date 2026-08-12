@@ -1,0 +1,134 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-4);
+  z-index: 100;
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface-2);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-2);
+  padding: var(--spacing-5);
+}
+
+.close {
+  position: absolute;
+  top: var(--spacing-3);
+  right: var(--spacing-3);
+  background: none;
+  border: none;
+  font-size: var(--fontSize-5);
+  line-height: 1;
+  color: var(--ink-2);
+  cursor: pointer;
+  padding: var(--spacing-1);
+}
+
+.close:hover {
+  color: var(--ink-1);
+}
+
+.heading {
+  font-size: var(--fontSize-5);
+  font-weight: var(--fontWeight-bold);
+  color: var(--ink-1);
+}
+
+.subheading {
+  font-size: var(--fontSize-2);
+  color: var(--ink-2);
+  margin-bottom: var(--spacing-4);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.label {
+  font-size: var(--fontSize-2);
+  color: var(--ink-1);
+}
+
+.input {
+  width: 100%;
+  padding: var(--spacing-2) var(--spacing-3);
+  border: 1.5px solid var(--border-2);
+  border-radius: var(--radius-1);
+  font-size: var(--fontSize-2);
+  font-family: inherit;
+  color: var(--ink-1);
+  background: var(--surface-1);
+  outline: none;
+  transition: border-color var(--duration-1) ease;
+}
+
+.input:focus {
+  border-color: var(--accent);
+}
+
+.inputValid {
+  border-color: var(--success);
+}
+
+.inputError {
+  border-color: var(--error);
+}
+
+.fieldError {
+  font-size: var(--fontSize-1);
+  color: var(--error);
+}
+
+.info {
+  font-size: var(--fontSize-1);
+  color: var(--ink-2);
+}
+
+.formError {
+  font-size: var(--fontSize-1);
+  color: var(--error);
+}
+
+.success {
+  font-size: var(--fontSize-2);
+  color: var(--success);
+}
+
+.submit {
+  width: 100%;
+  background: var(--accent);
+  color: var(--surface-1);
+  font-size: var(--fontSize-2);
+  font-weight: var(--fontWeight-bold);
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--radius-1);
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background var(--duration-1) ease;
+}
+
+.submit:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
