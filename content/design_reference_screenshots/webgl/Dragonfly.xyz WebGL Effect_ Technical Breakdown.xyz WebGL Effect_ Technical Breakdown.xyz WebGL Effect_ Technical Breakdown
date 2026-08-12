@@ -1,0 +1,407 @@
+# Dragonfly.xyz WebGL Effect: Technical Breakdown
+
+## Executive summary
+
+Dragonfly’s hero visual is a **Three.js-driven 3D scene processed through a custom ASCII/pixelation compositor**. The page does not render the dragonfly as a traditional `THREE.Points` cloud. Instead, it renders a DRACO-compressed GLTF dragonfly-and-branch model into an off-screen texture, then converts that image into a grid of glyphs sampled from a dynamically generated character atlas. The result looks like a point cloud because the ASCII raster is sparse, high-contrast, and visible mainly along the 3D form’s lit contours.
+
+The site combines this WebGL layer with independently animated HTML typography. The orange `DRAGONFLY` wordmark and the large `GLOBAL / SINCE / DAY 1` words are **DOM text**, not texture text rendered by WebGL. This distinction is important: the 3D ASCII scene provides materiality and depth; the DOM type supplies the editorial message and blur/focus transitions.
+
+> **Observed runtime:** one absolute-positioned `webgl2` canvas at the hero, using a Three.js `ShaderMaterial` pipeline. Three.js is bundled into the Nuxt application rather than exposed as `window.THREE`.
+
+## Evidence and relevant assets
+
+| Item | Observed implementation |
+|---|---|
+| Main visual canvas | One `webgl2` canvas, CSS `position: absolute`, live size 1280 × 1100 in the inspected desktop session |
+| Framework | Nuxt application with bundled Three.js-style classes and `ShaderMaterial` GLSL preambles |
+| Scene asset | DRACO-compressed GLTF: `/@gl/models/dragonfly.glb` |
+| Decoder assets | `/@gl/libs/draco/draco_wasm_wrapper.js` and `/@gl/libs/draco/draco_decoder.wasm` |
+| Key graphics bundle | `/ _nuxt / DQpE8kHS.js` (spaces added here only for readability; use the direct link in References) |
+| Scroll and choreography | Custom smooth-scroll setup plus GSAP-like timelines in the application bundle |
+| Hero ASCII defaults | Characters ` * _<>,  ./O#SF +`; granularity `6`; glyph limit `16`; font size `72`; base color `#eeeeee` |
+
+The GLTF contains named scene nodes used directly by the runtime: `Branch002`, `Dfly`, `BackWing-L`, `BackWing-R`, `FrontWing-L`, `FrontWing-R`, `camera-follow`, and `camera-lookAt`. Those names show that the hero’s movement is partly authored in the GLTF and partly enhanced procedurally in JavaScript.[1] [2]
+
+## What the viewer sees
+
+At the top of the page, a very thin, pale glyph field traces a branch and dragonfly behind the orange masthead. The image resolves as a dimensional silhouette only when there is enough shape contrast; dark surfaces disappear into the black background, while lit edges show as punctuation-like marks, `O` forms, hashes, slashes, and plus signs.
+
+On mouse movement, the object subtly tilts toward the pointer and a tiny glyph-based trail activates along structural edges. On scroll, the dragonfly animation advances through a pre-authored GLTF timeline, its wings receive additional procedural flap motion, and the whole visual gradually changes from a static-ish scene into a vertically flowing, Matrix-like character field. The large serif text on the page moves independently through focus and blur planes, producing the strongest perception of depth in the later scroll state.
+
+## Render graph
+
+The observed rendering system has four principal passes.
+
+| Pass | Inputs | Output | Purpose |
+|---|---|---|---|
+| 1. Mouse trail | Pointer position and pointer velocity | Quarter-resolution render target | Builds a 40-sample soft chain of circular trail stamps |
+| 2. 3D scene | DRACO GLTF, custom normal/reveal material, animated camera | Main scene render target | Renders the dragonfly, branch, wing motion, and reveal mask |
+| 3. Normal buffer | Skinned scene geometry | Normal texture / render pass | Supplies or supports normal-oriented presentation behavior in the Three.js pipeline |
+| 4. ASCII compositor | Scene texture, trail texture, glyph atlas, time and style uniforms | Visible canvas plane | Pixelates the scene, chooses glyphs from luminance, adds edge-only cursor accent, and composites to black |
+
+In conceptual form, the frame loop is:
+
+```ts
+function renderFrame(timeMs: number, deltaMs: number) {
+  updateGLTFTimelineFromScroll();
+  updateProceduralWingMotion(deltaMs);
+  updateCameraFromGLTFMarkersAndPointer();
+
+  renderMouseTrailToQuarterResolutionTarget();
+  renderDragonflySceneToOffscreenTarget();
+  renderFullscreenAsciiComposite(sceneTarget, mouseTrailTarget, glyphAtlas);
+}
+```
+
+This architecture is why the effect is stable and coherent. The artist can animate a conventional mesh in a 3D application, while the browser’s final shader controls the recognizable ASCII signature without having to simulate thousands of individual 3D points.
+
+## Stage 1: loading and animating the 3D scene
+
+The runtime preloads several GLTF/texture assets and uses DRACO decoding for models. For the hero it loads `/@gl/models/dragonfly.glb`, finds named mesh nodes, assigns custom materials, instantiates an animation mixer, and advances the model’s authored animation manually from scroll progress.[2]
+
+The original minified bundle follows this logic, expressed here in readable pseudocode:
+
+```ts
+const gltf = assetCache.get('dragonfly');
+const branchMaterial = modelMaterial.clone();
+const dragonflyMaterial = modelMaterial.clone();
+
+branchMaterial.uniforms.uRemapColor.value.set(0.35, 0.35, 0.35);
+branchMaterial.uniforms.uLightDir.value.set(0.0, 0.8, 1.0);
+branchMaterial.uniforms.uBrightness.value = 0.5;
+branchMaterial.uniforms.uNormalStrength.value = 1.5;
+
+dragonflyMaterial.uniforms.uRemapColor.value.set(0.69, 0.90, 0.90);
+dragonflyMaterial.uniforms.uLightDir.value.set(0.0, 2.0, 1.0);
+dragonflyMaterial.uniforms.uBrightness.value = 0.2;
+dragonflyMaterial.uniforms.uNormalStrength.value = 0.5;
+
+const branch = gltf.scene.getObjectByName('Branch002');
+const dragonfly = gltf.scene.getObjectByName('Dfly');
+branch?.traverse((node) => { if (node.isMesh) node.material = branchMaterial; });
+dragonfly?.traverse((node) => { if (node.isMesh) node.material = dragonflyMaterial; });
+
+const mixer = new THREE.AnimationMixer(gltf.scene);
+const action = mixer.clipAction(gltf.animations[0]);
+action.play();
+```
+
+The site uses marker nodes in the GLTF for camera choreography. On each frame, the live camera copies the `camera-follow` position and looks at `camera-lookAt`. This lets artists author camera travel in Blender or another DCC package without hard-coding a camera path in JavaScript.
+
+```ts
+camera.position.copy(cameraFollow.position);
+camera.lookAt(cameraLookAt.position);
+```
+
+### Extra wing motion and mouse parallax
+
+The code adds a procedural layer above the authored GLTF animation. It identifies the four wing meshes by name and oscillates them around `z`, using different frequencies/amplitudes for front and rear pairs. Object rotation then eases toward the cursor.
+
+```ts
+// Behavioral reconstruction of the production math.
+const speed = THREE.MathUtils.lerp(0.5, 20.0, 0.5);
+wingTime += deltaSeconds * speed;
+
+const rearAngle = Math.sin(wingTime * rearFrequency) * rearAmplitude;
+const frontAngle = Math.sin(wingTime * frontFrequency) * frontAmplitude * 0.8;
+
+backWingL.rotation.z  = damp(backWingL.rotation.z,  rearAngle, 0.1);
+backWingR.rotation.z  = damp(backWingR.rotation.z, -rearAngle, 0.1);
+frontWingL.rotation.z = damp(frontWingL.rotation.z,  frontAngle, 0.1);
+frontWingR.rotation.z = damp(frontWingR.rotation.z, -frontAngle, 0.1);
+
+object.rotation.y = damp(object.rotation.y,  pointer.x * 0.0025, 0.1);
+object.rotation.x = damp(object.rotation.x, -pointer.y * 0.0015, 0.1);
+```
+
+This is deliberately subtle. The effect avoids a direct “follow cursor” tilt; it behaves like an inertial object in air. The code also applies very small sine-based root translation after the scroll animation passes a threshold, which makes the dragonfly feel alive rather than simply being scrubbed through a timeline.
+
+## Stage 2: custom model material
+
+Before ASCII conversion, the model uses a small custom material to create a high-contrast, normal-driven source image. It combines an interpolated normal with a derivative-derived flat normal, then derives a grayscale light result from a configurable light direction, brightness, normal strength, and remap color.
+
+The following is a short excerpt recovered from the production fragment shader:[2]
+
+```glsl
+uniform vec3 uRemapColor;
+uniform vec3 uLightDir;
+uniform float uFlatShading;
+uniform float uBrightness;
+uniform float uNormalStrength;
+uniform float uReveal;
+
+varying vec3 vNormal;
+varying vec3 vPosition;
+
+void main() {
+  vec3 flatNormal = normalize(cross(dFdx(vPosition), dFdy(vPosition)));
+  vec3 normal = normalize(mix(vNormal, flatNormal, uFlatShading));
+
+  float diff = max(dot(normal, normalize(uLightDir)), 0.0);
+  vec3 color = (diff * uBrightness) + normal * uNormalStrength + 0.5;
+  color = clamp(color, 0.15, 0.995) * uRemapColor;
+  // … normal-facing reveal follows
+}
+```
+
+The reveal is also driven by the normal. Surfaces facing the positive Y direction receive a normalized `revealMask`, which is compared with `uReveal`; a narrow `edgeBand` receives a greenish temporary highlight. The important detail is that visibility is not a simple opacity tween across the whole mesh. The model reveals by surface orientation, giving the form a scanning/disclosure quality.
+
+```glsl
+float revealMask = dot(normal, vec3(0.0, 1.0, 0.0));
+revealMask = revealMask * 0.5 + 0.5;
+
+float visible = step(uReveal, revealMask);
+float edgeBand = smoothstep(uReveal - 0.05, uReveal, revealMask)
+               - smoothstep(uReveal, uReveal + 0.05, revealMask);
+```
+
+A separate eight-second infinite yoyo timeline slowly modulates the branch and insect brightness, making the glyph structure shimmer without a noisy particle simulation.
+
+## Stage 3: glyph atlas generation
+
+The ASCII effect begins with a normal 2D canvas. The code draws the configured characters into a **1024 × 1024** canvas in a 16-column grid, then wraps that canvas in a Three.js texture using nearest filtering and repeat wrapping.
+
+```ts
+const atlas = document.createElement('canvas');
+atlas.width = 1024;
+atlas.height = 1024;
+const ctx = atlas.getContext('2d')!;
+
+ctx.font = `${fontSize}px ${fontFamily}, monospace`;
+ctx.textAlign = 'center';
+ctx.textBaseline = 'middle';
+
+characters.split('').forEach((character, index) => {
+  const column = index % 16;
+  const row = Math.floor(index / 16);
+  ctx.fillStyle = 'white';
+  ctx.fillText(character, column * 64 + 32, row * 64 + 32);
+});
+
+const glyphTexture = new THREE.CanvasTexture(atlas);
+glyphTexture.minFilter = THREE.NearestFilter;
+glyphTexture.magFilter = THREE.NearestFilter;
+glyphTexture.wrapS = glyphTexture.wrapT = THREE.RepeatWrapping;
+```
+
+For the hero, the configured sequence is:
+
+```txt
+ * _<>,  ./O#SF +
+```
+
+The gradient from blank/very light marks toward `/`, `O`, `#`, `S`, `F`, and `+` lets luminance map to progressively denser glyphs. It is a deliberately minimal character vocabulary, which is why the result looks like a technical dot field rather than a terminal dump.
+
+## Stage 4: mouse trail render target
+
+The mouse does not directly distort the 3D mesh. It renders a separate trail texture. The site stores **40** trail positions, makes each one ease approximately halfway toward the preceding position, and draws soft circles into a low-cost render target resized to one-quarter of the viewport.
+
+```ts
+const TRAIL_LENGTH = 40;
+
+for (let i = TRAIL_LENGTH - 1; i > 0; i--) {
+  trail[i].lerp(trail[i - 1], 0.499);
+  uniforms.uTrail.value[i].copy(trail[i]);
+  uniforms.uTrailStrength.value[i] = damp(
+    uniforms.uTrailStrength.value[i],
+    uniforms.uTrailStrength.value[i - 1] * 0.99,
+    0.499,
+  );
+}
+
+trail[0].copy(viewport.glMouse);
+uniforms.uTrail.value[0].copy(trail[0]);
+uniforms.uTrailStrength.value[0] = Math.min(viewport.velocity * TRAIL_LENGTH, 1.0);
+```
+
+The trail shader is a full-screen plane. It loops through the 40 sampled positions, reduces the circle size and strength for older samples, and outputs a single-channel-looking white trail plus alpha. The production shader’s key behavior is:
+
+```glsl
+for (int i = 0; i < TRAIL_LENGTH; i++) {
+  float size = uVelocity * 0.025 * (1.0 - float(i) / float(TRAIL_LENGTH));
+  float strength = uTrailStrength[i] * (1.0 - float(i) / float(TRAIL_LENGTH));
+  trail += circle(uv, uTrail[i], size) * strength;
+}
+
+gl_FragColor = vec4(vec3(trail), trail * uVelocity);
+```
+
+Because this pass is rendered at quarter resolution, it remains soft and inexpensive. The final ASCII shader later uses it only where the 3D scene has edges, preventing a bright cursor trail from appearing as a solid black-hole-like smear in empty background areas.
+
+## Stage 5: the ASCII/pixelation compositor
+
+This is the signature effect. A full-screen `ShaderMaterial` samples the off-screen 3D scene (`tDiffuse`), the mouse-trail texture (`tMouseTrail`), and the glyph atlas (`uCharactersTexture`). Its active uniform set includes:
+
+| Uniform | Role |
+|---|---|
+| `tDiffuse` | Rendered 3D dragonfly/branch scene |
+| `tMouseTrail` | Quarter-resolution pointer trail |
+| `uCharactersTexture` | 16 × 16 glyph atlas |
+| `uResolution` | Current composite resolution |
+| `uGranularity` | Pixel/glyph cell size control; hero default is 6 |
+| `uCharactersLimit` | Number of usable glyph entries; hero default is 16 |
+| `uOutProgress` | Vertical exit/lift of glyph columns |
+| `uSmear` | Waterfall-style smear, used more strongly on other scenes such as the footer flowers |
+| `uMatrix` | Enables vertical per-column glyph motion in the late scroll state |
+| `uNoise` | Enables slight glyph noise; not the central hero treatment |
+| `uAccentColor` | Cursor accent; changes with theme |
+| `uMedia`, `uScale`, `uOffset`, `uAspect` | Optional cover-mapping for texture/image scenes |
+
+### Stable cell snapping
+
+The shader quantizes UV coordinates to a stable cell center. This is the core of the pixelation effect:
+
+```glsl
+vec2 division = uResolution / uGranularity;
+vec2 cellSize = 1.0 / division;
+vec2 pixelizedUV = cellSize * (floor(vUv / cellSize) + 0.5);
+```
+
+The source scene is then sampled once per cell. That luminance determines which glyph index to fetch. The effect is therefore **image-to-character halftoning**, not a particle simulation.
+
+### Glyph selection
+
+The shader first converts the sampled color to grayscale. It maps that brightness into an atlas index, then chooses the correct 16 × 16 tile.
+
+```glsl
+float gray = dot(pixelizedColor.rgb, vec3(0.299, 0.587, 0.114));
+float baseIndex = floor(gray * (uCharactersLimit - 1.0));
+
+float charX = mod(baseIndex, 16.0);
+float charY = floor(baseIndex / 16.0);
+
+vec2 charUV = mod(vUv * (division / 16.0), 1.0 / 16.0);
+charUV += vec2(charX, -charY) / 16.0;
+vec4 ascii = texture2D(uCharactersTexture, charUV);
+```
+
+In the active shader, mouse-trail intensity can replace the base glyph choice, but only on detected source-image edges. This produces subtle local glyph changes around the actual dragonfly silhouette rather than an indiscriminate interactive blob.
+
+### Edge-aware pointer accent
+
+The compositor estimates edge strength with four neighboring luminance taps. It then combines edge strength, mouse-trail intensity, and glyph alpha before mixing in the accent color.
+
+```glsl
+float left  = grayscale(texture2D(tDiffuse, finalUV + vec2(-texel.x, 0.0)).rgb);
+float right = grayscale(texture2D(tDiffuse, finalUV + vec2( texel.x, 0.0)).rgb);
+float up    = grayscale(texture2D(tDiffuse, finalUV + vec2(0.0,  texel.y)).rgb);
+float down  = grayscale(texture2D(tDiffuse, finalUV + vec2(0.0, -texel.y)).rgb);
+
+float edgeMask = smoothstep(0.01, 0.25, length(vec2(right - left, up - down)));
+float trailMask = mouseTrail.r * ascii.r * edgeMask;
+finalColor = mix(finalColor, uAccentColor, trailMask);
+```
+
+This is why interaction feels like a small refractive or high-energy pulse through the glyph structure, not an overlay cursor painted on top of the page.
+
+## Scroll behavior and the late “Matrix” state
+
+The scroll handler maps normalized custom scroll progress onto the GLTF animation duration using a **60fps frame conversion**. It uses the first half of the progress range for reveal/reposition behavior, then turns on the `uMatrix` uniform after the midpoint.
+
+```ts
+function setFrame(frame: number) {
+  const clampedFrame = Math.max(0, Math.min(frame, totalFrames));
+  const animationTime = Math.min(clampedFrame / 60, clip.duration);
+  mixer.setTime(animationTime);
+
+  const progress = frame / totalFrames;
+
+  if (progress > 0.15) extraMotion = 0.85;
+  else extraMotion = 0.0;
+
+  if (progress > 0.5) {
+    const lateProgress = mapRange(0.5, 1.0, 0.0, 1.0, progress);
+    modelGroupY = lateProgress;
+    asciiUniforms.uMatrix.value = true;
+  } else {
+    const earlyProgress = mapRange(0.0, 0.5, 1.0, 0.0, progress);
+    asciiUniforms.uMatrix.value = false;
+  }
+}
+```
+
+When `uMatrix` is active, each column receives a deterministic random speed based on its x coordinate and slides down the image before wrapping:
+
+```glsl
+if (uMatrix) {
+  float columnNoise = fract(sin(pixelizedUV.x) * 123456.789);
+  pixelizedUV.y += uTime * abs(columnNoise);
+  pixelizedUV.y = fract(pixelizedUV.y);
+}
+```
+
+That vertical per-column drift is subtle in the page’s hero sequence, but it is the code-level reason the glyph field becomes more digital and less like a stable engraved image as the scroll progresses.
+
+## What is *not* WebGL
+
+The following prominent visual elements are separate from the canvas and should be reproduced in HTML/CSS/DOM animation rather than inside Three.js:
+
+| Element | Implementation category |
+|---|---|
+| Orange `DRAGONFLY` masthead | DOM display typography |
+| Huge `GLOBAL / SINCE / DAY 1` sequence | DOM display typography with blur/focus styling and scroll transitions |
+| Fixed corner letters (`D`, `F`, `L`, `Y`) | DOM/SVG or DOM typography |
+| Centered menu control | DOM interface |
+| Article cards, team portraits, portfolio list | Normal DOM content |
+
+The later screenshot can make it seem as though the blurred words are part of the 3D scene, but the WebGL output remains the crisp glyph silhouette. The blur is a separate design layer that is composited above or around the canvas by the browser.
+
+## Faithful implementation blueprint
+
+To recreate the effect with the same architecture, retain these design decisions:
+
+1. Build or source a low-to-medium-density **animated GLTF** with explicit camera marker objects and separately named elements for any procedural motion.
+2. Render the model in Three.js to a render target using a normal-focused, high-contrast material. Avoid detailed PBR; the ASCII pass needs clean lighting contrast more than physical realism.
+3. Generate a glyph atlas on a 2D canvas. Use a small intentional character set, nearest filtering, and a fixed 16-column atlas layout.
+4. Use a screen-space compositing shader to snap UVs to cells, map source luminance to glyph choice, and multiply the atlas glyph by source brightness.
+5. Render the mouse trail to a low-resolution target. Add its influence only where the source image has an edge mask.
+6. Drive authored GLTF time from smooth scroll, but add small damped wing, root-bob, brightness, and pointer-parallax motions so the object never feels like a paused scrubbed animation.
+7. Keep large marketing typography outside the WebGL canvas. It preserves text accessibility, makes responsive layout manageable, and lets you art-direct blur and focus independently.
+
+A compact production-shaped class outline is:
+
+```ts
+class DragonflyAsciiScene {
+  constructor(renderer: THREE.WebGLRenderer, gltf: GLTF) {
+    this.sceneTarget = new THREE.WebGLRenderTarget(width, height);
+    this.mouseTrail = new MouseTrailPass(renderer);
+    this.glyphAtlas = new GlyphAtlas(' * _<>,  ./O#SF +', 72);
+    this.asciiMaterial = makeAsciiMaterial({
+      sceneTexture: this.sceneTarget.texture,
+      trailTexture: this.mouseTrail.texture,
+      glyphTexture: this.glyphAtlas.texture,
+      granularity: 6,
+      characterLimit: 16,
+    });
+    this.configureGLTF(gltf);
+  }
+
+  update(scrollProgress: number, pointer: THREE.Vector2, delta: number) {
+    this.setFrame(scrollProgress);
+    this.animateWings(delta);
+    this.updateCameraAndPointerParallax(pointer);
+    this.mouseTrail.render(delta);
+  }
+
+  render() {
+    renderer.setRenderTarget(this.sceneTarget);
+    renderer.clear();
+    renderer.render(this.scene, this.camera);
+    renderer.setRenderTarget(null);
+    renderer.render(this.compositeScene, this.compositeCamera);
+  }
+}
+```
+
+## Performance characteristics
+
+The production approach is efficient because it avoids rendering a huge CPU-managed particle cloud. The expensive work is a conventional DRACO GLTF plus a few full-screen render passes. The mouse target is intentionally scaled to 25% of the viewport. Glyph rendering happens in a fragment shader, so the browser does not create thousands of DOM nodes or individual glyph sprites.
+
+Potential performance costs are the WebGL2 requirement, DRACO decode at startup, full-resolution scene target, and screen-space ASCII sampling. The site mitigates this with a low-power check for the brightness animation, lower-resolution trail texture, smooth viewport resize handling, and background asset preloading. In an adaptation, add DPR capping (for example `Math.min(window.devicePixelRatio, 1.5)`) and disable or simplify the compositor on low-power mobile devices.
+
+## References
+
+[1]: https://www.dragonfly.xyz/ "Dragonfly homepage"
+[2]: https://www.dragonfly.xyz/_nuxt/DQpE8kHS.js "Dragonfly graphics bundle containing the GLTF, glyph-atlas, shader, and scene logic"
+[3]: https://www.dragonfly.xyz/@gl/models/dragonfly.glb "Dragonfly DRACO-compressed GLTF scene asset"
+[4]: https://www.dragonfly.xyz/@gl/libs/draco/draco_decoder.wasm "DRACO WebAssembly decoder loaded by the site"

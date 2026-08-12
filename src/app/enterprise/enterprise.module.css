@@ -10,6 +10,7 @@
 }
 
 .heroTitle {
+  font-family: var(--font-serif);
   font-size: var(--fontSize-7);
   color: var(--ink-1);
   margin-bottom: var(--spacing-3);
@@ -23,6 +24,7 @@
 }
 
 .sectionHeading {
+  font-family: var(--font-serif);
   font-size: var(--fontSize-6);
   color: var(--ink-1);
   margin-bottom: var(--spacing-5);

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Instrument_Serif, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import ParticleWave from "@/components/ParticleWave";
@@ -8,6 +8,17 @@ import RouteChrome from "@/components/RouteChrome";
 import NavOffset from "@/components/NavOffset";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const instrumentSerif = Instrument_Serif({
+    subsets: ["latin"],
+    weight: "400",
+    style: ["normal", "italic"],
+    variable: "--font-serif",
+});
+const ibmPlexMono = IBM_Plex_Mono({
+    subsets: ["latin"],
+    weight: ["400", "500"],
+    variable: "--font-mono",
+});
 
 export const viewport: Viewport = {
     width: "device-width",
@@ -54,7 +65,7 @@ export default function RootLayout({
                     src="https://plausible.io/js/script.js"
                 />
             </head>
-            <body className={inter.variable}>
+            <body className={`${inter.variable} ${instrumentSerif.variable} ${ibmPlexMono.variable}`}>
                 <RouteChrome>
                     <ParticleWave />
                 </RouteChrome>

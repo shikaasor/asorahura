@@ -17,6 +17,7 @@
 .heroLabel {
   font-size: var(--fontSize-1);
   font-weight: 700;
+  font-family: var(--font-mono);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink-2);
@@ -24,6 +25,7 @@
 }
 
 .heroTitle {
+  font-family: var(--font-serif);
   font-size: var(--fontSize-6);
   font-weight: var(--fontWeight-bold);
   letter-spacing: -0.03em;
@@ -104,6 +106,7 @@
 .sectionLabel {
   font-size: var(--fontSize-1);
   font-weight: 700;
+  font-family: var(--font-mono);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--ink-3);
@@ -283,6 +286,7 @@
 .paymentLabel {
   font-size: var(--fontSize-1);
   font-weight: 700;
+  font-family: var(--font-mono);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--ink-3);

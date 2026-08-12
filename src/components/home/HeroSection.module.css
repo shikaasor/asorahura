@@ -5,30 +5,6 @@
   overflow: hidden;
 }
 
-/* Ambient glow — top-right warm */
-.section::before {
-  content: "";
-  position: absolute;
-  top: -10%;
-  right: -5%;
-  width: 55%;
-  height: 70%;
-  background: radial-gradient(ellipse at center, rgba(201, 160, 96, 0.07) 0%, transparent 65%);
-  pointer-events: none;
-}
-
-/* Ambient glow — bottom-left cool */
-.section::after {
-  content: "";
-  position: absolute;
-  bottom: -10%;
-  left: -5%;
-  width: 45%;
-  height: 60%;
-  background: radial-gradient(ellipse at center, rgba(30, 60, 120, 0.12) 0%, transparent 65%);
-  pointer-events: none;
-}
-
 .container {
   max-width: 1280px;
   margin: 0 auto;
@@ -38,11 +14,12 @@
   z-index: 1;
 }
 
-.grid {
+.heroInner {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 5rem;
+  grid-template-columns: minmax(0, 720px) auto;
+  gap: var(--spacing-6);
   align-items: center;
+  justify-content: center;
 }
 
 .copy {
@@ -51,25 +28,37 @@
   gap: var(--spacing-5);
 }
 
-.eyebrow {
-  display: inline-flex;
+.stage {
+  display: flex;
   align-items: center;
-  gap: var(--spacing-2);
-  font-size: var(--fontSize-1);
-  font-weight: var(--fontWeight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--accent);
-  margin: 0;
+  gap: var(--spacing-4);
 }
 
-.eyebrow::before {
-  content: "";
-  display: inline-block;
-  width: 24px;
-  height: 1px;
-  background: var(--accent);
-  flex-shrink: 0;
+.rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding-top: var(--spacing-1);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--ink-3);
+}
+
+.tick {
+  width: 1px;
+  height: 20px;
+  background: var(--border-2);
+}
+
+.railActive {
+  color: var(--accent-active);
+  font-weight: 700;
+}
+
+.emphasis {
+  font-style: italic;
+  color: var(--accent-active);
 }
 
 .headline {
@@ -121,34 +110,26 @@
   opacity: 1;
 }
 
-.imageWrapper {
-  display: flex;
-  justify-content: center;
+.ghostBtn {
+  display: inline-flex;
   align-items: center;
-  position: relative;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-5);
+  font-size: var(--fontSize-2);
+  font-weight: 700;
+  border-radius: 6px;
+  border: 1px solid var(--border-2);
+  color: var(--ink-1);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: border-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
 }
 
-/* Subtle gold ring behind the photo */
-.imageWrapper::before {
-  content: "";
-  position: absolute;
-  inset: -12px;
-  border-radius: 1.75rem;
-  background: radial-gradient(ellipse at 40% 50%, rgba(201, 160, 96, 0.12) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.photo {
-  border-radius: 1.5rem;
-  object-fit: cover;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  box-shadow:
-    0 0 0 1px rgba(201, 160, 96, 0.15),
-    0 30px 60px -15px rgba(0, 0, 0, 0.7);
-  position: relative;
-  z-index: 1;
+.ghostBtn:hover {
+  border-color: var(--accent-active);
+  color: var(--accent-active);
+  opacity: 1;
 }
 
 /* Responsive */
@@ -163,18 +144,22 @@
     padding: 6rem 0 4rem;
   }
 
-  .grid {
+  .heroInner {
     grid-template-columns: 1fr;
-    gap: var(--spacing-6);
+  }
+
+  .stage {
+    justify-content: center;
+    margin-top: var(--spacing-3);
+  }
+
+  .rail {
+    display: none;
   }
 
   .copy {
     align-items: center;
     text-align: center;
-  }
-
-  .eyebrow {
-    justify-content: center;
   }
 
   .subheading {
@@ -196,14 +181,6 @@
   .headline {
     font-size: var(--fontSize-6);
   }
-
-  .imageWrapper {
-    order: -1;
-  }
-
-  .photo {
-    max-width: 300px;
-  }
 }
 
 /* === Belt-and-suspenders mobile fit for narrow phones === */
@@ -218,21 +195,10 @@
     max-width: 100%;
   }
 
-  .grid {
-    gap: var(--spacing-5);
-    width: 100%;
-    max-width: 100%;
-  }
-
   .copy {
     width: 100%;
     max-width: 100%;
     min-width: 0;
-  }
-
-  .eyebrow {
-    font-size: var(--fontSize-1);
-    letter-spacing: 0.1em;
   }
 
   .headline {
@@ -262,32 +228,10 @@
     overflow-wrap: anywhere;
   }
 
-  .imageWrapper {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    overflow: hidden;
-  }
-
-  .imageWrapper::before {
-    inset: -6px; /* keep the gold-ring decoration but pulled in */
-  }
-
-  .photo {
-    max-width: 240px;
-    width: 100%;
-    height: auto;
-    margin: 0 auto;
-    display: block;
-  }
 }
 
 @media (max-width: 380px) {
   .headline {
     font-size: var(--fontSize-5);
-  }
-
-  .photo {
-    max-width: 200px;
   }
 }

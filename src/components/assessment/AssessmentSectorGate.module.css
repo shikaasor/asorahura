@@ -8,6 +8,7 @@
 }
 
 .heading {
+  font-family: var(--font-serif);
   font-size: var(--fontSize-6);
   font-weight: 700;
   color: var(--ink-1);

@@ -56,12 +56,14 @@
 }
 
 .links a {
-    font-size: 0.875rem;
-    font-weight: var(--fontWeight-bold);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
     color: var(--ink-2);
     transition: color 0.2s ease;
     text-decoration: none;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.08em;
 }
 
 .links a:hover {
@@ -130,11 +132,13 @@
 }
 
 .mobileMenu a {
+    font-family: var(--font-mono);
     color: var(--ink-2);
-    font-size: var(--fontSize-2);
+    font-size: 0.85rem;
+    text-transform: uppercase;
     text-decoration: none;
     transition: color 0.15s ease;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.06em;
 }
 
 .mobileMenu a:hover,

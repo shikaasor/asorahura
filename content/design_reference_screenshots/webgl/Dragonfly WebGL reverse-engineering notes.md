@@ -1,0 +1,13 @@
+# Dragonfly WebGL reverse-engineering notes
+
+The homepage uses one absolute-positioned WebGL2 canvas at 1280 × 1100 for the hero layer. Runtime inspection found a Three.js-style `ShaderMaterial` pipeline, though Three is bundled privately rather than exposed on `window`. The scene loads a DRACO-compressed `/@gl/models/dragonfly.glb` asset. It contains separate `Branch002` and `Dfly` nodes, four named wing meshes (`BackWing-L`, `BackWing-R`, `FrontWing-L`, `FrontWing-R`), and two camera guide nodes (`camera-follow`, `camera-lookAt`).
+
+The effect is not a literal GPU point cloud. It first renders the animated 3D dragonfly/branch scene into an off-screen render target, then runs a full-screen ASCII/pixelation shader over that rendered texture. The post-process has a 16 × 16 character atlas generated with a normal 2D canvas. Its hero character set is ` * _<>,  ./O#SF +`, with granularity 6, character limit 16, font size 72, and color `#eeeeee`.
+
+The custom model shader uses normals and a directional-light-like vector to create a clamp-lit grayscale base. Branch and insect use different remap colors: branch approximately (0.35, 0.35, 0.35); dragonfly approximately (0.69, 0.90, 0.90). It separately exposes `uBrightness`, `uNormalStrength`, and a normal-facing reveal mask.
+
+The WebGL render graph sampled from draw calls has four passes: (1) a quarter-resolution mouse-trail render target with a 40-sample eased trail, (2) the 3D normal/reveal shader for the scene, (3) a Three.js normal-buffer pass, and (4) the full-screen ASCII conversion/composite pass. The mouse trail influences only edge pixels of the ASCII output, substituting higher-intensity glyphs and blending an accent color.
+
+Interaction and timeline behavior confirmed in code: the site takes scroll progress, maps it to the GLTF animation duration at 60 frames per second, enables extra wing/bob motion past 15% progress, then enters a Matrix-style vertical glyph-flow mode after 50%. In the early half, a GSAP timeline raises the 3D model along Y and advances its normal-based reveal; in the later half it tracks matrix state and moves the model group vertically by up to 4.5 units on desktop. Cursor movement induces eased object rotation in Y and X and drives the trail texture. A separate infinite 8-second yoyo timeline pulses branch and dragonfly brightness.
+
+Visual validation: at the hero, the orange HTML wordmark sits above a very fine dragonfly/branch silhouette built from ASCII characters. In the later scroll state, the character raster remains crisp and background-like while the DOM display text moves through focus/blur planes, creating the perceived depth. The large blurred words are not produced by the WebGL shader; they are separate DOM typography.

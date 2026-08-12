@@ -19,6 +19,7 @@
 .scoreLabel {
   font-size: var(--fontSize-2);
   font-weight: 600;
+  font-family: var(--font-mono);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-2);
@@ -87,6 +88,7 @@
 .sectionTitle {
   font-size: var(--fontSize-2);
   font-weight: 700;
+  font-family: var(--font-mono);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--ink-2);

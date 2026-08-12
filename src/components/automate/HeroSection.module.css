@@ -14,6 +14,7 @@
 }
 
 .headline {
+  font-family: var(--font-serif);
   font-size: var(--fontSize-7);
   font-weight: var(--fontWeight-bold);
   line-height: var(--lineHeight-tight);
@@ -29,19 +30,19 @@
 
 .reelWrapper {
   width: 100%;
-  max-width: 360px;
+  max-width: 400px;
 }
 
 .reel {
   width: 100%;
-  aspect-ratio: 9 / 16;
+  height: 760px;
   border: none;
   border-radius: var(--radius-2);
 }
 
 .reelPlaceholder {
   width: 100%;
-  aspect-ratio: 9 / 16;
+  height: 760px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,14 +76,6 @@
 @media (min-width: 1024px) {
   .reelWrapper {
     max-width: 480px;
-  }
-
-  .reel {
-    aspect-ratio: 4 / 3;
-  }
-
-  .reelPlaceholder {
-    aspect-ratio: 4 / 3;
   }
 }
 
