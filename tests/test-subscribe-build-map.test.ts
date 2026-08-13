@@ -34,7 +34,6 @@ function makeRequest(body: unknown) {
 const originalFetch = global.fetch;
 
 beforeEach(() => {
-  process.env.RESEND_AUDIENCE_ID = "aud_123";
   delete process.env.GOOGLE_SCRIPT_URL;
   contactsCreate.mockReset();
   contactsUpdate.mockReset();
@@ -58,7 +57,6 @@ describe("POST /api/subscribe with source=build-map", () => {
     expect(contactsCreate).toHaveBeenCalledWith(
       expect.objectContaining({
         email: "lead@example.com",
-        audienceId: "aud_123",
         properties: { segment: "build-map-downloader" },
       })
     );
@@ -78,7 +76,6 @@ describe("POST /api/subscribe with source=build-map", () => {
     expect(contactsUpdate).toHaveBeenCalledWith(
       expect.objectContaining({
         email: "returning@example.com",
-        audienceId: "aud_123",
         properties: { segment: "build-map-downloader" },
       })
     );
@@ -110,7 +107,6 @@ describe("POST /api/subscribe without source (blog widget — must be unaffected
     expect(res.status).toBe(200);
     expect(contactsCreate).toHaveBeenCalledWith({
       email: "reader@example.com",
-      audienceId: "aud_123",
       unsubscribed: false,
     });
     expect(sendBuildMapEmail).not.toHaveBeenCalled();

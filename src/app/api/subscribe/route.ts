@@ -11,12 +11,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Valid email required.' }, { status: 400 });
   }
 
-  const audienceId = process.env.RESEND_AUDIENCE_ID;
-  if (!audienceId) {
-    console.error('[subscribe] RESEND_AUDIENCE_ID not set');
-    return NextResponse.json({ error: 'Server configuration error.' }, { status: 500 });
-  }
-
   const normalizedEmail = email.trim().toLowerCase();
   const isBuildMap = source === 'build-map';
   const isWaitlist = source === 'waitlist';
@@ -24,7 +18,6 @@ export async function POST(req: NextRequest) {
 
   const { error } = await resend.contacts.create({
     email: normalizedEmail,
-    audienceId,
     unsubscribed: false,
     ...(properties ? { properties } : {}),
   });
@@ -39,7 +32,6 @@ export async function POST(req: NextRequest) {
 
     const { error: updateError } = await resend.contacts.update({
       email: normalizedEmail,
-      audienceId,
       properties,
     });
 

@@ -78,7 +78,6 @@ describe("POST /api/paddle/webhook", () => {
 
   beforeEach(() => {
     process.env.PADDLE_WEBHOOK_SECRET = SECRET;
-    process.env.RESEND_AUDIENCE_ID = "aud_123";
     contactsUpdate.mockReset();
     contactsUpdate.mockResolvedValue({ data: { id: "c1" }, error: null });
     sendPurchaseConfirmationEmail.mockReset();

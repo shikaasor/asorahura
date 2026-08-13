@@ -31,7 +31,6 @@ export async function POST(req: NextRequest) {
       sendOrderNotificationEmail({ productType, transactionId, amount, buyerEmail }),
       resend.contacts.update({
         email: buyerEmail,
-        audienceId: process.env.RESEND_AUDIENCE_ID!,
         properties: { segment: 'automate-buyer' },
       }),
       fetch('https://plausible.io/api/event', {
