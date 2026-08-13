@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import HeroSection from "@/components/automate/HeroSection";
-import TryItNowSection from "@/components/automate/TryItNowSection";
 import ComparisonStrip from "@/components/automate/ComparisonStrip";
 import PricingSection from "@/components/automate/PricingSection";
 import PhoneMockup from "@/components/automate/PhoneMockup";
@@ -21,7 +20,6 @@ export default function AutomateInstagramPage() {
       </Suspense>
 
       <HeroSection />
-      <TryItNowSection />
       <ComparisonStrip />
       <PricingSection />
       <PhoneMockup />
@@ -29,10 +27,11 @@ export default function AutomateInstagramPage() {
 
       <section className={styles.closing}>
         <div className={styles.closingContainer}>
-          <h2 className={styles.closingHeading}>What&apos;s next</h2>
+          <h2 className={styles.closingHeading}>This is the first rung</h2>
           <p className={styles.closingBody}>
-            This is the first rung. Once your automation is live and generating leads, the next
-            step is [Product #2, coming soon].
+            Get your Instagram automation live, start converting comments into leads, and you own
+            the whole system, no per-contact fees, ever. We&apos;re building the next rung on the
+            ladder. Get in now and you&apos;ll be first to hear about it.
           </p>
         </div>
       </section>

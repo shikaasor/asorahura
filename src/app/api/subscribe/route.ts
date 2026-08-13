@@ -14,7 +14,12 @@ export async function POST(req: NextRequest) {
   const normalizedEmail = email.trim().toLowerCase();
   const isBuildMap = source === 'build-map';
   const isWaitlist = source === 'waitlist';
-  const properties = isBuildMap ? { segment: 'build-map-downloader' } : undefined;
+  const isPurchaseInterest = source === 'purchase-interest';
+  const properties = isBuildMap
+    ? { segment: 'build-map-downloader' }
+    : isPurchaseInterest
+      ? { segment: 'purchase-interest' }
+      : undefined;
 
   try {
     const { error } = await resend.contacts.create({
@@ -60,9 +65,15 @@ export async function POST(req: NextRequest) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        formType: isBuildMap ? 'build-map' : isWaitlist ? 'waitlist' : 'newsletter',
+        formType: isBuildMap
+          ? 'build-map'
+          : isWaitlist
+            ? 'waitlist'
+            : isPurchaseInterest
+              ? 'purchase-interest'
+              : 'newsletter',
         email: normalizedEmail,
-        ...(isWaitlist ? { offer } : {}),
+        ...(isWaitlist || isPurchaseInterest ? { offer } : {}),
       }),
       redirect: 'follow',
     }).catch(() => {});

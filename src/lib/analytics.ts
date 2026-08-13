@@ -22,7 +22,8 @@ export function trackAnalyticsEvent(
     | "Success Page Submit"
     | "Offering Card Click"
     | "Waitlist CTA Click"
-    | "Waitlist Submit",
+    | "Waitlist Submit"
+    | "Purchase Interest Submit",
   props?: Record<string, string | number>
 ): void {
   if (typeof window !== "undefined" && window.plausible) {

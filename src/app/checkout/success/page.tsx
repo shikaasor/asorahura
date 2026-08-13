@@ -18,8 +18,8 @@ export default function CheckoutSuccessPage() {
           </p>
           <p className="text-[var(--ink-2)] text-sm">
             Check your inbox for a receipt from Paddle. Questions?{" "}
-            <a href="mailto:hello@asorahura.com" className="underline text-[var(--ink-1)]">
-              hello@asorahura.com
+            <a href="mailto:asorahura@gmail.com" className="underline text-[var(--ink-1)]">
+              asorahura@gmail.com
             </a>
           </p>
         </div>

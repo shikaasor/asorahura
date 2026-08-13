@@ -11,7 +11,9 @@ export default function ComparisonStrip() {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <h2 className={styles.heading}>Your bill climbs as your ads work. Ours doesn&apos;t.</h2>
+        <h2 className={styles.heading}>
+          Every other tool bills you more the better your ads work. We don&apos;t.
+        </h2>
 
         <div className={styles.scrollRow}>
           {MANYCHAT_TIERS.map((tier, i) => (

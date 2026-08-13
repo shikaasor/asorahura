@@ -191,7 +191,7 @@ export default function PrivacyPage() {
             </ul>
             <p>
               To exercise any of these rights, email{" "}
-              <a href="mailto:hello@asorahura.com">hello@asorahura.com</a>. We will respond within
+              <a href="mailto:asorahura@gmail.com">asorahura@gmail.com</a>. We will respond within
               a reasonable timeframe and in accordance with applicable law.
             </p>
           </section>
@@ -235,7 +235,7 @@ export default function PrivacyPage() {
             <h2>14. Contact</h2>
             <p>
               Questions about this policy or how your data is handled? Contact us at{" "}
-              <a href="mailto:hello@asorahura.com">hello@asorahura.com</a>.
+              <a href="mailto:asorahura@gmail.com">asorahura@gmail.com</a>.
             </p>
           </section>
         </div>

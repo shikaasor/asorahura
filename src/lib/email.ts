@@ -122,7 +122,7 @@ export async function sendOrderNotificationEmail(params: {
 
     const { error } = await resend.emails.send({
       from: FROM,
-      to: process.env.OWNER_EMAIL ?? "hello@asorahura.com",
+      to: process.env.OWNER_EMAIL ?? "asorahura@gmail.com",
       subject: `New Order: ${params.productType} from ${params.buyerEmail}`,
       react: OrderNotification({ ...params }),
     });
@@ -157,7 +157,7 @@ export async function sendOnboardingNotification(params: {
 
   const { error } = await resend.emails.send({
     from: FROM,
-    to: process.env.OWNER_EMAIL ?? "hello@asorahura.com",
+    to: process.env.OWNER_EMAIL ?? "asorahura@gmail.com",
     subject: `New ${product.toUpperCase()} onboarding: ${igHandle}`,
     text,
   });

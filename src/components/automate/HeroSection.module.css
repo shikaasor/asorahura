@@ -28,33 +28,6 @@
   max-width: 560px;
 }
 
-.reelWrapper {
-  width: 100%;
-  max-width: 400px;
-}
-
-.reel {
-  width: 100%;
-  height: 760px;
-  border: none;
-  border-radius: var(--radius-2);
-}
-
-.reelPlaceholder {
-  width: 100%;
-  height: 760px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: var(--spacing-3);
-  background: var(--surface-2);
-  border: 1px solid var(--border-2);
-  border-radius: var(--radius-2);
-  color: var(--ink-3);
-  font-size: var(--fontSize-2);
-}
-
 .primaryBtn {
   display: inline-flex;
   align-items: center;
@@ -71,12 +44,6 @@
 .primaryBtn:hover {
   background: var(--accent-hover);
   opacity: 1;
-}
-
-@media (min-width: 1024px) {
-  .reelWrapper {
-    max-width: 480px;
-  }
 }
 
 @media (max-width: 767px) {

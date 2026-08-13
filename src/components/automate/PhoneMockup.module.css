@@ -7,33 +7,18 @@
   max-width: 1080px;
   margin: 0 auto;
   display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
-  gap: var(--spacing-5);
-}
-
-.copy {
-  flex: 1;
-  text-align: center;
-}
-
-.lead {
-  font-size: var(--fontSize-3);
-  line-height: var(--lineHeight-relaxed);
-  color: var(--ink-1);
+  justify-content: center;
 }
 
 .mockupWrap {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--spacing-2);
+  justify-content: center;
   width: 100%;
 }
 
 .phoneFrame {
   width: 100%;
-  max-width: 400px;
+  max-width: 720px;
   aspect-ratio: 9 / 19.5;
   border-radius: var(--radius-3);
   border: 1px solid var(--border-2);
@@ -54,26 +39,4 @@
 
 .screenshotImg {
   object-fit: cover;
-}
-
-.label {
-  font-size: var(--fontSize-1);
-  color: var(--ink-2);
-  text-align: center;
-}
-
-@media (min-width: 768px) {
-  .container {
-    flex-direction: row;
-    justify-content: flex-end;
-    text-align: left;
-  }
-
-  .copy {
-    text-align: left;
-  }
-
-  .mockupWrap {
-    width: auto;
-  }
 }

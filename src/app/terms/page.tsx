@@ -19,11 +19,12 @@ export default function TermsPage() {
           <section className={styles.section}>
             <h2>1. Acceptance of Terms</h2>
             <p>
-              These Terms of Service govern your use of asorahura.com and every service offered
-              on it, including the AI Opportunity Discovery tool, our catalog of automation
-              offerings, consulting engagements, checkout, and support channels. By accessing or
-              using this site, you agree to be bound by these terms. If you do not agree, do not
-              use this site.
+              asorahura.com is operated by Asor Ahura, a sole trader (&quot;Asor Ahura,&quot;
+              &quot;we,&quot; &quot;us&quot;). These Terms of Service govern your use of the site
+              and every service offered on it, including the AI Opportunity Discovery tool, our
+              catalog of automation offerings, consulting engagements, checkout, and support
+              channels. By accessing or using this site, you agree to be bound by these terms. If
+              you do not agree, do not use this site.
             </p>
           </section>
 
@@ -150,7 +151,7 @@ export default function TermsPage() {
             <h2>12. Contact</h2>
             <p>
               Questions about these terms? Contact us at{" "}
-              <a href="mailto:hello@asorahura.com">hello@asorahura.com</a>.
+              <a href="mailto:asorahura@gmail.com">asorahura@gmail.com</a>.
             </p>
           </section>
         </div>

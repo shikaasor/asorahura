@@ -3,6 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./PaddleCheckout.module.css";
 import { getPaddleEnvironment } from "@/lib/checkout";
+import { PurchaseInterestForm } from "./PurchaseInterestForm";
+
+const NO_PRICE = "NO_PRICE";
 
 declare global {
   interface Window {
@@ -54,7 +57,7 @@ export function PaddleCheckout({ priceId, onSuccess, customData }: Props) {
   // Load the Paddle script and open the inline checkout.
   useEffect(() => {
     if (!priceId) {
-      setError("No price configured for this tier. Please contact us directly.");
+      setError(NO_PRICE);
       return;
     }
 
@@ -115,6 +118,10 @@ export function PaddleCheckout({ priceId, onSuccess, customData }: Props) {
     document.head.appendChild(script);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (error === NO_PRICE) {
+    return <PurchaseInterestForm offer={customData?.product} />;
+  }
 
   if (error) {
     return <div className={styles.error}>{error}</div>;

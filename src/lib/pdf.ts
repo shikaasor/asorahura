@@ -177,7 +177,7 @@ export async function generateAssessmentPDF(params: {
       .fontSize(9)
       .font("Helvetica")
       .text(
-        "Prepared by Asor Ahura | asorahura.com | hello@asorahura.com",
+        "Prepared by Asor Ahura | asorahura.com | asorahura@gmail.com",
         50,
         doc.page.height - 50,
         { align: "center", width: doc.page.width - 100 }
