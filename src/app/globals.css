@@ -1,165 +1,228 @@
 @import "tailwindcss";
 
+/* =============================================================
+   Asor Ahura — globals v2
+   Drop-in replacement for src/app/globals.css.
+   Every token you already use is still here with the same name,
+   so nothing breaks. New tokens are additive.
+   See CSS-AUDIT.md for the reasoning behind each change.
+   ============================================================= */
+
 :root {
-  /* Color — Direction B semantic scale */
+  color-scheme: light;
+
+  /* ---- Surfaces: warm paper, now with real depth ---- */
   --surface-1: #FDFAF4;
-  --surface-2: #F9F4ED;
-  --surface-3: #F2EBDE;
-  --surface-4: #FFFEF9;
+  --surface-2: #F8F2E8;
+  --surface-3: #F0E7D8;
+  --surface-4: #FFFEFA;
+  /* NEW — inverted surfaces. The single biggest fix for "flat":
+     the palette had no dark end, so every section read the same. */
+  --surface-ink: #17120D;
+  --surface-ink-2: #221B14;
+
+  /* ---- Ink ---- */
   --ink-1: #1F1B17;
-  --ink-2: #5D564E;
-  --ink-3: #8B827A;
+  --ink-2: #554E46;   /* was #5D564E — nudged for 7:1 on surface-1 */
+  --ink-3: #7C736A;   /* was #8B827A — now clears 3:1 on surface-3 */
+  --ink-inverse-1: #FBF6EC;
+  --ink-inverse-2: rgba(251, 246, 236, 0.72);
+  --ink-inverse-3: rgba(251, 246, 236, 0.48);
+
+  /* ---- Gold ----
+     --accent is a FILL. It fails AA as text on cream (1.9:1) and as a
+     background under --surface-1 text (2.1:1). Two new tokens fix that:
+     --accent-ink for gold text, --on-accent for text on gold fills. */
   --accent: #C9A86D;
   --accent-hover: #B5985B;
   --accent-active: #A1854A;
-  --success: #3D6B1F;
-  --error: #AA3918;
-  --warn: #935A19;
+  --accent-ink: #7A5A22;        /* NEW — 6.3:1 on surface-1. Use for gold TEXT. */
+  --accent-on-ink: #E0C48A;     /* NEW — gold text on dark surfaces, 7.5:1 */
+  --on-accent: var(--ink-1);    /* NEW — text on a gold fill */
+  --accent-tint: rgba(201, 168, 109, 0.12);
+  --accent-tint-strong: rgba(201, 168, 109, 0.28);
+  --accent-sheen: linear-gradient(100deg, #B5985B 0%, #E3CB96 42%, #C9A86D 62%, #A1854A 100%);
+
+  /* NEW — one cool support hue so gold isn't carrying the whole brand.
+     Same lightness family, opposite side of the wheel: reads as
+     engineering/trust next to the gold's craft/premium. */
+  --support: #23474A;
+  --support-tint: rgba(35, 71, 74, 0.08);
+
+  /* ---- Semantic ---- */
+  --success: #35621C;
+  --error: #A03414;
+  --warn: #7F4D12;
+  --success-tint: rgba(53, 98, 28, 0.1);
+  --error-tint: rgba(160, 52, 20, 0.1);
+
+  /* ---- Lines ---- */
   --border-1: rgba(31, 27, 23, 0.08);
   --border-2: rgba(31, 27, 23, 0.16);
+  --border-3: rgba(31, 27, 23, 0.28);
+  --border-inverse-1: rgba(251, 246, 236, 0.12);
+  --border-inverse-2: rgba(251, 246, 236, 0.22);
+  --hairline-gold: linear-gradient(90deg, transparent, rgba(201, 168, 109, 0.55), transparent);
 
-  /* Type */
-  --fontSize-1: 12px;
-  --fontSize-2: 16px;
-  --fontSize-3: 18px;
-  --fontSize-4: 20px;
-  --fontSize-5: 24px;
-  --fontSize-6: 32px;
-  --fontSize-7: 48px;
+  /* ---- Type: fluid above 24px, so headings stop stair-stepping ---- */
+  --fontSize-1: 0.75rem;   /* 12 */
+  --fontSize-2: 1rem;      /* 16 */
+  --fontSize-3: 1.125rem;  /* 18 */
+  --fontSize-4: 1.25rem;   /* 20 */
+  --fontSize-5: clamp(1.375rem, 1.15rem + 1.1vw, 1.5rem);   /* 22 → 24 */
+  --fontSize-6: clamp(1.625rem, 1.25rem + 2.2vw, 2rem);     /* 26 → 32 */
+  --fontSize-7: clamp(2rem, 1.3rem + 4.2vw, 3rem);          /* 32 → 48 */
+  --fontSize-8: clamp(2.5rem, 1.4rem + 6vw, 4rem);          /* NEW 40 → 64 */
+  --fontSize-9: clamp(3rem, 1.2rem + 9vw, 5.5rem);          /* NEW display */
+
   --fontWeight-normal: 400;
+  --fontWeight-medium: 500;
   --fontWeight-bold: 700;
   --lineHeight-tight: 1.1;
+  --lineHeight-snug: 1.25;
   --lineHeight-normal: 1.5;
   --lineHeight-relaxed: 1.6;
+  --tracking-tight: -0.02em;
+  --tracking-label: 0.12em;
 
-  /* Spacing */
+  /* ---- Spacing: scale continues past 48px ---- */
   --spacing-1: 4px;
   --spacing-2: 8px;
   --spacing-3: 16px;
   --spacing-4: 24px;
   --spacing-5: 32px;
   --spacing-6: 48px;
+  --spacing-7: 72px;   /* NEW */
+  --spacing-8: 112px;  /* NEW */
+  --spacing-9: 160px;  /* NEW */
 
-  /* Radius */
   --radius-1: 4px;
   --radius-2: 8px;
   --radius-3: 12px;
+  --radius-4: 20px;    /* NEW — cards were hardcoding 1rem */
+  --radius-full: 999px;
 
-  /* Shadow */
-  --shadow-1: 0 1px 2px rgba(31, 27, 23, 0.05);
-  --shadow-2: 0 4px 8px rgba(31, 27, 23, 0.1);
-  --shadow-3: 0 12px 24px rgba(31, 27, 23, 0.12);
+  /* ---- Elevation: warm-tinted, not black. Black on cream = grey mud. ---- */
+  --shadow-1: 0 1px 2px rgba(45, 32, 16, 0.06);
+  --shadow-2: 0 2px 4px rgba(45, 32, 16, 0.05), 0 8px 16px rgba(45, 32, 16, 0.06);
+  --shadow-3: 0 4px 8px rgba(45, 32, 16, 0.05), 0 18px 36px rgba(45, 32, 16, 0.09);
+  --shadow-gold: 0 6px 24px rgba(161, 133, 74, 0.28);
+  --shadow-inset-top: inset 0 1px 0 rgba(255, 255, 255, 0.6);
 
-  /* Transition */
   --duration-1: 150ms;
   --duration-2: 300ms;
   --duration-3: 500ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 
+  --focus-ring: 0 0 0 2px var(--surface-1), 0 0 0 4px var(--accent-active);
   --selection: rgba(201, 168, 109, 0.25);
+  --container-max: 1300px;
+  --tap-min: 44px;
 }
 
-::selection {
-  background: var(--selection);
+/* Opt-in dark section: put data-theme="ink" on any <section> and every
+   token below flips. No component rewrites, no second stylesheet. */
+[data-theme="ink"] {
+  color-scheme: dark;
+  --surface-1: #17120D;
+  --surface-2: #221B14;
+  --surface-3: #2C241B;
+  --surface-4: #322A20;
+  --ink-1: var(--ink-inverse-1);
+  --ink-2: rgba(251, 246, 236, 0.74);
+  --ink-3: rgba(251, 246, 236, 0.5);
+  --accent-ink: var(--accent-on-ink);
+  --border-1: var(--border-inverse-1);
+  --border-2: var(--border-inverse-2);
+  --shadow-2: 0 2px 4px rgba(0, 0, 0, 0.4), 0 10px 24px rgba(0, 0, 0, 0.35);
+  --shadow-3: 0 6px 12px rgba(0, 0, 0, 0.45), 0 24px 48px rgba(0, 0, 0, 0.4);
+  --focus-ring: 0 0 0 2px var(--surface-1), 0 0 0 4px var(--accent);
+  background: var(--surface-1);
   color: var(--ink-1);
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+::selection { background: var(--selection); color: var(--ink-1); }
 
-html {
-  overflow-x: clip;
-  width: 100%;
+* { box-sizing: border-box; padding: 0; margin: 0; }
+* { min-width: 0; } /* stops flex/grid children forcing horizontal scroll */
+
+html { overflow-x: clip; width: 100%; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
 
 body {
-  overflow-x: hidden; /* fallback for browsers without 'clip' */
+  overflow-x: hidden;
   overflow-x: clip;
   width: 100%;
   background: var(--surface-1);
   color: var(--ink-1);
   font-family: var(--font-sans);
+  font-size: var(--fontSize-2);
+  line-height: var(--lineHeight-relaxed);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  font-synthesis-weight: none;
 }
 
-/* Removed universal img/media constraint — was breaking Next.js 16 Image components. */
-
-h1,
-h2,
-h3,
-h4 {
-  font-weight: 700;
-  letter-spacing: -0.02em;
+h1, h2, h3, h4 {
+  font-weight: var(--fontWeight-bold);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--lineHeight-snug);
+  text-wrap: balance;
 }
+h1 { line-height: var(--lineHeight-tight); }
+p { text-wrap: pretty; }
 
-a {
-  color: inherit;
-  text-decoration: none;
-  transition: opacity 0.2s ease;
-}
+a { color: inherit; text-decoration: none; transition: color var(--duration-1) var(--ease-out), opacity var(--duration-1) var(--ease-out); }
+a:hover { color: var(--accent-ink); opacity: 1; } /* was opacity:.8 — that greyed out gold CTAs */
 
-a:hover {
-  opacity: 0.8;
-}
+button { background: none; border: none; cursor: pointer; font-family: inherit; color: inherit; }
+button, a, input, select, textarea, [tabindex] { outline: none; }
+:focus-visible { box-shadow: var(--focus-ring); border-radius: var(--radius-1); }
 
-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-}
-
-.container {
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 0 4rem;
-}
-
-.section-padding {
-  padding: 10rem 0;
-}
-
-/* Gold shimmer keyframe used across components */
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
-@keyframes flow {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-5px); }
-  100% { transform: translateY(0); }
-}
-
-.animate-flow {
-  animation: flow 6s ease-in-out infinite;
-}
-/* Top spacer matching the fixed nav height (responsive) */
-.nav-offset {
-  padding-top: 88px;
-}
-
-/* Mobile-friendliness overrides */
+input, textarea, select { font: inherit; color: inherit; }
 @media (max-width: 768px) {
-  .container {
-    padding: 0 1.25rem;
-  }
-
-  .section-padding {
-    padding: 5rem 0;
-  }
-
-  .nav-offset {
-    padding-top: 72px;
-  }
+  input, textarea, select { font-size: max(16px, 1rem); } /* stops iOS zoom-on-focus */
 }
 
-@media (max-width: 480px) {
-  .container {
-    padding: 0 1rem;
-  }
+/* Utilities — token-driven, so page CSS stops re-declaring max-widths */
+.container { max-width: var(--container-max); margin: 0 auto; padding-inline: clamp(1rem, 5vw, 4rem); }
+.container-narrow { max-width: 760px; margin: 0 auto; padding-inline: clamp(1rem, 5vw, 4rem); }
+.section-padding { padding-block: clamp(4rem, 10vw, 10rem); }
+.stack { display: flex; flex-direction: column; gap: var(--spacing-4); }
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fontSize-1);
+  font-weight: var(--fontWeight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--accent-ink);
 }
+.hairline { height: 1px; border: 0; background: var(--hairline-gold); }
+.tap { min-height: var(--tap-min); min-width: var(--tap-min); }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+@keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+@keyframes flow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+.animate-flow { animation: flow 6s var(--ease-in-out) infinite; }
+.animate-rise { animation: rise var(--duration-3) var(--ease-out) both; }
+.text-sheen {
+  background: var(--accent-sheen);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+.nav-offset { padding-top: 88px; }
+@media (max-width: 768px) { .nav-offset { padding-top: 72px; } }
