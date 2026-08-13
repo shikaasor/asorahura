@@ -11,12 +11,12 @@ export default function Footer() {
           <div className={styles.brand}>
             <p className={styles.logo}>Asor Ahura</p>
             <p className={styles.tagline}>
-              Automations that work like your best hire — reliable, consistent, and yours to keep.
+              Automations that work like your best hire: reliable, consistent, and yours to keep.
             </p>
           </div>
 
           {/* Column 2: Creator Path */}
-          <nav className={styles.nav} aria-label="Footer navigation — Creator Path">
+          <nav className={styles.nav} aria-label="Footer navigation: Creator Path">
             <p className={styles.navLabel}>Creator Path</p>
             <ul className={styles.navList}>
               <li><Link href="/" className={styles.navLink}>Home</Link></li>
@@ -27,7 +27,7 @@ export default function Footer() {
           </nav>
 
           {/* Column 3: Enterprise */}
-          <nav className={styles.nav} aria-label="Footer navigation — Enterprise">
+          <nav className={styles.nav} aria-label="Footer navigation: Enterprise">
             <p className={styles.navLabel}>Enterprise</p>
             <ul className={styles.navList}>
               <li><Link href="/enterprise" className={styles.navLink}>Enterprise Solutions</Link></li>

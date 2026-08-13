@@ -30,7 +30,7 @@ export default function TryItNowSection() {
           </a>
         ) : (
           <div className={styles.reelPlaceholder} onClick={handleClick}>
-            Reel embed pending — set NEXT_PUBLIC_AUTOMATE_REEL_URL
+            Reel embed pending, set NEXT_PUBLIC_AUTOMATE_REEL_URL
           </div>
         )}
       </div>

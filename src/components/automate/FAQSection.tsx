@@ -8,7 +8,7 @@ const faqs = [
   {
     question: "What if I already use ManyChat or Zapier?",
     answer:
-      "This integrates alongside your existing tools. It's not a replacement—it's an owned system that doesn't grow in cost.",
+      "This integrates alongside your existing tools. It's not a replacement, it's an owned system that doesn't grow in cost.",
   },
   {
     question: "Can I move to a different platform later?",

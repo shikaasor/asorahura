@@ -30,7 +30,7 @@ export async function sendAssessmentEmail(params: {
     params;
 
   const resolvedSubject =
-    subject ?? `Your AI Readiness Report — Score: ${score}/100`;
+    subject ?? `Your AI Readiness Report: ${score}/100`;
 
   const sendParams: Parameters<typeof resend.emails.send>[0] = {
     from: FROM,
@@ -184,7 +184,7 @@ export async function sendAssessmentEmailSequence(params: {
 
   const segment = getSegment(score);
 
-  // Run all LLM calls in parallel — they're independent
+  // Run all LLM calls in parallel, they're independent
   const [pdfContent, sequence, nurture] = await Promise.all([
     generatePDFContent({ firstName, answers, score, tier, segment }).catch((err) => {
       console.error("[email] PDF content generation failed:", err);
@@ -216,7 +216,7 @@ export async function sendAssessmentEmailSequence(params: {
     console.error("[email] PDF generation failed:", err);
   }
 
-  // Initial email — immediate, with PDF attached
+  // Initial email, immediate, with PDF attached
   try {
     const initialBody =
       (sequence?.initial.body ?? `Hey ${firstName}, your score is ${score}/100.`) +
@@ -227,7 +227,7 @@ export async function sendAssessmentEmailSequence(params: {
       to: email,
       subject:
         sequence?.initial.subject ??
-        `Your AI Readiness Report — Score: ${score}/100`,
+        `Your AI Readiness Report: ${score}/100`,
       text: initialBody,
       ...(pdf
         ? {
@@ -242,7 +242,7 @@ export async function sendAssessmentEmailSequence(params: {
     console.error("[email] Initial send threw:", err);
   }
 
-  // Day 3 — Problem deepening
+  // Day 3, Problem deepening
   try {
     const { error } = await resend.emails.send({
       from: FROM,
@@ -256,7 +256,7 @@ export async function sendAssessmentEmailSequence(params: {
     console.error("[email] Day 3 send threw:", err);
   }
 
-  // Day 7 — Case study with /blog link
+  // Day 7, Case study with /blog link
   try {
     const { error } = await resend.emails.send({
       from: FROM,
@@ -270,7 +270,7 @@ export async function sendAssessmentEmailSequence(params: {
     console.error("[email] Day 7 send threw:", err);
   }
 
-  // Day 14 — Process reveal
+  // Day 14, Process reveal
   try {
     const { error } = await resend.emails.send({
       from: FROM,
@@ -284,7 +284,7 @@ export async function sendAssessmentEmailSequence(params: {
     console.error("[email] Day 14 send threw:", err);
   }
 
-  // Day 30 — Offer with segment CTA
+  // Day 30, Offer with segment CTA
   try {
     const { error } = await resend.emails.send({
       from: FROM,

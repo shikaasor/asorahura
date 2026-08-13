@@ -67,7 +67,7 @@ export function OrderNotification({
             <>
               <Hr style={{ borderColor: "#e5e7eb", margin: "24px 0" }} />
               <Text style={{ fontSize: "14px", color: "#6b7280" }}>
-                Awaiting onboarding form submission — check /automate/instagram/success activity.
+                Awaiting onboarding form submission, check /automate/instagram/success activity.
               </Text>
             </>
           )}

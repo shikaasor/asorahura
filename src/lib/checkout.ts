@@ -16,12 +16,12 @@ export const tiers: Tier[] = [
   {
     id: "discovery",
     name: "Discovery Call",
-    tagline: "Understand exactly where AI can save you time — before spending a dollar on build.",
+    tagline: "Understand exactly where AI can save you time, before spending a dollar on build.",
     price: "$50/hr",
     priceDetail: "Billed hourly",
     deliverables: [
       "Full AI Opportunity Discovery across 5 operational dimensions",
-      "Personalised automation roadmap — top 5 opportunities ranked by impact",
+      "Personalised automation roadmap: top 5 opportunities ranked by impact",
       "Tool stack review and integration recommendations",
       "Written report with priority-ordered action plan",
     ],
@@ -106,6 +106,55 @@ export function getAutomateTierById(id: AutomateTierId): AutomateTier {
   return automateTiers.find((t) => t.id === id) || automateTiers[0];
 }
 
+export type EmailTriageTierId = "tier1" | "tier2";
+
+export interface EmailTriageTier {
+  id: EmailTriageTierId;
+  name: string;
+  price: string;
+  priceDetail: string;
+  paddlePriceId: string;
+  description: string;
+  features: string[];
+}
+
+export const emailTriageTiers: EmailTriageTier[] = [
+  {
+    id: "tier1",
+    name: "Inbox Assistant",
+    price: "$500",
+    priceDetail: "one-time, no monthly fee",
+    paddlePriceId: process.env.NEXT_PUBLIC_PADDLE_PRICE_ID_EMAIL_TRIAGE_TIER1 || "",
+    description:
+      "Reads every email as it arrives, pings you on Telegram the moment something's urgent, and sends a daily brief of everything new at a time you choose.",
+    features: [
+      "Instant Telegram alert for urgent email",
+      "Daily brief of all new mail at a time you choose",
+      "No cap on daily email volume",
+    ],
+  },
+  {
+    id: "tier2",
+    name: "Inbox Assistant Pro",
+    price: "$900",
+    priceDetail: "one-time, no monthly fee",
+    paddlePriceId: process.env.NEXT_PUBLIC_PADDLE_PRICE_ID_EMAIL_TRIAGE_TIER2 || "",
+    description:
+      "Everything in Inbox Assistant, plus VIP escalation for your key contacts, thread summaries on request, and draft replies you approve before they send.",
+    features: [
+      "Everything in Inbox Assistant",
+      "VIP contact escalation: always alerted for key senders",
+      "Thread summaries on request via Telegram",
+      "Draft replies sent to you for approval, nothing sends without you",
+      "Weekly digest of response time and backlog",
+    ],
+  },
+];
+
+export function getEmailTriageTierById(id: EmailTriageTierId): EmailTriageTier {
+  return emailTriageTiers.find((t) => t.id === id) || emailTriageTiers[0];
+}
+
 export function getPaddleEnvironment(): "sandbox" | "production" {
   return process.env.NEXT_PUBLIC_PADDLE_TOKEN?.startsWith("test_") ? "sandbox" : "production";
 }
@@ -154,11 +203,11 @@ export const offerings: Record<OfferingSlug, OfferingMetadata> = {
     name: "Instagram Comment-to-DM",
     tagline: "The front door",
     description:
-      "Auto-DMs Reel commenters with a lead magnet link. Start here — it's the cheapest, fastest automation to set up.",
+      "Auto-DMs Reel commenters with a lead magnet link. Start here: it's the cheapest, fastest automation to set up.",
     heroHeadline: "Instagram Lead Automation for Creators",
     heroSubheading: "Stop paying by the contact. Own your list. The bill stays flat at $6/mo.",
     setupPrice: "$500",
-    setupLabel: "DFY — one-time",
+    setupLabel: "DFY, one-time",
     monthlyPrice: null,
     monthlyLabel: null,
     hasLiveCheckout: true,
@@ -179,16 +228,16 @@ export const offerings: Record<OfferingSlug, OfferingMetadata> = {
       "A virtual email assistant that reads your inbox, pings you on Telegram the moment something urgent lands, and sends a daily brief of everything new at a time you choose.",
     heroHeadline: "Your Virtual Email Assistant, on Telegram",
     heroSubheading:
-      "It reads every email as it arrives, flags what's urgent the moment it lands, and sends a daily brief of everything new at whatever time you choose — all through Telegram, no new app to learn.",
+      "It reads every email as it arrives, flags what's urgent the moment it lands, and sends a daily brief of everything new at whatever time you choose, all through Telegram, no new app to learn.",
     setupPrice: "$500",
-    setupLabel: "DFY — one-time, no monthly fee",
+    setupLabel: "From $500, DFY, one-time",
     monthlyPrice: null,
     monthlyLabel: null,
-    hasLiveCheckout: false,
-    ctaLabel: "Join Waitlist",
-    ctaHref: "/engage",
+    hasLiveCheckout: true,
+    ctaLabel: "View Offering",
+    ctaHref: "/automate/email-triage",
     scopeConstraint:
-      "Gmail's API verification governs how fast we can onboard each new inbox. We'll confirm your setup timeline before you commit — not promise instant multi-client rollout.",
+      "Gmail's API verification governs how fast we can onboard each new inbox. We'll confirm your setup timeline before you commit, not promise instant multi-client rollout.",
     included: [
       "Instant Telegram alert the moment an urgent email lands",
       "Daily brief of all new mail at a time you choose",
@@ -211,7 +260,7 @@ export const offerings: Record<OfferingSlug, OfferingMetadata> = {
       {
         question: "Can I choose when I get my daily brief?",
         answer:
-          "Yes. You set the time of day, and it sends one brief covering every new email since the last one — no need to check your inbox in between.",
+          "Yes. You set the time of day, and it sends one brief covering every new email since the last one, no need to check your inbox in between.",
       },
       {
         question: "How fast can this go live for my business?",
@@ -233,16 +282,16 @@ export const offerings: Record<OfferingSlug, OfferingMetadata> = {
       "Build a writing constitution (capture your voice), then run a content subscription on top. Highest margin per offering.",
     heroHeadline: "Writing Constitution + Content",
     heroSubheading:
-      "The deliverable is the constitution — an 8-module document that captures your voice, not a promise that we'll write your posts for you.",
+      "The deliverable is the constitution: an 8-module document that captures your voice, not a promise that we'll write your posts for you.",
     setupPrice: "$600",
-    setupLabel: "Constitution — one-off",
+    setupLabel: "Constitution, one-off",
     monthlyPrice: "$400/mo",
-    monthlyLabel: "Content subscription — 3x/week each on LinkedIn, Substack & X",
+    monthlyLabel: "Content subscription, 3x/week each on LinkedIn, Substack & X",
     hasLiveCheckout: false,
     ctaLabel: "Join Waitlist",
     ctaHref: "/engage",
     scopeConstraint:
-      "This is not a 'we post for you' service. The constitution — an 8-module document capturing your voice — is the paid, differentiated deliverable. The content subscription runs on top of it once it exists.",
+      "This is not a 'we post for you' service. The constitution, an 8-module document capturing your voice, is the paid, differentiated deliverable. The content subscription runs on top of it once it exists.",
     included: [
       "8-module voice-capture document",
       "Constitution stands alone as the paid deliverable",
@@ -255,7 +304,7 @@ export const offerings: Record<OfferingSlug, OfferingMetadata> = {
       {
         question: "What exactly is a writing constitution?",
         answer:
-          "An 8-module document that captures how you write — tone, structure, do's and don'ts — so anyone (including AI) can produce content that sounds like you.",
+          "An 8-module document that captures how you write: tone, structure, do's and don'ts, so anyone (including AI) can produce content that sounds like you.",
       },
       {
         question: "Do I have to buy the content subscription too?",
@@ -277,16 +326,16 @@ export const offerings: Record<OfferingSlug, OfferingMetadata> = {
       "Quote jobs at current market rates instead of guessing. Rate card + research + markup logic, source-cited.",
     heroHeadline: "Rate-Aware Invoice & Quote",
     heroSubheading:
-      "Quote at current market rates instead of undercutting from ignorance — built on your rate card, not AI guesswork.",
+      "Quote at current market rates instead of undercutting from ignorance, built on your rate card, not AI guesswork.",
     setupPrice: "$1,000",
-    setupLabel: "DFY — one-time",
+    setupLabel: "DFY, one-time",
     monthlyPrice: null,
     monthlyLabel: null,
     hasLiveCheckout: false,
     ctaLabel: "Join Waitlist",
     ctaHref: "/engage",
     scopeConstraint:
-      "This isn't AI-guessed pricing. You bring your own rate card and comparable jobs; the system structures the math, applies your markup logic, and cites every source it uses — flagging anything it isn't confident about instead of inventing a number.",
+      "This isn't AI-guessed pricing. You bring your own rate card and comparable jobs; the system structures the math, applies your markup logic, and cites every source it uses, flagging anything it isn't confident about instead of inventing a number.",
     included: [
       "Your rate card + comparable jobs, structured",
       "Source-cited output, low-confidence items flagged",
@@ -309,7 +358,7 @@ export const offerings: Record<OfferingSlug, OfferingMetadata> = {
       {
         question: "Who is this built for?",
         answer:
-          "Small businesses — construction and trades in particular — that currently quote from memory or gut feel and lose margin to it.",
+          "Small businesses, construction and trades in particular, that currently quote from memory or gut feel and lose margin to it.",
       },
     ],
   },
@@ -330,7 +379,7 @@ export const offerings: Record<OfferingSlug, OfferingMetadata> = {
     ctaLabel: "Join Waitlist",
     ctaHref: "/engage",
     scopeConstraint:
-      "Built for agencies and consultancies onboarding clients regularly, not the small-business self-serve buyer of the other four offerings. Widest integration surface of the five — expect the most setup coordination.",
+      "Built for agencies and consultancies onboarding clients regularly, not the small-business self-serve buyer of the other four offerings. Widest integration surface of the five, expect the most setup coordination.",
     included: [
       "Welcome pack, channel & folder auto-provisioned",
       "~20 seconds per new client, live",
@@ -343,7 +392,7 @@ export const offerings: Record<OfferingSlug, OfferingMetadata> = {
       {
         question: "What does it actually provision?",
         answer:
-          "A welcome pack, a dedicated channel, and a client folder — created automatically the moment a new client is confirmed, in about 20 seconds.",
+          "A welcome pack, a dedicated channel, and a client folder, created automatically the moment a new client is confirmed, in about 20 seconds.",
       },
       {
         question: "Is this for solo operators or agencies?",
@@ -353,7 +402,7 @@ export const offerings: Record<OfferingSlug, OfferingMetadata> = {
       {
         question: "What tools does it need access to?",
         answer:
-          "Slack, Drive, and Zoom in your current setup. Because it touches more systems than the other offerings, onboarding takes coordination — we'll scope that with you on the waitlist call.",
+          "Slack, Drive, and Zoom in your current setup. Because it touches more systems than the other offerings, onboarding takes coordination, we'll scope that with you on the waitlist call.",
       },
     ],
   },

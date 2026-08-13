@@ -14,7 +14,7 @@ export function AssessmentSectorGate({ onContinue }: Props) {
   return (
     <div className={styles.wrap}>
       <h1 className={styles.heading}>Which path describes you best?</h1>
-      <p className={styles.subheading}>Both paths are equally valid — pick the one that fits.</p>
+      <p className={styles.subheading}>Both paths are equally valid, pick the one that fits.</p>
 
       <div className={styles.choices}>
         <button type="button" className={styles.choice} onClick={() => onContinue()}>

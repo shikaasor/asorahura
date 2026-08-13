@@ -19,9 +19,8 @@ describe("getAllOfferingsSlugs", () => {
 });
 
 describe("getWaitlistOfferingSlugs", () => {
-  it("returns exactly the four non-instagram slugs", () => {
+  it("returns exactly the three waitlist slugs (instagram and email-triage have live checkout)", () => {
     expect(getWaitlistOfferingSlugs()).toEqual([
-      "email-triage",
       "writing-constitution",
       "rate-aware-invoice",
       "client-onboarding",
@@ -35,6 +34,14 @@ describe("offerings.instagram", () => {
     expect(offerings.instagram.setupPrice).toBe("$500");
     expect(offerings.instagram.ctaHref).toBe("/automate/instagram");
     expect(offerings.instagram.ctaLabel).toBe("View Offering");
+  });
+});
+
+describe("offerings.email-triage", () => {
+  it("has live checkout and points at its dedicated tier-picker page", () => {
+    expect(offerings["email-triage"].hasLiveCheckout).toBe(true);
+    expect(offerings["email-triage"].ctaHref).toBe("/automate/email-triage");
+    expect(offerings["email-triage"].ctaLabel).toBe("View Offering");
   });
 });
 
@@ -60,7 +67,7 @@ describe("offerings pricing (locked figures)", () => {
   });
 });
 
-describe("offerings — all four non-instagram offerings", () => {
+describe("offerings — the three waitlist offerings", () => {
   it("all have hasLiveCheckout === false", () => {
     for (const slug of getWaitlistOfferingSlugs()) {
       expect(offerings[slug].hasLiveCheckout).toBe(false);

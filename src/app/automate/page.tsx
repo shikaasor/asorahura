@@ -14,12 +14,12 @@ const faqs = [
   {
     question: "How do I pick the right automation to start with?",
     answer:
-      "Start with whichever offering matches the operational pain costing you the most time or money right now — Instagram Comment-to-DM has the lowest cost of entry if you want to test the model first.",
+      "Start with whichever offering matches the operational pain costing you the most time or money right now. Instagram Comment-to-DM has the lowest cost of entry if you want to test the model first.",
   },
   {
     question: "Can I get more than one automation?",
     answer:
-      "Yes. Each offering is sold and delivered independently — buy or join the waitlist for as many as fit your business.",
+      "Yes. Each offering is sold and delivered independently, buy or join the waitlist for as many as fit your business.",
   },
   {
     question: "What if the automation I need isn't listed here?",
@@ -41,7 +41,7 @@ export default function AutomatePage() {
           Five ready-made automations for small businesses and creators
         </p>
         <p className={styles.intro}>
-          We don&apos;t automate everything — we target the blockers slowing down your speed and
+          We don&apos;t automate everything. We target the blockers slowing down your speed and
           quality of work. Choose the automation that fits your biggest bottleneck. Start with
           one, scale to all five.
         </p>

@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
-import Breadcrumb from "@/components/automate/Breadcrumb";
 import HeroSection from "@/components/automate/HeroSection";
 import TryItNowSection from "@/components/automate/TryItNowSection";
 import ComparisonStrip from "@/components/automate/ComparisonStrip";
@@ -21,8 +20,6 @@ export default function AutomateInstagramPage() {
         <LandEventTracker />
       </Suspense>
 
-      <Breadcrumb offeringName="Instagram Comment-to-DM" />
-
       <HeroSection />
       <TryItNowSection />
       <ComparisonStrip />
@@ -35,7 +32,7 @@ export default function AutomateInstagramPage() {
           <h2 className={styles.closingHeading}>What&apos;s next</h2>
           <p className={styles.closingBody}>
             This is the first rung. Once your automation is live and generating leads, the next
-            step is [Product #2 — coming soon].
+            step is [Product #2, coming soon].
           </p>
         </div>
       </section>

@@ -12,7 +12,7 @@ const serviceTiers = [
     name: "Starter Automation",
     price: "$5,000",
     priceNote: "Fixed scope",
-    tagline: "Your first automation win — one process, fully built.",
+    tagline: "Your first automation win: one process, fully built.",
     bullets: [
       "Single workflow automated end-to-end",
       "Integration between 2-3 existing tools",
@@ -28,7 +28,7 @@ const serviceTiers = [
     name: "Operational Automation",
     price: "$5,000–$15,000",
     priceNote: "Scoped per engagement",
-    tagline: "Multiple connected workflows — your operations run without you.",
+    tagline: "Multiple connected workflows: your operations run without you.",
     bullets: [
       "3-5 interconnected workflows automated",
       "Full tool stack integration and data sync",
@@ -44,7 +44,7 @@ const serviceTiers = [
     name: "Systems Integration",
     price: "$15,000–$30,000",
     priceNote: "Scoped per engagement",
-    tagline: "End-to-end architecture — your whole operation connected and automated.",
+    tagline: "End-to-end architecture: your whole operation connected and automated.",
     bullets: [
       "Full operational architecture design",
       "AI-powered decision layers and exception handling",

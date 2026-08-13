@@ -3,10 +3,10 @@ import * as SlugPage from "../src/app/automate/[slug]/page";
 import { getWaitlistOfferingSlugs, getOfferingBySlug } from "../src/lib/checkout";
 
 describe("generateStaticParams", () => {
-  it("resolves to exactly the 4 waitlist offering slugs, excluding instagram", async () => {
+  it("resolves to exactly the waitlist offering slugs, excluding instagram and email-triage", async () => {
     const params = await SlugPage.generateStaticParams();
 
-    expect(params).toHaveLength(4);
+    expect(params).toHaveLength(3);
 
     const slugs = params.map((p) => p.slug).sort();
     const expectedSlugs = [...getWaitlistOfferingSlugs()].sort();

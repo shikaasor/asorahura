@@ -69,7 +69,7 @@ export async function generateAssessmentPDF(params: {
       .font("Helvetica")
       .text("/100", { continued: false });
 
-    // Explicitly position tier below the 72pt score — doc.y after a
+    // Explicitly position tier below the 72pt score, doc.y after a
     // continued chain reflects the smaller trailing font, not the tallest.
     doc
       .fillColor(white)
@@ -118,7 +118,7 @@ export async function generateAssessmentPDF(params: {
     doc.moveDown(0.5);
 
     const tiers = [
-      { range: "0–29", label: "Early Stage — Systems Needed" },
+      { range: "0–29", label: "Early Stage: Systems Needed" },
       { range: "30–59", label: "Pre-Deployment Ready" },
       { range: "60–79", label: "Deployment Ready" },
       { range: "80–100", label: "Advanced Optimization Ready" },
@@ -154,10 +154,10 @@ export async function generateAssessmentPDF(params: {
       nextStep = personalizedNextStep;
     } else if (segment === "cold") {
       nextStep =
-        "Step 1: Complete the free discovery (done). Step 2: Watch how similar businesses automated their top 3 manual tasks — reply to your report email and I'll send you a short video.";
+        "Step 1: Complete the free discovery (done). Step 2: Watch how similar businesses automated their top 3 manual tasks. Reply to your report email and I'll send you a short video.";
     } else if (segment === "warm") {
       nextStep =
-        "See Your Purchase Options — see how others at your readiness level achieved 40–60% reduction in manual effort. Visit asorahura.com/checkout to get started.";
+        "See your purchase options. See how others at your readiness level achieved 40–60% reduction in manual effort. Visit asorahura.com/checkout to get started.";
     } else {
       nextStep =
         "You're ready to build. See your purchase options and get started today: asorahura.com/checkout";

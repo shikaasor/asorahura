@@ -158,9 +158,9 @@ export function DeepAssessmentShell() {
   if (step === "intro") {
     return (
       <div className={styles.intro}>
-        <h2 className={styles.introTitle}>The full scorecard — 6 dimensions, 24 questions</h2>
+        <h2 className={styles.introTitle}>The full scorecard: 6 dimensions, 24 questions</h2>
         <p className={styles.introSub}>
-          Score yourself 0–3 on each question. Be honest — inflating scores only misleads your own planning.
+          Score yourself 0–3 on each question. Be honest, inflating scores only misleads your own planning.
         </p>
         <div className={styles.dimensions}>
           {(Object.entries(DIMENSIONS) as [Dimension, typeof DIMENSIONS[Dimension]][]).map(([code, d]) => (

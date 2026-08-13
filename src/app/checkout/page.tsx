@@ -9,7 +9,7 @@ import styles from "./checkout.module.css";
 const TRUST_ITEMS = [
   "Oracle Certified AI Professional",
   "Secure payment via Paddle",
-  "100% IP ownership — yours on delivery",
+  "100% IP ownership, yours on delivery",
   "Fixed scope, no surprise invoices",
 ];
 
@@ -28,7 +28,7 @@ function CheckoutInner() {
           <p className={styles.heroLabel}>Engagement</p>
           <h1 className={styles.heroTitle}>Book Your Discovery Call</h1>
           <p className={styles.heroSub}>
-            Select the engagement that fits your current phase. Payment secures your slot — your discovery call is scheduled immediately after.
+            Select the engagement that fits your current phase. Payment secures your slot, your discovery call is scheduled immediately after.
           </p>
           <div className={styles.steps}>
             <div className={`${styles.step} ${styles.stepActive}`}>

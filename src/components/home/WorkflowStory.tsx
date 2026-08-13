@@ -52,22 +52,22 @@ interface Packet {
 
 const STAGES = [
   {
-    label: "STATE 01 — CHAOS",
+    label: "STATE 01: CHAOS",
     heading: "The problem isn't always the amount of work.",
     body: "It's how many times the work has to move.",
   },
   {
-    label: "STATE 02 — CONNECTION",
+    label: "STATE 02: CONNECTION",
     heading: "We map the workflow before we automate it.",
     body: "Automating a broken process only makes the broken process faster.",
   },
   {
-    label: "STATE 03 — AUTOMATION",
+    label: "STATE 03: AUTOMATION",
     heading: "Then the unnecessary steps disappear.",
     body: "Connect the tools you already use. Remove repetitive handoffs. Automate predictable decisions. Keep judgment calls in your hands.",
   },
   {
-    label: "STATE 04 — LEVERAGE",
+    label: "STATE 04: LEVERAGE",
     heading: "The work gets quieter.",
     body: "You get your time back.",
     cta: true,

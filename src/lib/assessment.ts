@@ -44,7 +44,7 @@ export const assessmentQuestions: Question[] = [
     text: "Which sector best describes your organisation?",
     type: "single-select",
     options: [...SECTORS],
-    weight: 0, // routing question — not scored
+    weight: 0, // routing question, not scored
   },
 
   // ─── Q2: Biggest manual time drain ──────────────────────────────────────────
@@ -117,7 +117,7 @@ export const assessmentQuestions: Question[] = [
           "Multiple times a day",
           "Once a day",
           "A few times a week",
-          "Rarely — junior staff or tooling handle it",
+          "Rarely, junior staff or tooling handle it",
         ],
       },
       Finance: {
@@ -126,7 +126,7 @@ export const assessmentQuestions: Question[] = [
           "Multiple times a day",
           "Once a day",
           "A few times a week",
-          "Rarely — operations or tooling handle it",
+          "Rarely, operations or tooling handle it",
         ],
       },
       "Real Estate & Property": {
@@ -135,7 +135,7 @@ export const assessmentQuestions: Question[] = [
           "Multiple times a day",
           "Once a day",
           "A few times a week",
-          "Rarely — staff or platforms handle it",
+          "Rarely, staff or platforms handle it",
         ],
       },
       Construction: {
@@ -144,7 +144,7 @@ export const assessmentQuestions: Question[] = [
           "Multiple times a day",
           "Once a day",
           "A few times a week",
-          "Rarely — field staff or platforms handle it",
+          "Rarely, field staff or platforms handle it",
         ],
       },
     },
@@ -194,7 +194,7 @@ export const assessmentQuestions: Question[] = [
       Law: {
         text: "When non-billable operational work needs doing, who typically handles it?",
         options: [
-          "A partner — it falls to us",
+          "A partner, it falls to us",
           "An associate or paralegal",
           "A documented practice-group SOP",
           "An integrated platform workflow",
@@ -246,37 +246,37 @@ export const assessmentQuestions: Question[] = [
       Law: {
         text: "If named partners were unavailable for a week, how confident are you the firm's operations would hold?",
         options: [
-          "Not at all — partner involvement is constant",
-          "Slightly — material decisions would stall",
-          "Fairly — most matters move with delegated coverage",
-          "Very — the firm runs on systems and senior associates",
+          "Not at all, partner involvement is constant",
+          "Slightly, material decisions would stall",
+          "Fairly, most matters move with delegated coverage",
+          "Very, the firm runs on systems and senior associates",
         ],
       },
       Finance: {
         text: "If senior advisors or portfolio managers were unavailable for a week, how confident are you the firm's operations would hold?",
         options: [
-          "Not at all — senior involvement is constant",
-          "Slightly — client decisions would stall",
-          "Fairly — most workflows continue with coverage",
-          "Very — the firm runs on systems and team coverage",
+          "Not at all, senior involvement is constant",
+          "Slightly, client decisions would stall",
+          "Fairly, most workflows continue with coverage",
+          "Very, the firm runs on systems and team coverage",
         ],
       },
       "Real Estate & Property": {
         text: "If the principal broker or owner were unavailable for a week, how confident are you operations would hold?",
         options: [
-          "Not at all — principal involvement is constant",
-          "Slightly — material decisions would stall",
-          "Fairly — most workflows continue with coverage",
-          "Very — the operation runs on systems and team coverage",
+          "Not at all, principal involvement is constant",
+          "Slightly, material decisions would stall",
+          "Fairly, most workflows continue with coverage",
+          "Very, the operation runs on systems and team coverage",
         ],
       },
       Construction: {
         text: "If lead PMs or superintendents were unavailable for a week, how confident are you projects would hold?",
         options: [
-          "Not at all — PM/super involvement is constant",
-          "Slightly — material decisions would stall",
-          "Fairly — most projects continue with coverage",
-          "Very — projects run on systems and documented processes",
+          "Not at all, PM/super involvement is constant",
+          "Slightly, material decisions would stall",
+          "Fairly, most projects continue with coverage",
+          "Very, projects run on systems and documented processes",
         ],
       },
     },
@@ -298,37 +298,37 @@ export const assessmentQuestions: Question[] = [
       Law: {
         text: "How dependent is matter progress on a single attorney being present?",
         options: [
-          "It stalls — that attorney is the only one who can move the matter",
-          "It slows materially — coverage exists but quality drops",
-          "It continues — coverage is real but we're still in the loop daily",
-          "It runs smoothly — matters move on documented processes regardless of who's away",
+          "It stalls, that attorney is the only one who can move the matter",
+          "It slows materially, coverage exists but quality drops",
+          "It continues, coverage is real but we're still in the loop daily",
+          "It runs smoothly, matters move on documented processes regardless of who's away",
         ],
       },
       Finance: {
         text: "How dependent is client service on a single advisor or PM being present?",
         options: [
-          "It stalls — that advisor is the only one who knows the client",
-          "It slows materially — coverage exists but client experience drops",
-          "It continues — coverage is real but we're still in the loop daily",
-          "It runs smoothly — client service is shared with documented continuity",
+          "It stalls, that advisor is the only one who knows the client",
+          "It slows materially, coverage exists but client experience drops",
+          "It continues, coverage is real but we're still in the loop daily",
+          "It runs smoothly, client service is shared with documented continuity",
         ],
       },
       "Real Estate & Property": {
         text: "How dependent is operations on a single broker or property manager being present?",
         options: [
-          "It stalls — that person is the only one who can move it",
-          "It slows materially — coverage exists but quality drops",
-          "It continues — coverage is real but we're still in the loop daily",
-          "It runs smoothly — work is shared with documented continuity",
+          "It stalls, that person is the only one who can move it",
+          "It slows materially, coverage exists but quality drops",
+          "It continues, coverage is real but we're still in the loop daily",
+          "It runs smoothly, work is shared with documented continuity",
         ],
       },
       Construction: {
         text: "How dependent is project progress on a single PM or superintendent being on-site?",
         options: [
-          "It stalls — that person is the only one who can move the project forward",
-          "It slows materially — coverage exists but quality drops",
-          "It continues — coverage is real but we're still in the loop daily",
-          "It runs smoothly — projects move on documented processes regardless of who's away",
+          "It stalls, that person is the only one who can move the project forward",
+          "It slows materially, coverage exists but quality drops",
+          "It continues, coverage is real but we're still in the loop daily",
+          "It runs smoothly, projects move on documented processes regardless of who's away",
         ],
       },
     },
@@ -350,8 +350,8 @@ export const assessmentQuestions: Question[] = [
       Law: {
         text: "How clearly defined is your new matter intake and conflicts process?",
         options: [
-          "It's ad hoc — depends who picks it up",
-          "Loosely documented — varies by practice group",
+          "It's ad hoc, depends who picks it up",
+          "Loosely documented, varies by practice group",
           "Documented but inconsistently followed",
           "Fully systematised across the firm",
         ],
@@ -359,8 +359,8 @@ export const assessmentQuestions: Question[] = [
       Finance: {
         text: "How clearly defined is your KYC, account opening, and client onboarding process?",
         options: [
-          "It's ad hoc — varies by advisor",
-          "Loosely documented — followed inconsistently",
+          "It's ad hoc, varies by advisor",
+          "Loosely documented, followed inconsistently",
           "Documented but with manual handoffs",
           "Fully systematised end-to-end",
         ],
@@ -368,8 +368,8 @@ export const assessmentQuestions: Question[] = [
       "Real Estate & Property": {
         text: "How clearly defined is your new tenant onboarding or new listing intake process?",
         options: [
-          "It's ad hoc — varies by property or agent",
-          "Loosely documented — followed inconsistently",
+          "It's ad hoc, varies by property or agent",
+          "Loosely documented, followed inconsistently",
           "Documented but with manual handoffs",
           "Fully systematised across the portfolio",
         ],
@@ -377,8 +377,8 @@ export const assessmentQuestions: Question[] = [
       Construction: {
         text: "How clearly defined is your project mobilisation and kickoff process?",
         options: [
-          "It's ad hoc — varies by PM",
-          "Loosely documented — followed inconsistently",
+          "It's ad hoc, varies by PM",
+          "Loosely documented, followed inconsistently",
           "Documented but inconsistently followed across jobs",
           "Fully systematised across all projects",
         ],
@@ -408,7 +408,7 @@ export function calculateScore(
 }
 
 export function getTierName(score: number, _sector: Sector = DEFAULT_SECTOR): string {
-  if (score < 30) return "Early Stage — Systems Needed";
+  if (score < 30) return "Early Stage, Systems Needed";
   if (score < 60) return "Pre-Deployment Ready";
   if (score < 80) return "Deployment Ready";
   return "Advanced Optimization Ready";

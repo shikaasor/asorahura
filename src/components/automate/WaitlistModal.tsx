@@ -129,7 +129,7 @@ export default function WaitlistModal({
                 <p className={styles.formError}>Couldn&apos;t submit. Please try again.</p>
               )}
               {status === "success" && (
-                <p className={styles.success}>✓ You&apos;re on the waitlist — we&apos;ll be in touch.</p>
+                <p className={styles.success}>✓ You&apos;re on the waitlist, we&apos;ll be in touch.</p>
               )}
 
               <button

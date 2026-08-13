@@ -27,7 +27,7 @@ const PRODUCT_NAMES: Record<Props["productType"], string> = {
 const NEXT_STEPS: Record<Props["productType"], string> = {
   dfy: "We'll build this in 3–5 days.",
   dwy: "Check your inbox for a scheduling link to start your build session.",
-  "care-plan": "Your subscription is active — token renewals, uptime, and copy updates are now handled.",
+  "care-plan": "Your subscription is active: token renewals, uptime, and copy updates are now handled.",
 };
 
 export function PurchaseConfirmation({
@@ -58,7 +58,7 @@ export function PurchaseConfirmation({
           }}
         >
           <Heading style={{ fontSize: "24px", color: "#111" }}>
-            {greeting} — your order is confirmed
+            {greeting}, your order is confirmed
           </Heading>
           <Section style={{ padding: "16px 0" }}>
             <Text style={{ fontSize: "16px", color: "#111", margin: "0 0 4px" }}>

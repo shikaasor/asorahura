@@ -21,7 +21,7 @@ export function EmailGate({ onSubmit, isLoading, error }: Props) {
   return (
     <div className={styles.wrap}>
       <div className={styles.header}>
-        <h2 className={styles.title}>You&apos;re done — unlock your results</h2>
+        <h2 className={styles.title}>You&apos;re done, unlock your results</h2>
         <p className={styles.sub}>
           Enter your details to see your personalized AI opportunity score.
           We&apos;ll also send your full report to your inbox.

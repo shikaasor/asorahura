@@ -26,7 +26,7 @@ export default function PricingSection() {
     <section id="pricing" className={styles.section}>
       <div className={styles.container}>
         <p className={styles.headlineFact}>
-          $15.99/mo all-in ($6 droplet + $9.99 care) — against ManyChat&apos;s cheapest 250-contact
+          $15.99/mo all-in ($6 droplet + $9.99 care), against ManyChat&apos;s cheapest 250-contact
           tier at $39/mo
         </p>
 

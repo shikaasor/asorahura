@@ -45,11 +45,11 @@ const ENTERPRISE_VERTICALS = [
 const CASE_STUDY_SUMMARIES = [
   {
     headline:
-      "2,000+ resumes screened with consistent AI scoring — eliminating reviewer fatigue across 3 HR departments",
+      "2,000+ resumes screened with consistent AI scoring, eliminating reviewer fatigue across 3 HR departments",
   },
   {
     headline:
-      "16,454 chatbot conversations analyzed — surfacing knowledge gaps that explained 100% of escalation spikes for a Swiss insurance company",
+      "16,454 chatbot conversations analyzed, surfacing knowledge gaps that explained 100% of escalation spikes for a Swiss insurance company",
   },
 ];
 

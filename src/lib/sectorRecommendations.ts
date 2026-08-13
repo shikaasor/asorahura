@@ -34,10 +34,10 @@ export const SECTOR_RECOMMENDATIONS: Record<Sector, Record<TierLevel, SectorReco
   Law: {
     1: {
       paragraph:
-        "Your firm has the regulatory exposure to use AI carelessly but not yet the architecture to use it safely. Lawyers pasting matter content into public LLMs is the textbook ABA Rule 1.6 violation — and the 600+ sanctioned hallucination cases since Mata v. Avianca show how fast that turns into malpractice exposure.",
+        "Your firm has the regulatory exposure to use AI carelessly but not yet the architecture to use it safely. Lawyers pasting matter content into public LLMs is the textbook ABA Rule 1.6 violation, and the 600+ sanctioned hallucination cases since Mata v. Avianca show how fast that turns into malpractice exposure.",
       bullets: [
         "Write and enforce a firm-wide 'no client info in public AI' policy this week",
-        "Pick ONE matter type (NDA review, lease abstraction, contract redlining) for the first pilot — not 'AI for the whole firm'",
+        "Pick ONE matter type (NDA review, lease abstraction, contract redlining) for the first pilot, not 'AI for the whole firm'",
         "Audit shadow AI use: which lawyers are pasting what into which tools?",
       ],
       ctaHint:
@@ -49,7 +49,7 @@ export const SECTOR_RECOMMENDATIONS: Record<Sector, Record<TierLevel, SectorReco
       bullets: [
         "Privilege impact assessment on one matter type before any tool selection",
         "Pilot Harvey or CoCounsel on a single practice group under an enterprise DPA",
-        "Citation verification protocol — written, mandatory, tied to malpractice policy",
+        "Citation verification protocol, written, mandatory, tied to malpractice policy",
       ],
       ctaHint:
         "A 4-week pilot-readiness sprint closes the gap. Book the discovery call.",
@@ -60,17 +60,17 @@ export const SECTOR_RECOMMENDATIONS: Record<Sector, Record<TierLevel, SectorReco
       bullets: [
         "Expand the pilot from one matter type to two more practice groups within 90 days",
         "Finalise the fixed-fee vs blended-rate decision for AI-assisted matters",
-        "Stand up the AI-usage metrics — hours saved per matter, partner adoption rate, draft-cycle time",
+        "Stand up the AI-usage metrics, hours saved per matter, partner adoption rate, draft-cycle time",
       ],
       ctaHint:
         "You're ready to scope a real implementation. Let's design the rollout.",
     },
     4: {
       paragraph:
-        "You're in the top quartile of legal-AI readiness. The work shifts from 'can we use this' to 'how do we compound the advantage.' Build proprietary workflows on top of licensed tools, not next to them — and turn senior-partner judgment into reusable AI prompts.",
+        "You're in the top quartile of legal-AI readiness. The work shifts from 'can we use this' to 'how do we compound the advantage.' Build proprietary workflows on top of licensed tools, not next to them, and turn senior-partner judgment into reusable AI prompts.",
       bullets: [
         "Build custom Workflow Agents on Harvey or equivalent for your top three matter types",
-        "Productise knowledge — turn senior-partner judgment into reviewable AI prompt libraries",
+        "Productise knowledge, turn senior-partner judgment into reviewable AI prompt libraries",
         "Measure matter-margin uplift, time-to-first-draft, and partner-hours reclaimed quarterly",
       ],
       ctaHint:
@@ -81,9 +81,9 @@ export const SECTOR_RECOMMENDATIONS: Record<Sector, Record<TierLevel, SectorReco
   Finance: {
     1: {
       paragraph:
-        "Your AI use is uninventoried and your model risk management framework doesn't name GenAI as in-scope — exactly the posture regulators are now scrutinising. SR 11-7 and EU AI Act Annex III both treat non-deterministic models as a separate class. Your first job is governance, not deployment.",
+        "Your AI use is uninventoried and your model risk management framework doesn't name GenAI as in-scope, exactly the posture regulators are now scrutinising. SR 11-7 and EU AI Act Annex III both treat non-deterministic models as a separate class. Your first job is governance, not deployment.",
       bullets: [
-        "Inventory every AI tool in use across the firm — including shadow LLM use by advisors and analysts",
+        "Inventory every AI tool in use across the firm, including shadow LLM use by advisors and analysts",
         "Update MRM (or equivalent) to explicitly name generative AI and non-deterministic models as in-scope",
         "Eliminate public LLM use with customer PII via written policy and enforced tenant-isolated alternatives",
       ],
@@ -114,7 +114,7 @@ export const SECTOR_RECOMMENDATIONS: Record<Sector, Record<TierLevel, SectorReco
     },
     4: {
       paragraph:
-        "You're operating ahead of most banks and RIAs on AI governance. The compounding leverage is in proprietary models trained or RAG-anchored on your own data — done within MRM — and in fully automated comms surveillance that turns compliance from a cost centre into a differentiator.",
+        "You're operating ahead of most banks and RIAs on AI governance. The compounding leverage is in proprietary models trained or RAG-anchored on your own data, done within MRM, and in fully automated comms surveillance that turns compliance from a cost centre into a differentiator.",
       bullets: [
         "Move from generic LLMs to fine-tuned or RAG-anchored models on your proprietary data, inside MRM",
         "Automate the comms-surveillance pipeline end-to-end so review scales with comms volume",
@@ -128,9 +128,9 @@ export const SECTOR_RECOMMENDATIONS: Record<Sector, Record<TierLevel, SectorReco
   "Real Estate & Property": {
     1: {
       paragraph:
-        "Your data is fragmented across properties or markets and your fair-housing exposure is unreviewed — the two preconditions that turn an AI 'pilot' into a Mass-AG-style enforcement action. Start by standardising data and reviewing which use cases touch protected classes.",
+        "Your data is fragmented across properties or markets and your fair-housing exposure is unreviewed, the two preconditions that turn an AI 'pilot' into a Mass-AG-style enforcement action. Start by standardising data and reviewing which use cases touch protected classes.",
       bullets: [
-        "Inventory which AI use cases touch protected classes — tenant screening, ad audience targeting, AVM valuation, lending",
+        "Inventory which AI use cases touch protected classes, tenant screening, ad audience targeting, AVM valuation, lending",
         "Standardise one data type (rent rolls or listings) across your portfolio before any AI pilot",
         "Write the AI advertising policy aligned to HUD 2024 guidance before launching any audience-targeted campaign",
       ],
@@ -143,14 +143,14 @@ export const SECTOR_RECOMMENDATIONS: Record<Sector, Record<TierLevel, SectorReco
       bullets: [
         "Run a bias-impact review on tenant screening and advertising AI before scaling either",
         "Standardise lease and listing data across markets so AI can actually train on it",
-        "Scope one pilot — tenant comms triage, lease abstraction, or maintenance routing — with a measured baseline",
+        "Scope one pilot, tenant comms triage, lease abstraction, or maintenance routing, with a measured baseline",
       ],
       ctaHint:
         "A 4-week sprint closes the gap. Book the discovery call.",
     },
     3: {
       paragraph:
-        "You can deploy without tripping fair-housing exposure and your data is consistent enough for AI to be useful. The next move is scaling the winning pilot — likely tenant comms (AppFolio-style 90% inquiry deflection) or CRE lease abstraction (3× faster underwriting) — and instrumenting bias monitoring as you scale.",
+        "You can deploy without tripping fair-housing exposure and your data is consistent enough for AI to be useful. The next move is scaling the winning pilot, likely tenant comms (AppFolio-style 90% inquiry deflection) or CRE lease abstraction (3× faster underwriting), and instrumenting bias monitoring as you scale.",
       bullets: [
         "Scale the winning pilot from one market or property group to the full portfolio",
         "Stand up bias monitoring with Colorado-AI-Act-aligned impact assessments",
@@ -161,11 +161,11 @@ export const SECTOR_RECOMMENDATIONS: Record<Sector, Record<TierLevel, SectorReco
     },
     4: {
       paragraph:
-        "You're operating at the level of large institutional brokerages and REITs on AI maturity. The leverage is in proprietary models — CMA accuracy, AVM precision, predictive maintenance — and in turning your bias-monitoring posture into a competitive moat.",
+        "You're operating at the level of large institutional brokerages and REITs on AI maturity. The leverage is in proprietary models, CMA accuracy, AVM precision, predictive maintenance, and in turning your bias-monitoring posture into a competitive moat.",
       bullets: [
         "Train proprietary AVM or CMA models on your own transaction and market data",
         "Automate the maintenance triage and dispatch pipeline end-to-end",
-        "Productise your bias-monitoring rigour in marketing — it's increasingly a buyer concern",
+        "Productise your bias-monitoring rigour in marketing, it's increasingly a buyer concern",
       ],
       ctaHint:
         "You're the profile we build for. Book the discovery call.",
@@ -175,10 +175,10 @@ export const SECTOR_RECOMMENDATIONS: Record<Sector, Record<TierLevel, SectorReco
   Construction: {
     1: {
       paragraph:
-        "Your job sites use different tools, your documents live in paper and email, and your field crews aren't connected. AI can't help here yet — the data doesn't exist in a form any model can use. The blocker is platform standardisation, not tool selection.",
+        "Your job sites use different tools, your documents live in paper and email, and your field crews aren't connected. AI can't help here yet, the data doesn't exist in a form any model can use. The blocker is platform standardisation, not tool selection.",
       bullets: [
-        "Standardise on Procore (or ACC) across all active job sites — kill the per-superintendent fragmentation",
-        "Digitise RFIs, submittals, and daily reports — no AI pilot has data until this is done",
+        "Standardise on Procore (or ACC) across all active job sites, kill the per-superintendent fragmentation",
+        "Digitise RFIs, submittals, and daily reports, no AI pilot has data until this is done",
         "Get devices and connectivity to the field crews so any future deployment doesn't stop at the office",
       ],
       ctaHint:
@@ -197,7 +197,7 @@ export const SECTOR_RECOMMENDATIONS: Record<Sector, Record<TierLevel, SectorReco
     },
     3: {
       paragraph:
-        "Platform is unified, data is digital, and one pilot workflow has paid back. The next move is sequencing — takeoff/estimating → schedule risk (ALICE-class) → jobsite progress (Buildots/OpenSpace) → safety monitoring. Don't try all four at once; sequence and measure.",
+        "Platform is unified, data is digital, and one pilot workflow has paid back. The next move is sequencing, takeoff/estimating → schedule risk (ALICE-class) → jobsite progress (Buildots/OpenSpace) → safety monitoring. Don't try all four at once; sequence and measure.",
       bullets: [
         "Roll the estimating AI from the pilot project to all active bids with measured win-rate impact",
         "Add schedule-risk AI (ALICE Technologies or equivalent) on the next major project",
@@ -208,9 +208,9 @@ export const SECTOR_RECOMMENDATIONS: Record<Sector, Record<TierLevel, SectorReco
     },
     4: {
       paragraph:
-        "You're operating ahead of most contractors on AI maturity. The compounding leverage is in cross-project intelligence — what your fleet of jobs collectively knows — and in automated safety monitoring that hardens insurance and EMR rates.",
+        "You're operating ahead of most contractors on AI maturity. The compounding leverage is in cross-project intelligence, what your fleet of jobs collectively knows, and in automated safety monitoring that hardens insurance and EMR rates.",
       bullets: [
-        "Build the cross-project intelligence layer — what your portfolio of jobs learns over time",
+        "Build the cross-project intelligence layer, what your portfolio of jobs learns over time",
         "Automate safety monitoring (PPE, exclusion zones) across job sites with measurable incident-rate impact",
         "Compress the next bid cycle: takeoff → estimate → risk → schedule, all integrated and AI-assisted",
       ],
@@ -222,10 +222,10 @@ export const SECTOR_RECOMMENDATIONS: Record<Sector, Record<TierLevel, SectorReco
   "Other / Cross-Industry": {
     1: {
       paragraph:
-        "You're running everything manually. AI systems could reclaim 10–20 hours per week and remove you as the bottleneck — but only after foundational process work. Map the highest-friction workflows before scoping any tool.",
+        "You're running everything manually. AI systems could reclaim 10–20 hours per week and remove you as the bottleneck, but only after foundational process work. Map the highest-friction workflows before scoping any tool.",
       bullets: [
         "Document and systematise your top 3 recurring tasks before any AI pilot",
-        "Automate client onboarding — eliminate 5+ manual touchpoints",
+        "Automate client onboarding, eliminate 5+ manual touchpoints",
         "Build a reporting pipeline so data flows without you needing to be in the loop",
       ],
       ctaHint:
@@ -235,7 +235,7 @@ export const SECTOR_RECOMMENDATIONS: Record<Sector, Record<TierLevel, SectorReco
       paragraph:
         "You have some structure, but key processes still depend on you. Targeted automation could cut manual effort by 40–60%. The leverage is in connecting your existing tools and automating the most frequent delegation loop.",
       bullets: [
-        "Connect your tool stack — eliminate copy-paste between platforms",
+        "Connect your tool stack, eliminate copy-paste between platforms",
         "Automate your most frequent delegation loop with a measured baseline",
         "Create a self-serve client portal to reduce inbound questions",
       ],

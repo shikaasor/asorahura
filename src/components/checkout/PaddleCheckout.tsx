@@ -131,7 +131,7 @@ export function PaddleCheckout({ priceId, onSuccess, customData }: Props) {
         {/* frameTarget must match this class name exactly */}
         <div ref={containerRef} className="paddle-checkout-frame" />
       </div>
-      <p className={styles.testNote}>Test mode — no charges will be applied.</p>
+      <p className={styles.testNote}>Test mode, no charges will be applied.</p>
     </div>
   );
 }

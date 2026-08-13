@@ -1,5 +1,13 @@
 .footer {
-  background: var(--surface-1);
+  background: linear-gradient(
+    180deg,
+    var(--surface-4) 0%,
+    var(--surface-1) 20%,
+    var(--surface-2) 40%,
+    var(--surface-2) 58%,
+    var(--surface-3) 76%,
+    var(--accent) 100%
+  );
   color: var(--ink-2);
   padding: 4.5rem 0 0;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -97,7 +105,7 @@
 
 .copyright {
   font-size: var(--fontSize-1);
-  color: var(--ink-3);
+  color: var(--ink-1);
   text-align: center;
   letter-spacing: 0.02em;
 }

@@ -4,6 +4,8 @@ import {
   automateTiers,
   getAutomateTierById,
   getPaddleEnvironment,
+  emailTriageTiers,
+  getEmailTriageTierById,
 } from "../src/lib/checkout";
 
 const ENV_KEYS = [
@@ -61,5 +63,18 @@ describe("automateTiers / getAutomateTierById", () => {
 
   it("automateTiers contains exactly four entries: build-map, dfy, dwy, care-plan", () => {
     expect(automateTiers.map((t) => t.id)).toEqual(["build-map", "dfy", "dwy", "care-plan"]);
+  });
+});
+
+describe("emailTriageTiers / getEmailTriageTierById", () => {
+  it("contains exactly two entries: tier1 ($500), tier2 ($900)", () => {
+    expect(emailTriageTiers.map((t) => t.id)).toEqual(["tier1", "tier2"]);
+    expect(getEmailTriageTierById("tier1").price).toBe("$500");
+    expect(getEmailTriageTierById("tier2").price).toBe("$900");
+  });
+
+  it("falls back to tier1 for an unrecognized id", () => {
+    // @ts-expect-error deliberately passing an invalid id to test the fallback
+    expect(getEmailTriageTierById("not-a-tier").id).toBe("tier1");
   });
 });

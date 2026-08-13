@@ -7,7 +7,7 @@ export const maxDuration = 30;
 export const metadata = {
   title: "AI Opportunity Discovery | Asor Ahura",
   description:
-    "Pick your sector, answer 7 questions, and discover your highest-impact AI opportunities — free, takes 4 minutes.",
+    "Pick your sector, answer 7 questions, and discover your highest-impact AI opportunities, free, takes 4 minutes.",
 };
 
 export default async function AssessmentPage({
@@ -28,7 +28,7 @@ export default async function AssessmentPage({
                 Full AI Opportunity Discovery Scorecard
               </h1>
               <p className={styles.heroSub}>
-                24 questions across 6 dimensions. Map your AI opportunities with precision — process, data, compliance, team, strategy, and sector readiness.
+                24 questions across 6 dimensions. Map your AI opportunities with precision: process, data, compliance, team, strategy, and sector readiness.
               </p>
               <div className={styles.trustPills}>
                 {["Free", "Takes 10 Minutes", "Section-Level Scores", "No Sales Call"].map((t) => (

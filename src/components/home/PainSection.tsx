@@ -6,17 +6,17 @@ const creatorPains = [
   {
     icon: <TrendingUp size={24} />,
     title: "Growing followers, not income",
-    body: "You've mastered ad spend and follower growth. But leads come in DMs and you're manually capturing them. That's not a business — that's a job.",
+    body: "You've mastered ad spend and follower growth. But leads come in DMs and you're manually capturing them. That's not a business, that's a job.",
   },
   {
     icon: <Clock size={24} />,
     title: "Your time is your bottleneck",
-    body: "Lead capture, qualification, follow-up — you're doing it all manually. Every lead that comes in while you're asleep is a lead you never reach.",
+    body: "Lead capture, qualification, follow-up: you're doing it all manually. Every lead that comes in while you're asleep is a lead you never reach.",
   },
   {
     icon: <Zap size={24} />,
     title: "The systems exist, but they don't talk",
-    body: "Instagram, email, CRM, Calendly — they work. But building the flow between them yourself takes time you don't have.",
+    body: "Instagram, email, CRM, Calendly: they work. But building the flow between them yourself takes time you don't have.",
   },
   {
     icon: <DollarSign size={24} />,
@@ -31,7 +31,7 @@ export default function PainSection() {
       <div className={styles.container}>
         <h2 className={styles.heading}>Sound familiar?</h2>
         <p className={styles.subheading}>
-          Growing creators and coaches hit the same ceiling — manual lead capture while the rest
+          Growing creators and coaches hit the same ceiling: manual lead capture while the rest
           of your business runs on autopilot.
         </p>
         <div className={styles.grid}>

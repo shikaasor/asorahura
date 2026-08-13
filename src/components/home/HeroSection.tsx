@@ -15,7 +15,7 @@ export default function HeroSection() {
             </h1>
             <p className={styles.subheading}>
               Small automations compound. One proven process becomes a workflow; workflows become
-              a system running whole departments — sometimes most of the business. It&apos;s the
+              a system running whole departments, sometimes most of the business. It&apos;s the
               smartest way to automate: prove it small, then scale what&apos;s already trusted.
             </p>
             <div className={styles.actions}>

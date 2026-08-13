@@ -37,7 +37,7 @@ export async function submitDeepAssessmentForEmail(
   const dimensionRows = (Object.entries(byDimension) as [Dimension, number][])
     .map(([code, score]) => {
       const dim = DIMENSIONS[code];
-      return `<tr><td style="padding:6px 0;color:#374151;font-weight:600">${code} — ${dim.name}</td><td style="padding:6px 0;text-align:right;color:#0a0a0a;font-weight:700">${score}/${dim.max}</td></tr>`;
+      return `<tr><td style="padding:6px 0;color:#374151;font-weight:600">${code}: ${dim.name}</td><td style="padding:6px 0;text-align:right;color:#0a0a0a;font-weight:700">${score}/${dim.max}</td></tr>`;
     })
     .join("");
 
@@ -87,7 +87,7 @@ export async function submitDeepAssessmentForEmail(
     const { error } = await resend.emails.send({
       from: "Asor Ahura <hello@asorahura.com>",
       to: email,
-      subject: `Your Full AI Opportunity Discovery Scorecard — ${total}/${DEEP_MAX_SCORE} · ${tier.name}`,
+      subject: `Your Full AI Opportunity Discovery Scorecard: ${total}/${DEEP_MAX_SCORE} · ${tier.name}`,
       html,
     });
     if (error) {

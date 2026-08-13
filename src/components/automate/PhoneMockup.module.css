@@ -33,12 +33,12 @@
 
 .phoneFrame {
   width: 100%;
-  max-width: 300px;
+  max-width: 400px;
   aspect-ratio: 9 / 19.5;
   border-radius: var(--radius-3);
   border: 1px solid var(--border-2);
   background: var(--surface-4);
-  box-shadow: var(--shadow-2);
+  box-shadow: var(--shadow-3);
   padding: var(--spacing-2);
   box-sizing: border-box;
 }
