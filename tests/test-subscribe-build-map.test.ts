@@ -97,6 +97,41 @@ describe("POST /api/subscribe with source=build-map", () => {
   });
 });
 
+describe("POST /api/subscribe when Resend fails (Resend is a nice-to-have, not a blocker)", () => {
+  it("still returns 200 and still mirrors to Google Sheets when contacts.create rejects", async () => {
+    process.env.GOOGLE_SCRIPT_URL = "https://script.example.com/exec";
+    contactsCreate.mockRejectedValue({
+      statusCode: 401,
+      message: "This API key is restricted to only send emails",
+      name: "restricted_api_key",
+    });
+
+    const res = await POST(makeRequest({ email: "lead@example.com", source: "build-map" }));
+
+    expect(res.status).toBe(200);
+    expect(sendBuildMapEmail).toHaveBeenCalledWith("lead@example.com");
+    expect(global.fetch).toHaveBeenCalledWith(
+      "https://script.example.com/exec",
+      expect.objectContaining({
+        body: JSON.stringify({ formType: "build-map", email: "lead@example.com" }),
+      })
+    );
+  });
+
+  it("still returns 200 when contacts.create resolves with a non-recoverable error", async () => {
+    process.env.GOOGLE_SCRIPT_URL = "https://script.example.com/exec";
+    contactsCreate.mockResolvedValue({
+      data: null,
+      error: { message: "This API key is restricted to only send emails" },
+    });
+
+    const res = await POST(makeRequest({ email: "lead@example.com" }));
+
+    expect(res.status).toBe(200);
+    expect(global.fetch).toHaveBeenCalled();
+  });
+});
+
 describe("POST /api/subscribe without source (blog widget — must be unaffected)", () => {
   it("preserves pre-existing behavior: no properties field, zero email sends, formType newsletter", async () => {
     process.env.GOOGLE_SCRIPT_URL = "https://script.example.com/exec";

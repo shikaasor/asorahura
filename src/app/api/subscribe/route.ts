@@ -16,29 +16,31 @@ export async function POST(req: NextRequest) {
   const isWaitlist = source === 'waitlist';
   const properties = isBuildMap ? { segment: 'build-map-downloader' } : undefined;
 
-  const { error } = await resend.contacts.create({
-    email: normalizedEmail,
-    unsubscribed: false,
-    ...(properties ? { properties } : {}),
-  });
-
-  if (error) {
-    const contactAlreadyExists = isBuildMap && /already exist/i.test(error.message ?? '');
-
-    if (!contactAlreadyExists) {
-      console.error('[subscribe] Resend contacts error:', error);
-      return NextResponse.json({ error: 'Could not subscribe. Please try again.' }, { status: 500 });
-    }
-
-    const { error: updateError } = await resend.contacts.update({
+  try {
+    const { error } = await resend.contacts.create({
       email: normalizedEmail,
-      properties,
+      unsubscribed: false,
+      ...(properties ? { properties } : {}),
     });
 
-    if (updateError) {
-      console.error('[subscribe] Resend contacts update error:', updateError);
-      return NextResponse.json({ error: 'Could not subscribe. Please try again.' }, { status: 500 });
+    if (error) {
+      const contactAlreadyExists = isBuildMap && /already exist/i.test(error.message ?? '');
+
+      if (!contactAlreadyExists) {
+        console.error('[subscribe] Resend contacts error:', error);
+      } else {
+        const { error: updateError } = await resend.contacts.update({
+          email: normalizedEmail,
+          properties,
+        });
+
+        if (updateError) {
+          console.error('[subscribe] Resend contacts update error:', updateError);
+        }
+      }
     }
+  } catch (err) {
+    console.error('[subscribe] Resend contacts threw:', err);
   }
 
   if (isBuildMap) {

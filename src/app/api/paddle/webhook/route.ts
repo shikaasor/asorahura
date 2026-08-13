@@ -26,6 +26,8 @@ export async function POST(req: NextRequest) {
     const amount = event.data.details?.totals?.total ?? '';
     const buyerEmail = event.data.customer_email ?? '';
 
+    const scriptUrl = process.env.GOOGLE_SCRIPT_URL;
+
     await Promise.allSettled([
       sendPurchaseConfirmationEmail({ email: buyerEmail, productType, transactionId, amount }),
       sendOrderNotificationEmail({ productType, transactionId, amount, buyerEmail }),
@@ -43,6 +45,22 @@ export async function POST(req: NextRequest) {
           props: { product_type: productType, amount, currency: 'usd' },
         }),
       }).catch((err) => console.error('[paddle-webhook] plausible event failed', err)),
+      ...(scriptUrl
+        ? [
+            fetch(scriptUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                formType: 'purchase',
+                email: buyerEmail,
+                productType,
+                transactionId,
+                amount,
+              }),
+              redirect: 'follow',
+            }).catch((err) => console.error('[paddle-webhook] google sheets failed', err)),
+          ]
+        : []),
     ]);
   } else {
     console.log('[paddle-webhook] ignoring event type', event.type);

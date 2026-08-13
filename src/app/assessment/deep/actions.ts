@@ -92,11 +92,9 @@ export async function submitDeepAssessmentForEmail(
     });
     if (error) {
       console.error("Deep assessment email failed:", error.message);
-      return { success: false, error: "We couldn't send your scorecard email. Please try again." };
     }
   } catch (err) {
     console.error("Deep assessment email failed:", err);
-    return { success: false, error: "We couldn't send your scorecard email. Please try again." };
   }
 
   return { success: true };
