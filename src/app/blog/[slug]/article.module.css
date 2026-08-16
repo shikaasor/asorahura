@@ -1,5 +1,5 @@
 .main {
-  background: var(--surface-1);
+  background: transparent;
   min-height: 100vh;
   color: var(--ink-1);
   padding-bottom: var(--spacing-6);
@@ -40,9 +40,9 @@
 .categoryTag {
   font-size: var(--fontSize-1);
   font-weight: var(--fontWeight-bold);
-  font-family: var(--font-mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--font-sans);
+  letter-spacing: 0.005em;
+  text-transform: none;
   color: var(--ink-2);
   border: 1px solid var(--border-2);
   border-radius: 9999px;
@@ -55,7 +55,7 @@
 }
 
 .title {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--fontSize-7);
   font-weight: var(--fontWeight-bold);
   line-height: var(--lineHeight-tight);

@@ -1,79 +1,148 @@
 .section {
-  padding: 7rem 0;
-  background: var(--surface-1);
+  padding: clamp(5rem, 9vw, 9.375rem) 0;
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
 
 .container {
-  max-width: 1280px;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 clamp(1.25rem, 4vw, 1.75rem);
   width: 100%;
 }
 
 .heading {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--fontSize-6);
-  font-weight: 700;
+  font-weight: 500;
   text-align: center;
-  color: var(--ink-1);
+  color: var(--cream);
   margin-bottom: var(--spacing-6);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.032em;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-4);
+  gap: 20px;
 }
 
+/* Panels, not chips: one hairline border, a barely-lifted surface, and
+ * the hover doing the work a coloured edge used to do. */
 .card {
   background: var(--surface-3);
-  border-radius: 1rem;
-  padding: var(--spacing-6);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-left: 3px solid var(--accent);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  border-radius: var(--radius-4);
+  padding: var(--spacing-5) var(--spacing-4) var(--spacing-6);
+  border: 1px solid var(--border-1);
+  transition: transform var(--duration-2) var(--ease-out), border-color var(--duration-2) var(--ease-out);
   cursor: default;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(201, 160, 96, 0.15);
+  transform: translateY(-3px);
+  border-color: var(--border-2);
 }
 
 .icon {
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 2.5rem;
+  height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0.625rem;
-  background: rgba(201, 160, 96, 0.1);
-  color: var(--accent);
+  border-radius: var(--radius-2);
+  background: var(--accent-tint);
+  color: var(--accent-ink);
   margin-bottom: var(--spacing-4);
 }
 
 .cardTitle {
-  font-size: var(--fontSize-3);
-  font-weight: 700;
-  color: var(--ink-1);
+  font-size: 1.15625rem;
+  font-weight: 500;
+  color: var(--cream);
   margin-bottom: var(--spacing-2);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .cardBody {
-  font-size: var(--fontSize-2);
-  line-height: 1.7;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  font-weight: 400;
   color: var(--ink-2);
 }
 
 .subheading {
   text-align: center;
   color: var(--ink-2);
-  font-size: var(--fontSize-2);
-  margin-bottom: var(--spacing-6);
+  font-size: var(--fontSize-3);
+  font-weight: 400;
+  line-height: 1.62;
+  max-width: 52ch;
+  margin: 0 auto var(--spacing-6);
+}
+
+/* The answer strip. One hairline-topped row that turns the four problems
+ * above into four things that get done about them — deliberately flat, so
+ * it reads as a summary of the grid rather than competing with it. */
+.answer {
+  margin-top: var(--spacing-6);
+  padding-top: var(--spacing-4);
+  border-top: 1px solid var(--border-1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-3);
+  text-align: center;
+}
+
+.answerLead {
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: var(--tracking-label);
+  color: var(--accent-ink);
+}
+
+.answerLead::before {
+  content: "{ ";
+  opacity: 0.55;
+}
+
+.answerLead::after {
+  content: " }";
+  opacity: 0.55;
+}
+
+.answerList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2) var(--spacing-4);
+  font-size: 0.9375rem;
+  color: var(--ink-2);
+}
+
+/* Separator drawn between items rather than after each, so no stray dot
+ * dangles at the end of a wrapped row. */
+.answerList li + li::before {
+  content: "";
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--border-3);
+  margin-right: var(--spacing-4);
+  vertical-align: middle;
+}
+
+/* The reassurance is the one clause a buyer is actually scanning for —
+ * it says what the automation will NOT take away from them. */
+.answerKeep {
+  color: var(--cream);
+  font-weight: 500;
 }
 
 .cta {
@@ -83,13 +152,16 @@
 
 .cta a {
   color: var(--ink-2);
-  font-size: var(--fontSize-2);
-  font-weight: var(--fontWeight-bold);
-  text-decoration: underline;
+  font-size: var(--fontSize-1);
+  font-weight: 400;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-2);
+  padding-bottom: 2px;
 }
 
 .cta a:hover {
-  color: var(--accent);
+  color: var(--cream);
+  border-color: var(--border-3);
 }
 
 @media (max-width: 1024px) {
@@ -105,5 +177,17 @@
 
   .heading {
     font-size: var(--fontSize-5);
+  }
+
+  /* Stacked one per line at this width. Four clauses wrapping mid-phrase
+   * across a 375px column reads as broken text, not a list — and the dot
+   * separators stop meaning anything once the row order is gone. */
+  .answerList {
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  .answerList li + li::before {
+    display: none;
   }
 }

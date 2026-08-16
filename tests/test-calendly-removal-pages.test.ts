@@ -10,11 +10,14 @@ describe("Calendly removal from services and checkout pages", () => {
     expect(servicesSource.toLowerCase()).not.toContain("calendly");
   });
 
+  // The "systems" tier was removed when pricing moved to three tiers and
+  // Systems Integration was folded into Enterprise. The point of this test is
+  // that no tier CTA escapes to Calendly, so it tracks the tiers that exist.
   it("services/page.tsx routes every tier CTA through /engage", () => {
     expect(servicesSource).toContain("/engage?tier=starter");
     expect(servicesSource).toContain("/engage?tier=ops");
-    expect(servicesSource).toContain("/engage?tier=systems");
     expect(servicesSource).toContain("/engage?tier=enterprise");
+    expect(servicesSource).not.toContain("/engage?tier=systems");
   });
 
   it("services/page.tsx no longer imports or renders BookingUrgency", () => {

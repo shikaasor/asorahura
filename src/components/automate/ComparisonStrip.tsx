@@ -1,10 +1,10 @@
 import styles from "./ComparisonStrip.module.css";
 
 const MANYCHAT_TIERS = [
-  { contacts: "50 contacts", price: "$17/mo" },
-  { contacts: "250 contacts", price: "$39/mo" },
-  { contacts: "1,000 contacts", price: "$99/mo" },
-  { contacts: "5,000+ contacts", price: "$199/mo" },
+  { contacts: "250 contacts", price: "$14/mo" },
+  { contacts: "2,500 contacts", price: "$29/mo" },
+  { contacts: "7,500 contacts", price: "$69/mo" },
+  { contacts: "25,000 contacts", price: "$139/mo" },
 ];
 
 export default function ComparisonStrip() {
@@ -27,7 +27,7 @@ export default function ComparisonStrip() {
           ))}
         </div>
 
-        <div className={styles.flatLine}>$6/mo forever</div>
+        <div className={styles.flatLine}>$500 once, then $6/mo forever &mdash; unlimited contacts</div>
       </div>
     </section>
   );

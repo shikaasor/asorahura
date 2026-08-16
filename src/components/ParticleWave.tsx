@@ -1,18 +1,23 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { createVisibleRaf } from "@/lib/visibleRaf";
 
-interface Particle {
-    x: number;
-    y: number;
-    baseY: number;
-    size: number;
-    speed: number;
-    offset: number;
-    opacity: number;
-}
+// The ambient page texture: a fixed grid of tiny cells whose opacity is
+// driven by a travelling wave, so only a shifting minority of cells are
+// lit at any moment. A hash per cell decides both its phase and its hue,
+// which keeps the field from ever resolving into visible rows.
+const CELL_W = 9;
+const CELL_H = 11;
+const THRESHOLD = 0.62;
 
-const CONNECTION_DIST = 60;
+// This canvas is fixed and full-viewport, so it is on screen on every page
+// for the whole session — it has to be the cheapest thing here, not the
+// most expensive. 30fps is plenty for a wave this slow.
+const FPS = 30;
+
+// Hue tiers, indexed by the cell's hue hash.
+const HUES = ["236,238,235", "120,160,255", "160,225,140", "235,130,150"];
 
 export default function ParticleWave() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -24,137 +29,97 @@ export default function ParticleWave() {
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
 
-        let animationFrameId: number;
-        let particles: Particle[] = [];
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
         let width = 0;
         let height = 0;
+        let cols = 0;
+        let rows = 0;
+
+        // Per-cell constants, computed once per resize rather than once per
+        // cell per frame. Both hashes are pure functions of (x, y) — they
+        // were being recomputed 25,000+ times a frame to produce the exact
+        // same numbers, which was two thirds of this component's cost.
+        let phase = new Float32Array(0);
+        let hue = new Uint8Array(0);
 
         const resize = () => {
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
             width = window.innerWidth;
             height = window.innerHeight;
-            canvas.width = width;
-            canvas.height = height;
-            initParticles();
-        };
+            canvas.width = Math.max(1, Math.round(width * dpr));
+            canvas.height = Math.max(1, Math.round(height * dpr));
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-        const initParticles = () => {
-            particles = [];
-            const particleCount = Math.floor(width / 15);
+            cols = Math.ceil(width / CELL_W);
+            rows = Math.ceil(height / CELL_H);
+            phase = new Float32Array(cols * rows);
+            hue = new Uint8Array(cols * rows);
 
-            for (let i = 0; i < particleCount; i++) {
-                particles.push({
-                    x: Math.random() * width,
-                    baseY: Math.random() * height,
-                    y: 0,
-                    size: Math.random() * 2 + 1,
-                    speed: Math.random() * 0.002 + 0.001,
-                    offset: Math.random() * 100,
-                    opacity: Math.random() * 0.5 + 0.2,
-                });
+            for (let x = 0; x < cols; x++) {
+                for (let y = 0; y < rows; y++) {
+                    let n = Math.sin(x * 12.9898 + y * 78.233) * 43758.5453;
+                    n -= Math.floor(n);
+                    let m = Math.sin(x * 39.3468 + y * 11.135) * 24634.6345;
+                    m -= Math.floor(m);
+
+                    const i = x * rows + y;
+                    phase[i] = n;
+                    // Mostly neutral, with a thin tail of colour so the
+                    // accents appear as rare sparks rather than a wash.
+                    hue[i] = m < 0.72 ? 0 : m < 0.81 ? 1 : m < 0.9 ? 2 : 3;
+                }
             }
         };
 
-        const animate = () => {
+        const draw = (t: number) => {
             ctx.clearRect(0, 0, width, height);
 
-            // Update positions
-            for (let i = 0; i < particles.length; i++) {
-                const p = particles[i];
-                p.offset += p.speed;
+            for (let x = 0; x < cols; x++) {
+                const xw = x * 0.11 - t * 0.3;
+                for (let y = 0; y < rows; y++) {
+                    const i = x * rows + y;
+                    const n = phase[i];
 
-                const wave1 = Math.sin(p.x * 0.003 + p.offset * 12) * 40;
-                const wave2 = Math.cos(p.x * 0.007 + p.offset * 8) * 25;
-                const wave3 = Math.sin(p.x * 0.001 + p.offset * 5) * 15;
+                    const wave = Math.sin(xw + y * 0.07 + n * 6.28);
+                    const a = (wave * 0.5 + 0.5) * n;
+                    if (a < THRESHOLD) continue;
 
-                p.y = p.baseY + wave1 + wave2 + wave3;
-            }
-
-            // Spatial grid for connection optimization
-            const cellSize = CONNECTION_DIST;
-            const cols = Math.ceil(width / cellSize);
-            const rows = Math.ceil(height / cellSize);
-            const grid: number[][] = new Array(cols * rows);
-
-            for (let i = 0; i < grid.length; i++) {
-                grid[i] = [];
-            }
-
-            for (let i = 0; i < particles.length; i++) {
-                const p = particles[i];
-                const col = Math.min(Math.floor(p.x / cellSize), cols - 1);
-                const row = Math.min(Math.floor(p.y / cellSize), rows - 1);
-                if (col >= 0 && row >= 0) {
-                    grid[row * cols + col].push(i);
+                    const v = (a - THRESHOLD) / (1 - THRESHOLD);
+                    ctx.fillStyle = `rgba(${HUES[hue[i]]},${(v * 0.1).toFixed(3)})`;
+                    ctx.fillRect(x * CELL_W + 1, y * CELL_H + 2, CELL_W - 4, CELL_H - 6);
                 }
             }
-
-            // Draw connections using spatial grid
-            ctx.lineWidth = 1;
-            for (let row = 0; row < rows; row++) {
-                for (let col = 0; col < cols; col++) {
-                    const cellIdx = row * cols + col;
-                    const cell = grid[cellIdx];
-                    if (!cell || cell.length === 0) continue;
-
-                    // Check current cell + right + bottom + bottom-right neighbors
-                    const neighbors = [cellIdx];
-                    if (col + 1 < cols) neighbors.push(cellIdx + 1);
-                    if (row + 1 < rows) neighbors.push(cellIdx + cols);
-                    if (col + 1 < cols && row + 1 < rows) neighbors.push(cellIdx + cols + 1);
-                    if (col - 1 >= 0 && row + 1 < rows) neighbors.push(cellIdx + cols - 1);
-
-                    for (const ni of neighbors) {
-                        const neighborCell = grid[ni];
-                        if (!neighborCell) continue;
-
-                        for (const i of cell) {
-                            const startJ = ni === cellIdx ? cell.indexOf(i) + 1 : 0;
-                            const list = ni === cellIdx ? cell : neighborCell;
-                            for (let jIdx = startJ; jIdx < list.length; jIdx++) {
-                                const j = list[jIdx];
-                                const dx = particles[i].x - particles[j].x;
-                                const dy = particles[i].y - particles[j].y;
-                                const dist = dx * dx + dy * dy;
-
-                                if (dist < CONNECTION_DIST * CONNECTION_DIST) {
-                                    const alpha = 0.07 * (1 - Math.sqrt(dist) / CONNECTION_DIST);
-                                    ctx.strokeStyle = `rgba(201, 160, 96, ${alpha})`;
-                                    ctx.beginPath();
-                                    ctx.moveTo(particles[i].x, particles[i].y);
-                                    ctx.lineTo(particles[j].x, particles[j].y);
-                                    ctx.stroke();
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Draw particles
-            for (let i = 0; i < particles.length; i++) {
-                const p = particles[i];
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(201, 160, 96, ${p.opacity * 0.6})`;
-                ctx.fill();
-            }
-
-            animationFrameId = requestAnimationFrame(animate);
         };
 
-        window.addEventListener("resize", resize);
+        const handleResize = () => {
+            resize();
+            draw(0);
+        };
+
         resize();
-        animate();
+
+        window.addEventListener("resize", handleResize);
+
+        // alwaysOnScreen: a fixed full-viewport canvas always intersects, so
+        // the IntersectionObserver gate would never fire. The document
+        // visibility gate and the frame cap are what do the work here.
+        const stop = createVisibleRaf(canvas, draw, {
+            fps: FPS,
+            alwaysOnScreen: true,
+            paused: reduce,
+        });
 
         return () => {
-            window.removeEventListener("resize", resize);
-            cancelAnimationFrame(animationFrameId);
+            window.removeEventListener("resize", handleResize);
+            stop();
         };
     }, []);
 
     return (
         <canvas
             ref={canvasRef}
+            aria-hidden="true"
             style={{
                 position: "fixed",
                 top: 0,
@@ -163,6 +128,7 @@ export default function ParticleWave() {
                 height: "100%",
                 pointerEvents: "none",
                 zIndex: 0,
+                opacity: 0.9,
             }}
         />
     );

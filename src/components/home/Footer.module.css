@@ -1,58 +1,53 @@
+/* No gradient, no colour wash. The footer is the same canvas as the
+ * page, separated by a single hairline — the wireframe mesh above it
+ * does the visual closing instead. */
 .footer {
-  background: linear-gradient(
-    180deg,
-    var(--surface-4) 0%,
-    var(--surface-1) 20%,
-    var(--surface-2) 40%,
-    var(--surface-2) 58%,
-    var(--surface-3) 76%,
-    var(--accent) 100%
-  );
+  background: transparent;
   color: var(--ink-2);
-  padding: 4.5rem 0 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 3.5rem 0 2rem;
+  border-top: 1px solid var(--border-1);
 }
 
 .container {
-  max-width: 1280px;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 clamp(1.25rem, 4vw, 1.75rem);
   width: 100%;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: var(--spacing-5);
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 34px;
   padding-bottom: 3.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .brand {}
 
 .logo {
-  font-size: var(--fontSize-3);
-  font-weight: 800;
-  color: var(--accent);
+  font-size: var(--fontSize-4);
+  font-weight: 500;
+  color: var(--cream);
   margin-bottom: var(--spacing-3);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .tagline {
-  font-size: var(--fontSize-2);
-  line-height: 1.65;
+  font-size: var(--fontSize-1);
+  line-height: 1.6;
+  font-weight: 400;
   color: var(--ink-3);
   max-width: 260px;
 }
 
 .navLabel {
-  font-size: var(--fontSize-1);
-  font-weight: 700;
-  font-family: var(--font-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ink-3);
-  margin-bottom: var(--spacing-3);
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  text-transform: none;
+  letter-spacing: -0.01em;
+  color: #dedcd2;
+  margin-bottom: 14px;
 }
 
 .navList {
@@ -61,19 +56,22 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-2);
+  gap: 2px;
 }
 
 .navLink {
-  font-size: var(--fontSize-2);
+  display: block;
+  font-size: 0.84375rem;
+  font-weight: 400;
   color: var(--ink-2);
   text-decoration: none;
-  transition: color 0.2s;
+  padding: 5px 0;
+  transition: color var(--duration-1) var(--ease-out);
   cursor: pointer;
 }
 
 .navLink:hover {
-  color: var(--ink-1);
+  color: var(--cream);
   opacity: 1;
 }
 
@@ -87,33 +85,35 @@
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-2);
-  font-size: var(--fontSize-2);
+  font-size: 0.84375rem;
+  font-weight: 400;
   color: var(--ink-2);
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color var(--duration-1) var(--ease-out);
   cursor: pointer;
 }
 
 .socialLink:hover {
-  color: var(--accent);
+  color: var(--cream);
   opacity: 1;
 }
 
 .bottom {
-  padding: var(--spacing-4) 0;
+  padding-top: 22px;
+  border-top: 1px solid var(--border-1);
 }
 
 .copyright {
   font-size: var(--fontSize-1);
-  color: var(--ink-1);
-  text-align: center;
-  letter-spacing: 0.02em;
+  color: var(--ink-3);
+  text-align: left;
+  letter-spacing: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .grid {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-5);
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
   }
 
   .brand {
@@ -125,8 +125,8 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 760px) {
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }

@@ -1,6 +1,6 @@
 .page {
   min-height: 60vh;
-  background: var(--surface-2);
+  background: transparent;
   padding: var(--spacing-6) var(--spacing-4);
 }
 
@@ -37,7 +37,7 @@
   font-size: var(--fontSize-1);
   font-weight: var(--fontWeight-bold);
   color: var(--ink-3);
-  text-transform: uppercase;
+  text-transform: none;
   letter-spacing: 0.05em;
   margin-bottom: var(--spacing-2);
 }

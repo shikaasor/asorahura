@@ -52,9 +52,24 @@ function parseTokens(cssString) {
   return tokens;
 }
 
+// Tokens that name a colour but are never a solid foreground/background
+// pair on their own: gradients, and low-alpha washes that always composite
+// over a surface rather than replacing it. Checking them yields a ratio
+// against a colour the user never actually sees.
+const NON_PAIRING_TOKENS = new Set([
+  "--accent-sheen",
+  "--accent-tint",
+  "--accent-tint-strong",
+]);
+
+// Foreground tokens that are only ever used on the light --paper panels,
+// never on the dark canvas. Same class of wrong-pairing error the accent
+// note below describes, in the other direction.
+const PAPER_INKS = new Set(["--ink-on-paper"]);
+
 // Given a token map, normalizes ink/surface/semantic color tokens to RGB,
-// computes contrast ratios for every ink x surface and semantic x surface
-// pairing, and validates against the WCAG floor. Returns { failures }.
+// computes contrast ratios for the pairings that actually occur in the UI,
+// and validates against the WCAG floor. Returns { failures }.
 function checkContrast(tokens) {
   const colors = {};
   const failures = [];
@@ -64,10 +79,14 @@ function checkContrast(tokens) {
       name.startsWith("--ink-") ||
       name.startsWith("--surface-") ||
       name.startsWith("--accent") ||
+      name === "--cream" ||
+      name === "--on-accent" ||
+      name === "--paper" ||
+      name === "--paper-2" ||
       name === "--success" ||
       name === "--error" ||
       name === "--warn";
-    if (!isRelevant) return;
+    if (!isRelevant || NON_PAIRING_TOKENS.has(name)) return;
 
     const parsed = parseColor(value);
     if (parsed && parsed.values) {
@@ -78,8 +97,19 @@ function checkContrast(tokens) {
   });
 
   const surfaces = Object.keys(colors).filter((k) => k.startsWith("--surface-"));
-  const inks = Object.keys(colors).filter((k) => k.startsWith("--ink-"));
-  const accents = Object.keys(colors).filter((k) => k.startsWith("--accent"));
+  const papers = Object.keys(colors).filter((k) => k.startsWith("--paper"));
+  const inks = Object.keys(colors).filter(
+    (k) => (k.startsWith("--ink-") || k === "--cream") && !PAPER_INKS.has(k)
+  );
+  const paperInks = Object.keys(colors).filter((k) => PAPER_INKS.has(k));
+  // --accent-ink / --accent-on-ink are the accent used AS TEXT; the bare
+  // --accent family is the accent used as a FILL. They need opposite checks.
+  const accentText = Object.keys(colors).filter(
+    (k) => k === "--accent-ink" || k === "--accent-on-ink"
+  );
+  const accentFills = Object.keys(colors).filter(
+    (k) => k.startsWith("--accent") && !accentText.includes(k)
+  );
   const semantics = Object.keys(colors).filter(
     (k) => k === "--success" || k === "--error" || k === "--warn"
   );
@@ -101,16 +131,28 @@ function checkContrast(tokens) {
     surfaces.forEach((surface) => checkPair(ink, surface, minRatio));
   });
 
-  // Accent tokens are backgrounds (CTA button fills), not foreground text —
-  // checking them against surfaces tests the wrong pairing (accent-as-text)
-  // and both misses the real risk and over-flags a pairing that never
-  // occurs in the UI. The actual component pairing is --ink-1 button text
-  // on an --accent* fill, so that's what gets validated at the 4.5:1 floor.
-  if (colors["--ink-1"]) {
-    accents.forEach((accent) => checkPair("--ink-1", accent, 4.5));
+  paperInks.forEach((ink) => {
+    papers.forEach((paper) => checkPair(ink, paper, 4.5));
+  });
+
+  // Accent fill tokens are backgrounds (CTA button fills), not foreground
+  // text — checking them against surfaces tests the wrong pairing
+  // (accent-as-text) and both misses the real risk and over-flags a pairing
+  // that never occurs in the UI. The component pairing is --on-accent text
+  // on an --accent* fill, so that's what gets validated. (This was --ink-1
+  // when the accent was a mid gold; the accent is now light enough that
+  // --ink-1 on it would be unreadable, which is exactly what --on-accent
+  // exists to prevent.)
+  if (colors["--on-accent"]) {
+    accentFills.forEach((accent) => checkPair("--on-accent", accent, 4.5));
   } else {
-    failures.push("--ink-1: token missing, cannot verify accent button text contrast");
+    failures.push("--on-accent: token missing, cannot verify accent button text contrast");
   }
+
+  // The accent-as-text tokens get the ordinary foreground treatment.
+  accentText.forEach((accent) => {
+    surfaces.forEach((surface) => checkPair(accent, surface, 4.5));
+  });
 
   semantics.forEach((semantic) => {
     surfaces.forEach((surface) => checkPair(semantic, surface, 4.5));

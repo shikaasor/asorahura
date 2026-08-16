@@ -1,89 +1,129 @@
+/* The ladder, as the page's first full-bleed colour block.
+ *
+ * Two things happen here that do not happen anywhere else on the page: the
+ * background goes electric blue, and the heading pins while its steps
+ * travel past it. The pin is a sticky column rather than a 100vh scroll
+ * trap — WorkflowStory directly above already spends 180vh on one, and a
+ * second one back to back reads as the page fighting the scrollbar. */
+
 .section {
-  padding: 7rem 0;
-  background: var(--surface-1);
+  padding: clamp(5rem, 9vw, 9.375rem) 0;
 }
 
 .container {
-  max-width: 1280px;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 clamp(1.25rem, 4vw, 1.75rem);
   width: 100%;
 }
 
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.6fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+}
+
 .head {
+  position: sticky;
+  /* Clears the fixed nav, then a little breathing room. */
+  top: 108px;
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
+  flex-direction: column;
   gap: var(--spacing-3);
-  flex-wrap: wrap;
-  margin-bottom: var(--spacing-6);
 }
 
 .label {
-  font-family: var(--font-mono);
-  font-size: var(--fontSize-1);
-  font-weight: var(--fontWeight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--accent-active);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: var(--tracking-label);
+  /* Lime, not purple: on this blue the punctuation palette collapses, and
+   * lime is the one accent that still reads as the brand here. */
+  color: var(--accent);
+}
+
+.label::before {
+  content: "{ ";
+  opacity: 0.55;
+}
+
+.label::after {
+  content: " }";
+  opacity: 0.55;
 }
 
 .heading {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--fontSize-6);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--ink-1);
+  font-weight: 500;
+  letter-spacing: -0.032em;
+  color: #ffffff;
   margin: 0;
+  text-wrap: balance;
 }
 
 .steps {
-  border-top: 1px solid var(--border-2);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
 }
 
 .step {
   display: grid;
-  grid-template-columns: 4.5rem 1fr 2fr;
-  gap: var(--spacing-4);
+  grid-template-columns: 3.5rem 1fr;
+  gap: var(--spacing-2) var(--spacing-4);
   padding: var(--spacing-5) 0;
-  border-bottom: 1px solid var(--border-2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
   align-items: start;
 }
 
 .num {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: var(--fontSize-3);
-  color: var(--ink-3);
-  padding-top: 0.2rem;
+  font-weight: 400;
+  /* 0.6 lands at 3.4:1 on this band — under AA, and these carry the step
+     order rather than being decoration. 0.8 clears it at 4.8:1. */
+  color: rgba(255, 255, 255, 0.8);
+  padding-top: 0.15rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .title {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--fontSize-5);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--ink-1);
+  font-weight: 500;
+  letter-spacing: -0.028em;
+  color: #ffffff;
   margin: 0;
 }
 
 .desc {
-  font-size: var(--fontSize-2);
-  line-height: 1.7;
-  color: var(--ink-2);
+  grid-column: 2;
+  font-size: 0.90625rem;
+  line-height: 1.62;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.82);
   max-width: 52ch;
   margin: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+  }
+
+  /* Sticky in a single column would pin the heading over its own steps. */
+  .head {
+    position: static;
+  }
+
   .heading {
     font-size: var(--fontSize-5);
   }
+}
 
+@media (max-width: 768px) {
   .step {
-    grid-template-columns: 3rem 1fr;
-  }
-
-  .desc {
-    grid-column: 2;
+    grid-template-columns: 2.5rem 1fr;
   }
 }

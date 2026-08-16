@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import MaskText from "@/components/motion/MaskText";
 import styles from "./AboutSection.module.css";
 
 export default function AboutSection() {
@@ -17,7 +18,7 @@ export default function AboutSection() {
             />
           </div>
           <div className={styles.copy}>
-            <h2 className={styles.heading}>Who&rsquo;s behind this</h2>
+            <MaskText as="h2" text="Who’s behind this" className={styles.heading} />
             <p className={styles.text}>
               I&rsquo;m Asor, Oracle Certified AI professional. I&rsquo;ve built automation systems
               that have saved clients 7,200+ hours of operational work, from extracting 260 years

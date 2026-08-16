@@ -3,14 +3,29 @@
 }
 
 .container {
-  max-width: 1200px;
+  max-width: var(--container-max);
   margin: 0 auto;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-4);
+  gap: 20px;
+  /* The flames reach ~120px above a lit tile. Without room to draw into,
+   * the row above clips them — the effect canvas is a sibling overlay, not
+   * an ancestor-clipped child. */
+  padding-top: 40px;
+}
+
+/* Each tile owns a stacking context so a lit card's flames sit above its
+ * neighbours instead of under whichever happens to paint later. */
+.tile {
+  position: relative;
+  isolation: isolate;
+}
+
+.tile:hover {
+  z-index: 2;
 }
 
 @media (max-width: 1024px) {

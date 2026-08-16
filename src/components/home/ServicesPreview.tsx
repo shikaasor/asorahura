@@ -1,4 +1,6 @@
 import Link from "next/link";
+import MaskText from "@/components/motion/MaskText";
+import Scatter from "@/components/motion/Scatter";
 import styles from "./ServicesPreview.module.css";
 
 const ladder = [
@@ -25,9 +27,9 @@ export default function ServicesPreview() {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <h2 className={styles.heading}>The Automation Ladder</h2>
+        <MaskText as="h2" text="The Automation Ladder" className={styles.heading} />
         <p className={styles.subheading}>Start with one. Earn with it. Scale to five.</p>
-        <div className={styles.grid}>
+        <Scatter className={styles.grid}>
           {ladder.map((service) => (
             <div
               key={service.title}
@@ -46,7 +48,7 @@ export default function ServicesPreview() {
               </div>
             </div>
           ))}
-        </div>
+        </Scatter>
       </div>
     </section>
   );

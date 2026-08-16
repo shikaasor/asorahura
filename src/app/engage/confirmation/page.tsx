@@ -5,8 +5,8 @@ export default function EngageConfirmationPage() {
         <main
             style={{
                 minHeight: "100vh",
-                background: "#0a0a0a",
-                color: "#fff",
+                background: "var(--surface-1)",
+                color: "var(--ink-1)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -17,8 +17,10 @@ export default function EngageConfirmationPage() {
                 <h1
                     style={{
                         fontSize: "clamp(2rem, 5vw, 3rem)",
-                        fontWeight: 800,
-                        lineHeight: 1.1,
+                        fontWeight: 500,
+                        letterSpacing: "-0.036em",
+                        color: "var(--cream)",
+                        lineHeight: 1.03,
                         marginBottom: "1.5rem",
                     }}
                 >
@@ -26,9 +28,10 @@ export default function EngageConfirmationPage() {
                 </h1>
                 <p
                     style={{
-                        fontSize: "1rem",
-                        color: "#d1d5db",
-                        lineHeight: 1.7,
+                        fontSize: "1.0625rem",
+                        color: "#b6b5ad",
+                        fontWeight: 300,
+                        lineHeight: 1.62,
                         marginBottom: "1rem",
                     }}
                 >
@@ -37,9 +40,10 @@ export default function EngageConfirmationPage() {
                 </p>
                 <p
                     style={{
-                        fontSize: "0.95rem",
-                        color: "#9ca3af",
-                        lineHeight: 1.7,
+                        fontSize: "0.9375rem",
+                        color: "var(--ink-2)",
+                        fontWeight: 300,
+                        lineHeight: 1.62,
                         marginBottom: "2.5rem",
                     }}
                 >
@@ -50,12 +54,12 @@ export default function EngageConfirmationPage() {
                     href="/work"
                     style={{
                         display: "inline-block",
-                        background: "#C9A84C",
-                        color: "#0a0a0a",
+                        background: "var(--accent)",
+                        color: "var(--on-accent)",
                         padding: "0.875rem 2rem",
-                        borderRadius: "0.625rem",
-                        fontWeight: 700,
-                        fontSize: "0.975rem",
+                        borderRadius: "var(--radius-full)",
+                        fontWeight: 500,
+                        fontSize: "1rem",
                         textDecoration: "none",
                         marginBottom: "1rem",
                     }}
@@ -67,7 +71,7 @@ export default function EngageConfirmationPage() {
                         href="/assessment"
                         style={{
                             fontSize: "0.875rem",
-                            color: "#9ca3af",
+                            color: "var(--ink-2)",
                             textDecoration: "underline",
                             textUnderlineOffset: "3px",
                         }}

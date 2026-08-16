@@ -1,11 +1,15 @@
+/* The closing blue band. Background comes from the global .blue-band, so
+ * the two colour blocks on the page stay one decision in one place. */
 .section {
-  padding: 5.5rem 0;
-  background: linear-gradient(135deg, var(--surface-3) 0%, var(--surface-2) 60%, var(--surface-1) 100%);
+  padding: clamp(4rem, 7vw, 6.5rem) 0;
+  border-top: 1px solid var(--border-1);
   position: relative;
   overflow: hidden;
 }
 
-/* Gold ambient glow */
+/* One soft pool of accent light behind the ask — the only glow left in
+ * the system, kept because this is the single conversion strip. Lifted
+ * from 0.05 to 0.09: at the old value it vanished against blue. */
 .section::before {
   content: "";
   position: absolute;
@@ -14,7 +18,7 @@
   transform: translate(-50%, -50%);
   width: 60%;
   height: 200%;
-  background: radial-gradient(ellipse at center, rgba(201, 160, 96, 0.08) 0%, transparent 60%);
+  background: radial-gradient(ellipse at center, rgba(205, 255, 6, 0.09) 0%, transparent 60%);
   pointer-events: none;
 }
 
@@ -27,11 +31,11 @@
   transform: translateX(-50%);
   width: 40%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201, 160, 96, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(205, 255, 6, 0.35), transparent);
 }
 
 .container {
-  max-width: 1280px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 1.5rem;
   width: 100%;
@@ -45,42 +49,64 @@
 }
 
 .heading {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--fontSize-6);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--ink-1);
+  font-weight: 500;
+  letter-spacing: -0.032em;
+  color: #ffffff;
 }
 
 .subtext {
   font-size: var(--fontSize-3);
-  color: var(--ink-2);
-  max-width: 460px;
-  line-height: 1.6;
+  font-weight: 400;
+  /* Was #b6b5ad, a warm grey tuned for near-black. On blue it reads muddy. */
+  color: rgba(255, 255, 255, 0.84);
+  max-width: 46ch;
+  line-height: 1.62;
 }
 
+/* The site's one filled control. Lime on black is the loudest pairing
+ * in the palette, so it is spent here and nowhere else. */
 .cta {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--spacing-2);
+  height: 52px;
+  padding: 0 32px;
   background: var(--accent);
-  color: var(--ink-1);
-  padding: var(--spacing-3) var(--spacing-6);
-  font-size: var(--fontSize-2);
-  font-weight: 700;
-  border-radius: 6px;
+  color: var(--on-accent);
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: var(--radius-full);
   text-decoration: none;
-  margin-top: var(--spacing-1);
-  letter-spacing: 0.01em;
-  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-  box-shadow: 0 4px 20px rgba(201, 160, 96, 0.3);
+  margin-top: var(--spacing-2);
+  letter-spacing: -0.005em;
+  transition: background var(--duration-1) var(--ease-out), box-shadow var(--duration-1) var(--ease-out),
+    transform var(--duration-1) var(--ease-out);
+  box-shadow: var(--shadow-gold);
   cursor: pointer;
+}
+
+.secondary {
+  margin-top: var(--spacing-2);
+  font-size: var(--fontSize-1);
+  color: rgba(255, 255, 255, 0.84);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  padding-bottom: 2px;
+}
+
+.secondary:hover {
+  color: #ffffff;
+  border-color: #ffffff;
+  opacity: 1;
 }
 
 .cta:hover {
   background: var(--accent-hover);
-  box-shadow: 0 6px 28px rgba(201, 160, 96, 0.45);
+  box-shadow: 0 10px 34px rgba(205, 255, 6, 0.26);
   transform: translateY(-2px);
+  color: var(--on-accent);
   opacity: 1;
 }
 

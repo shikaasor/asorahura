@@ -1,6 +1,6 @@
 .main {
     min-height: 100vh;
-    background: var(--surface-1);
+    background: transparent;
     padding-top: 10rem;
 }
 
@@ -11,9 +11,9 @@
 }
 
 .headline {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-size: var(--fontSize-7);
-    font-weight: 700;
+    font-weight: 500;
     max-width: 800px;
     line-height: 1.15;
     letter-spacing: -0.01em;
@@ -44,9 +44,9 @@
 }
 
 .caseHeadline {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-size: var(--fontSize-5);
-    font-weight: 700;
+    font-weight: 500;
     color: var(--ink-1);
     margin-bottom: var(--spacing-5);
     line-height: 1.45;
@@ -65,12 +65,12 @@
 
 .caseSectionLabel {
     font-size: 0.6875rem;
-    font-family: var(--font-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
+    font-family: var(--font-sans);
+    text-transform: none;
+    letter-spacing: 0.005em;
     color: var(--accent);
     margin-bottom: var(--spacing-2);
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .caseSection p {
@@ -89,27 +89,27 @@
 }
 
 .caseStackLabel {
-    font-weight: 700;
+    font-weight: 500;
     color: var(--ink-2);
-    font-family: var(--font-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
+    font-family: var(--font-sans);
+    text-transform: none;
+    letter-spacing: 0.005em;
     font-size: 0.6875rem;
     margin-right: 0.375rem;
 }
 
 /* ── Bottom CTA ── */
 .bottomCta {
-    background: var(--surface-2);
+    background: transparent;
     border-top: 1px solid var(--border-1);
     padding: 5.5rem 2rem;
     text-align: center;
 }
 
 .bottomCtaHeadline {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-size: var(--fontSize-6);
-    font-weight: 700;
+    font-weight: 500;
     color: var(--ink-1);
     margin-bottom: var(--spacing-3);
     letter-spacing: -0.01em;
@@ -126,21 +126,21 @@
 .bottomCtaBtn {
     display: inline-block;
     background: var(--accent);
-    color: var(--ink-1);
+    color: var(--on-accent);
     padding: 0.9375rem 2.25rem;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 0.9375rem;
-    border-radius: 6px;
+    border-radius: var(--radius-full);
     text-decoration: none;
     margin-top: 1.75rem;
     transition: background 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 20px rgba(201, 168, 109, 0.28);
+    box-shadow: 0 4px 20px rgba(69, 214, 127, 0.28);
     cursor: pointer;
 }
 
 .bottomCtaBtn:hover {
     background: var(--accent-hover);
-    box-shadow: 0 6px 28px rgba(201, 168, 109, 0.42);
+    box-shadow: 0 6px 28px rgba(69, 214, 127, 0.42);
     opacity: 1;
 }
 
@@ -155,7 +155,7 @@
 
 /* ── Legacy classes kept for any other usage ── */
 .nav { display: flex; justify-content: space-between; align-items: center; padding: 2rem 4rem; }
-.logo { font-family: var(--font-serif); font-size: 1.5rem; letter-spacing: -0.05em; color: var(--ink-1); }
+.logo { font-family: var(--font-sans); font-size: 1.5rem; letter-spacing: -0.05em; color: var(--ink-1); }
 .backLink { font-size: 0.9rem; color: var(--ink-2); }
 
 @media (max-width: 900px) {

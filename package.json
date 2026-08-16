@@ -2,6 +2,10 @@
     "name": "asorahura",
     "version": "0.1.0",
     "private": true,
+    "browserslist": [
+        "defaults",
+        "not op_mini all"
+    ],
     "scripts": {
         "dev": "next dev",
         "build": "next build",
@@ -16,6 +20,7 @@
         "@mdx-js/loader": "latest",
         "@mdx-js/react": "latest",
         "@next/mdx": "latest",
+        "@paddle/paddle-node-sdk": "^3.10.0",
         "@react-email/components": "^1.0.12",
         "@types/pdfkit": "^0.17.6",
         "framer-motion": "latest",

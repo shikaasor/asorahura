@@ -1,237 +1,409 @@
 .section {
-  padding: 8rem 0 7rem;
-  background: var(--surface-1);
+  padding: 0 0 var(--spacing-7);
+  background: transparent;
+  position: relative;
+}
+
+/* Full-bleed: sits flush against the transparent nav above it, no card
+ * inset or seam. The radial lift is only a few points of luma — enough
+ * to keep the centre from reading as a flat black rectangle. */
+.card {
   position: relative;
   overflow: hidden;
+  background: radial-gradient(70% 46% at 50% 24%, rgba(255, 255, 255, 0.055) 0%, rgba(0, 0, 0, 0) 62%);
 }
 
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  width: 100%;
+/* Scrim between the orb and the copy, biased left. The copy sits directly
+ * on the canvas and needs the protection; the panel on the right is now
+ * translucent specifically so the orb shows through it, so holding the
+ * scrim back on that side is the whole point. The vertical pass just
+ * seats the section against the nav above and the band below. */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      to right,
+      rgba(10, 10, 10, 0.82) 0%,
+      rgba(10, 10, 10, 0.66) 34%,
+      rgba(10, 10, 10, 0.46) 62%,
+      rgba(10, 10, 10, 0.5) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(10, 10, 10, 0.3) 0%,
+      rgba(10, 10, 10, 0) 26%,
+      rgba(10, 10, 10, 0) 68%,
+      rgba(10, 10, 10, 0.75) 100%
+    );
+}
+
+/* Claim left, proof right, each pushed to its own edge. The hero opts out
+ * of the site container on purpose: holding the two apart across the full
+ * width is what makes the orb between them read as the space they sit in.
+ * The cap only exists so the pair doesn't drift into two unrelated islands
+ * on an ultrawide display. */
+.inner {
   position: relative;
   z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: clamp(40px, 6vw, 110px);
+  max-width: 1720px;
+  margin: 0 auto;
+  /* Extra top clearance so copy clears the fixed, transparent nav. */
+  padding: calc(64px + 76px) clamp(1.5rem, 4vw, 4rem) var(--spacing-7);
 }
 
-.heroInner {
-  display: grid;
-  grid-template-columns: minmax(0, 720px) auto;
-  gap: var(--spacing-6);
-  align-items: center;
-  justify-content: center;
+/* [data-theme="ink"] sets its own opaque background — override here so the
+ * LineSphere canvas stays visible behind the column. */
+.inner[data-theme="ink"] {
+  background: transparent;
 }
 
 .copy {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-5);
+  align-items: flex-start;
+  text-align: left;
+  min-width: 0;
 }
 
 .stage {
+  min-width: 0;
   display: flex;
-  align-items: center;
-  gap: var(--spacing-4);
+  justify-content: flex-end;
 }
 
-.rail {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--spacing-3);
-  padding-top: var(--spacing-1);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--ink-3);
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  letter-spacing: var(--tracking-label);
+  text-transform: none;
+  color: var(--accent-ink);
 }
 
-.tick {
-  width: 1px;
-  height: 20px;
-  background: var(--border-2);
+.eyebrow::before {
+  content: "{ ";
+  opacity: 0.55;
 }
 
-.railActive {
-  color: var(--accent-active);
-  font-weight: 700;
+.eyebrow::after {
+  content: " }";
+  opacity: 0.55;
 }
 
-.emphasis {
-  font-style: italic;
-  color: var(--accent-active);
-}
-
+/* Sized against the column rather than the viewport. The wider hero gives
+ * the left side room for a real display size again — the measure is what
+ * caps it, not the type scale. */
 .headline {
-  font-family: var(--font-serif);
-  font-size: var(--fontSize-7);
-  line-height: 1.12;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--ink-1);
-  margin: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(2.5rem, 4.6vw, 4.75rem);
+  line-height: 1.02;
+  font-weight: 500;
+  letter-spacing: -0.038em;
+  color: var(--cream);
+  margin: var(--spacing-4) 0 0;
+  max-width: 15ch;
+}
+
+/* Emphasis by colour, not by a second typeface. */
+.emphasis {
+  font-style: normal;
+  color: var(--accent-ink);
 }
 
 .subheading {
-  font-size: var(--fontSize-3);
-  line-height: 1.7;
-  color: var(--ink-2);
-  max-width: 490px;
-  margin: 0;
+  font-size: clamp(1rem, 1.15vw, 1.1875rem);
+  line-height: 1.6;
+  font-weight: 400;
+  color: #c2c1b9;
+  max-width: 48ch;
+  margin: 26px 0 0;
 }
 
 .actions {
   display: flex;
   gap: var(--spacing-3);
   flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 36px;
 }
 
+/* Sits directly under the buttons and deliberately not in a box: it should
+ * read as a promise attached to the control, not as another card. */
+.guarantee {
+  margin-top: var(--spacing-3);
+  max-width: 46ch;
+  font-size: var(--fontSize-1);
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.guarantee strong {
+  font-weight: 500;
+  color: var(--accent-ink);
+}
+
+/* Gradient-hairline pill: near-black body, 1px masked border. Filled
+ * controls are rationed on this palette — lime only appears where a
+ * page has exactly one thing to ask for. */
 .primaryBtn {
+  position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--spacing-2);
-  background: var(--accent);
-  color: var(--ink-1);
-  padding: var(--spacing-3) var(--spacing-5);
-  font-size: var(--fontSize-2);
-  font-weight: 700;
-  border-radius: 6px;
+  height: 56px;
+  padding: 0 30px;
+  background: #0e0e0e;
+  color: var(--cream);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  border-radius: var(--radius-full);
   text-decoration: none;
-  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-  box-shadow: 0 4px 20px rgba(201, 160, 96, 0.3);
   white-space: nowrap;
-  letter-spacing: 0.01em;
   cursor: pointer;
+  transition: transform var(--duration-2) var(--ease-out), background var(--duration-2) var(--ease-out);
+}
+
+.primaryBtn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--border-sheen);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .primaryBtn:hover {
-  background: var(--accent-hover);
-  box-shadow: 0 6px 28px rgba(201, 160, 96, 0.45);
-  transform: translateY(-2px);
+  background: #151515;
+  transform: translateY(-1px);
+  color: var(--cream);
   opacity: 1;
 }
 
 .ghostBtn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--spacing-2);
-  padding: var(--spacing-3) var(--spacing-5);
-  font-size: var(--fontSize-2);
-  font-weight: 700;
-  border-radius: 6px;
+  height: 56px;
+  padding: 0 26px;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  border-radius: var(--radius-full);
   border: 1px solid var(--border-2);
-  color: var(--ink-1);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--cream);
   text-decoration: none;
-  letter-spacing: 0.01em;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  letter-spacing: -0.005em;
+  transition: background var(--duration-1) var(--ease-out), border-color var(--duration-1) var(--ease-out),
+    transform var(--duration-1) var(--ease-out);
   white-space: nowrap;
 }
 
 .ghostBtn:hover {
-  border-color: var(--accent-active);
-  color: var(--accent-active);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--border-3);
+  transform: translateY(-1px);
+  color: var(--cream);
   opacity: 1;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .headline {
-    font-size: var(--fontSize-7);
-  }
+/* ---- The framed stage ---- */
+
+/* Opacity ramps 60% → 30% left to right, so the orb reads through the
+ * panel instead of being punched out by it. The heavier left end is doing
+ * real work: that edge sits nearest the orb's core, and it is also where
+ * the first stage's status line lands. The blur keeps the thin right end
+ * survivable — without it the orb's streaks run under the stage labels. */
+.mockup {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-3);
+  overflow: hidden;
+  background: linear-gradient(
+    to right,
+    rgba(15, 15, 15, 0.6) 0%,
+    rgba(15, 15, 15, 0.3) 100%
+  );
+  box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
-@media (max-width: 768px) {
-  .section {
-    padding: 6rem 0 4rem;
+/* Do NOT hand-write -webkit-backdrop-filter here. Lightning CSS dedupes
+ * against the browserslist targets, and when both forms are authored it
+ * keeps only the prefixed one — which current Chromium rejects, leaving
+ * the blur silently dead. Author the standard property alone and let the
+ * compiler add prefixes where they're actually needed. (Single filter
+ * function too: `blur() saturate()` gets dropped wholesale.) */
+.mockup {
+  backdrop-filter: blur(20px);
+}
+
+/* Follows the body's ramp rather than sitting flat on top of it — a
+ * uniform bar over a graded panel shows the disagreement at the seam. */
+.mockupBar {
+  height: 30px;
+  background: linear-gradient(
+    to right,
+    rgba(28, 28, 28, 0.55) 0%,
+    rgba(28, 28, 28, 0.28) 100%
+  );
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 13px;
+}
+
+.mockupBar i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #3a3a3a;
+  display: block;
+}
+
+.mockupBody {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  padding: var(--spacing-5) var(--spacing-4);
+  text-align: left;
+}
+
+/* ---- Metric ---- */
+
+.metric {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-6);
+  padding-top: var(--spacing-4);
+  border-top: 1px solid var(--border-1);
+  width: 100%;
+  max-width: 48ch;
+  text-align: left;
+}
+
+.metricValue {
+  font-family: var(--font-sans);
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.042em;
+  line-height: 1;
+  color: var(--cream);
+  flex-shrink: 0;
+}
+
+.metricLabel {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  font-weight: 400;
+  color: var(--ink-2);
+}
+
+/* ---- Responsive ---- */
+
+/* Below this the copy column is narrower than its own measure and the
+ * stage's four-stage track starts truncating, so the two go back to
+ * stacking — copy first, stage under it, both still left-aligned. */
+@media (max-width: 1040px) {
+  /* Stacked, the copy spans the full width — a left-biased scrim would
+   * leave the end of every line unprotected. Back to a flat vertical one. */
+  .card::after {
+    background: linear-gradient(
+      to bottom,
+      rgba(10, 10, 10, 0.4) 0%,
+      rgba(10, 10, 10, 0.68) 30%,
+      rgba(10, 10, 10, 0.55) 62%,
+      rgba(10, 10, 10, 0.8) 100%
+    );
   }
 
-  .heroInner {
-    grid-template-columns: 1fr;
+  .inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--spacing-6);
+    padding-top: calc(56px + 76px);
+  }
+
+  .copy {
+    max-width: 640px;
   }
 
   .stage {
-    justify-content: center;
-    margin-top: var(--spacing-3);
-  }
-
-  .rail {
-    display: none;
-  }
-
-  .copy {
-    align-items: center;
-    text-align: center;
-  }
-
-  .subheading {
-    max-width: 100%;
-  }
-
-  .actions {
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .primaryBtn {
-    width: 100%;
-    justify-content: center;
-    text-align: center;
+    justify-content: flex-start;
   }
 
   .headline {
-    font-size: var(--fontSize-6);
+    font-size: clamp(2.5rem, 6vw, 3.75rem);
+    max-width: 16ch;
+  }
+
+  .subheading {
+    max-width: 56ch;
   }
 }
 
-/* === Belt-and-suspenders mobile fit for narrow phones === */
 @media (max-width: 640px) {
   .section {
-    padding: 5rem 0 3rem;
-    overflow-x: hidden;
+    padding: 0 0 var(--spacing-6);
   }
 
-  .container {
-    padding: 0 1rem;
-    max-width: 100%;
-  }
-
-  .copy {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
+  .inner {
+    padding: calc(40px + 66px) var(--spacing-4) var(--spacing-6);
+    gap: var(--spacing-5);
   }
 
   .headline {
-    font-size: var(--fontSize-6);
-    line-height: 1.15;
-    overflow-wrap: anywhere;
+    font-size: clamp(2.125rem, 8.5vw, 2.75rem);
+    max-width: 100%;
   }
 
   .subheading {
-    font-size: var(--fontSize-2);
-    max-width: 100%;
+    margin-top: var(--spacing-4);
   }
 
   .actions {
     width: 100%;
-    max-width: 100%;
+    flex-direction: column;
     gap: var(--spacing-2);
+    margin-top: var(--spacing-5);
   }
 
-  .primaryBtn {
+  .primaryBtn,
+  .ghostBtn {
     width: 100%;
-    max-width: 100%;
-    padding: var(--spacing-3) var(--spacing-3);
-    font-size: var(--fontSize-2);
-    white-space: normal;
+    justify-content: center;
     text-align: center;
-    overflow-wrap: anywhere;
   }
 
-}
+  .mockup {
+    border-radius: var(--radius-2);
+  }
 
-@media (max-width: 380px) {
-  .headline {
-    font-size: var(--fontSize-5);
+  .mockupBody {
+    min-height: 240px;
+    padding: var(--spacing-4) var(--spacing-3);
+  }
+
+  .metric {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-2);
   }
 }

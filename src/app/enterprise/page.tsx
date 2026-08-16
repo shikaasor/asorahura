@@ -1,4 +1,6 @@
 import Link from "next/link";
+import MaskText from "@/components/motion/MaskText";
+import Scatter from "@/components/motion/Scatter";
 import styles from "./enterprise.module.css";
 
 export const metadata = {
@@ -54,10 +56,9 @@ const CASE_STUDY_SUMMARIES = [
 ];
 
 const SERVICE_TIER_SUMMARIES = [
-  { name: "Starter Automation", price: "$5,000" },
-  { name: "Operational Automation", price: "$5,000–$15,000" },
-  { name: "Systems Integration", price: "$15,000–$30,000" },
-  { name: "Enterprise / Complex Build", price: "$30,000+" },
+  { name: "Starter Automation", price: "$1,000" },
+  { name: "Operational Automation", price: "$2,000–$5,000" },
+  { name: "Enterprise / Complex Build", price: "$5,000+" },
 ];
 
 export default function EnterprisePage() {
@@ -66,7 +67,7 @@ export default function EnterprisePage() {
       {/* Hero */}
       <section className={styles.hero}>
         <div className="container">
-          <h1 className={styles.heroTitle}>Enterprise AI Automation Solutions</h1>
+          <MaskText as="h1" text="Enterprise AI Automation Solutions" className={styles.heroTitle} />
           <p className={styles.heroTagline}>
             Custom scoping for regulated industries with compliance-aware implementation
           </p>
@@ -76,8 +77,8 @@ export default function EnterprisePage() {
       {/* Verticals */}
       <section className={styles.verticalsSection}>
         <div className="container">
-          <h2 className={styles.sectionHeading}>Industry Expertise</h2>
-          <div className={styles.verticalsGrid}>
+          <MaskText as="h2" text="Industry Expertise" className={styles.sectionHeading} />
+          <Scatter className={styles.verticalsGrid}>
             {ENTERPRISE_VERTICALS.map((vertical) => (
               <div key={vertical.id} className={styles.card}>
                 <h3 className={styles.cardTitle}>
@@ -89,21 +90,21 @@ export default function EnterprisePage() {
                 </Link>
               </div>
             ))}
-          </div>
+          </Scatter>
         </div>
       </section>
 
       {/* Case Studies */}
       <section className={styles.caseStudiesSection}>
         <div className="container">
-          <h2 className={styles.sectionHeading}>What We&apos;ve Built</h2>
-          <div className={styles.caseStudiesGrid}>
+          <MaskText as="h2" text="What We’ve Built" className={styles.sectionHeading} />
+          <Scatter className={styles.caseStudiesGrid}>
             {CASE_STUDY_SUMMARIES.map((cs) => (
               <div key={cs.headline} className={styles.card}>
                 <p className={styles.caseHeadline}>{cs.headline}</p>
               </div>
             ))}
-          </div>
+          </Scatter>
           <Link href="/work" className={styles.sectionCta}>
             See all case studies →
           </Link>
@@ -113,22 +114,26 @@ export default function EnterprisePage() {
       {/* Service Tiers */}
       <section className={styles.tiersSection}>
         <div className="container">
-          <h2 className={styles.sectionHeading}>Our Enterprise Tiers</h2>
-          <div className={styles.tiersGrid}>
+          <MaskText as="h2" text="Our Enterprise Tiers" className={styles.sectionHeading} />
+          <Scatter className={styles.tiersGrid}>
             {SERVICE_TIER_SUMMARIES.map((tier) => (
               <Link href="/services" key={tier.name} className={styles.tierCard}>
                 <p className={styles.tierName}>{tier.name}</p>
                 <p className={styles.tierPrice}>{tier.price}</p>
               </Link>
             ))}
-          </div>
+          </Scatter>
         </div>
       </section>
 
       {/* Engagement CTA */}
       <section className={styles.ctaSection}>
         <div className="container">
-          <h2 className={styles.sectionHeading}>Schedule a Compliance-Aware Discovery Call</h2>
+          <MaskText
+            as="h2"
+            text="Schedule a Compliance-Aware Discovery Call"
+            className={styles.sectionHeading}
+          />
           <p className={styles.ctaSubtext}>
             Tell us about your challenges. We&apos;ll map out a custom scoping and timeline.
           </p>

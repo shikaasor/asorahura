@@ -1,5 +1,5 @@
 .closing {
-  background: var(--surface-1);
+  background: transparent;
   padding: var(--spacing-6) var(--spacing-4);
   border-top: 1px solid var(--border-1);
 }

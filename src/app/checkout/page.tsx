@@ -1,9 +1,9 @@
 "use client";
 
-import { Suspense, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import { PaddleCheckout } from "@/components/checkout/PaddleCheckout";
-import { tiers, getTierById, type TierId } from "@/lib/checkout";
+import { getTierById } from "@/lib/checkout";
+import MaskText from "@/components/motion/MaskText";
 import styles from "./checkout.module.css";
 
 const TRUST_ITEMS = [
@@ -14,40 +14,30 @@ const TRUST_ITEMS = [
 ];
 
 function CheckoutInner() {
-  const tierParam = useSearchParams().get("tier") as TierId | null;
-  const initialTier: TierId =
-    tierParam && (["discovery", "strategy"] as TierId[]).includes(tierParam) ? tierParam : "discovery";
-
-  const [selectedTier, setSelectedTier] = useState<TierId>(initialTier);
-  const tier = getTierById(selectedTier);
+  const tier = getTierById("consultation");
 
   return (
     <main className={styles.page}>
       <section className={styles.hero}>
         <div className={styles.heroInner}>
           <p className={styles.heroLabel}>Engagement</p>
-          <h1 className={styles.heroTitle}>Book Your Discovery Call</h1>
+          <MaskText as="h1" text="Book Your Consultation Call" className={styles.heroTitle} />
           <p className={styles.heroSub}>
-            Select the engagement that fits your current phase. Payment secures your slot, your discovery call is scheduled immediately after.
+            Payment secures your slot, your consultation call is scheduled immediately after.
           </p>
           <div className={styles.steps}>
             <div className={`${styles.step} ${styles.stepActive}`}>
               <span className={styles.stepNum}>1</span>
-              Select tier
-            </div>
-            <span className={styles.stepArrow}>→</span>
-            <div className={`${styles.step} ${styles.stepActive}`}>
-              <span className={styles.stepNum}>2</span>
               Pay to secure slot
             </div>
             <span className={styles.stepArrow}>→</span>
             <div className={styles.step}>
-              <span className={styles.stepNum}>3</span>
+              <span className={styles.stepNum}>2</span>
               Book your call
             </div>
             <span className={styles.stepArrow}>→</span>
             <div className={styles.step}>
-              <span className={styles.stepNum}>4</span>
+              <span className={styles.stepNum}>3</span>
               We build
             </div>
           </div>
@@ -55,28 +45,6 @@ function CheckoutInner() {
       </section>
 
       <div className={styles.body}>
-        {/* Left — tier selection */}
-        <div className={styles.left}>
-          <div>
-            <p className={styles.sectionLabel}>Choose your engagement</p>
-            <div className={styles.tiers}>
-              {tiers.map((t) => (
-                <button
-                  key={t.id}
-                  onClick={() => setSelectedTier(t.id)}
-                  className={`${styles.tierCard} ${selectedTier === t.id ? styles.selected : ""}`}
-                >
-                  <div className={styles.tierCardTop}>
-                    <span className={styles.tierName}>{t.name}</span>
-                    <span className={styles.tierPrice}>{t.price}</span>
-                  </div>
-                  <span className={styles.tierDesc}>{t.tagline}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-
         {/* Right — summary + payment */}
         <div className={styles.right}>
           <div className={styles.panel}>

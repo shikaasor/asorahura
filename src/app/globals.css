@@ -1,148 +1,201 @@
 @import "tailwindcss";
 
 /* =============================================================
-   Asor Ahura — globals v2
-   Drop-in replacement for src/app/globals.css.
-   Every token you already use is still here with the same name,
-   so nothing breaks. New tokens are additive.
-   See CSS-AUDIT.md for the reasoning behind each change.
+   Asor Ahura — globals v3
+   Design language: near-black canvas, cream type, one geometric
+   sans (Outfit), pill geometry, and a small set of saturated
+   accents used as punctuation rather than fill.
+
+   Every token name from v2 survives with the same meaning, so no
+   component needs to know the palette flipped. What changed is
+   what each token resolves to.
    ============================================================= */
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 
-  /* ---- Surfaces: warm paper, now with real depth ---- */
-  --surface-1: #FDFAF4;
-  --surface-2: #F8F2E8;
-  --surface-3: #F0E7D8;
-  --surface-4: #FFFEFA;
-  /* NEW — inverted surfaces. The single biggest fix for "flat":
-     the palette had no dark end, so every section read the same. */
-  --surface-ink: #17120D;
-  --surface-ink-2: #221B14;
+  /* ---- Surfaces: near-black, stepped by a few points of luma ----
+     The steps are deliberately tiny. Separation comes from hairline
+     borders, not from background contrast. */
+  --surface-1: #0a0a0a;
+  --surface-2: #0d0d0d;
+  --surface-3: #141414;
+  --surface-4: #191919;
+  /* Kept for components that opted into a darker band on the old
+     light palette. Now the darkest and second-darkest steps. */
+  --surface-ink: #0a0a0a;
+  --surface-ink-2: #141414;
+  /* NEW — the light panel used behind illustrations and mockups.
+     The only large light surface in the system, which is what makes
+     it read as "artwork" rather than "page". */
+  --paper: #f7f7f4;
+  --paper-2: #f0efe9;
 
-  /* ---- Ink ---- */
-  --ink-1: #1F1B17;
-  --ink-2: #554E46;   /* was #5D564E — nudged for 7:1 on surface-1 */
-  --ink-3: #7C736A;   /* was #8B827A — now clears 3:1 on surface-3 */
-  --ink-inverse-1: #FBF6EC;
-  --ink-inverse-2: rgba(251, 246, 236, 0.72);
-  --ink-inverse-3: rgba(251, 246, 236, 0.48);
+  /* ---- Ink: warm off-white, never pure #fff ---- */
+  --ink-1: #e9e7dd;
+  /* The reference sets this tier at #8d8d86, which is legible in isolation
+     but reads as washed-out at the 14–15px body sizes it actually carries.
+     Lifted to ~9.9:1 — still clearly secondary to --cream, no longer work
+     to read. Body copy also sits at 400 rather than 300 for the same reason. */
+  --ink-2: #adaca4;
+  /* The reference grey for this tier sits at #67675f, which lands at
+     3.5:1 — fine as decoration, but this token also carries captions,
+     roles, and the copyright line. Lifted to the lowest value that
+     still clears 4.5:1, so the tier stays visually recessive. */
+  --ink-3: #82827a;
+  --cream: #f4f1e4; /* NEW — headline white, one step brighter than body */
+  /* On dark, "inverse" is still the light end — these keep working
+     for any component that assumed a dark band under them. */
+  --ink-inverse-1: #f4f1e4;
+  --ink-inverse-2: rgba(244, 241, 228, 0.72);
+  --ink-inverse-3: rgba(244, 241, 228, 0.55);
+  /* NEW — ink for use on the light --paper panels */
+  --ink-on-paper: #111111;
 
-  /* ---- Gold ----
-     --accent is a FILL. It fails AA as text on cream (1.9:1) and as a
-     background under --surface-1 text (2.1:1). Two new tokens fix that:
-     --accent-ink for gold text, --on-accent for text on gold fills. */
-  --accent: #C9A86D;
-  --accent-hover: #B5985B;
-  --accent-active: #A1854A;
-  --accent-ink: #7A5A22;        /* NEW — 6.3:1 on surface-1. Use for gold TEXT. */
-  --accent-on-ink: #E0C48A;     /* NEW — gold text on dark surfaces, 7.5:1 */
-  --on-accent: var(--ink-1);    /* NEW — text on a gold fill */
-  --accent-tint: rgba(201, 168, 109, 0.12);
-  --accent-tint-strong: rgba(201, 168, 109, 0.28);
-  --accent-sheen: linear-gradient(100deg, #B5985B 0%, #E3CB96 42%, #C9A86D 62%, #A1854A 100%);
+  /* ---- Accent ----
+     Lime is the fill: it only ever appears on black, where it hits
+     16:1, and it carries the whole brand in small doses. Green is
+     the text accent — lime as running text is fatiguing. */
+  --accent: #cdff06;
+  --accent-hover: #d9ff3d;
+  --accent-active: #b8e600;
+  --accent-ink: #45d67f;        /* accent TEXT on any dark surface */
+  --accent-on-ink: #45d67f;     /* alias — same surface family now */
+  --on-accent: #0a0a0a;         /* text on a lime fill */
+  --accent-tint: rgba(205, 255, 6, 0.1);
+  --accent-tint-strong: rgba(205, 255, 6, 0.22);
+  --accent-sheen: linear-gradient(100deg, #45d67f 0%, #cdff06 42%, #e9e7dd 62%, #45d67f 100%);
 
-  /* NEW — one cool support hue so gold isn't carrying the whole brand.
-     Same lightness family, opposite side of the wheel: reads as
-     engineering/trust next to the gold's craft/premium. */
-  --support: #23474A;
-  --support-tint: rgba(35, 71, 74, 0.08);
+  /* ---- Punctuation palette ----
+     Used for eyebrows, illustration fills, and section signatures.
+     Never two in the same block. */
+  --green: #45d67f;
+  --cyan: #54d3cc;
+  --purple: #c2abf6;
+  --lavender: #c5acfb;
+  --lime: #cdff06;
+  --blue: #2f6bff;
+  --blue-2: #1f4fd8;
+  --pink: #f7a8ce;
+  --yellow: #fbe97c;
+
+  /* Support hue — the cool counterweight to lime. */
+  --support: #54d3cc;
+  --support-tint: rgba(84, 211, 204, 0.1);
 
   /* ---- Semantic ---- */
-  --success: #35621C;
-  --error: #A03414;
-  --warn: #7F4D12;
-  --success-tint: rgba(53, 98, 28, 0.1);
-  --error-tint: rgba(160, 52, 20, 0.1);
+  --success: #45d67f;
+  --error: #ff8a8a;
+  --warn: #fbe97c;
+  --success-tint: rgba(69, 214, 127, 0.12);
+  --error-tint: rgba(255, 138, 138, 0.12);
 
-  /* ---- Lines ---- */
-  --border-1: rgba(31, 27, 23, 0.08);
-  --border-2: rgba(31, 27, 23, 0.16);
-  --border-3: rgba(31, 27, 23, 0.28);
-  --border-inverse-1: rgba(251, 246, 236, 0.12);
-  --border-inverse-2: rgba(251, 246, 236, 0.22);
-  --hairline-gold: linear-gradient(90deg, transparent, rgba(201, 168, 109, 0.55), transparent);
+  /* ---- Lines: the primary separator in this system ---- */
+  --border-1: rgba(255, 255, 255, 0.075);
+  --border-2: rgba(255, 255, 255, 0.13);
+  --border-3: rgba(255, 255, 255, 0.24);
+  --border-inverse-1: rgba(255, 255, 255, 0.075);
+  --border-inverse-2: rgba(255, 255, 255, 0.16);
+  --hairline-gold: linear-gradient(90deg, transparent, rgba(69, 214, 127, 0.45), transparent);
+  /* NEW — the gradient used for pill button borders */
+  --border-sheen: linear-gradient(88deg, var(--green) 0%, rgba(255, 255, 255, 0.4) 52%, rgba(255, 255, 255, 0.5) 100%);
 
-  /* ---- Type: fluid above 24px, so headings stop stair-stepping ---- */
-  --fontSize-1: 0.75rem;   /* 12 */
-  --fontSize-2: 1rem;      /* 16 */
-  --fontSize-3: 1.125rem;  /* 18 */
-  --fontSize-4: 1.25rem;   /* 20 */
-  --fontSize-5: clamp(1.375rem, 1.15rem + 1.1vw, 1.5rem);   /* 22 → 24 */
-  --fontSize-6: clamp(1.625rem, 1.25rem + 2.2vw, 2rem);     /* 26 → 32 */
-  --fontSize-7: clamp(2rem, 1.3rem + 4.2vw, 3rem);          /* 32 → 48 */
-  --fontSize-8: clamp(2.5rem, 1.4rem + 6vw, 4rem);          /* NEW 40 → 64 */
-  --fontSize-9: clamp(3rem, 1.2rem + 9vw, 5.5rem);          /* NEW display */
+  /* ---- Type ----
+     One family. Headings sit at 500, never 700 — weight is carried
+     by size and tight tracking instead. */
+  --fontSize-1: 0.8125rem;  /* 13 */
+  --fontSize-2: 0.9375rem;  /* 15 — body */
+  --fontSize-3: 1.0625rem;  /* 17 — lede */
+  --fontSize-4: 1.1875rem;  /* 19 */
+  --fontSize-5: clamp(1.375rem, 1.1rem + 1.2vw, 1.8125rem);  /* 22 → 29 */
+  --fontSize-6: clamp(1.8125rem, 1.3rem + 2.6vw, 2.875rem);  /* 29 → 46 */
+  --fontSize-7: clamp(2.375rem, 1.5rem + 4vw, 3.5rem);       /* 38 → 56 */
+  --fontSize-8: clamp(2.375rem, 1.1rem + 6.4vw, 5rem);       /* 38 → 80 display */
+  --fontSize-9: clamp(2.625rem, 1rem + 8vw, 6rem);
 
   --fontWeight-normal: 400;
-  --fontWeight-medium: 500;
-  --fontWeight-bold: 700;
-  --lineHeight-tight: 1.1;
-  --lineHeight-snug: 1.25;
+  --fontWeight-medium: 400;
+  --fontWeight-bold: 500;   /* "bold" now means 500 — see note above */
+  --lineHeight-tight: 1.03;
+  --lineHeight-snug: 1.13;
   --lineHeight-normal: 1.5;
-  --lineHeight-relaxed: 1.6;
-  --tracking-tight: -0.02em;
-  --tracking-label: 0.12em;
+  --lineHeight-relaxed: 1.62;
+  --tracking-tight: -0.032em;
+  --tracking-label: 0.005em;
 
-  /* ---- Spacing: scale continues past 48px ---- */
+  /* ---- Spacing ---- */
   --spacing-1: 4px;
   --spacing-2: 8px;
   --spacing-3: 16px;
   --spacing-4: 24px;
   --spacing-5: 32px;
-  --spacing-6: 48px;
-  --spacing-7: 72px;   /* NEW */
-  --spacing-8: 112px;  /* NEW */
-  --spacing-9: 160px;  /* NEW */
+  --spacing-6: 54px;
+  --spacing-7: 84px;
+  --spacing-8: 120px;
+  --spacing-9: 150px;
 
-  --radius-1: 4px;
-  --radius-2: 8px;
-  --radius-3: 12px;
-  --radius-4: 20px;    /* NEW — cards were hardcoding 1rem */
+  /* ---- Radii: pills for controls, soft rectangles for panels ---- */
+  --radius-1: 6px;
+  --radius-2: 10px;
+  --radius-3: 14px;
+  --radius-4: 18px;
   --radius-full: 999px;
 
-  /* ---- Elevation: warm-tinted, not black. Black on cream = grey mud. ---- */
-  --shadow-1: 0 1px 2px rgba(45, 32, 16, 0.06);
-  --shadow-2: 0 2px 4px rgba(45, 32, 16, 0.05), 0 8px 16px rgba(45, 32, 16, 0.06);
-  --shadow-3: 0 4px 8px rgba(45, 32, 16, 0.05), 0 18px 36px rgba(45, 32, 16, 0.09);
-  --shadow-gold: 0 6px 24px rgba(161, 133, 74, 0.28);
-  --shadow-inset-top: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  /* ---- Elevation: black, deep, and low-opacity. On near-black,
+     shadow reads as depth only when it is much darker than the
+     surface — warm-tinted shadow just looks like haze. ---- */
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 2px 6px rgba(0, 0, 0, 0.45), 0 10px 24px rgba(0, 0, 0, 0.4);
+  --shadow-3: 0 6px 14px rgba(0, 0, 0, 0.5), 0 28px 56px rgba(0, 0, 0, 0.5);
+  --shadow-gold: 0 8px 30px rgba(205, 255, 6, 0.18);
+  --shadow-inset-top: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 
-  --duration-1: 150ms;
-  --duration-2: 300ms;
+  --duration-1: 250ms;
+  --duration-2: 350ms;
   --duration-3: 500ms;
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 
-  --focus-ring: 0 0 0 2px var(--surface-1), 0 0 0 4px var(--accent-active);
-  --selection: rgba(201, 168, 109, 0.25);
-  --container-max: 1300px;
+  --focus-ring: 0 0 0 2px var(--surface-1), 0 0 0 4px var(--accent);
+  --selection: var(--lime);
+  --container-max: 1140px;
   --tap-min: 44px;
 }
 
-/* Opt-in dark section: put data-theme="ink" on any <section> and every
-   token below flips. No component rewrites, no second stylesheet. */
+/* Opt-in band: [data-theme="ink"] used to flip a light page dark.
+   The page is dark now, so it does the remaining useful half of that
+   job — lifts a section one step off the canvas and keeps its own
+   background so it reads as a distinct band. */
 [data-theme="ink"] {
   color-scheme: dark;
-  --surface-1: #17120D;
-  --surface-2: #221B14;
-  --surface-3: #2C241B;
-  --surface-4: #322A20;
-  --ink-1: var(--ink-inverse-1);
-  --ink-2: rgba(251, 246, 236, 0.74);
-  --ink-3: rgba(251, 246, 236, 0.5);
-  --accent-ink: var(--accent-on-ink);
-  --border-1: var(--border-inverse-1);
-  --border-2: var(--border-inverse-2);
-  --shadow-2: 0 2px 4px rgba(0, 0, 0, 0.4), 0 10px 24px rgba(0, 0, 0, 0.35);
-  --shadow-3: 0 6px 12px rgba(0, 0, 0, 0.45), 0 24px 48px rgba(0, 0, 0, 0.4);
-  --focus-ring: 0 0 0 2px var(--surface-1), 0 0 0 4px var(--accent);
+  --surface-1: #0d0d0d;
+  --surface-2: #141414;
+  --surface-3: #191919;
+  --surface-4: #1f1f1f;
   background: var(--surface-1);
   color: var(--ink-1);
 }
 
-::selection { background: var(--selection); color: var(--ink-1); }
+/* NEW — the inverse escape hatch: a light "paper" band, used for
+   illustration panels and anything that should read as printed. */
+[data-theme="paper"] {
+  color-scheme: light;
+  --surface-1: var(--paper);
+  --surface-2: #f0efe9;
+  --surface-3: #e8e7e0;
+  --surface-4: #ffffff;
+  --ink-1: #111111;
+  --ink-2: rgba(17, 17, 17, 0.7);
+  --ink-3: rgba(17, 17, 17, 0.5);
+  --border-1: rgba(0, 0, 0, 0.08);
+  --border-2: rgba(0, 0, 0, 0.14);
+  --accent-ink: #1f7a45;
+  --on-accent: #0a0a0a;
+  background: var(--surface-1);
+  color: var(--ink-1);
+}
+
+::selection { background: var(--selection); color: #000; }
 
 * { box-sizing: border-box; padding: 0; margin: 0; }
 * { min-width: 0; } /* stops flex/grid children forcing horizontal scroll */
@@ -161,6 +214,7 @@ body {
   color: var(--ink-1);
   font-family: var(--font-sans);
   font-size: var(--fontSize-2);
+  font-weight: var(--fontWeight-medium);
   line-height: var(--lineHeight-relaxed);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -168,17 +222,74 @@ body {
   font-synthesis-weight: none;
 }
 
+/* ---- The page field ----
+   The canvas used to be one flat near-black, restated by every section's
+   own opaque background. Those sections are transparent now and the depth
+   lives here instead: a fixed gradient stack that content scrolls over, so
+   each section passes across a different part of the wash rather than
+   resetting to the same black.
+
+   Fixed and static on purpose. There is no rAF loop behind this — see the
+   note in lib/visibleRaf.ts about what three uncapped loops cost. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(58% 42% at 10% 4%, rgba(47, 107, 255, 0.2), transparent 68%),
+    radial-gradient(46% 38% at 92% 18%, rgba(69, 214, 127, 0.09), transparent 70%),
+    radial-gradient(64% 44% at 74% 62%, rgba(47, 107, 255, 0.13), transparent 70%),
+    radial-gradient(70% 46% at 24% 96%, rgba(31, 79, 216, 0.16), transparent 72%);
+}
+
+/* Grain. Large gradients on a dark screen band badly; a little noise breaks
+   the steps up and stops the field reading as a gradient. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* The full-bleed electric-blue band. Used sparingly — two moments on the
+   homepage — so it stays an event rather than a second default. Lime keeps
+   every action, which is what stops the two hues competing. */
+.blue-band {
+  position: relative;
+  /* Built down from --blue-2, not --blue. Contrast on a gradient is set by
+     its lightest point, and --blue (#2f6bff) puts 82%-white body copy at
+     3.5:1 — under AA. --blue-2 (#1f4fd8) lifts the same copy to 5.0:1 and
+     still reads as electric blue.
+
+     The second layer darkens rather than lightens for the same reason: a
+     bright radial would put the lightest point back where it started. */
+  background:
+    radial-gradient(70% 90% at 85% 100%, rgba(6, 14, 56, 0.55) 0%, transparent 65%),
+    linear-gradient(165deg, var(--blue-2) 0%, #1a3fb0 55%, #142e86 100%);
+  color: #ffffff;
+}
+
+/* Headings: 500 across the board. The hierarchy is carried by size
+   and by tracking that tightens as the type grows. */
 h1, h2, h3, h4 {
-  font-weight: var(--fontWeight-bold);
+  font-family: var(--font-sans);
+  font-weight: 500;
   letter-spacing: var(--tracking-tight);
   line-height: var(--lineHeight-snug);
+  color: var(--cream);
   text-wrap: balance;
 }
-h1 { line-height: var(--lineHeight-tight); }
+h1 { line-height: var(--lineHeight-tight); letter-spacing: -0.036em; }
+h3, h4 { letter-spacing: -0.024em; }
 p { text-wrap: pretty; }
 
 a { color: inherit; text-decoration: none; transition: color var(--duration-1) var(--ease-out), opacity var(--duration-1) var(--ease-out); }
-a:hover { color: var(--accent-ink); opacity: 1; } /* was opacity:.8 — that greyed out gold CTAs */
+a:hover { color: var(--cream); opacity: 1; }
 
 button { background: none; border: none; cursor: pointer; font-family: inherit; color: inherit; }
 button, a, input, select, textarea, [tabindex] { outline: none; }
@@ -189,19 +300,25 @@ input, textarea, select { font: inherit; color: inherit; }
   input, textarea, select { font-size: max(16px, 1rem); } /* stops iOS zoom-on-focus */
 }
 
-/* Utilities — token-driven, so page CSS stops re-declaring max-widths */
-.container { max-width: var(--container-max); margin: 0 auto; padding-inline: clamp(1rem, 5vw, 4rem); }
-.container-narrow { max-width: 760px; margin: 0 auto; padding-inline: clamp(1rem, 5vw, 4rem); }
-.section-padding { padding-block: clamp(4rem, 10vw, 10rem); }
+/* ---- Utilities ---- */
+.container { max-width: var(--container-max); margin: 0 auto; padding-inline: clamp(1.25rem, 4vw, 1.75rem); }
+.container-narrow { max-width: 760px; margin: 0 auto; padding-inline: clamp(1.25rem, 4vw, 1.75rem); }
+.section-padding { padding-block: clamp(5rem, 9vw, 9.375rem); }
 .stack { display: flex; flex-direction: column; gap: var(--spacing-4); }
+
+/* The eyebrow. Sentence case, not caps — the braces do the work that
+   letter-spacing used to, and they cost no vertical rhythm. */
 .eyebrow {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: var(--fontSize-1);
   font-weight: var(--fontWeight-medium);
-  text-transform: uppercase;
+  text-transform: none;
   letter-spacing: var(--tracking-label);
   color: var(--accent-ink);
 }
+.eyebrow::before { content: "{ "; opacity: 0.55; }
+.eyebrow::after { content: " }"; opacity: 0.55; }
+
 .hairline { height: 1px; border: 0; background: var(--hairline-gold); }
 .tap { min-height: var(--tap-min); min-width: var(--tap-min); }
 .sr-only {
@@ -209,9 +326,61 @@ input, textarea, select { font: inherit; color: inherit; }
   overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
 }
 
+/* ---- Shared control shapes ----
+   Exposed globally so page-level CSS can stop redefining a button.
+   .btn is the gradient-hairline pill: a near-black body with a 1px
+   masked gradient border, which is what makes it read as lit rather
+   than outlined. */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  padding: 0 26px;
+  border-radius: var(--radius-full);
+  font-size: var(--fontSize-2);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--cream);
+  background: #0e0e0e;
+  white-space: nowrap;
+  transition: transform var(--duration-2) var(--ease-out), background var(--duration-2) var(--ease-out);
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--border-sheen);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.btn:hover { transform: translateY(-1px); background: #151515; color: var(--cream); }
+.btn-lg { height: 52px; padding: 0 32px; font-size: 1rem; }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 20px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-2);
+  font-size: var(--fontSize-1);
+  font-weight: 500;
+  color: var(--cream);
+  background: rgba(255, 255, 255, 0.02);
+  transition: background var(--duration-1) var(--ease-out), border-color var(--duration-1) var(--ease-out), transform var(--duration-1) var(--ease-out);
+}
+.btn-ghost:hover { background: rgba(255, 255, 255, 0.07); border-color: var(--border-3); transform: translateY(-1px); color: var(--cream); }
+
 @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
 @keyframes flow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
 
 .animate-flow { animation: flow 6s var(--ease-in-out) infinite; }
 .animate-rise { animation: rise var(--duration-3) var(--ease-out) both; }
@@ -224,5 +393,5 @@ input, textarea, select { font: inherit; color: inherit; }
   animation: shimmer 6s linear infinite;
 }
 
-.nav-offset { padding-top: 88px; }
-@media (max-width: 768px) { .nav-offset { padding-top: 72px; } }
+.nav-offset { padding-top: 76px; }
+@media (max-width: 768px) { .nav-offset { padding-top: 66px; } }

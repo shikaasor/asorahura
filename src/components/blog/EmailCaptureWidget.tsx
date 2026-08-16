@@ -32,32 +32,34 @@ export default function EmailCaptureWidget() {
 
   return (
     <div style={{
-      backgroundColor: '#0a0a0a',
-      border: '1px solid #1f1f1f',
-      borderRadius: '12px',
+      backgroundColor: 'var(--surface-3)',
+      border: '1px solid var(--border-1)',
+      borderRadius: 'var(--radius-4)',
       padding: '2.5rem',
     }}>
       <p style={{
-        color: '#a3a3a3',
-        fontSize: '0.8125rem',
-        fontWeight: 600,
-        letterSpacing: '0.15em',
-        textTransform: 'uppercase',
+        color: 'var(--accent-ink)',
+        fontSize: '0.875rem',
+        fontWeight: 400,
+        letterSpacing: 'var(--tracking-label)',
         marginBottom: '0.5rem',
       }}>
-        Newsletter
+        { '{ Newsletter }' }
       </p>
       <h3 style={{
-        color: '#ffffff',
-        fontSize: '1.25rem',
-        fontWeight: 700,
+        color: 'var(--cream)',
+        fontSize: '1.375rem',
+        fontWeight: 500,
+        letterSpacing: '-0.028em',
         marginBottom: '0.5rem',
       }}>
         Get automation insights twice a month.
       </h3>
       <p style={{
-        color: '#a3a3a3',
+        color: 'var(--ink-2)',
         fontSize: '0.9375rem',
+        fontWeight: 300,
+        lineHeight: 1.62,
         marginBottom: 0,
       }}>
         No sales pitches. Case studies, architecture decisions, and lessons from production AI systems.
@@ -80,11 +82,11 @@ export default function EmailCaptureWidget() {
               onFocus={() => setInputFocused(true)}
               onBlur={() => setInputFocused(false)}
               style={{
-                backgroundColor: '#111111',
-                border: inputFocused ? '1px solid #333333' : '1px solid #1f1f1f',
-                color: '#ffffff',
-                padding: '0.75rem 1rem',
-                borderRadius: '8px',
+                backgroundColor: 'var(--surface-1)',
+                border: inputFocused ? '1px solid var(--border-3)' : '1px solid var(--border-2)',
+                color: 'var(--cream)',
+                padding: '0.75rem 1.125rem',
+                borderRadius: 'var(--radius-full)',
                 fontSize: '0.9375rem',
                 flex: 1,
                 outline: 'none',
@@ -94,11 +96,11 @@ export default function EmailCaptureWidget() {
               type="submit"
               disabled={status === 'loading'}
               style={{
-                backgroundColor: '#ffffff',
-                color: '#0a0a0a',
-                padding: '0.75rem 1.5rem',
-                borderRadius: '8px',
-                fontWeight: 600,
+                backgroundColor: 'var(--accent)',
+                color: 'var(--on-accent)',
+                padding: '0.75rem 1.75rem',
+                borderRadius: 'var(--radius-full)',
+                fontWeight: 500,
                 fontSize: '0.9375rem',
                 cursor: 'pointer',
                 whiteSpace: 'nowrap',
@@ -110,7 +112,7 @@ export default function EmailCaptureWidget() {
           </div>
           {status === 'error' && (
             <p style={{
-              color: '#ef4444',
+              color: 'var(--error)',
               fontSize: '0.875rem',
               marginTop: '0.5rem',
             }}>
@@ -120,7 +122,7 @@ export default function EmailCaptureWidget() {
         </form>
       ) : (
         <p style={{
-          color: '#a3a3a3',
+          color: 'var(--accent-ink)',
           fontSize: '0.9375rem',
           marginTop: '1rem',
         }}>

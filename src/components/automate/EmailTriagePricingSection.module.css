@@ -1,5 +1,5 @@
 .section {
-  background: var(--surface-1);
+  background: transparent;
   padding: var(--spacing-6) var(--spacing-4);
 }
 
@@ -149,7 +149,7 @@
   width: 100%;
   padding: var(--spacing-2) var(--spacing-3);
   background: var(--accent);
-  color: var(--surface-1);
+  color: var(--on-accent);
   border: none;
   border-radius: var(--radius-1);
   font-weight: var(--fontWeight-bold);

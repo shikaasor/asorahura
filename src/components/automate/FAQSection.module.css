@@ -1,6 +1,6 @@
 .section {
   padding: var(--spacing-6) var(--spacing-4);
-  background: var(--surface-1);
+  background: transparent;
 }
 
 .container {

@@ -4,18 +4,54 @@
     left: 0;
     width: 100%;
     z-index: 100;
-    background: rgba(253, 250, 244, 0.88);
+    background: rgba(10, 10, 10, 0.82);
     backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border-1);
+    transition: background var(--duration-2) ease, border-color var(--duration-2) ease,
+        backdrop-filter var(--duration-2) ease;
+}
+
+/* Over the hero the bar carries no chrome of its own — the hero's own
+ * canvas is the background, and the nav is just type floating on it. */
+.navTransparent {
+    background: transparent;
+    backdrop-filter: none;
+    border-bottom-color: transparent;
+}
+
+.navTransparent .logo,
+.navTransparent .nav {
+    color: var(--cream);
+}
+
+.navTransparent .links a {
+    color: #c9c8c1;
+}
+
+.navTransparent .links a:hover {
+    color: var(--cream);
+}
+
+.navTransparent .active {
+    color: var(--accent-ink) !important;
+}
+
+.navTransparent .bar {
+    background: var(--cream);
+}
+
+.navTransparent .hamburger:hover .bar {
+    background: var(--accent-ink);
 }
 
 .nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.25rem 2rem;
-    max-width: 1280px;
+    gap: var(--spacing-5);
+    height: 76px;
+    padding: 0 30px;
+    max-width: 100%;
     margin: 0 auto;
     width: 100%;
     color: var(--ink-1);
@@ -27,8 +63,8 @@
     gap: 0.75rem;
     font-family: var(--font-sans);
     font-size: var(--fontSize-4);
-    font-weight: 700;
-    color: var(--ink-1);
+    font-weight: 500;
+    color: var(--cream);
     letter-spacing: -0.02em;
     opacity: 1;
     flex-shrink: 0;
@@ -39,7 +75,7 @@
  * Next.js Image emits an <img> with intrinsic sizing — explicit rules here
  * stop any global cascade from collapsing it on mobile. */
 .logo img {
-    height: 40px;
+    height: 34px;
     width: auto;
     max-width: none;
     display: block;
@@ -51,70 +87,95 @@
 
 .links {
     display: flex;
-    gap: var(--spacing-5);
+    gap: 25px;
     align-items: center;
 }
 
 .links a {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    color: var(--ink-2);
-    transition: color 0.2s ease;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 400;
+    text-transform: none;
+    color: #c9c8c1;
+    transition: color var(--duration-1) var(--ease-out);
     text-decoration: none;
-    letter-spacing: 0.08em;
+    letter-spacing: 0;
 }
 
 .links a:hover {
-    color: var(--ink-1);
+    color: var(--cream);
 }
 
 .active {
-    color: var(--accent) !important;
+    color: var(--accent-ink) !important;
 }
 
+/* The one lit control in the bar: near-black body with a 1px masked
+ * gradient border running green → white. Reads as a light source rather
+ * than an outline, which is how it holds attention without a fill. */
 .cta {
-    background: var(--accent);
-    color: var(--ink-1) !important;
-    padding: 0.6rem 1.375rem;
-    border-radius: 6px;
-    font-weight: var(--fontWeight-bold);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 0 22px;
+    background: #0e0e0e;
+    color: var(--cream) !important;
+    border-radius: var(--radius-full);
+    font-weight: 500;
     font-size: 0.875rem;
     text-decoration: none !important;
-    letter-spacing: 0.01em;
-    transition: background 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 0 0 0 rgba(201, 168, 109, 0);
+    letter-spacing: -0.005em;
+    white-space: nowrap;
+    transition: transform var(--duration-2) var(--ease-out), background var(--duration-2) var(--ease-out);
+}
+
+.cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: var(--border-sheen);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
 }
 
 .cta:hover {
-    background: var(--accent-hover);
-    box-shadow: 0 0 20px rgba(201, 168, 109, 0.35);
-    color: var(--ink-1) !important;
+    background: #151515;
+    transform: translateY(-1px);
+    color: var(--cream) !important;
     opacity: 1;
 }
 
 .hamburger {
     display: none;
+    width: 38px;
+    height: 38px;
     flex-direction: column;
-    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
     cursor: pointer;
-    padding: 4px;
+    border: 1px solid var(--border-2);
+    border-radius: var(--radius-2);
     background: none;
-    border: none;
 }
 
 .bar {
-    width: 22px;
-    height: 2px;
-    background: var(--ink-3);
+    width: 15px;
+    height: 1.5px;
+    background: var(--cream);
     border-radius: 2px;
     display: block;
     transition: background 0.2s;
 }
 
 .hamburger:hover .bar {
-    background: var(--ink-1);
+    background: var(--accent-ink);
 }
 
 .mobileMenu {
@@ -122,39 +183,57 @@
     top: 100%;
     left: 0;
     width: 100%;
-    background: var(--surface-1);
+    background: rgba(10, 10, 10, 0.97);
+    backdrop-filter: blur(16px);
     border-top: 1px solid var(--border-1);
     display: flex;
     flex-direction: column;
-    padding: var(--spacing-4) var(--spacing-5);
+    padding: var(--spacing-4) 30px var(--spacing-5);
     gap: 1.125rem;
     z-index: 99;
 }
 
 .mobileMenu a {
-    font-family: var(--font-mono);
-    color: var(--ink-2);
-    font-size: 0.85rem;
-    text-transform: uppercase;
+    font-family: var(--font-sans);
+    color: #c9c8c1;
+    font-size: 0.9375rem;
+    text-transform: none;
     text-decoration: none;
     transition: color 0.15s ease;
-    letter-spacing: 0.06em;
+    letter-spacing: 0;
 }
 
 .mobileMenu a:hover,
 .mobileActive {
-    color: var(--ink-1) !important;
+    color: var(--cream) !important;
 }
 
 .mobileCta {
-    background: var(--accent);
-    color: var(--ink-1) !important;
-    padding: 0.75rem 1.25rem;
-    border-radius: 6px;
-    font-weight: var(--fontWeight-bold);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 46px;
+    background: #0e0e0e;
+    color: var(--cream) !important;
+    border-radius: var(--radius-full);
+    font-weight: 500;
     text-align: center;
     text-decoration: none !important;
     margin-top: var(--spacing-2);
+}
+
+.mobileCta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: var(--border-sheen);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
 }
 
 @media (max-width: 768px) {
@@ -164,5 +243,15 @@
 
     .links {
         display: none;
+    }
+
+    .nav {
+        height: 66px;
+        padding: 0 20px;
+        gap: 14px;
+    }
+
+    .mobileMenu {
+        padding-inline: 20px;
     }
 }

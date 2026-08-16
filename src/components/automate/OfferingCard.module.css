@@ -1,15 +1,22 @@
+/* border-radius must stay in sync with the `radius` prop passed to
+ * FlameHover in CatalogGrid — the shader draws its burning outline from
+ * that number, and a mismatch shows as flame leaking across the corners. */
 .card {
-  background: var(--surface-2);
-  border: 1px solid var(--border-2);
-  border-radius: var(--radius-2);
+  height: 100%;
+  background: var(--surface-3);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-4);
   padding: var(--spacing-4);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-3);
+  transition: border-color var(--duration-2) var(--ease-out),
+    background var(--duration-2) var(--ease-out);
 }
 
 .card:hover {
-  background: var(--surface-3);
+  background: var(--surface-4);
+  border-color: var(--border-2);
 }
 
 .cardLink {
@@ -47,6 +54,16 @@
   font-size: var(--fontSize-5);
   font-weight: var(--fontWeight-bold);
   color: var(--ink-1);
+}
+
+/* An add-on the buyer can decline. Same family as .price so it still reads
+ * as a price, two steps down so it stops competing with the one figure the
+ * decision is actually about. */
+.priceAddon {
+  margin-top: var(--spacing-2);
+  font-size: var(--fontSize-3);
+  font-weight: var(--fontWeight-bold);
+  color: var(--ink-2);
 }
 
 .label {
@@ -95,7 +112,7 @@
   width: 100%;
   padding: var(--spacing-2) var(--spacing-3);
   background: var(--accent);
-  color: var(--surface-1);
+  color: var(--on-accent);
   border: none;
   border-radius: var(--radius-1);
   font-weight: var(--fontWeight-bold);

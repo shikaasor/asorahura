@@ -1,12 +1,12 @@
 .page {
   min-height: 100vh;
-  background: var(--surface-1);
+  background: transparent;
   color: var(--ink-1);
 }
 
 /* Hero */
 .hero {
-  background: var(--surface-1);
+  background: transparent;
   padding: 5rem 2rem 4rem;
   border-bottom: 1px solid var(--border-2);
 }
@@ -18,7 +18,7 @@
 }
 
 .heroTitle {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: var(--fontWeight-bold);
   letter-spacing: -0.03em;
@@ -35,6 +35,147 @@
   margin: 0 auto;
 }
 
+/* ---- Flagship consultation ----
+   The one offer on this page carrying a guarantee, so it gets the full width
+   the tier cards share between them, and the only lime control. */
+.flagshipSection {
+  padding: 2rem 2rem 0;
+}
+
+.flagship {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-4);
+  background: var(--surface-3);
+}
+
+.flagshipBadge {
+  display: inline-block;
+  font-size: var(--fontSize-1);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  color: var(--accent-ink);
+  margin-bottom: var(--spacing-2);
+}
+
+.flagshipTitle {
+  font-size: var(--fontSize-5);
+  font-weight: 500;
+  letter-spacing: -0.028em;
+  color: var(--cream);
+  margin: 0 0 var(--spacing-2);
+}
+
+.flagshipTagline {
+  font-size: var(--fontSize-3);
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin: 0 0 var(--spacing-4);
+  max-width: 52ch;
+}
+
+.flagshipList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.flagshipList li {
+  position: relative;
+  padding-left: 1.4rem;
+  font-size: 0.90625rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.flagshipList li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent-ink);
+}
+
+.flagshipAside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+  padding: var(--spacing-4);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-3);
+  background: var(--surface-1);
+}
+
+.flagshipPrice {
+  font-size: clamp(2.25rem, 4vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.042em;
+  line-height: 1;
+  color: var(--cream);
+}
+
+.flagshipPriceNote {
+  font-size: var(--fontSize-1);
+  color: var(--ink-3);
+}
+
+.flagshipCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 48px;
+  margin-top: var(--spacing-2);
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  transition: background var(--duration-1) var(--ease-out), transform var(--duration-1) var(--ease-out);
+}
+
+.flagshipCta:hover {
+  background: var(--accent-hover);
+  color: var(--on-accent);
+  transform: translateY(-1px);
+  opacity: 1;
+}
+
+.flagshipGuarantee {
+  font-size: var(--fontSize-1);
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin: 0;
+}
+
+.heroSecondary {
+  font-size: var(--fontSize-1);
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--border-2);
+  padding-bottom: 2px;
+}
+
+.heroSecondary:hover {
+  color: var(--cream);
+  border-color: var(--border-3);
+}
+
+@media (max-width: 860px) {
+  .flagship {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Tiers section */
 .tiersSection {
   padding: 4rem 2rem;
@@ -47,8 +188,24 @@
 
 .tiersGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  /* Three since Systems Integration was folded into Enterprise. */
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
+  /* Headroom for the flames on a lit tile. The effect canvas is a sibling
+   * overlay reaching ~120px above the card, so without this the row above
+   * clips it. */
+  padding-top: 40px;
+}
+
+/* Each tile owns a stacking context so a lit card's flames sit above its
+ * neighbours rather than under whichever happens to paint later. */
+.tile {
+  position: relative;
+  isolation: isolate;
+}
+
+.tile:hover {
+  z-index: 2;
 }
 
 @media (max-width: 1024px) {
@@ -65,38 +222,50 @@
 
 /* Card */
 .card {
-  background: var(--surface-2);
+  background: var(--surface-3);
   border: 1px solid var(--border-1);
-  border-radius: var(--radius-2);
-  padding: var(--spacing-5);
+  border-radius: var(--radius-4);
+  padding: var(--spacing-5) var(--spacing-4);
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  /* The grid stretches the cell and the wrappers pass the height down, but
+   * the card itself was sizing to its own content — so a tier with shorter
+   * copy ended up a visibly shorter box. This is also what lets `flex: 1` on
+   * .bullets and `margin-top: auto` on .cardFooter do their job and line the
+   * CTAs up across the row. */
+  height: 100%;
   position: relative;
-  transition: border-color 0.2s ease;
+  transition: border-color var(--duration-2) var(--ease-out), transform var(--duration-2) var(--ease-out);
 }
 
 .card:hover {
-  border-color: var(--accent);
+  border-color: var(--border-2);
+  transform: translateY(-3px);
 }
 
+/* The top tier steps up a surface rather than wearing a lime outline.
+ * A saturated border here competes with the price it is meant to frame,
+ * and at four cards wide it turns the row into a target. */
 .cardEnterprise {
-  border-color: var(--accent);
+  background: var(--surface-4);
+  border-color: var(--border-2);
 }
 
 .enterpriseBadge {
   position: absolute;
   top: -0.75rem;
   right: 1rem;
-  background: var(--accent);
-  color: var(--ink-1);
+  background: var(--surface-4);
+  border: 1px solid var(--border-2);
+  color: var(--accent-ink);
   font-size: 0.7rem;
-  font-weight: 700;
-  font-family: var(--font-mono);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.2rem 0.6rem;
-  border-radius: var(--radius-1);
+  font-weight: 500;
+  font-family: var(--font-sans);
+  letter-spacing: 0.005em;
+  text-transform: none;
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-full);
 }
 
 /* Card header */
@@ -108,7 +277,7 @@
 
 .tierName {
   font-size: var(--fontSize-2);
-  font-weight: 700;
+  font-weight: 500;
   color: var(--ink-1);
   letter-spacing: 0.01em;
 }
@@ -122,7 +291,7 @@
 
 .price {
   font-size: 1.75rem;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--ink-1);
   line-height: 1;
 }
@@ -182,32 +351,46 @@
   color: var(--ink-2);
 }
 
-/* CTA buttons */
+/* CTA buttons — four of them sit side by side in the tier row, so they
+ * are quiet outlines. The page's one filled control is the hero CTA. */
 .cta {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 0.625rem 1rem;
-  border-radius: 6px;
+  min-height: 40px;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-full);
   font-size: 0.875rem;
-  font-weight: var(--fontWeight-bold);
+  font-weight: 500;
   text-decoration: none;
-  transition: opacity 0.15s ease;
-}
-
-.cta:hover {
-  opacity: 0.85;
+  transition: background var(--duration-1) var(--ease-out), border-color var(--duration-1) var(--ease-out);
 }
 
 .ctaDefault {
-  background: var(--accent);
-  color: var(--ink-1);
-  border: 1px solid var(--accent);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--cream);
+  border: 1px solid var(--border-2);
+}
+
+.ctaDefault:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--border-3);
+  color: var(--cream);
+  opacity: 1;
 }
 
 .ctaEnterprise {
   background: var(--accent);
-  color: var(--ink-1);
+  color: var(--on-accent);
   border: 1px solid var(--accent);
+}
+
+.ctaEnterprise:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--on-accent);
+  opacity: 1;
 }
 
 /* Hero CTAs */
@@ -221,19 +404,44 @@
   justify-content: center;
 }
 
+/* Gradient-hairline pill, matching the primary control everywhere else.
+ * A cream fill here read as a system dialog button against the black. */
 .workWithMeBtn {
-  background: var(--ink-1);
-  color: var(--surface-1);
-  padding: 0.875rem 2rem;
-  border-radius: var(--radius-2);
-  font-weight: var(--fontWeight-bold);
-  font-size: 0.9375rem;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  padding: 0 32px;
+  background: #0e0e0e;
+  color: var(--cream);
+  border-radius: var(--radius-full);
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: -0.005em;
   text-decoration: none;
-  transition: opacity 0.15s ease;
+  white-space: nowrap;
+  transition: background var(--duration-2) var(--ease-out), transform var(--duration-2) var(--ease-out);
+}
+
+.workWithMeBtn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--border-sheen);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .workWithMeBtn:hover {
-  opacity: 0.85;
+  background: #151515;
+  transform: translateY(-1px);
+  color: var(--cream);
+  opacity: 1;
 }
 
 /* Testimonials section */

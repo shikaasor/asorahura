@@ -30,9 +30,10 @@ interface Props {
   priceId: string;
   onSuccess?: () => void;
   customData?: Record<string, string>;
+  extraItems?: { priceId: string; quantity: number }[];
 }
 
-export function PaddleCheckout({ priceId, onSuccess, customData }: Props) {
+export function PaddleCheckout({ priceId, onSuccess, customData, extraItems }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -77,7 +78,7 @@ export function PaddleCheckout({ priceId, onSuccess, customData }: Props) {
       }
 
       window.Paddle.Checkout.open({
-        items: [{ priceId, quantity: 1 }],
+        items: [{ priceId, quantity: 1 }, ...(extraItems ?? [])],
         settings: {
           displayMode: "inline",
           frameTarget: "paddle-checkout-frame",

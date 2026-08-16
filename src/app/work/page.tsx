@@ -1,4 +1,6 @@
 import Link from "next/link";
+import MaskText from "@/components/motion/MaskText";
+import Scatter from "@/components/motion/Scatter";
 import styles from "./work.module.css";
 
 const caseStudies = [
@@ -37,7 +39,11 @@ export default function WorkPage() {
     <main className={styles.main}>
       <section className={styles.hero}>
         <div className="container">
-          <h1 className={styles.headline}>Real Problems. Real Systems. Real Results.</h1>
+          <MaskText
+            as="h1"
+            text="Real Problems. Real Systems. Real Results."
+            className={styles.headline}
+          />
           <p className={styles.subhead}>
             Every engagement starts with a specific operational problem. Here&apos;s what gets built when we solve them.
           </p>
@@ -46,40 +52,48 @@ export default function WorkPage() {
 
       <section className={styles.caseStudies}>
         <div className="container">
-          {caseStudies.map((cs, i) => (
-            <article key={i} className={styles.caseStudyCard}>
-              <h2 className={styles.caseHeadline}>{cs.headline}</h2>
-              <div className={styles.caseBody}>
-                <div className={styles.caseSection}>
-                  <h3 className={styles.caseSectionLabel}>Client Context</h3>
-                  <p>{cs.clientContext}</p>
+          {/* tilt 0: these are full-width rows, and a rotated one shears
+              against the column edge rather than reading as a scattered card. */}
+          <Scatter tilt={0}>
+            {caseStudies.map((cs, i) => (
+              <article key={i} className={styles.caseStudyCard}>
+                <h2 className={styles.caseHeadline}>{cs.headline}</h2>
+                <div className={styles.caseBody}>
+                  <div className={styles.caseSection}>
+                    <h3 className={styles.caseSectionLabel}>Client Context</h3>
+                    <p>{cs.clientContext}</p>
+                  </div>
+                  <div className={styles.caseSection}>
+                    <h3 className={styles.caseSectionLabel}>What We Built</h3>
+                    <p>{cs.whatWeBuilt}</p>
+                  </div>
+                  <div className={styles.caseSection}>
+                    <h3 className={styles.caseSectionLabel}>Business Impact</h3>
+                    <p>{cs.businessImpact}</p>
+                  </div>
+                  <div className={styles.caseStack}>
+                    <span className={styles.caseStackLabel}>Stack: </span>
+                    <span>{cs.stack}</span>
+                  </div>
                 </div>
-                <div className={styles.caseSection}>
-                  <h3 className={styles.caseSectionLabel}>What We Built</h3>
-                  <p>{cs.whatWeBuilt}</p>
-                </div>
-                <div className={styles.caseSection}>
-                  <h3 className={styles.caseSectionLabel}>Business Impact</h3>
-                  <p>{cs.businessImpact}</p>
-                </div>
-                <div className={styles.caseStack}>
-                  <span className={styles.caseStackLabel}>Stack: </span>
-                  <span>{cs.stack}</span>
-                </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            ))}
+          </Scatter>
         </div>
       </section>
 
       <section className={styles.bottomCta}>
         <div className="container">
-          <h2 className={styles.bottomCtaHeadline}>See how I can do this for your business</h2>
+          <MaskText
+            as="h2"
+            text="See how I can do this for your business"
+            className={styles.bottomCtaHeadline}
+          />
           <p className={styles.bottomCtaSub}>Describe your operational problem. I&apos;ll tell you what can be built, how long, and what it costs.</p>
           <Link href="/engage" className={styles.bottomCtaBtn}>
             Work With Me →
           </Link>
-          <Link href="/assessment" style={{ color: '#5A6B84', fontSize: '0.875rem', textDecoration: 'underline', marginTop: '0.75rem', display: 'block', textAlign: 'center' }}>
+          <Link href="/assessment" style={{ color: 'var(--ink-2)', fontSize: '0.875rem', textDecoration: 'underline', marginTop: '0.75rem', display: 'block', textAlign: 'center' }}>
             Or start the AI Opportunity Discovery first
           </Link>
         </div>

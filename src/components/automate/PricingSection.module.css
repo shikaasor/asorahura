@@ -1,5 +1,5 @@
 .section {
-  background: var(--surface-1);
+  background: transparent;
   padding: var(--spacing-6) var(--spacing-4);
 }
 
@@ -45,16 +45,6 @@
   border-radius: var(--radius-1);
 }
 
-.badgeSuccess {
-  align-self: flex-start;
-  background: var(--success);
-  color: var(--surface-1);
-  font-size: var(--fontSize-1);
-  font-weight: var(--fontWeight-bold);
-  padding: var(--spacing-1) var(--spacing-2);
-  border-radius: var(--radius-1);
-}
-
 .cardTitle {
   font-size: var(--fontSize-4);
   font-weight: var(--fontWeight-bold);
@@ -63,12 +53,6 @@
 
 .price {
   font-size: var(--fontSize-6);
-  font-weight: var(--fontWeight-bold);
-  color: var(--ink-1);
-}
-
-.priceSmall {
-  font-size: var(--fontSize-5);
   font-weight: var(--fontWeight-bold);
   color: var(--ink-1);
 }
@@ -98,7 +82,7 @@
 .cta {
   margin-top: auto;
   background: var(--accent);
-  color: var(--surface-1);
+  color: var(--on-accent);
   font-size: var(--fontSize-2);
   font-weight: var(--fontWeight-bold);
   padding: var(--spacing-2) var(--spacing-3);
@@ -112,22 +96,13 @@
   background: var(--accent-hover);
 }
 
-.ctaOutlined {
-  margin-top: auto;
-  background: transparent;
-  color: var(--accent);
-  font-size: var(--fontSize-2);
-  font-weight: var(--fontWeight-bold);
-  padding: var(--spacing-2) var(--spacing-3);
-  border-radius: var(--radius-1);
-  border: 1.5px solid var(--accent);
+.carePlanToggle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--fontSize-1);
+  color: var(--ink-2);
   cursor: pointer;
-  min-height: 44px;
-}
-
-.ctaOutlined:hover {
-  background: var(--accent);
-  color: var(--surface-1);
 }
 
 .inlineForm {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import MaskText from "@/components/motion/MaskText";
 import styles from "./terms.module.css";
 
 export const metadata: Metadata = {
@@ -11,7 +12,7 @@ export default function TermsPage() {
     <main className={styles.main}>
       <div className="container">
         <header className={styles.header}>
-          <h1 className={styles.title}>Terms of Service</h1>
+          <MaskText as="h1" text="Terms of Service" className={styles.title} />
           <p className={styles.meta}>Last updated: August 12, 2026</p>
         </header>
 

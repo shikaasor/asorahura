@@ -1,28 +1,13 @@
 .section {
-  padding: 7rem 0;
-  background: var(--surface-2);
+  padding: clamp(5rem, 9vw, 9.375rem) 0;
+  background: transparent;
   position: relative;
-  overflow: hidden;
-}
-
-/* Large decorative quote mark background */
-.section::before {
-  content: "\201C";
-  position: absolute;
-  top: -2rem;
-  left: 3%;
-  font-family: var(--font-serif);
-  font-size: 30rem;
-  line-height: 1;
-  color: rgba(201, 160, 96, 0.04);
-  pointer-events: none;
-  user-select: none;
 }
 
 .container {
-  max-width: 1280px;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 clamp(1.25rem, 4vw, 1.75rem);
   width: 100%;
   position: relative;
   z-index: 1;
@@ -30,130 +15,140 @@
 
 .sectionLabel {
   text-align: center;
-  font-size: var(--fontSize-1);
-  font-weight: var(--fontWeight-bold);
-  font-family: var(--font-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--accent);
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-family: var(--font-sans);
+  text-transform: none;
+  letter-spacing: var(--tracking-label);
+  color: var(--accent-ink);
   margin-bottom: var(--spacing-3);
 }
 
 .heading {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--fontSize-6);
-  font-weight: 700;
+  font-weight: 500;
   text-align: center;
-  color: var(--ink-1);
-  margin-bottom: var(--spacing-6);
-  letter-spacing: -0.01em;
+  color: var(--cream);
+  margin-bottom: 64px;
+  letter-spacing: -0.032em;
 }
 
+/* Quotes as stacked rows, not cards. A testimonial is a statement, and
+ * a hairline between statements is all the separation it needs — boxing
+ * each one adds three borders and a shadow to say the same thing. */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-4);
+  display: flex;
+  flex-direction: column;
 }
 
 .card {
-  background: var(--surface-3);
-  border-radius: 1rem;
-  padding: var(--spacing-6);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: var(--spacing-5);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--border-1);
+  border-radius: 0;
+  padding: 44px 0;
   margin: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--spacing-4);
   position: relative;
-  transition: box-shadow 0.25s ease, border-color 0.25s ease;
   cursor: default;
 }
 
-.card:hover {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-  border-color: rgba(201, 160, 96, 0.15);
+.card:first-child {
+  padding-top: 0;
 }
 
-/* Gold opening quote mark per card */
-.card::before {
-  content: "\201C";
-  position: absolute;
-  top: 1.5rem;
-  right: 2rem;
-  font-family: var(--font-serif);
-  font-size: 4rem;
-  line-height: 1;
-  color: rgba(201, 160, 96, 0.15);
-  pointer-events: none;
+.card:last-child {
+  border-bottom: 0;
 }
 
+/* Sized for the quotes this site actually has. The reference treatment
+ * puts these at display size on a ~25ch measure, which works for a
+ * one-line pull quote; these run 60–80 words, and at that length display
+ * size becomes a wall. Stepped down to a lead-paragraph size on a proper
+ * reading measure — the hairline rows still carry the structure. */
 .quote {
   font-family: var(--font-sans);
   font-style: normal;
-  font-size: var(--fontSize-2);
-  line-height: 1.8;
-  color: var(--ink-2);
-  flex: 1;
+  font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+  line-height: 1.5;
+  letter-spacing: -0.018em;
+  font-weight: 400;
+  color: var(--cream);
+  max-width: 68ch;
 }
 
 .attribution {
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-1);
-  padding-top: var(--spacing-4);
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  align-items: center;
+  gap: var(--spacing-3);
+  padding-top: 0;
+  border-top: 0;
+  font-size: var(--fontSize-1);
+  white-space: nowrap;
 }
 
 .headshot {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: var(--spacing-2);
+  margin-bottom: 0;
+  filter: grayscale(1);
+  opacity: 0.85;
 }
 
 .attribution strong {
-  font-size: var(--fontSize-2);
-  font-weight: 700;
-  color: var(--ink-1);
+  font-size: var(--fontSize-1);
+  font-weight: 500;
+  color: #e2e0d6;
 }
 
 .role {
   font-size: var(--fontSize-1);
-  color: var(--accent);
-  letter-spacing: 0.02em;
+  font-weight: 400;
+  color: var(--ink-3);
+  letter-spacing: 0;
 }
 
 .enterpriseNote {
   text-align: center;
-  margin-top: var(--spacing-5);
+  margin-top: var(--spacing-6);
   color: var(--ink-2);
-  font-size: var(--fontSize-2);
-  font-weight: var(--fontWeight-bold);
+  font-size: var(--fontSize-1);
+  font-weight: 400;
 }
 
 .enterpriseNote a {
   color: var(--ink-2);
-  text-decoration: underline;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-2);
+  padding-bottom: 2px;
 }
 
 .enterpriseNote a:hover {
-  color: var(--accent);
+  color: var(--cream);
+  border-color: var(--border-3);
 }
 
-@media (max-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 760px) {
+  .card {
+    padding: 34px 0;
   }
-}
 
-@media (max-width: 640px) {
-  .grid {
-    grid-template-columns: 1fr;
+  .quote {
+    max-width: none;
+  }
+
+  .attribution {
+    white-space: normal;
+    flex-wrap: wrap;
   }
 
   .heading {
     font-size: var(--fontSize-5);
+    margin-bottom: var(--spacing-6);
   }
 }

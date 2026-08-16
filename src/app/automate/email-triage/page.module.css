@@ -1,5 +1,5 @@
 .hero {
-  background: var(--surface-1);
+  background: transparent;
   padding: var(--spacing-5) var(--spacing-4);
 }
 
@@ -30,7 +30,7 @@
   margin-top: var(--spacing-2);
   padding: var(--spacing-2) var(--spacing-4);
   background: var(--accent);
-  color: var(--surface-1);
+  color: var(--on-accent);
   border-radius: var(--radius-1);
   font-weight: var(--fontWeight-bold);
   text-decoration: none;
@@ -45,7 +45,7 @@
 
 .faqSection {
   padding: var(--spacing-6) var(--spacing-4);
-  background: var(--surface-1);
+  background: transparent;
 }
 
 .faqContainer {

@@ -2,12 +2,16 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import { createVisibleRaf } from "@/lib/visibleRaf";
 import styles from "./WorkflowStory.module.css";
 
 const RAMP = " .·:+*#%@";
 const GRANULARITY = 7;
-const INK: [number, number, number] = [31, 27, 23];
-const GOLD: [number, number, number] = [161, 133, 74];
+// The ASCII field is drawn on the near-black canvas, so the resting glyphs
+// are a dim cream and the packet highlight is the accent green. (These were
+// dark ink on gold, which only read against the old light background.)
+const FIELD: [number, number, number] = [233, 231, 221];
+const PACKET: [number, number, number] = [69, 214, 127];
 
 type Point = [number, number];
 
@@ -50,6 +54,19 @@ interface Packet {
   speed: number;
 }
 
+// Two beats, not four.
+//
+// This section used to run four states across 340vh — 35% of the entire
+// homepage for about sixty words, sitting between the hero and any mention
+// of what's actually for sale. The two states that survived are the two
+// that say something no other section says. The two that were cut ("the
+// unnecessary steps disappear", "the work gets quieter") were restating
+// points that PainSection and the lead-magnet strip already make in a
+// fraction of the space.
+//
+// The graph morph still runs chaos → resolved across the whole section, and
+// the redundant edges still fade out past 60% — which now lands under the
+// "map it first" beat rather than a separate one.
 const STAGES = [
   {
     label: "STATE 01: CHAOS",
@@ -60,16 +77,6 @@ const STAGES = [
     label: "STATE 02: CONNECTION",
     heading: "We map the workflow before we automate it.",
     body: "Automating a broken process only makes the broken process faster.",
-  },
-  {
-    label: "STATE 03: AUTOMATION",
-    heading: "Then the unnecessary steps disappear.",
-    body: "Connect the tools you already use. Remove repetitive handoffs. Automate predictable decisions. Keep judgment calls in your hands.",
-  },
-  {
-    label: "STATE 04: LEVERAGE",
-    heading: "The work gets quieter.",
-    body: "You get your time back.",
     cta: true,
   },
 ];
@@ -254,9 +261,11 @@ export default function WorkflowStory() {
             ch = "%";
           }
 
-          const usesGold = packetStrength > 0.1;
-          const col = usesGold ? GOLD : INK;
-          const drawAlpha = usesGold ? Math.min(1, 0.55 + packetStrength) : 0.25 + density * 0.55;
+          const lit = packetStrength > 0.1;
+          const col = lit ? PACKET : FIELD;
+          // The resting field is held well down so the headline sitting on
+          // top of it stays the brightest thing in the section.
+          const drawAlpha = lit ? Math.min(0.72, 0.3 + packetStrength) : 0.08 + density * 0.22;
 
           ctx!.globalAlpha = drawAlpha;
           ctx!.fillStyle = `rgb(${col[0]},${col[1]},${col[2]})`;
@@ -264,13 +273,6 @@ export default function WorkflowStory() {
         }
       }
       ctx!.globalAlpha = 1;
-    }
-
-    let rafId = 0;
-    function frame() {
-      renderScene(progress);
-      composite();
-      if (!reduceMotion) rafId = requestAnimationFrame(frame);
     }
 
     if (reduceMotion) {
@@ -289,9 +291,17 @@ export default function WorkflowStory() {
       };
     }
 
-    rafId = requestAnimationFrame(frame);
+    // Gated on the section being on screen. composite() reads the whole
+    // scene buffer back with getImageData every frame, which is the single
+    // most expensive operation on the page — it has no business running
+    // while the visitor is three sections further down.
+    const stop = createVisibleRaf(wrap, () => {
+      renderScene(progress);
+      composite();
+    });
+
     return () => {
-      cancelAnimationFrame(rafId);
+      stop();
       window.removeEventListener("resize", resize);
       window.removeEventListener("scroll", updateProgress);
     };

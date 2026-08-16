@@ -1,6 +1,6 @@
 .main {
   min-height: 100vh;
-  background: var(--surface-1);
+  background: transparent;
   padding-top: 6rem;
   padding-bottom: 6rem;
 }

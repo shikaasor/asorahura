@@ -32,7 +32,9 @@ export default function OfferingCard({ offering }: OfferingCardProps) {
         )}
         {offering.monthlyPrice !== null && (
           <>
-            <p className={styles.price}>{offering.monthlyPrice}</p>
+            <p className={offering.monthlyOptional ? styles.priceAddon : styles.price}>
+              {offering.monthlyPrice}
+            </p>
             <p className={styles.label}>{offering.monthlyLabel}</p>
           </>
         )}

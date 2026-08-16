@@ -5,32 +5,39 @@ import { getAutomateTierById, type AutomateTierId } from "@/lib/checkout";
 import { PaddleCheckout } from "@/components/checkout/PaddleCheckout";
 import { BuildMapForm } from "./BuildMapForm";
 import { trackAnalyticsEvent } from "@/lib/analytics";
+import Scatter from "@/components/motion/Scatter";
 import styles from "./PricingSection.module.css";
 
-type PurchasableId = Extract<AutomateTierId, "dfy" | "dwy" | "care-plan">;
+type PurchasableId = Extract<AutomateTierId, "dfy" | "dwy">;
 
 export default function PricingSection() {
   const [showBuildMapForm, setShowBuildMapForm] = useState(false);
   const [checkoutOpenFor, setCheckoutOpenFor] = useState<PurchasableId | null>(null);
+  const [addCarePlan, setAddCarePlan] = useState(false);
 
   const dfy = getAutomateTierById("dfy");
   const dwy = getAutomateTierById("dwy");
   const carePlan = getAutomateTierById("care-plan");
 
   function openCheckout(tierId: PurchasableId) {
-    trackAnalyticsEvent("Checkout Opened", { product_type: tierId });
+    trackAnalyticsEvent("Checkout Opened", { product_type: tierId, care_plan: addCarePlan ? "yes" : "no" });
     setCheckoutOpenFor(tierId);
   }
+
+  const carePlanExtraItems = addCarePlan
+    ? [{ priceId: carePlan.paddlePriceId, quantity: 1 }]
+    : undefined;
 
   return (
     <section id="pricing" className={styles.section}>
       <div className={styles.container}>
         <p className={styles.headlineFact}>
-          $15.99/mo all-in ($6 droplet + $9.99 care), against ManyChat&apos;s cheapest 250-contact
-          tier at $39/mo
+          $500 one-time + $6/mo, unlimited contacts, forever. ManyChat charges by contact volume
+          and climbs from $14/mo at 250 contacts past $139/mo at 25,000 &mdash; the math favors
+          you the moment you're past 2,500 new contacts a month.
         </p>
 
-        <div className={styles.grid}>
+        <Scatter className={styles.grid}>
           {/* Build Map */}
           <div className={styles.card}>
             <h3 className={styles.cardTitle}>Build Map</h3>
@@ -68,14 +75,26 @@ export default function PricingSection() {
               <li>We handle all technical setup</li>
               <li>Live and tested on your account</li>
               <li>Training call included</li>
-              <li>Care Plan recommended ({carePlan.price})</li>
             </ul>
+            <label className={styles.carePlanToggle}>
+              <input
+                type="checkbox"
+                checked={addCarePlan}
+                onChange={(e) => setAddCarePlan(e.target.checked)}
+              />
+              Add Care Plan ({carePlan.price}) — {carePlan.description}
+            </label>
             <button type="button" className={styles.cta} onClick={() => openCheckout("dfy")}>
               Purchase DFY
             </button>
             {checkoutOpenFor === "dfy" && (
               <div className={styles.inlineForm}>
-                <PaddleCheckout priceId={dfy.paddlePriceId} customData={{ product: "dfy" }} />
+                <PaddleCheckout
+                  key={`dfy-${addCarePlan}`}
+                  priceId={dfy.paddlePriceId}
+                  customData={{ product: "dfy" }}
+                  extraItems={carePlanExtraItems}
+                />
               </div>
             )}
           </div>
@@ -92,44 +111,29 @@ export default function PricingSection() {
               <li>Full walkthrough included</li>
               <li>Self-maintained after launch</li>
             </ul>
+            <label className={styles.carePlanToggle}>
+              <input
+                type="checkbox"
+                checked={addCarePlan}
+                onChange={(e) => setAddCarePlan(e.target.checked)}
+              />
+              Add Care Plan ({carePlan.price}) — {carePlan.description}
+            </label>
             <button type="button" className={styles.cta} onClick={() => openCheckout("dwy")}>
               Purchase DWY
             </button>
             {checkoutOpenFor === "dwy" && (
               <div className={styles.inlineForm}>
-                <PaddleCheckout priceId={dwy.paddlePriceId} customData={{ product: "dwy" }} />
-              </div>
-            )}
-          </div>
-
-          {/* Care Plan */}
-          <div className={styles.card}>
-            <span className={styles.badgeSuccess}>ADD-ON</span>
-            <h3 className={styles.cardTitle}>Care Plan (optional)</h3>
-            <p className={styles.priceSmall}>{carePlan.price}</p>
-            <p className={styles.description}>{carePlan.description}</p>
-            <ul className={styles.featureList}>
-              <li>Meta API token refreshes</li>
-              <li>99.5% uptime SLA</li>
-              <li>Monthly review &amp; optimization</li>
-            </ul>
-            <button
-              type="button"
-              className={styles.ctaOutlined}
-              onClick={() => openCheckout("care-plan")}
-            >
-              Subscribe Now
-            </button>
-            {checkoutOpenFor === "care-plan" && (
-              <div className={styles.inlineForm}>
                 <PaddleCheckout
-                  priceId={carePlan.paddlePriceId}
-                  customData={{ product: "care-plan" }}
+                  key={`dwy-${addCarePlan}`}
+                  priceId={dwy.paddlePriceId}
+                  customData={{ product: "dwy" }}
+                  extraItems={carePlanExtraItems}
                 />
               </div>
             )}
           </div>
-        </div>
+        </Scatter>
       </div>
     </section>
   );

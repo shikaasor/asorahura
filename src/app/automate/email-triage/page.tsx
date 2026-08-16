@@ -5,6 +5,7 @@ import EmailTriagePricingSection from "@/components/automate/EmailTriagePricingS
 import { getOfferingBySlug } from "@/lib/checkout";
 import { LandEventTracker } from "../LandEventTracker";
 import EmailTriageFAQ from "./EmailTriageFAQ";
+import MaskText from "@/components/motion/MaskText";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -28,7 +29,7 @@ export default function EmailTriagePage() {
 
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <h1 className={styles.heroHeadline}>{offering.heroHeadline}</h1>
+          <MaskText as="h1" text={offering.heroHeadline} className={styles.heroHeadline} />
           <p className={styles.heroSubheading}>{offering.heroSubheading}</p>
           <a href="#pricing" className={styles.primaryBtn}>
             Get Yours Now

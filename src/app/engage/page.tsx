@@ -3,6 +3,7 @@
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { submitInquiry } from "./actions";
+import MaskText from "@/components/motion/MaskText";
 import styles from "./engage.module.css";
 function EngageFormInner() {
     const score = useSearchParams().get("score");
@@ -33,7 +34,11 @@ function EngageFormInner() {
                 <section className={styles.content}>
                     <div className={styles.header}>
                         <p className={styles.eyebrow}>Enterprise Discovery Brief</p>
-                        <h1 className={styles.headline}>Discuss Your Enterprise Challenges</h1>
+                        <MaskText
+                            as="h1"
+                            text="Discuss Your Enterprise Challenges"
+                            className={styles.headline}
+                        />
                         <p className={styles.subhead}>
                             Describe what&apos;s slowing your operations down. I&apos;ll tell you what can be built, how long, and what it costs.
                         </p>
@@ -72,10 +77,10 @@ function EngageFormInner() {
                                     <label htmlFor="serviceInterest">Which service are you interested in?</label>
                                     <select id="serviceInterest" name="serviceInterest" defaultValue={tierParam ?? ""}>
                                         <option value="">Not sure yet</option>
-                                        <option value="starter">Starter Automation (~$5,000)</option>
-                                        <option value="operational">Operational Automation ($5k–$15k)</option>
-                                        <option value="integration">Systems Integration ($15k–$30k)</option>
-                                        <option value="enterprise">Enterprise / Complex Build ($30k+)</option>
+                                        <option value="consultation">Consultation Call ($200)</option>
+                                        <option value="starter">Starter Automation (~$1,000)</option>
+                                        <option value="operational">Operational Automation ($2k–$5k)</option>
+                                        <option value="enterprise">Enterprise / Complex Build ($5k+)</option>
                                     </select>
                                 </div>
                                 <div className={styles.inputGroup}>
@@ -123,10 +128,10 @@ function EngageFormInner() {
                                     <label htmlFor="budget">Budget Alignment</label>
                                     <select id="budget" name="budget" required>
                                         <option value="">Select budget range...</option>
-                                        <option value="under-5k">Under $5k</option>
-                                        <option value="5k-15k">$5k–$15k</option>
-                                        <option value="15k-30k">$15k–$30k</option>
-                                        <option value="30k-plus">$30k+</option>
+                                        <option value="under-1k">Under $1k</option>
+                                        <option value="1k-2k">$1k–$2k</option>
+                                        <option value="2k-5k">$2k–$5k</option>
+                                        <option value="5k-plus">$5k+</option>
                                     </select>
                                 </div>
                                 <div className={styles.inputGroup}>

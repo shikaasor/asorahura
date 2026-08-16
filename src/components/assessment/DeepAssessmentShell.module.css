@@ -7,7 +7,7 @@
 }
 
 .introTitle {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--fontSize-6);
   font-weight: var(--fontWeight-bold);
   color: var(--ink-1);
@@ -50,7 +50,7 @@
   height: 1.5rem;
   border-radius: var(--radius-1);
   background: var(--accent);
-  color: var(--surface-1);
+  color: var(--on-accent);
   font-size: var(--fontSize-1);
   font-weight: var(--fontWeight-bold);
   flex-shrink: 0;
@@ -72,7 +72,7 @@
 .startBtn {
   display: inline-block;
   background: var(--accent);
-  color: var(--surface-1);
+  color: var(--on-accent);
   font-size: var(--fontSize-2);
   font-weight: var(--fontWeight-bold);
   padding: var(--spacing-3) var(--spacing-6);
@@ -110,9 +110,9 @@
 .dimHeaderLabel {
   font-size: var(--fontSize-1);
   font-weight: var(--fontWeight-bold);
-  font-family: var(--font-mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--font-sans);
+  letter-spacing: 0.005em;
+  text-transform: none;
   color: var(--ink-2);
 }
 
@@ -179,7 +179,7 @@
 .ratingOption.selected {
   border-color: var(--accent);
   background: var(--accent);
-  color: var(--surface-1);
+  color: var(--on-accent);
 }
 
 .ratingBadge {

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import MaskText from "@/components/motion/MaskText";
 import styles from "./FAQSection.module.css";
 
 const faqs = [
@@ -32,7 +33,7 @@ export default function FAQSection() {
   return (
     <section id="faq" className={styles.section}>
       <div className={styles.container}>
-        <h2 className={styles.heading}>FAQ</h2>
+        <MaskText as="h2" text="FAQ" className={styles.heading} />
         <ul className={styles.list}>
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;

@@ -1,11 +1,11 @@
 .page {
   min-height: 100vh;
-  background: var(--surface-1);
+  background: transparent;
   overflow-x: hidden;
 }
 
 .hero {
-  background: var(--surface-1);
+  background: transparent;
   color: var(--ink-1);
   padding: var(--spacing-6) var(--spacing-4) var(--spacing-5);
 }

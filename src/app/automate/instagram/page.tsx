@@ -6,6 +6,7 @@ import PricingSection from "@/components/automate/PricingSection";
 import PhoneMockup from "@/components/automate/PhoneMockup";
 import FAQSection from "@/components/automate/FAQSection";
 import { LandEventTracker } from "../LandEventTracker";
+import MaskText from "@/components/motion/MaskText";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -27,7 +28,7 @@ export default function AutomateInstagramPage() {
 
       <section className={styles.closing}>
         <div className={styles.closingContainer}>
-          <h2 className={styles.closingHeading}>This is the first rung</h2>
+          <MaskText as="h2" text="This is the first rung" className={styles.closingHeading} />
           <p className={styles.closingBody}>
             Get your Instagram automation live, start converting comments into leads, and you own
             the whole system, no per-contact fees, ever. We&apos;re building the next rung on the

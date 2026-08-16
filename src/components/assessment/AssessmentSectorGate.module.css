@@ -8,9 +8,9 @@
 }
 
 .heading {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--fontSize-6);
-  font-weight: 700;
+  font-weight: 500;
   color: var(--ink-1);
   line-height: 1.2;
 }
@@ -54,14 +54,14 @@
 
 .choiceHeading {
   font-size: var(--fontSize-4);
-  font-weight: 700;
+  font-weight: 500;
   color: var(--ink-1);
 }
 
 .choiceExamples {
   font-size: var(--fontSize-2);
   color: var(--ink-2);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .choiceDescription {
@@ -72,7 +72,7 @@
 .choiceFooter {
   margin-top: var(--spacing-2);
   font-size: var(--fontSize-2);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--accent);
 }
 

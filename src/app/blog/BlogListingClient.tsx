@@ -6,6 +6,8 @@ import { useState } from 'react';
 import CategoryFilter from '@/components/blog/CategoryFilter';
 import EmailCaptureWidget from '@/components/blog/EmailCaptureWidget';
 import type { BlogPost } from '@/lib/blog';
+import MaskText from '@/components/motion/MaskText';
+import Scatter from '@/components/motion/Scatter';
 import styles from './page.module.css';
 
 export default function BlogListingClient({ posts }: { posts: BlogPost[] }) {
@@ -18,7 +20,7 @@ export default function BlogListingClient({ posts }: { posts: BlogPost[] }) {
       <section className={styles.hero}>
         <div className="container">
           <p className={styles.eyebrow}>Insights</p>
-          <h1 className={styles.headline}>Case Studies & AI Insights.</h1>
+          <MaskText as="h1" text="Case Studies & AI Insights." className={styles.headline} />
           <p className={styles.subhead}>
             Real projects. Real architectures. Real outcomes. Engineering decisions behind production AI systems.
           </p>
@@ -31,7 +33,7 @@ export default function BlogListingClient({ posts }: { posts: BlogPost[] }) {
           <div style={{ marginBottom: '3rem' }}>
             <EmailCaptureWidget />
           </div>
-          <div className={styles.grid}>
+          <Scatter className={styles.grid}>
             {filtered.map((post) => (
               <Link key={post.slug} href={`/blog/${post.slug}`} className={styles.card}>
                 <div className={styles.cardImage}>
@@ -55,7 +57,7 @@ export default function BlogListingClient({ posts }: { posts: BlogPost[] }) {
                 </div>
               </Link>
             ))}
-          </div>
+          </Scatter>
         </div>
       </section>
 

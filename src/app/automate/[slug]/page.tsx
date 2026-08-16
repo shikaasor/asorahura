@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getOfferingBySlug, getWaitlistOfferingSlugs, type OfferingMetadata } from "@/lib/checkout";
 import Breadcrumb from "@/components/automate/Breadcrumb";
 import OfferingDetailBody from "./OfferingDetailBody";
+import MaskText from "@/components/motion/MaskText";
 import styles from "./page.module.css";
 
 export const dynamicParams = false;
@@ -42,7 +43,7 @@ export default async function OfferingPage({
         <Breadcrumb offeringName={offering.name} />
 
         <header className={styles.hero}>
-          <h1 className={styles.heroHeadline}>{offering.heroHeadline}</h1>
+          <MaskText as="h1" text={offering.heroHeadline} className={styles.heroHeadline} />
           <p className={styles.heroSubheading}>{offering.heroSubheading}</p>
         </header>
 

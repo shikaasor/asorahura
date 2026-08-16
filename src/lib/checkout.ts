@@ -1,4 +1,4 @@
-export type TierId = "discovery" | "strategy";
+export type TierId = "consultation";
 
 export interface Tier {
   id: TierId;
@@ -14,36 +14,25 @@ export interface Tier {
 
 export const tiers: Tier[] = [
   {
-    id: "discovery",
-    name: "Discovery Call",
-    tagline: "Understand exactly where AI can save you time, before spending a dollar on build.",
-    price: "$50/hr",
-    priceDetail: "Billed hourly",
+    id: "consultation",
+    name: "Consultation Call",
+    tagline:
+      "One session to find an automation that saves you at least 10 hours a week — or your money back.",
+    // NOTE: this string is display only. The amount actually charged comes
+    // from the Paddle price behind paddlePriceId, so changing it here does
+    // not change what a customer pays. Both must be updated together.
+    price: "$200",
+    priceDetail: "Flat fee, per call",
     deliverables: [
+      "A named automation opportunity worth 10+ hours a week, guaranteed or refunded",
       "Full AI Opportunity Discovery across 5 operational dimensions",
       "Personalised automation roadmap: top 5 opportunities ranked by impact",
       "Tool stack review and integration recommendations",
       "Written report with priority-ordered action plan",
     ],
     timeline: "5–7 business days",
-    support: "1 × 60-min strategy call + async Q&A",
-    paddlePriceId: process.env.NEXT_PUBLIC_PADDLE_PRICE_ID_DISCOVERY_CALL || "",
-  },
-  {
-    id: "strategy",
-    name: "Strategy Session",
-    tagline: "A working session to map your AI architecture and define the exact build scope.",
-    price: "$75/hr",
-    priceDetail: "Billed hourly",
-    deliverables: [
-      "Full AI Opportunity Discovery included",
-      "Deep-dive into your operational architecture",
-      "Defined build scope with technical specification",
-      "Prioritised implementation roadmap with effort estimates",
-    ],
-    timeline: "1–2 weeks",
-    support: "2 × 90-min working sessions + async review",
-    paddlePriceId: process.env.NEXT_PUBLIC_PADDLE_PRICE_ID_STRATEGY_SESSION || "",
+    support: "1 × 60-min consultation call + async Q&A",
+    paddlePriceId: process.env.NEXT_PUBLIC_PADDLE_PRICE_ID_CONSULTATION || "",
   },
 ];
 
@@ -182,6 +171,13 @@ export interface OfferingMetadata {
   setupLabel: string | null;
   monthlyPrice: string | null;
   monthlyLabel: string | null;
+  /**
+   * True when the monthly price is an add-on the buyer can decline, not part
+   * of the purchase. Rendered smaller than the setup price so the card does
+   * not scan as a subscription — a recurring figure at headline size next to
+   * the real price is the strongest hesitation trigger on these cards.
+   */
+  monthlyOptional?: boolean;
   hasLiveCheckout: boolean;
   ctaLabel: string;
   ctaHref: string;
@@ -276,26 +272,32 @@ export const offerings: Record<OfferingSlug, OfferingMetadata> = {
   },
   "writing-constitution": {
     id: "writing-constitution",
-    name: "Writing Constitution + Content",
-    tagline: "The highest margin",
+    // "+ Content" made this read as a bundle you had to buy in full. The
+    // document is the product; the writing service is an optional add-on.
+    name: "Writing Voice Constitution",
+    // Was "The highest margin" — that is the seller's economics, on a card a
+    // buyer reads. Replaced with what they get.
+    tagline: "Content that actually sounds like you",
     description:
-      "Build a writing constitution (capture your voice), then run a content subscription on top. Highest margin per offering.",
-    heroHeadline: "Writing Constitution + Content",
+      "We document exactly how you write — your tone, your structure, the phrases you'd never use. Then you, a writer, or AI can produce posts in your voice instead of guessing at it.",
+    heroHeadline: "Writing Voice Constitution",
     heroSubheading:
-      "The deliverable is the constitution: an 8-module document that captures your voice, not a promise that we'll write your posts for you.",
+      "An 8-module document that pins down how you write, so anything produced from it sounds like you. Having us write the posts is a separate, optional step.",
     setupPrice: "$600",
-    setupLabel: "Constitution, one-off",
+    setupLabel: "One-off. The document is yours to keep.",
     monthlyPrice: "$400/mo",
-    monthlyLabel: "Content subscription, 3x/week each on LinkedIn, Substack & X",
+    monthlyLabel: "Optional add-on, only if you want us writing: 3 posts/week each on LinkedIn, Substack & X",
+    monthlyOptional: true,
     hasLiveCheckout: false,
     ctaLabel: "Join Waitlist",
     ctaHref: "/engage",
     scopeConstraint:
-      "This is not a 'we post for you' service. The constitution, an 8-module document capturing your voice, is the paid, differentiated deliverable. The content subscription runs on top of it once it exists.",
+      "This is not a 'we post for you' service. What you buy is the document that defines your voice. Having us write to it afterwards is optional, and only makes sense once the document exists.",
     included: [
-      "8-module voice-capture document",
-      "Constitution stands alone as the paid deliverable",
-      "Optional: 3 posts/week each on LinkedIn, Substack & X",
+      "An 8-module document capturing your tone, structure, and phrasing",
+      "Use it yourself, hand it to a writer, or feed it to AI",
+      "Yours to keep: no lock-in, no per-post fees",
+      "Optional: we write 3 posts/week each for LinkedIn, Substack & X",
     ],
     turnaround: null,
     diyNote: null,

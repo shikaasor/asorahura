@@ -1,16 +1,16 @@
 .page {
-  background: var(--surface-1);
+  background: transparent;
   color: var(--ink-1);
 }
 
 .hero {
   padding: var(--spacing-6) 0;
-  background: var(--surface-1);
+  background: transparent;
   text-align: center;
 }
 
 .heroTitle {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--fontSize-7);
   color: var(--ink-1);
   margin-bottom: var(--spacing-3);
@@ -24,7 +24,7 @@
 }
 
 .sectionHeading {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--fontSize-6);
   color: var(--ink-1);
   margin-bottom: var(--spacing-5);
@@ -33,7 +33,7 @@
 
 .verticalsSection {
   padding: var(--spacing-6) 0;
-  background: var(--surface-2);
+  background: transparent;
 }
 
 .verticalsGrid {
@@ -69,7 +69,7 @@
 .cardCta {
   color: var(--accent);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .cardCta:hover {
@@ -78,7 +78,7 @@
 
 .caseStudiesSection {
   padding: var(--spacing-6) 0;
-  background: var(--surface-1);
+  background: transparent;
 }
 
 .caseStudiesGrid {
@@ -97,7 +97,7 @@
   text-align: center;
   color: var(--accent);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .sectionCta:hover {
@@ -106,7 +106,7 @@
 
 .tiersSection {
   padding: var(--spacing-6) 0;
-  background: var(--surface-2);
+  background: transparent;
 }
 
 .tiersGrid {
@@ -126,7 +126,7 @@
 
 .tierName {
   color: var(--ink-1);
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: var(--spacing-2);
 }
 
@@ -136,7 +136,7 @@
 
 .ctaSection {
   padding: var(--spacing-6) 0;
-  background: var(--surface-1);
+  background: transparent;
   text-align: center;
 }
 
@@ -149,7 +149,7 @@
   display: inline-block;
   color: var(--accent);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 500;
   font-size: var(--fontSize-4);
 }
 

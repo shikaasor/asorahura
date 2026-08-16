@@ -1,4 +1,5 @@
 import Link from "next/link";
+import MaskText from "@/components/motion/MaskText";
 import styles from "./SocialProof.module.css";
 import testimonials from "@/content/testimonials.json";
 
@@ -8,7 +9,7 @@ export default function SocialProof() {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <h2 className={styles.heading}>What clients say</h2>
+        <MaskText as="h2" text="What clients say" className={styles.heading} />
         <div className={styles.grid}>
           {proofItems.map((t) => (
             <blockquote key={t.name} className={styles.card}>

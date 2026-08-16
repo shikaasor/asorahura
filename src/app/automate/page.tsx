@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import CatalogGrid from "@/components/automate/CatalogGrid";
+import MaskText from "@/components/motion/MaskText";
 import { LandEventTracker } from "./LandEventTracker";
 import styles from "./page.module.css";
 
@@ -36,7 +37,11 @@ export default function AutomatePage() {
       </Suspense>
 
       <section className={styles.hero}>
-        <h1 className={styles.headline}>Automate the Bottlenecks That Cost You Margin</h1>
+        <MaskText
+          as="h1"
+          text="Automate the Bottlenecks That Cost You Margin"
+          className={styles.headline}
+        />
         <p className={styles.subheading}>
           Five ready-made automations for small businesses and creators
         </p>
@@ -60,7 +65,7 @@ export default function AutomatePage() {
 
       <section className={styles.closing}>
         <div className={styles.closingContainer}>
-          <h2 className={styles.closingHeading}>Ready to start?</h2>
+          <MaskText as="h2" text="Ready to start?" className={styles.closingHeading} />
           <p className={styles.closingBody}>
             Pick the offering that fits your next opportunity. Start with one automation, then
             scale to others as your confidence grows.

@@ -1,25 +1,15 @@
 .section {
-  padding: 7rem 0;
-  background: var(--surface-2);
+  padding: clamp(5rem, 9vw, 9.375rem) 0;
+  background: transparent;
+  border-top: 1px solid var(--border-1);
   position: relative;
   overflow: hidden;
 }
 
-.section::after {
-  content: "";
-  position: absolute;
-  bottom: -15%;
-  right: -5%;
-  width: 40%;
-  height: 80%;
-  background: radial-gradient(ellipse at center, rgba(201, 160, 96, 0.05) 0%, transparent 65%);
-  pointer-events: none;
-}
-
 .container {
-  max-width: 1280px;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 clamp(1.25rem, 4vw, 1.75rem);
   width: 100%;
   position: relative;
   z-index: 1;
@@ -39,19 +29,14 @@
   position: relative;
 }
 
-/* Gold ring around photo */
+/* A single hairline ring. The conic gradient it replaces was reading as
+ * a loading spinner frozen mid-spin. */
 .imageWrapper::before {
   content: "";
   position: absolute;
-  inset: -4px;
+  inset: -5px;
   border-radius: 50%;
-  background: conic-gradient(
-    from 0deg,
-    rgba(201, 160, 96, 0.6) 0deg,
-    rgba(201, 160, 96, 0.1) 120deg,
-    rgba(201, 160, 96, 0.6) 240deg,
-    rgba(201, 160, 96, 0.1) 360deg
-  );
+  border: 1px solid var(--border-2);
   z-index: 0;
 }
 
@@ -62,21 +47,22 @@
   height: 200px;
   position: relative;
   z-index: 1;
-  box-shadow: 0 0 0 3px var(--surface-2);
+  filter: grayscale(1);
 }
 
 .heading {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--fontSize-6);
-  font-weight: 700;
-  color: var(--ink-1);
-  margin-bottom: var(--spacing-5);
-  letter-spacing: -0.01em;
+  font-weight: 500;
+  color: var(--cream);
+  margin-bottom: var(--spacing-4);
+  letter-spacing: -0.032em;
 }
 
 .text {
-  font-size: var(--fontSize-2);
-  line-height: 1.8;
+  font-size: 0.90625rem;
+  line-height: 1.68;
+  font-weight: 400;
   color: var(--ink-2);
   margin-bottom: var(--spacing-3);
 }
@@ -88,21 +74,28 @@
 .workWithMe {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--spacing-2);
-  margin-top: var(--spacing-4);
-  color: var(--accent);
-  font-size: var(--fontSize-2);
-  font-weight: var(--fontWeight-bold);
+  margin-top: var(--spacing-5);
+  height: 40px;
+  padding: 0 20px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-2);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--cream);
+  font-size: 0.875rem;
+  font-weight: 500;
   text-decoration: none;
-  border-bottom: 1px solid rgba(201, 160, 96, 0.3);
-  padding-bottom: 2px;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition: background var(--duration-1) var(--ease-out), border-color var(--duration-1) var(--ease-out),
+    transform var(--duration-1) var(--ease-out);
   cursor: pointer;
 }
 
 .workWithMe:hover {
-  color: var(--accent-hover);
-  border-color: var(--accent-hover);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--border-3);
+  transform: translateY(-1px);
+  color: var(--cream);
   opacity: 1;
 }
 

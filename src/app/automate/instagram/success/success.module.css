@@ -1,6 +1,6 @@
 .page {
   padding: var(--spacing-6) var(--spacing-4);
-  background: var(--surface-1);
+  background: transparent;
   min-height: 60vh;
 }
 
@@ -108,13 +108,13 @@
 
 .scheduleBtn:hover {
   background: var(--accent);
-  color: var(--surface-1);
+  color: var(--on-accent);
 }
 
 .submit {
   width: 100%;
   background: var(--accent);
-  color: var(--surface-1);
+  color: var(--on-accent);
   font-size: var(--fontSize-2);
   font-weight: var(--fontWeight-bold);
   padding: var(--spacing-2) var(--spacing-3);

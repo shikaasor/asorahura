@@ -45,7 +45,7 @@
 .option.selected {
   border-color: var(--accent);
   background: var(--accent);
-  color: var(--surface-1);
+  color: var(--on-accent);
 }
 
 .option.selected .letter {

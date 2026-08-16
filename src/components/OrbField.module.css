@@ -1,0 +1,21 @@
+.canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  /* Same layer as the gradient field in globals.css. Both sit at -1, and
+     DOM order puts this above it: body::before paints first, this second,
+     page content above both. */
+  z-index: -1;
+  pointer-events: none;
+  /* The shader already outputs a low alpha; this is the final blend so the
+     orb sits *in* the page rather than on top of it. */
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canvas {
+    opacity: 0.6;
+  }
+}

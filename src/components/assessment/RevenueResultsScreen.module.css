@@ -18,16 +18,16 @@
 
 .scoreLabel {
   font-size: var(--fontSize-2);
-  font-weight: 600;
-  font-family: var(--font-mono);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  letter-spacing: 0.005em;
+  text-transform: none;
   color: var(--ink-2);
 }
 
 .revenueAmount {
   font-size: var(--fontSize-7);
-  font-weight: 700;
+  font-weight: 500;
   color: var(--accent);
   line-height: 1;
 }
@@ -41,7 +41,7 @@
 
 .tier {
   font-size: var(--fontSize-3);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--ink-1);
   margin-top: var(--spacing-2);
 }
@@ -66,7 +66,7 @@
 
 .automationsTitle {
   font-size: var(--fontSize-4);
-  font-weight: 700;
+  font-weight: 500;
   color: var(--ink-1);
   margin-bottom: var(--spacing-2);
 }
@@ -87,10 +87,10 @@
 /* Dimension breakdown (deep mode) */
 .sectionTitle {
   font-size: var(--fontSize-2);
-  font-weight: 700;
-  font-family: var(--font-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  text-transform: none;
+  letter-spacing: 0.005em;
   color: var(--ink-2);
   margin-bottom: var(--spacing-2);
 }
@@ -132,21 +132,21 @@
   height: 1.5rem;
   border-radius: var(--radius-2);
   background: var(--accent);
-  color: var(--surface-1);
+  color: var(--on-accent);
   font-size: 0.7rem;
-  font-weight: 800;
+  font-weight: 500;
   flex-shrink: 0;
 }
 
 .dimName {
   font-size: var(--fontSize-2);
-  font-weight: 700;
+  font-weight: 500;
   color: var(--ink-1);
 }
 
 .dimScore {
   font-size: var(--fontSize-2);
-  font-weight: 800;
+  font-weight: 500;
   color: var(--ink-1);
   white-space: nowrap;
 }
@@ -161,6 +161,7 @@
 .dimFill {
   height: 100%;
   background: var(--accent);
+  color: var(--on-accent);
   border-radius: 999px;
   transition: width 0.4s ease;
 }
@@ -196,7 +197,7 @@
 
 .emailBannerTitle {
   font-size: var(--fontSize-2);
-  font-weight: 700;
+  font-weight: 500;
   color: var(--ink-1);
 }
 
@@ -219,11 +220,11 @@
 .ctaBtn {
   display: inline-block;
   background: var(--accent);
-  color: var(--surface-1);
+  color: var(--on-accent);
   padding: var(--spacing-3) var(--spacing-5);
   border-radius: var(--radius-2);
   font-size: var(--fontSize-3);
-  font-weight: 700;
+  font-weight: 500;
   transition: background 0.15s ease;
 }
 

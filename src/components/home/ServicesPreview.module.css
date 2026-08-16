@@ -1,61 +1,76 @@
 .section {
-  padding: 7rem 0;
-  background: var(--surface-1);
+  padding: clamp(5rem, 9vw, 9.375rem) 0;
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
 
 .container {
-  max-width: 1280px;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 clamp(1.25rem, 4vw, 1.75rem);
   width: 100%;
 }
 
+/* Braced eyebrow — the braces replace the letter-spaced caps the label
+ * used to rely on, at a size that no longer needs squinting. */
 .sectionLabel {
   text-align: center;
-  font-size: var(--fontSize-1);
-  font-weight: var(--fontWeight-bold);
-  font-family: var(--font-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--accent);
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-family: var(--font-sans);
+  text-transform: none;
+  letter-spacing: var(--tracking-label);
+  color: var(--support);
   margin-bottom: var(--spacing-3);
 }
 
+.sectionLabel::before {
+  content: "{ ";
+  opacity: 0.55;
+}
+
+.sectionLabel::after {
+  content: " }";
+  opacity: 0.55;
+}
+
 .heading {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--fontSize-6);
-  font-weight: 700;
+  font-weight: 500;
   text-align: center;
-  color: var(--ink-1);
-  margin-bottom: var(--spacing-6);
-  letter-spacing: -0.01em;
+  color: var(--cream);
+  margin-bottom: var(--spacing-4);
+  letter-spacing: -0.032em;
 }
 
 .subheading {
   text-align: center;
   color: var(--ink-2);
-  font-size: var(--fontSize-2);
-  margin-bottom: var(--spacing-6);
+  font-size: var(--fontSize-3);
+  font-weight: 400;
+  line-height: 1.62;
+  max-width: 52ch;
+  margin: 0 auto 64px;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-4);
+  gap: 20px;
   align-items: stretch;
 }
 
 .card {
   background: var(--surface-3);
-  border-radius: 1rem;
-  padding: var(--spacing-6);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-4);
+  padding: var(--spacing-5) var(--spacing-4) var(--spacing-5);
+  border: 1px solid var(--border-1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: transform var(--duration-2) var(--ease-out), border-color var(--duration-2) var(--ease-out);
   cursor: default;
   position: relative;
   overflow: hidden;
@@ -69,15 +84,14 @@
   left: 2rem;
   right: 2rem;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201, 160, 96, 0.35), transparent);
-  transition: opacity 0.25s ease;
+  background: linear-gradient(90deg, transparent, rgba(69, 214, 127, 0.35), transparent);
+  transition: opacity var(--duration-2) var(--ease-out);
   opacity: 0;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(201, 160, 96, 0.18);
-  border-color: rgba(201, 160, 96, 0.2);
+  transform: translateY(-3px);
+  border-color: var(--border-2);
 }
 
 .card:hover::before {
@@ -90,16 +104,17 @@
 }
 
 .cardTitle {
-  font-size: var(--fontSize-3);
-  font-weight: 700;
-  color: var(--ink-1);
-  margin-bottom: var(--spacing-3);
-  letter-spacing: -0.01em;
+  font-size: 1.15625rem;
+  font-weight: 500;
+  color: var(--cream);
+  margin-bottom: var(--spacing-2);
+  letter-spacing: -0.02em;
 }
 
 .cardBody {
-  font-size: var(--fontSize-2);
-  line-height: 1.7;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  font-weight: 400;
   color: var(--ink-2);
 }
 
@@ -109,31 +124,41 @@
   justify-content: space-between;
   gap: var(--spacing-3);
   flex-wrap: wrap;
-  padding-top: var(--spacing-5);
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: var(--spacing-4);
+  border-top: 1px solid var(--border-1);
 }
 
 .price {
-  font-size: var(--fontSize-3);
-  font-weight: 700;
-  color: var(--accent);
-  letter-spacing: -0.01em;
+  font-size: var(--fontSize-4);
+  font-weight: 500;
+  color: var(--cream);
+  letter-spacing: -0.03em;
 }
 
+/* Pill affordance rather than a text link — it gives the card a second
+ * hit target with a real edge, which is what the row was missing. */
 .learnMore {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--spacing-1);
-  font-size: var(--fontSize-2);
-  font-weight: var(--fontWeight-bold);
-  color: var(--ink-2);
+  height: 36px;
+  padding: 0 18px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-2);
+  background: rgba(255, 255, 255, 0.02);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--cream);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: background var(--duration-1) var(--ease-out), border-color var(--duration-1) var(--ease-out);
   cursor: pointer;
 }
 
 .learnMore:hover {
-  color: var(--accent);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--border-3);
+  color: var(--cream);
   opacity: 1;
 }
 
@@ -155,16 +180,19 @@
 
 .tier {
   font-size: var(--fontSize-1);
-  font-weight: var(--fontWeight-bold);
-  font-family: var(--font-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ink-2);
+  font-weight: 400;
+  font-family: var(--font-sans);
+  text-transform: none;
+  letter-spacing: var(--tracking-label);
+  color: var(--accent-ink);
   margin-bottom: var(--spacing-3);
 }
 
+/* The featured card steps up a surface instead of gaining a coloured
+ * outline — a 2px lime border would outshout the price it sits next to. */
 .featured {
-  border: 2px solid var(--accent);
+  background: var(--surface-4);
+  border-color: var(--border-2);
 }
 
 .coming .price {

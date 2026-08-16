@@ -1,23 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Instrument_Serif, IBM_Plex_Mono } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import ParticleWave from "@/components/ParticleWave";
+import OrbField from "@/components/OrbField";
 import Footer from "@/components/home/Footer";
+import MeshTerrain from "@/components/home/MeshTerrain";
 import RouteChrome from "@/components/RouteChrome";
 import NavOffset from "@/components/NavOffset";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const instrumentSerif = Instrument_Serif({
+// One family for the whole site. Outfit's geometric skeleton carries the
+// look on its own, so the serif and mono slots are gone rather than
+// aliased — every stylesheet now asks for --font-sans directly.
+const outfit = Outfit({
     subsets: ["latin"],
-    weight: "400",
-    style: ["normal", "italic"],
-    variable: "--font-serif",
-});
-const ibmPlexMono = IBM_Plex_Mono({
-    subsets: ["latin"],
-    weight: ["400", "500"],
-    variable: "--font-mono",
+    weight: ["300", "400", "500", "600", "700"],
+    variable: "--font-sans",
 });
 
 export const viewport: Viewport = {
@@ -65,14 +63,16 @@ export default function RootLayout({
                     src="https://plausible.io/js/script.js"
                 />
             </head>
-            <body className={`${inter.variable} ${instrumentSerif.variable} ${ibmPlexMono.variable}`}>
+            <body className={outfit.variable}>
                 <RouteChrome>
                     <ParticleWave />
+                    <OrbField />
                 </RouteChrome>
                 <Navigation />
                 <NavOffset>
                     {children}
                     <RouteChrome>
+                        <MeshTerrain />
                         <Footer />
                     </RouteChrome>
                 </NavOffset>
