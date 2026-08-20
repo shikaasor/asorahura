@@ -2,12 +2,16 @@ import { Resend } from "resend";
 import { draftEmailSequence, draftNurtureEmailSequence, generatePDFContent } from "@/lib/llm";
 import { generateAssessmentPDF } from "@/lib/pdf";
 import { getSegment, DEFAULT_SECTOR, type Sector } from "@/lib/assessment";
+import { productSummary } from "@/lib/products";
+import { SUPPORT_FROM } from "@/lib/constants";
 export { CALENDLY_URL } from "@/lib/constants";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const FROM = "Asor Ahura <hello@asorahura.com>";
-const RESOURCES_FROM = "Asor Ahura <resources@asorahura.com>";
+// One sender for everything the organization sends. hello@ and resources@ were
+// separate before; both now resolve here.
+const FROM = SUPPORT_FROM;
+const RESOURCES_FROM = SUPPORT_FROM;
 const BUILD_MAP_DOWNLOAD_URL = "https://drive.google.com/file/d/1jDFFWWg2JsEy9vlRtMVwkdeLggqStcOZ/view?usp=drive_link";
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://asorahura.vercel.app';
 
@@ -86,7 +90,8 @@ export async function sendBuildMapEmail(
 export async function sendPurchaseConfirmationEmail(params: {
   email: string;
   firstName?: string;
-  productType: "dfy" | "dwy" | "care-plan";
+  /** Every line on the transaction: the tier first, then any add-ons. */
+  products: string[];
   transactionId: string;
   amount: string;
 }): Promise<{ success: boolean; error?: string }> {
@@ -112,7 +117,9 @@ export async function sendPurchaseConfirmationEmail(params: {
 }
 
 export async function sendOrderNotificationEmail(params: {
-  productType: "dfy" | "dwy" | "care-plan";
+  /** Every line on the transaction: the tier first, then any add-ons. A Care
+   *  Plan sold with a tier has to be visible from the subject line. */
+  products: string[];
   transactionId: string;
   amount: string;
   buyerEmail: string;
@@ -123,7 +130,7 @@ export async function sendOrderNotificationEmail(params: {
     const { error } = await resend.emails.send({
       from: FROM,
       to: process.env.OWNER_EMAIL ?? "asorahura@gmail.com",
-      subject: `New Order: ${params.productType} from ${params.buyerEmail}`,
+      subject: `New Order: ${productSummary(params.products)} from ${params.buyerEmail}`,
       react: OrderNotification({ ...params }),
     });
 

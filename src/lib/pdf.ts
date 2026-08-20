@@ -1,4 +1,5 @@
 import PDFDocument from "pdfkit";
+import { SUPPORT_EMAIL } from "@/lib/constants";
 
 export async function generateAssessmentPDF(params: {
   firstName: string;
@@ -177,7 +178,7 @@ export async function generateAssessmentPDF(params: {
       .fontSize(9)
       .font("Helvetica")
       .text(
-        "Prepared by Asor Ahura | asorahura.com | asorahura@gmail.com",
+        `Prepared by Asor Ahura | asorahura.com | ${SUPPORT_EMAIL}`,
         50,
         doc.page.height - 50,
         { align: "center", width: doc.page.width - 100 }

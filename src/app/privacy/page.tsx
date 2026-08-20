@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import MaskText from "@/components/motion/MaskText";
 import styles from "./privacy.module.css";
+import { SUPPORT_EMAIL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Asor Ahura",
@@ -192,7 +193,7 @@ export default function PrivacyPage() {
             </ul>
             <p>
               To exercise any of these rights, email{" "}
-              <a href="mailto:asorahura@gmail.com">asorahura@gmail.com</a>. We will respond within
+              <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>. We will respond within
               a reasonable timeframe and in accordance with applicable law.
             </p>
           </section>
@@ -236,7 +237,7 @@ export default function PrivacyPage() {
             <h2>14. Contact</h2>
             <p>
               Questions about this policy or how your data is handled? Contact us at{" "}
-              <a href="mailto:asorahura@gmail.com">asorahura@gmail.com</a>.
+              <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.
             </p>
           </section>
         </div>

@@ -80,7 +80,15 @@ export function PaddleCheckout({ priceId, onSuccess, customData, extraItems }: P
       window.Paddle.Checkout.open({
         items: [{ priceId, quantity: 1 }, ...(extraItems ?? [])],
         settings: {
+          // Inline on a transparent frame is as close to our own page as
+          // Paddle's checkout gets: no modal chrome, no white card.
           displayMode: "inline",
+          // One screen instead of Paddle's default two — the second page is
+          // where most of their chrome lives.
+          variant: "one-page",
+          // Without this the iframe renders light, which on a near-black page
+          // is the single most borrowed-looking thing in the flow.
+          theme: "dark",
           frameTarget: "paddle-checkout-frame",
           frameInitialHeight: 450,
           frameStyle: "width:100%;min-width:312px;background:transparent;border:none;",
@@ -128,6 +136,8 @@ export function PaddleCheckout({ priceId, onSuccess, customData, extraItems }: P
     return <div className={styles.error}>{error}</div>;
   }
 
+  const isSandbox = getPaddleEnvironment() === "sandbox";
+
   return (
     <div className={styles.wrap}>
       <div className={styles.frameWrap}>
@@ -139,7 +149,11 @@ export function PaddleCheckout({ priceId, onSuccess, customData, extraItems }: P
         {/* frameTarget must match this class name exactly */}
         <div ref={containerRef} className="paddle-checkout-frame" />
       </div>
-      <p className={styles.testNote}>Test mode, no charges will be applied.</p>
+      {/* Sandbox-only. getPaddleEnvironment() reads the token prefix, so this
+          disappears by itself the moment the live token is in place. */}
+      {isSandbox && (
+        <p className={styles.testNote}>Test mode, no charges will be applied.</p>
+      )}
     </div>
   );
 }

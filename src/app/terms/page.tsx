@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import MaskText from "@/components/motion/MaskText";
 import styles from "./terms.module.css";
+import { SUPPORT_EMAIL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Terms of Service | Asor Ahura",
@@ -152,7 +153,7 @@ export default function TermsPage() {
             <h2>12. Contact</h2>
             <p>
               Questions about these terms? Contact us at{" "}
-              <a href="mailto:asorahura@gmail.com">asorahura@gmail.com</a>.
+              <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.
             </p>
           </section>
         </div>

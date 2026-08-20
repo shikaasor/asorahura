@@ -1,0 +1,164 @@
+/* Mirrors checkout/checkout.module.css — this page is step 2 of that flow and
+   has to read as the same screen, one step on. */
+
+.page {
+  min-height: 100vh;
+  background: transparent;
+  padding: 3.5rem 2rem 5rem;
+}
+
+.inner {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+/* The confirmation mark. A lime ring rather than an emoji: the accent only
+   ever appears on black in this system, and at this size it carries the
+   "it worked" signal on its own. */
+.mark {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  background: var(--accent-tint);
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fontSize-3);
+  line-height: 1;
+}
+
+.headline {
+  font-family: var(--font-sans);
+  font-size: var(--fontSize-6);
+  font-weight: var(--fontWeight-bold);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--lineHeight-snug);
+  color: var(--ink-1);
+}
+
+.subcopy {
+  font-size: var(--fontSize-3);
+  color: var(--ink-2);
+  line-height: var(--lineHeight-relaxed);
+  max-width: 46ch;
+}
+
+/* Same rail as the checkout hero, advanced to step 2. */
+.steps {
+  display: flex;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--fontSize-1);
+  color: var(--ink-3);
+}
+
+.stepNum {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.375rem;
+  height: 1.375rem;
+  border-radius: 50%;
+  border: 1px solid var(--border-2);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--ink-3);
+  flex-shrink: 0;
+}
+
+.stepDone {
+  color: var(--ink-2);
+}
+
+.stepDone .stepNum {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.stepActive {
+  color: var(--ink-1);
+}
+
+.stepActive .stepNum {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+
+.stepArrow {
+  color: var(--ink-3);
+  font-size: 0.7rem;
+}
+
+.panel {
+  background: var(--surface-2);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-3);
+  overflow: hidden;
+}
+
+.panelLabel {
+  font-size: var(--fontSize-1);
+  color: var(--ink-2);
+  padding: var(--spacing-3) var(--spacing-4);
+  border-bottom: 1px solid var(--border-1);
+}
+
+/* Calendly renders its own scroll area; a fixed height avoids the nested
+   scrollbar the iframe otherwise grows. */
+.calendly {
+  display: block;
+  width: 100%;
+  height: 700px;
+  border: 0;
+}
+
+.footNote {
+  font-size: var(--fontSize-1);
+  color: var(--ink-3);
+  line-height: var(--lineHeight-relaxed);
+}
+
+.footLink {
+  color: var(--accent-ink);
+}
+
+.footLink:hover {
+  text-decoration: underline;
+}
+
+.home {
+  font-size: var(--fontSize-1);
+  color: var(--ink-3);
+}
+
+.home:hover {
+  color: var(--ink-2);
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 2.5rem 1.25rem 4rem;
+  }
+
+  .calendly {
+    height: 620px;
+  }
+}

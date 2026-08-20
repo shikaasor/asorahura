@@ -28,6 +28,14 @@ export default function PricingSection() {
     ? [{ priceId: carePlan.paddlePriceId, quantity: 1 }]
     : undefined;
 
+  // Without an onSuccess, PaddleCheckout falls back to /checkout/success —
+  // the consultation flow's booking page. An Instagram buyer belongs on the
+  // onboarding form instead, which is what the order notification tells us to
+  // expect back from them.
+  function goToOnboarding(tierId: PurchasableId) {
+    window.location.href = `/automate/instagram/success?product=${tierId}`;
+  }
+
   return (
     <section id="pricing" className={styles.section}>
       <div className={styles.container}>
@@ -94,6 +102,7 @@ export default function PricingSection() {
                   priceId={dfy.paddlePriceId}
                   customData={{ product: "dfy" }}
                   extraItems={carePlanExtraItems}
+                  onSuccess={() => goToOnboarding("dfy")}
                 />
               </div>
             )}
@@ -129,6 +138,7 @@ export default function PricingSection() {
                   priceId={dwy.paddlePriceId}
                   customData={{ product: "dwy" }}
                   extraItems={carePlanExtraItems}
+                  onSuccess={() => goToOnboarding("dwy")}
                 />
               </div>
             )}

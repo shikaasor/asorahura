@@ -7,27 +7,26 @@ import {
   Section,
   Hr,
 } from "@react-email/components";
+import { productLabel, productSummary, productNeedsOnboarding } from "@/lib/products";
 
 interface Props {
-  productType: "dfy" | "dwy" | "care-plan";
+  /** Every line on the transaction, first the tier the buyer clicked, then any
+   *  add-ons. A DFY sold with the Care Plan is ["dfy", "care-plan"]. */
+  products: string[];
   transactionId: string;
   amount: string;
   buyerEmail: string;
 }
 
-const PRODUCT_NAMES: Record<Props["productType"], string> = {
-  dfy: "Done For You",
-  dwy: "Done With You",
-  "care-plan": "Care Plan",
-};
-
 export function OrderNotification({
-  productType,
+  products,
   transactionId,
   amount,
   buyerEmail,
 }: Props) {
-  const needsOnboarding = productType === "dfy" || productType === "dwy";
+  // An add-on-only line (the Care Plan) needs no build step, but a tier bought
+  // alongside it still does.
+  const needsOnboarding = products.some(productNeedsOnboarding);
 
   return (
     <Html>
@@ -47,15 +46,20 @@ export function OrderNotification({
           }}
         >
           <Heading style={{ fontSize: "24px", color: "#111" }}>
-            New Order: {productType} from {buyerEmail}
+            New Order: {productSummary(products)} from {buyerEmail}
           </Heading>
           <Section style={{ padding: "16px 0" }}>
             <Text style={{ fontSize: "14px", color: "#374151", margin: "0" }}>
               Buyer: {buyerEmail}
             </Text>
-            <Text style={{ fontSize: "14px", color: "#374151", margin: "0" }}>
-              Product: {PRODUCT_NAMES[productType]}
-            </Text>
+            {products.map((product, i) => (
+              <Text
+                key={`${product}-${i}`}
+                style={{ fontSize: "14px", color: "#374151", margin: "0" }}
+              >
+                {i === 0 ? "Product" : "Add-on"}: {productLabel(product)}
+              </Text>
+            ))}
             <Text style={{ fontSize: "14px", color: "#374151", margin: "0" }}>
               Amount: {amount}
             </Text>

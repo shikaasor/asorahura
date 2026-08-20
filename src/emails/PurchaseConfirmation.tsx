@@ -7,10 +7,13 @@ import {
   Section,
   Hr,
 } from "@react-email/components";
+import { productLabel, productNextSteps } from "@/lib/products";
 
 interface Props {
   firstName?: string;
-  productType: "dfy" | "dwy" | "care-plan";
+  /** Every line on the transaction — a tier bought with the Care Plan add-on
+   *  arrives as ["dfy", "care-plan"] and both are listed. */
+  products: string[];
   transactionId: string;
   amount: string;
   email: string;
@@ -18,27 +21,20 @@ interface Props {
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "https://asorahura.vercel.app";
 
-const PRODUCT_NAMES: Record<Props["productType"], string> = {
-  dfy: "Done For You",
-  dwy: "Done With You",
-  "care-plan": "Care Plan",
-};
-
-const NEXT_STEPS: Record<Props["productType"], string> = {
-  dfy: "We'll build this in 3–5 days.",
-  dwy: "Check your inbox for a scheduling link to start your build session.",
-  "care-plan": "Your subscription is active: token renewals, uptime, and copy updates are now handled.",
-};
-
 export function PurchaseConfirmation({
   firstName,
-  productType,
+  products,
   transactionId,
   amount,
   email,
 }: Props) {
   const unsubscribeUrl = `${BASE_URL}/api/unsubscribe?email=${encodeURIComponent(email)}`;
   const greeting = firstName ? `Thanks, ${firstName}` : "Thanks for your order";
+  // Two lines can share next steps (they don't today); dedupe so the buyer is
+  // never told the same thing twice.
+  const nextSteps = products
+    .map(productNextSteps)
+    .filter((step, i, all) => all.indexOf(step) === i);
 
   return (
     <Html>
@@ -61,9 +57,14 @@ export function PurchaseConfirmation({
             {greeting}, your order is confirmed
           </Heading>
           <Section style={{ padding: "16px 0" }}>
-            <Text style={{ fontSize: "16px", color: "#111", margin: "0 0 4px" }}>
-              {PRODUCT_NAMES[productType]}
-            </Text>
+            {products.map((product, i) => (
+              <Text
+                key={`${product}-${i}`}
+                style={{ fontSize: "16px", color: "#111", margin: "0 0 4px" }}
+              >
+                {productLabel(product)}
+              </Text>
+            ))}
             <Text style={{ fontSize: "14px", color: "#6b7280", margin: "0" }}>
               Amount: {amount}
             </Text>
@@ -75,9 +76,14 @@ export function PurchaseConfirmation({
           <Heading as="h2" style={{ fontSize: "18px", color: "#111" }}>
             What happens next
           </Heading>
-          <Text style={{ fontSize: "15px", color: "#374151", lineHeight: "1.6" }}>
-            {NEXT_STEPS[productType]}
-          </Text>
+          {nextSteps.map((step) => (
+            <Text
+              key={step}
+              style={{ fontSize: "15px", color: "#374151", lineHeight: "1.6" }}
+            >
+              {step}
+            </Text>
+          ))}
           <Hr style={{ borderColor: "#e5e7eb", margin: "24px 0" }} />
           <Text style={{ fontSize: "12px", color: "#9ca3af", textAlign: "center" }}>
             You received this because you made a purchase at asorahura.com.{" "}

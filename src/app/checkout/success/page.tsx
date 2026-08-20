@@ -1,48 +1,72 @@
 import Link from "next/link";
+import { CALENDLY_URL, SUPPORT_EMAIL } from "@/lib/constants";
+import styles from "./success.module.css";
 
 export const metadata = {
   title: "Payment Successful | Asor Ahura",
 };
 
+// Calendly's embed defaults to a white widget, which is the one thing on this
+// page that would still look borrowed. These params are read by the embed
+// itself; hex values go in without the leading #.
+const CALENDLY_EMBED = `${CALENDLY_URL}?background_color=0d0d0d&text_color=e9e7dd&primary_color=cdff06&hide_gdpr_banner=1`;
+
 export default function CheckoutSuccessPage() {
   return (
-    <main className="min-h-screen bg-white px-4 py-16">
-      <div className="max-w-2xl mx-auto space-y-10">
-        {/* Confirmation header */}
-        <div className="text-center space-y-4">
-          <div className="text-5xl">&#x2705;</div>
-          <h1 className="text-3xl font-bold text-[var(--ink-1)]">Payment confirmed.</h1>
-          <p className="text-[var(--ink-2)] text-lg">
+    <main className={styles.page}>
+      <div className={styles.inner}>
+        <div className={styles.header}>
+          <span className={styles.mark} aria-hidden="true">
+            ✓
+          </span>
+          <h1 className={styles.headline}>Payment confirmed.</h1>
+          <p className={styles.subcopy}>
             Now book your discovery call so we can map out exactly how AI will work for your
             business.
           </p>
-          <p className="text-[var(--ink-2)] text-sm">
-            Check your inbox for a receipt from Paddle. Questions?{" "}
-            <a href="mailto:asorahura@gmail.com" className="underline text-[var(--ink-1)]">
-              asorahura@gmail.com
-            </a>
-          </p>
         </div>
 
-        {/* Embedded Calendly */}
-        <div className="rounded-xl overflow-hidden border border-[var(--border-1)] shadow-sm">
+        <div className={styles.steps}>
+          <div className={`${styles.step} ${styles.stepDone}`}>
+            <span className={styles.stepNum}>✓</span>
+            Slot secured
+          </div>
+          <span className={styles.stepArrow}>→</span>
+          <div className={`${styles.step} ${styles.stepActive}`}>
+            <span className={styles.stepNum}>2</span>
+            Book your call
+          </div>
+          <span className={styles.stepArrow}>→</span>
+          <div className={styles.step}>
+            <span className={styles.stepNum}>3</span>
+            We build
+          </div>
+        </div>
+
+        <div className={styles.panel}>
+          <p className={styles.panelLabel}>Pick a time</p>
           <iframe
-            src="https://calendly.com/asorahura"
-            width="100%"
-            height="700"
-            frameBorder="0"
+            src={CALENDLY_EMBED}
+            className={styles.calendly}
             title="Book your discovery call"
           />
         </div>
 
-        <div className="text-center">
-          <Link
-            href="/"
-            className="text-sm text-[var(--ink-3)] underline hover:text-[var(--ink-2)] transition-colors"
-          >
-            Return to homepage
-          </Link>
-        </div>
+        {/* Paddle is named once, in small print, on purpose: it is the merchant
+            of record, so the card statement reads PADDLE.NET and the receipt
+            arrives from them. Saying so here is what stops an "unknown charge"
+            dispute a week from now. */}
+        <p className={styles.footNote}>
+          Your receipt arrives by email from Paddle, who handle our payments and billing.
+          Questions about the call or the charge?{" "}
+          <a href={`mailto:${SUPPORT_EMAIL}`} className={styles.footLink}>
+            {SUPPORT_EMAIL}
+          </a>
+        </p>
+
+        <Link href="/" className={styles.home}>
+          Return to homepage
+        </Link>
       </div>
     </main>
   );

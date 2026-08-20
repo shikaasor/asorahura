@@ -80,7 +80,11 @@ function CheckoutInner() {
             {/* Payment */}
             <div className={styles.paymentPanel}>
               <p className={styles.paymentLabel}>Secure payment</p>
-              <PaddleCheckout key={tier.paddlePriceId} priceId={tier.paddlePriceId} />
+              <PaddleCheckout
+                key={tier.paddlePriceId}
+                priceId={tier.paddlePriceId}
+                customData={{ product: tier.id }}
+              />
             </div>
           </div>
 

@@ -10,6 +10,7 @@ import {
 } from "@/lib/deepAssessment";
 import { isValidSector, DEFAULT_SECTOR, type Sector } from "@/lib/assessment";
 import { Resend } from "resend";
+import { SUPPORT_FROM } from "@/lib/constants";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://asorahura.vercel.app';
@@ -85,7 +86,7 @@ export async function submitDeepAssessmentForEmail(
 
   try {
     const { error } = await resend.emails.send({
-      from: "Asor Ahura <hello@asorahura.com>",
+      from: SUPPORT_FROM,
       to: email,
       subject: `Your Full AI Opportunity Discovery Scorecard: ${total}/${DEEP_MAX_SCORE} · ${tier.name}`,
       html,

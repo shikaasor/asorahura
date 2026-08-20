@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import MaskText from "@/components/motion/MaskText";
 import styles from "./refund.module.css";
+import { SUPPORT_EMAIL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Refund Policy | Asor Ahura",
@@ -33,7 +34,7 @@ export default function RefundPage() {
               One-time DFY and DWY packages are covered by a 30-day money-back guarantee, starting
               from your date of purchase. If the automation has not been delivered as described,
               or you are otherwise not satisfied within that window, contact us at{" "}
-              <a href="mailto:asorahura@gmail.com">asorahura@gmail.com</a> and we will issue a full
+              <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a> and we will issue a full
               refund. Once you are past the 30-day window, or once you have explicitly signed off
               on delivery, the purchase becomes non-refundable.
             </p>
@@ -92,7 +93,7 @@ export default function RefundPage() {
           <section className={styles.section}>
             <h2>8. How to Request a Refund</h2>
             <p>
-              Email <a href="mailto:asorahura@gmail.com">asorahura@gmail.com</a> with your order
+              Email <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a> with your order
               details and the reason for your request. Approved refunds are processed back to your
               original payment method through Paddle, our payment processor, typically within
               5 to 10 business days.
@@ -103,7 +104,7 @@ export default function RefundPage() {
             <h2>9. Contact</h2>
             <p>
               Questions about this policy? Contact us at{" "}
-              <a href="mailto:asorahura@gmail.com">asorahura@gmail.com</a>.
+              <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.
             </p>
           </section>
         </div>

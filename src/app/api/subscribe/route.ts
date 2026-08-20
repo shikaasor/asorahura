@@ -76,7 +76,9 @@ export async function POST(req: NextRequest) {
         ...(isWaitlist || isPurchaseInterest ? { offer } : {}),
       }),
       redirect: 'follow',
-    }).catch(() => {});
+    }).catch((err) => {
+      console.error('[subscribe] Failed to submit to Google Script:', err);
+    });
   }
 
   return NextResponse.json({ ok: true });
