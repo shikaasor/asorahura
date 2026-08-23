@@ -200,6 +200,19 @@ describe("business identity", () => {
     expect(identity.taxId).toBeUndefined();
   });
 
+  it("treats a set-but-empty variable as unset", () => {
+    // Importing `INVOICE_BUSINESS_NAME=` into Vercel yields "", which is not
+    // nullish — without the guard it would blank the invoice header.
+    process.env.INVOICE_BUSINESS_NAME = "";
+    process.env.INVOICE_BUSINESS_EMAIL = "   ";
+    process.env.INVOICE_BUSINESS_ADDRESS = "";
+
+    const identity = getBusinessIdentity();
+    expect(identity.name).toBe("Asor Ahura");
+    expect(identity.email).toBe("support@asorahura.com");
+    expect(identity.address).toBeUndefined();
+  });
+
   it("uses configured values when present", () => {
     process.env.INVOICE_BUSINESS_NAME = "Asor Ahura Ltd";
     process.env.INVOICE_BUSINESS_TAX_ID = "TX-1";

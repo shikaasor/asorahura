@@ -71,6 +71,8 @@
   font-size: var(--fontSize-4);
   font-weight: var(--fontWeight-bold);
   color: var(--ink-1);
+  flex: 1;
+  min-width: 0;
 }
 
 .tierPrice {
@@ -78,6 +80,10 @@
   font-weight: var(--fontWeight-bold);
   color: var(--ink-1);
   white-space: nowrap;
+  /* Same pairing as the checkout summary rows: a nowrap price next to a
+     shrinkable name overflows once the row gets tight. Short tier names keep
+     it off the desktop layout, but it still bites on a narrow viewport. */
+  flex-shrink: 0;
 }
 
 .tierDesc {

@@ -20,6 +20,11 @@
 .summaryLabel {
   font-size: 0.875rem;
   color: var(--ink-2);
+  /* Absorbs the leftover width and wraps. min-width:0 is the load-bearing
+     part: flex items default to min-width:auto, which refuses to shrink below
+     the longest word and forces the row wider than its container. */
+  flex: 1;
+  min-width: 0;
 }
 
 .summaryAmount {
@@ -27,6 +32,10 @@
   font-weight: var(--fontWeight-bold);
   color: var(--ink-1);
   white-space: nowrap;
+  /* Never shrink the price. Without this it keeps its default flex-shrink:1,
+     gets squeezed by a long product name, and — because it may not wrap —
+     overflows its own box and spills past the panel border. */
+  flex-shrink: 0;
 }
 
 .notice {

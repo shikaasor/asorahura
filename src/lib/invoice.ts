@@ -101,12 +101,25 @@ export interface BusinessIdentity {
   taxId?: string;
 }
 
+/** Treats a set-but-empty variable as unset.
+ *
+ *  `??` alone does not: importing `INVOICE_BUSINESS_NAME=` into a host like
+ *  Vercel produces an empty string, which is not nullish, so it would win over
+ *  the fallback and print an invoice with no business name in the header. */
+function envOr(value: string | undefined, fallback: string): string {
+  return value?.trim() ? value : fallback;
+}
+
+function envOrUndefined(value: string | undefined): string | undefined {
+  return value?.trim() ? value : undefined;
+}
+
 export function getBusinessIdentity(): BusinessIdentity {
   return {
-    name: process.env.INVOICE_BUSINESS_NAME ?? "Asor Ahura",
-    email: process.env.INVOICE_BUSINESS_EMAIL ?? "support@asorahura.com",
-    address: process.env.INVOICE_BUSINESS_ADDRESS,
-    taxId: process.env.INVOICE_BUSINESS_TAX_ID,
+    name: envOr(process.env.INVOICE_BUSINESS_NAME, "Asor Ahura"),
+    email: envOr(process.env.INVOICE_BUSINESS_EMAIL, "support@asorahura.com"),
+    address: envOrUndefined(process.env.INVOICE_BUSINESS_ADDRESS),
+    taxId: envOrUndefined(process.env.INVOICE_BUSINESS_TAX_ID),
   };
 }
 
