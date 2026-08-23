@@ -23,7 +23,10 @@ export function trackAnalyticsEvent(
     | "Offering Card Click"
     | "Waitlist CTA Click"
     | "Waitlist Submit"
-    | "Purchase Interest Submit",
+    | "Purchase Interest Submit"
+    // Issued an invoice. Distinct from "Purchase": no money has moved yet, so
+    // funnel reporting must not treat the two as the same conversion.
+    | "Invoice Requested",
   props?: Record<string, string | number>
 ): void {
   if (typeof window !== "undefined" && window.plausible) {

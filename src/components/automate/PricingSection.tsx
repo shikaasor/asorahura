@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { getAutomateTierById, type AutomateTierId } from "@/lib/checkout";
-import { PaddleCheckout } from "@/components/checkout/PaddleCheckout";
+import { CheckoutPanel } from "@/components/checkout/CheckoutPanel";
 import { BuildMapForm } from "./BuildMapForm";
 import { trackAnalyticsEvent } from "@/lib/analytics";
 import Scatter from "@/components/motion/Scatter";
@@ -13,25 +13,21 @@ type PurchasableId = Extract<AutomateTierId, "dfy" | "dwy">;
 export default function PricingSection() {
   const [showBuildMapForm, setShowBuildMapForm] = useState(false);
   const [checkoutOpenFor, setCheckoutOpenFor] = useState<PurchasableId | null>(null);
-  const [addCarePlan, setAddCarePlan] = useState(false);
 
   const dfy = getAutomateTierById("dfy");
   const dwy = getAutomateTierById("dwy");
-  const carePlan = getAutomateTierById("care-plan");
 
   function openCheckout(tierId: PurchasableId) {
-    trackAnalyticsEvent("Checkout Opened", { product_type: tierId, care_plan: addCarePlan ? "yes" : "no" });
+    trackAnalyticsEvent("Checkout Opened", { product_type: tierId });
     setCheckoutOpenFor(tierId);
   }
 
-  const carePlanExtraItems = addCarePlan
-    ? [{ priceId: carePlan.paddlePriceId, quantity: 1 }]
-    : undefined;
+  // The $9.99/mo Care Plan add-on was sold here as a second Paddle line item.
+  // Nothing bills recurring now that Paddle is off, so the toggle is gone
+  // rather than left offering a subscription we cannot charge for.
 
-  // Without an onSuccess, PaddleCheckout falls back to /checkout/success —
-  // the consultation flow's booking page. An Instagram buyer belongs on the
-  // onboarding form instead, which is what the order notification tells us to
-  // expect back from them.
+  // Only used in Paddle mode. The invoice flow keeps the buyer on this page
+  // and sends them to onboarding once payment clears instead.
   function goToOnboarding(tierId: PurchasableId) {
     window.location.href = `/automate/instagram/success?product=${tierId}`;
   }
@@ -84,24 +80,14 @@ export default function PricingSection() {
               <li>Live and tested on your account</li>
               <li>Training call included</li>
             </ul>
-            <label className={styles.carePlanToggle}>
-              <input
-                type="checkbox"
-                checked={addCarePlan}
-                onChange={(e) => setAddCarePlan(e.target.checked)}
-              />
-              Add Care Plan ({carePlan.price}) — {carePlan.description}
-            </label>
             <button type="button" className={styles.cta} onClick={() => openCheckout("dfy")}>
-              Purchase DFY
+              Buy now
             </button>
             {checkoutOpenFor === "dfy" && (
               <div className={styles.inlineForm}>
-                <PaddleCheckout
-                  key={`dfy-${addCarePlan}`}
+                <CheckoutPanel
+                  productId="dfy"
                   priceId={dfy.paddlePriceId}
-                  customData={{ product: "dfy" }}
-                  extraItems={carePlanExtraItems}
                   onSuccess={() => goToOnboarding("dfy")}
                 />
               </div>
@@ -120,24 +106,14 @@ export default function PricingSection() {
               <li>Full walkthrough included</li>
               <li>Self-maintained after launch</li>
             </ul>
-            <label className={styles.carePlanToggle}>
-              <input
-                type="checkbox"
-                checked={addCarePlan}
-                onChange={(e) => setAddCarePlan(e.target.checked)}
-              />
-              Add Care Plan ({carePlan.price}) — {carePlan.description}
-            </label>
             <button type="button" className={styles.cta} onClick={() => openCheckout("dwy")}>
-              Purchase DWY
+              Buy now
             </button>
             {checkoutOpenFor === "dwy" && (
               <div className={styles.inlineForm}>
-                <PaddleCheckout
-                  key={`dwy-${addCarePlan}`}
+                <CheckoutPanel
+                  productId="dwy"
                   priceId={dwy.paddlePriceId}
-                  customData={{ product: "dwy" }}
-                  extraItems={carePlanExtraItems}
                   onSuccess={() => goToOnboarding("dwy")}
                 />
               </div>

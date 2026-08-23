@@ -28,7 +28,14 @@ describe("Calendly removal from services and checkout pages", () => {
     expect(checkoutSource.toLowerCase()).not.toContain("calendly");
   });
 
-  it("checkout/page.tsx routes the enterprise CTA through /engage", () => {
-    expect(checkoutSource).toContain("/engage?enterprise=true");
+  // This used to assert the checkout page carried an /engage?enterprise=true
+  // CTA. That CTA was dead code behind a hardcoded `const isEnterprise = false`
+  // and was removed in 2c48588, so the assertion now guards the removal rather
+  // than the link. Enterprise stays reachable from Navigation, the Footer, and
+  // /enterprise itself — covered by test-enterprise-reachability and
+  // test-enterprise-page.
+  it("checkout/page.tsx no longer carries the dead enterprise CTA branch", () => {
+    expect(checkoutSource).not.toContain("enterprise=true");
+    expect(checkoutSource).not.toContain("isEnterprise");
   });
 });

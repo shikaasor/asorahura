@@ -1,0 +1,22 @@
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.switch {
+  align-self: flex-start;
+  padding: 0.25rem 0;
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.switch:hover {
+  color: var(--ink-1);
+}

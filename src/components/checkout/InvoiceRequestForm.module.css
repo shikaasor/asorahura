@@ -1,0 +1,114 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-3);
+  background: var(--surface-1);
+}
+
+.summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-1);
+}
+
+.summaryLabel {
+  font-size: 0.875rem;
+  color: var(--ink-2);
+}
+
+.summaryAmount {
+  font-size: 1.25rem;
+  font-weight: var(--fontWeight-bold);
+  color: var(--ink-1);
+  white-space: nowrap;
+}
+
+.notice {
+  font-size: 0.875rem;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.input {
+  flex: 1;
+  min-width: 180px;
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-2);
+  font-size: 0.875rem;
+  background: var(--surface-1);
+  color: var(--ink-1);
+}
+
+.submit {
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-2);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: var(--fontWeight-bold);
+  white-space: nowrap;
+}
+
+.submit:hover {
+  background: var(--accent-hover);
+  opacity: 1;
+}
+
+.submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.rails {
+  font-size: 0.75rem;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+
+.success {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.successHeadline {
+  font-size: 0.9375rem;
+  color: var(--ink-1);
+  font-weight: var(--fontWeight-bold);
+}
+
+.successBody {
+  font-size: 0.875rem;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+
+.invoiceNumber {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  color: var(--ink-1);
+}
+
+.fieldError {
+  font-size: 0.75rem;
+  color: var(--error);
+}

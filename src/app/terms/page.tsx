@@ -74,9 +74,11 @@ export default function TermsPage() {
           <section className={styles.section}>
             <h2>5. Payments and Refunds</h2>
             <p>
-              All payments are processed securely through Paddle, our merchant of record. Asor
-              Ahura does not store your payment card information. Refund eligibility depends on
-              the type of product or service purchased and is set out in full in our{" "}
+              You can pay by card at checkout, or ask for an invoice and settle it by bank
+              transfer (ACH or wire) or Payoneer. Card payments are processed by Flutterwave;
+              Asor Ahura never receives or stores your card details. Work begins once payment
+              clears. Refund eligibility
+              depends on the type of product or service purchased and is set out in full in our{" "}
               <a href="/refund">Refund Policy</a>.
             </p>
             <p>

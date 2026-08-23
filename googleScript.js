@@ -83,6 +83,36 @@ const SHEET_CONFIG = {
       };
     }
   },
+  // Unpaid invoices issued while there is no payment processor. This sheet is
+  // the only record that money is owed — nothing else in the stack stores one.
+  // Mark the Paid column by hand when the transfer lands.
+  invoice: {
+    name: "Invoices",
+    headers: ["Timestamp", "Invoice Number", "Email", "Name", "Company", "Product", "Amount", "Due", "Paid"],
+    row: function(d) {
+      return [new Date(), d.invoiceNumber, d.email, d.name || "", d.company || "", d.productLabel || d.productType, d.amount, d.dueAt ? new Date(d.dueAt) : "", "NO"];
+    },
+    // The route issues one invoice per submission, but a retried fetch would
+    // append a second row against the same number.
+    dedupeOn: "invoiceNumber",
+    dedupeColumn: 2,
+    notify: function(d) {
+      return {
+        subject: "INVOICE ISSUED: " + d.amount + " — " + (d.productLabel || d.productType),
+        body: "Invoice " + d.invoiceNumber + " was emailed to the buyer." +
+          "\n\nEmail: " + d.email +
+          "\nName: " + (d.name || "not given") +
+          "\nCompany: " + (d.company || "not given") +
+          "\nProduct: " + (d.productLabel || d.productType) +
+          "\nAmount: " + d.amount +
+          "\nDue: " + (d.dueAt || "not set") +
+          "\n\nNOT PAID YET. If they would rather be billed directly, send a " +
+          "PayPal or Payoneer request for " + d.amount + " to " + d.email +
+          " quoting " + d.invoiceNumber + "." +
+          "\n\nMark the Paid column in the Invoices sheet when the transfer lands."
+      };
+    }
+  },
   purchase: {
     name: "Purchases",
     headers: ["Timestamp", "Email", "Product", "Transaction ID", "Amount"],

@@ -124,4 +124,7 @@
 
 .cta:hover {
   background: var(--accent-hover);
+  /* Restated: the global a:hover paints links cream, which on the lime
+     fill is ~1.2:1. Specificity here beats it. */
+  color: var(--on-accent);
 }

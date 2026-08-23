@@ -20,3 +20,18 @@ export const automateSuccessSchema = z.object({
 
 export type BuildMapFormData = z.infer<typeof buildMapSchema>;
 export type AutomateSuccessFormData = z.infer<typeof automateSuccessSchema>;
+
+/** Shape only. Whether `name` is actually required depends on the product's
+ *  price, which the client does not get to assert — the route resolves the
+ *  amount server-side and enforces the threshold there. */
+export const invoiceRequestSchema = z.object({
+  productId: z.string().min(1, "Product required"),
+  // Trimmed before validating: an address pasted from another app routinely
+  // carries a trailing space, and rejecting that reads to the buyer as "my
+  // email is invalid".
+  email: z.string().trim().email("Invalid email address"),
+  name: z.string().trim().max(100, "Name too long").optional(),
+  company: z.string().trim().max(100, "Company name too long").optional(),
+});
+
+export type InvoiceRequestData = z.infer<typeof invoiceRequestSchema>;

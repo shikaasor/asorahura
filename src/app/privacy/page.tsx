@@ -81,9 +81,15 @@ export default function PrivacyPage() {
             </p>
             <ul>
               <li>
-                <strong>Paddle</strong> as our payment processor for all checkout and billing.
-                Asor Ahura does not store your full payment card details; Paddle handles that
-                data under its own privacy policy and PCI-compliant systems.
+                <strong>Flutterwave</strong> as our card payment processor. Card details are
+                entered in Flutterwave&apos;s own form and handled under their privacy policy and
+                PCI-compliant systems; Asor Ahura never sees or stores them. We keep only the
+                transaction reference, the amount, and your email.
+              </li>
+              <li>
+                <strong>Your bank or Payoneer</strong> if you settle by invoice instead. What we
+                keep there is the invoice record: your email, any billing name and company you
+                provide, the amount, and whether it has been paid.
               </li>
               <li><strong>Resend</strong> for transactional and account-related email delivery.</li>
               <li>

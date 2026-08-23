@@ -3,6 +3,7 @@ import { draftEmailSequence, draftNurtureEmailSequence, generatePDFContent } fro
 import { generateAssessmentPDF } from "@/lib/pdf";
 import { getSegment, DEFAULT_SECTOR, type Sector } from "@/lib/assessment";
 import { productSummary } from "@/lib/products";
+import { formatUsd, formatInvoiceDate, type Invoice } from "@/lib/invoice";
 import { SUPPORT_FROM } from "@/lib/constants";
 export { CALENDLY_URL } from "@/lib/constants";
 
@@ -304,4 +305,80 @@ export async function sendAssessmentEmailSequence(params: {
   } catch (err) {
     console.error("[email] Day 30 send threw:", err);
   }
+}
+
+/** Sends the buyer their invoice, PDF attached.
+ *
+ *  Failure here is not recoverable by the buyer — they submitted a form and are
+ *  waiting on an email — so the caller reports it rather than silently
+ *  succeeding, unlike the fire-and-forget owner notification below. */
+export async function sendInvoiceEmail(
+  invoice: Invoice
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    const { InvoiceEmail } = await import("@/emails/InvoiceEmail");
+    const { generateInvoicePDF } = await import("@/lib/pdf");
+
+    // A failed PDF must not cost the buyer the payment details, which are also
+    // in the email body — send without the attachment rather than not at all.
+    let pdf: Buffer | undefined;
+    try {
+      pdf = await generateInvoicePDF(invoice);
+    } catch (err) {
+      console.error("[email] invoice PDF generation failed:", err);
+    }
+
+    const { error } = await resend.emails.send({
+      from: FROM,
+      to: invoice.billTo.email,
+      subject: `Invoice ${invoice.number} — ${invoice.item.label}`,
+      react: InvoiceEmail({ invoice }),
+      ...(pdf
+        ? { attachments: [{ filename: `${invoice.number}.pdf`, content: pdf }] }
+        : {}),
+    });
+
+    if (error) {
+      console.error("[email] sendInvoiceEmail failed:", error.message);
+      return { success: false, error: error.message };
+    }
+    return { success: true };
+  } catch (err) {
+    console.error("[email] sendInvoiceEmail threw:", err);
+    return { success: false, error: err instanceof Error ? err.message : "unknown error" };
+  }
+}
+
+/** Owner's copy. Carries everything needed to chase the payment or send a
+ *  PayPal/Payoneer request without opening the site. */
+export async function sendInvoiceNotification(
+  invoice: Invoice
+): Promise<{ success: boolean; error?: string }> {
+  const billTo = [invoice.billTo.company, invoice.billTo.name, invoice.billTo.email]
+    .filter(Boolean)
+    .join(" / ");
+
+  const text = [
+    `Invoice ${invoice.number} issued and emailed to the buyer.`,
+    ``,
+    `Product: ${invoice.item.label}`,
+    `Amount: ${formatUsd(invoice.totalUsd)} USD`,
+    `Bill to: ${billTo}`,
+    `Due: ${formatInvoiceDate(invoice.dueAt)}`,
+    ``,
+    `Not paid yet — this is a request for payment, not a receipt.`,
+    `If they'd rather be billed directly, send a Payoneer request for`,
+    `${formatUsd(invoice.totalUsd)} to ${invoice.billTo.email} quoting ${invoice.number}.`,
+    `They can also pay by card on the site, which clears the same day.`,
+  ].join("\n");
+
+  const { error } = await resend.emails.send({
+    from: FROM,
+    to: process.env.OWNER_EMAIL ?? "asorahura@gmail.com",
+    subject: `Invoice ${invoice.number}: ${invoice.item.label} — ${invoice.billTo.email}`,
+    text,
+  });
+
+  if (error) return { success: false, error: error.message };
+  return { success: true };
 }

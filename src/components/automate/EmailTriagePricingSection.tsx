@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { emailTriageTiers, getEmailTriageTierById, type EmailTriageTierId } from "@/lib/checkout";
-import { PaddleCheckout } from "@/components/checkout/PaddleCheckout";
+import { CheckoutPanel } from "@/components/checkout/CheckoutPanel";
 import { trackAnalyticsEvent } from "@/lib/analytics";
 import styles from "./EmailTriagePricingSection.module.css";
 
@@ -67,15 +67,15 @@ export default function EmailTriagePricingSection() {
           </div>
 
           <button type="button" className={styles.cta} onClick={handleBuyNow}>
-            Buy Now
+            Buy now
           </button>
 
           {checkoutOpen && (
             <div className={styles.inlineForm}>
-              <PaddleCheckout
-                key={tier.paddlePriceId}
+              <CheckoutPanel
+                key={tier.id}
+                productId={`email-triage-${tier.id}`}
                 priceId={tier.paddlePriceId}
-                customData={{ product: `email-triage-${tier.id}` }}
                 onSuccess={() => {
                   window.location.href = `/automate/email-triage/success?tier=${tier.id}`;
                 }}

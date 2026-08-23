@@ -93,10 +93,10 @@ export default function RefundPage() {
           <section className={styles.section}>
             <h2>8. How to Request a Refund</h2>
             <p>
-              Email <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a> with your order
-              details and the reason for your request. Approved refunds are processed back to your
-              original payment method through Paddle, our payment processor, typically within
-              5 to 10 business days.
+              Email <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a> with your invoice
+              number or transaction reference and the reason for your request. Approved refunds
+              are returned by the same route you paid on &mdash; card, bank transfer, or Payoneer
+              &mdash; typically within 5 to 10 business days of approval.
             </p>
           </section>
 

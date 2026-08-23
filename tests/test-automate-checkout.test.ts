@@ -56,9 +56,22 @@ describe("automateTiers / getAutomateTierById", () => {
     expect(tier.paddlePriceId).toBe(process.env.NEXT_PUBLIC_PADDLE_PRICE_ID_DFY || "");
   });
 
-  it("existing tiers array (discovery, strategy) is unchanged in length and content", () => {
-    expect(tiers).toHaveLength(2);
-    expect(tiers.map((t) => t.id)).toEqual(["discovery", "strategy"]);
+  // Was "(discovery, strategy) is unchanged". Those two hourly tiers were
+  // deliberately merged into a single flat-fee Consultation Call in b6aad59,
+  // so the guard now tracks that one tier instead of the pair it replaced.
+  it("tiers holds exactly the one consultation tier", () => {
+    expect(tiers).toHaveLength(1);
+    expect(tiers.map((t) => t.id)).toEqual(["consultation"]);
+  });
+
+  it("the consultation tier is fully formed", () => {
+    const [consultation] = tiers;
+    expect(consultation.name).toBe("Consultation Call");
+    expect(consultation.price).toBe("$200");
+    expect(consultation.deliverables.length).toBeGreaterThan(0);
+    expect(consultation.paddlePriceId).toBe(
+      process.env.NEXT_PUBLIC_PADDLE_PRICE_ID_CONSULTATION || ""
+    );
   });
 
   it("automateTiers contains exactly four entries: build-map, dfy, dwy, care-plan", () => {

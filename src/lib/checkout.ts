@@ -144,6 +144,28 @@ export function getEmailTriageTierById(id: EmailTriageTierId): EmailTriageTier {
   return emailTriageTiers.find((t) => t.id === id) || emailTriageTiers[0];
 }
 
+/**
+ * Which checkout the site renders.
+ *
+ * Paddle declined the account under their Acceptable Use Policy, and Stripe
+ * does not onboard Nigerian entities, so Flutterwave is the card rail and the
+ * default. It degrades on its own: with no NEXT_PUBLIC_FLW_PUBLIC_KEY set,
+ * CheckoutPanel shows the invoice form instead, so an unconfigured deploy
+ * still takes orders.
+ *
+ * "invoice" forces the emailed-invoice flow for every buyer. "paddle" restores
+ * the old checkout if that account is ever reinstated. An unset or misspelled
+ * value lands on "flutterwave", which is the intended path.
+ */
+export type PaymentsMode = "flutterwave" | "invoice" | "paddle";
+
+export function getPaymentsMode(): PaymentsMode {
+  const mode = process.env.NEXT_PUBLIC_PAYMENTS_MODE;
+  if (mode === "paddle") return "paddle";
+  if (mode === "invoice") return "invoice";
+  return "flutterwave";
+}
+
 export function getPaddleEnvironment(): "sandbox" | "production" {
   return process.env.NEXT_PUBLIC_PADDLE_TOKEN?.startsWith("test_") ? "sandbox" : "production";
 }
