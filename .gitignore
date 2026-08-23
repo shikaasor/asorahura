@@ -25,9 +25,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# local env files
-.env*.local
-.env
+# env files — every variant, including backups and copies.
+# `.env*.local` alone missed things like .env.live.bak.local.prev, whose .prev
+# suffix means it does not end in .local. Match the prefix instead and make the
+# example file the single explicit exception.
+.env*
+!.env.example
 
 # vercel
 .vercel
