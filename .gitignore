@@ -40,3 +40,7 @@ yarn-error.log*
 next-env.d.ts
 node_modules
 .gstack/
+
+# source PDFs for lead magnets — the download is served from Drive,
+# so the binary does not need to ship in the repo
+/content/Guides/

@@ -115,3 +115,125 @@
     font-size: var(--fontSize-6);
   }
 }
+
+/* Byline. Only renders for posts with an author in frontmatter — the
+   case studies are first-person Asor and carry no credit line. */
+.byline {
+  margin-top: var(--spacing-3);
+  font-size: var(--fontSize-2);
+  color: var(--ink-3);
+}
+
+.bylineName {
+  color: var(--ink-1);
+  font-weight: var(--fontWeight-bold);
+}
+
+/* --- Long-form guide elements ---------------------------------------
+   The body previously only styled h2/p/strong, which was all the case
+   studies used. Guides also carry sub-headings, pull quotes and prompt
+   blocks, so those get the same treatment here. */
+
+.body h3 {
+  font-size: var(--fontSize-4);
+  font-weight: var(--fontWeight-bold);
+  color: var(--ink-1);
+  margin: var(--spacing-5) 0 var(--spacing-3);
+  line-height: var(--lineHeight-normal);
+}
+
+.body em {
+  color: var(--ink-1);
+  font-style: italic;
+}
+
+.body a {
+  color: var(--accent-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.body blockquote {
+  margin: var(--spacing-4) 0;
+  padding: var(--spacing-3) 0 var(--spacing-3) var(--spacing-4);
+  border-left: 2px solid var(--border-2);
+  color: var(--ink-1);
+}
+
+.body blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Prompt templates and bibles. They are copy-and-paste assets, so they
+   keep their line breaks and scroll on their own rather than wrapping. */
+.body pre {
+  margin: var(--spacing-4) 0;
+  padding: var(--spacing-4);
+  background: var(--surface-3);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-3);
+  overflow-x: auto;
+}
+
+.body pre code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: var(--fontSize-1);
+  line-height: 1.7;
+  color: var(--ink-1);
+  white-space: pre;
+}
+
+.body :not(pre) > code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  color: var(--ink-1);
+  background: var(--surface-3);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-1);
+  padding: 0.1em 0.4em;
+}
+
+/* --- Download panel --------------------------------------------------
+   Only renders for posts with a downloadUrl in frontmatter. */
+
+.downloadPanel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+  background: var(--surface-3);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-4);
+  padding: var(--spacing-4) var(--spacing-5);
+  margin: var(--spacing-5) 0;
+}
+
+.downloadEyebrow {
+  font-size: var(--fontSize-1);
+  color: var(--accent-ink);
+  letter-spacing: var(--tracking-label);
+  margin-bottom: var(--spacing-2);
+}
+
+.downloadTitle {
+  font-size: var(--fontSize-4);
+  font-weight: var(--fontWeight-bold);
+  color: var(--cream);
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: var(--spacing-2);
+}
+
+.downloadNote {
+  font-size: var(--fontSize-2);
+  color: var(--ink-2);
+  line-height: var(--lineHeight-relaxed);
+  max-width: 44ch;
+  margin: 0;
+}
+
+@media (max-width: 560px) {
+  .downloadPanel {
+    padding: var(--spacing-4);
+  }
+}

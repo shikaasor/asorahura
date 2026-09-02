@@ -1,0 +1,28 @@
+ngrok                                                                                                                                                               (Ctrl+C to quit)
+                                                                                                                                                                                    
+�  One gateway for every AI model. https://app.ngrok.ai                                                                                                                             
+                                                                                                                                                                                    
+Session Status                online                                                                                                                                                
+Account                       versatilenuzi@gmail.com (Plan: Free)                                                                                                                  
+Version                       3.30.0                                                                                                                                                
+Region                        United States (us)                                                                                                                                    
+Latency                       491ms                                                                                                                                                 
+Latency                       228ms                                                                                                                                                 
+Web Interface                 http://127.0.0.1:4040                                                                                                                                 
+Forwarding                    https://bbd9-105-120-0-81.ngrok-free.app -> http://localhost:3000                                                                                     
+                                                                                                                                                                                    
+Connections                   ttl     opn     rt1     rt5     p50     p90                                                                                                           
+                              0       0       0.00    0.00    0.00    0.00                                                                                                          
+                                                                                                                                                                                    
+                                                                                                                                                                                    
+                                                 
+
+                                                 
+C:\Users\HP_PC\Documents\DevOps\SAAS\asorahura>npx tsx scripts\get-webhook-secret.ts ntfset_01m0fcegte0hzqn9kb0jyt57zz
+Destination: https://bbd9-105-120-0-81.ngrok-free.app/api/paddle/webhook
+Events:      transaction.completed
+Wrote PADDLE_WEBHOOK_SECRET=pdl_ntfset_01m...RcNQ to .env.local
+
+Restart `npm run dev` for it to take effect.
+
+C:\Users\HP_PC\Documents\DevOps\SAAS\asorahura>

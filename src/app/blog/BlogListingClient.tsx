@@ -53,7 +53,9 @@ export default function BlogListingClient({ posts }: { posts: BlogPost[] }) {
                   <span className={styles.categoryTag}>{post.category}</span>
                   <h2 className={styles.cardTitle}>{post.title}</h2>
                   <p className={styles.cardExcerpt}>{post.excerpt}</p>
-                  <p className={styles.readingTime}>{post.readingTime} min read</p>
+                  <p className={styles.readingTime}>
+                    {post.author ? `${post.author} · ` : ''}{post.readingTime} min read
+                  </p>
                 </div>
               </Link>
             ))}

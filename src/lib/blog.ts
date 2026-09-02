@@ -12,6 +12,9 @@ export interface BlogPost {
   category: string;
   tags: string[];
   readingTime: number; // minutes, rounded up
+  author?: string;
+  downloadUrl?: string;
+  downloadLabel?: string;
 }
 
 export interface BlogPostWithContent extends BlogPost {
@@ -68,6 +71,9 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
           category: data.category ?? 'General',
           tags: data.tags ?? [],
           readingTime: Math.ceil(rt.minutes),
+          author: data.author,
+          downloadUrl: data.downloadUrl,
+          downloadLabel: data.downloadLabel,
         } satisfies BlogPost;
       })
   );
@@ -91,6 +97,9 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPostWithConte
       category: data.category ?? 'General',
       tags: data.tags ?? [],
       readingTime: Math.ceil(rt.minutes),
+      author: data.author,
+      downloadUrl: data.downloadUrl,
+      downloadLabel: data.downloadLabel,
       content,
     };
   } catch {
