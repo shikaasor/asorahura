@@ -1,0 +1,241 @@
+---
+title: "Building llama-server on Ubuntu"
+subtitle: "Compile llama.cpp from source and run an OpenAI-compatible model server on your own machine."
+excerpt: "A step-by-step Ubuntu guide for compiling llama.cpp, enabling Vulkan acceleration, downloading a GGUF model, and running llama-server locally with the common build errors explained."
+category: "Guide"
+author: "Asor Ahura"
+coverImage: "/site-images/llama-server-ubuntu-guide-cover.svg"
+tags: ["LocalAI", "Ubuntu", "llama.cpp", "Vulkan", "OpenSourceAI"]
+---
+
+This is the companion guide for the YouTube walkthrough. Use it as the copy-and-paste reference while you build.
+
+By the end, you will have `llama-server` running locally on Ubuntu, serving a model from your own machine at `http://127.0.0.1:8080`.
+
+```bash
+./build/bin/llama-server -m ~/models/qwen3.gguf --port 8080
+
+# main: loading model '/home/you/models/qwen3.gguf'
+# main: server is listening on http://127.0.0.1:8080
+# main: model loaded, 32 layers offloaded to Vulkan0
+```
+
+| Tested on | Backend shown | Build time | Default port |
+| --- | --- | --- | --- |
+| Ubuntu 26.04 | Vulkan / Intel | 10-20 min | 8080 |
+
+## Quick Navigation
+
+1. [Pick a backend for your hardware](#pick-a-backend-for-your-hardware)
+2. [Install the build tools](#install-the-build-tools)
+3. [Install Vulkan and the SPIR-V headers](#install-vulkan-and-the-spir-v-headers)
+4. [Verify Vulkan sees your GPU](#verify-vulkan-sees-your-gpu)
+5. [Clone the source](#clone-the-source)
+6. [Configure the build](#configure-the-build)
+7. [Compile llama-server](#compile-llama-server)
+8. [Get a model](#get-a-model)
+9. [Run the server](#run-the-server)
+10. [When it breaks](#when-it-breaks)
+
+## Pick a Backend for Your Hardware
+
+`llama.cpp` can run on your CPU, but it is much faster when it can use your GPU. Before installing anything, pick the path that matches your machine.
+
+**Use this guide as written if you have Intel integrated graphics.**
+
+Most Ubuntu laptops and mini PCs with Intel graphics should follow the Vulkan path:
+
+```bash
+-DGGML_VULKAN=ON
+```
+
+That is the path used in the rest of this walkthrough. Vulkan is usually the easiest setup because Ubuntu already ships the Mesa drivers it needs.
+
+If your machine is different, use the matching build flag instead:
+
+- **NVIDIA GPU:** use CUDA with `-DGGML_CUDA=ON`
+- **AMD discrete GPU:** use ROCm / HIP with `-DGGML_HIP=ON`
+- **No GPU:** use CPU only and leave the GPU flag out
+
+> **Not sure what GPU you have?** Run `lspci | grep -Ei 'vga|3d|display'`. If it shows Intel graphics, keep following this guide. If it shows NVIDIA or AMD, use the matching flag above and swap the Vulkan install steps for that vendor's driver/toolkit setup.
+
+> **CUDA note:** For NVIDIA, install CUDA from NVIDIA's apt repo rather than Ubuntu's default package, which usually lags several versions behind. Use `-DGGML_CUDA=ON`, not the old `LLAMA_CUBLAS` flag, which was removed.
+
+## Install the Build Tools
+
+Install a compiler, CMake, git, and the curl development headers. The last one lets `llama-server` pull models straight from Hugging Face by name.
+
+```bash
+sudo apt update
+sudo apt install -y build-essential cmake git libcurl4-openssl-dev
+```
+
+Optionally add `ccache`. CMake warns if it is missing, and it makes any rebuild after this one much faster.
+
+## Install Vulkan and the SPIR-V Headers
+
+This is the step most guides get wrong. You need the Vulkan loader, the Mesa driver, a shader compiler, and the SPIR-V headers.
+
+```bash
+sudo apt install -y libvulkan-dev vulkan-tools mesa-vulkan-drivers \
+  glslc glslang-tools spirv-headers spirv-tools
+```
+
+> **Pitfall:** Installing only `libvulkan-dev` and `glslc` looks sufficient and is not. The Vulkan loader package does not pull in `spirv-headers`, so configuring fails with `Could not find a package configuration file provided by "SPIRV-Headers"`. `glslang-tools` covers the matching `glslangValidator` warning.
+
+## Verify Vulkan Sees Your GPU
+
+Check this now. If the driver is not working, the build still succeeds and then quietly runs everything on CPU, which is slow and confusing to diagnose later.
+
+```bash
+vulkaninfo --summary
+```
+
+Your GPU should appear under the device list, for example `Intel(R) Graphics (ADL GT2)` with a driver named `Intel open-source Mesa driver`.
+
+No devices listed means Mesa is not loading. Fix that before building.
+
+## Clone the Source
+
+Put it somewhere you will keep. The build directory ends up a few gigabytes.
+
+```bash
+git clone https://github.com/ggml-org/llama.cpp.git
+cd llama.cpp
+```
+
+Every command from here runs from inside this directory.
+
+## Configure the Build
+
+This generates the build files. It does not compile anything yet.
+
+```bash
+cmake -B build -DGGML_VULKAN=ON
+```
+
+A successful run ends with `Including Vulkan backend` and `Build files have been written to`. If you see `Configuring incomplete, errors occurred`, stop and fix that before continuing.
+
+> **Pitfall:** The output here is long, detailed, and ends in success language. It is easy to read it as "done" and move on. It is not done. Nothing has been compiled. The next step is the one that takes 10 minutes and produces a binary.
+
+## Compile llama-server
+
+```bash
+cmake --build build --config Release -j$(nproc) --target llama-server
+```
+
+- `--config Release` is not optional. A debug build runs inference many times slower.
+- `-j$(nproc)` uses every core. Drop it to `-j4` if the machine runs out of memory while linking.
+- `--target llama-server` builds only the server. Omit it to also get `llama-cli`, `llama-bench`, and `llama-quantize`.
+
+Confirm the binary actually exists before moving on:
+
+```bash
+ls -lh build/bin/llama-server
+```
+
+> **Pitfall:** If a build fails partway, `build/tools/server/CMakeFiles/llama-server.dir/` still exists and looks like progress. Those are intermediate object files, not the program. Only `build/bin/llama-server` counts.
+
+## Get a Model
+
+`llama.cpp` runs **GGUF** files. Nothing else. A PyTorch or safetensors checkpoint has to be converted first.
+
+The quantization suffix sets the tradeoff. `Q4_K_M` is the usual starting point: roughly a quarter the size of the full model with little quality loss. `Q8_0` is larger and closer to the original. `Q3` and below get noticeably worse.
+
+The easiest path is to let the server fetch it, which needs the curl headers from the build tools step:
+
+```bash
+./build/bin/llama-server -hf ggml-org/Qwen3-4B-GGUF:Q4_K_M
+```
+
+Or download a `.gguf` from Hugging Face yourself and point at the file directly.
+
+## Run the Server
+
+```bash
+./build/bin/llama-server -m ~/models/your-model.gguf \
+  --port 8080 --ctx-size 4096 -ngl 99
+```
+
+- `-ngl 99` pushes as many layers as fit onto the GPU. Lower it if you run out of video memory.
+- `--ctx-size` is the context window. Larger costs more memory.
+- `--host 0.0.0.0` exposes it to your network. Leave it off to stay local only.
+
+Open `http://127.0.0.1:8080` for the built-in chat interface. The same address serves an OpenAI-compatible API at `/v1/chat/completions`, so most existing clients work by changing the base URL.
+
+> **Running alongside Ollama:** Both can run at once. Ollama holds port `11434`, and `llama-server` defaults to `8080`, so they only collide if you have changed one. They do compete for the same GPU memory though.
+
+## When It Breaks
+
+The failures that come up most, and what each one actually means.
+
+<details>
+  <summary>Could not find a package configuration file provided by "SPIRV-Headers"</summary>
+
+  CMake is missing the SPIR-V headers. They are a separate package that `libvulkan-dev` does not depend on.
+
+  ```bash
+  sudo apt install -y spirv-headers glslang-tools spirv-tools
+  rm -rf build
+  cmake -B build -DGGML_VULKAN=ON
+  ```
+
+  Delete `build/` first. The cache from the failed run holds stale paths that survive a plain reconfigure.
+</details>
+
+<details>
+  <summary>./build/bin/llama-server: No such file or directory</summary>
+
+  The compile step never finished, or was never run. Configuring is not compiling.
+
+  ```bash
+  cmake --build build --config Release -j$(nproc) --target llama-server 2>&1 | tail -60
+  ```
+
+  Re-running is safe and skips work already done. The last 60 lines will show the real error, which usually scrolled past the first time.
+</details>
+
+<details>
+  <summary>Build freezes or the machine locks up while linking</summary>
+
+  This usually means the system ran out of memory. `-j$(nproc)` starts one compiler process per core, and linking is memory-hungry.
+
+  ```bash
+  cmake --build build --config Release -j4 --target llama-server
+  ```
+</details>
+
+<details>
+  <summary>It runs, but generation is very slow</summary>
+
+  This is almost always CPU fallback. Check the startup log for a line naming a Vulkan device. If it says CPU only, one of three things is true:
+
+  - `vulkaninfo --summary` does not list your GPU, so the driver is the problem, not `llama.cpp`.
+  - You built without `-DGGML_VULKAN=ON`. Delete `build/` and configure again.
+  - You forgot `-ngl`, so no layers were offloaded.
+
+  Also confirm you built with `--config Release`. A debug build is slow regardless of backend.
+</details>
+
+<details>
+  <summary>Model loads, then the process is killed</summary>
+
+  The model does not fit in memory. Lower `-ngl` to offload fewer layers, reduce `--ctx-size`, or move to a smaller quantization such as `Q4_K_M`.
+</details>
+
+<details>
+  <summary>Rebuilding after a git pull</summary>
+
+  Normally just pull and rebuild. The configure step is cached, so only changed files recompile.
+
+  ```bash
+  git pull
+  cmake --build build --config Release -j$(nproc) --target llama-server
+  ```
+
+  After a large upstream refactor this can fail in confusing ways. Then delete `build/` and configure from scratch.
+</details>
+
+## Final Note
+
+This was written from a working install on Ubuntu 26.04 LTS with Intel integrated graphics. Upstream build docs live at [github.com/ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md), where the flags for CUDA, ROCm, SYCL, and Metal are kept current.

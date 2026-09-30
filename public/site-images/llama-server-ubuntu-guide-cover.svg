@@ -1,0 +1,18 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="675" fill="#12191D"/>
+  <rect x="68" y="58" width="1064" height="559" rx="18" fill="#E8EBEC"/>
+  <rect x="108" y="104" width="984" height="467" rx="10" fill="#151D21"/>
+  <rect x="108" y="104" width="984" height="50" rx="10" fill="#263238"/>
+  <circle cx="138" cy="129" r="7" fill="#E16B5F"/>
+  <circle cx="162" cy="129" r="7" fill="#E0B24D"/>
+  <circle cx="186" cy="129" r="7" fill="#79B06C"/>
+  <text x="222" y="135" fill="#9EADB5" font-family="IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18">ubuntu :: llama-server</text>
+  <text x="154" y="230" fill="#8FBF7F" font-family="IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="28">$</text>
+  <text x="194" y="230" fill="#D9E0E3" font-family="IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="28">cmake -B build -DGGML_VULKAN=ON</text>
+  <text x="154" y="292" fill="#8FBF7F" font-family="IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="28">$</text>
+  <text x="194" y="292" fill="#D9E0E3" font-family="IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="28">cmake --build build --target llama-server</text>
+  <text x="154" y="354" fill="#75868E" font-family="IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="26">main: server is listening on http://127.0.0.1:8080</text>
+  <text x="154" y="416" fill="#75868E" font-family="IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="26">main: model loaded, layers offloaded to Vulkan0</text>
+  <rect x="154" y="478" width="388" height="44" rx="6" fill="#DDE6F2"/>
+  <text x="176" y="507" fill="#1B4D8F" font-family="IBM Plex Sans, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="24" font-weight="700">Local AI on your own machine</text>
+</svg>
