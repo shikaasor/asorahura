@@ -1,0 +1,80 @@
+---
+title: "I Put a Private AI Assistant on a USB Drive"
+subtitle: "No internet, no installer, no API bill. Llamafile, a quantized Qwen model and a batch file are the whole stack."
+excerpt: "How I built a portable, fully offline AI assistant on a USB flash drive with Llamafile, a 4B GGUF model from Hugging Face and a double-click Windows batch file, and what quantization trades away to make it fit."
+category: "Video"
+author: "Asor Ahura"
+youtubeId: "BylWuwKhvr8"
+tags: ["LocalAI", "Llamafile", "llama.cpp", "GGUF", "PrivacyFirst"]
+---
+
+This is the written companion to the video above. The goal: an AI assistant you can carry in your pocket, plug into a compatible Windows machine, and start with a double-click, with nothing sent to a cloud service.
+
+It takes three pieces.
+
+| Piece | What it is | Size |
+| --- | --- | --- |
+| Engine | Llamafile 0.10.5 | about 335 MB |
+| Model | Qwen 3.5 4B, 4-bit GGUF | about 2.3 GB |
+| Launcher | A Windows batch file | a few lines |
+
+You need an internet connection for the downloads. After that, you don't.
+
+## Why this works
+
+Llamafile is a wrapper around the `llama.cpp` engine. `llama.cpp` serves models in **GGUF** format, a format built so a model can be loaded and run on ordinary hardware. Hugging Face hosts thousands of GGUF models, so the engine and the model are two independent downloads that you can swap at will.
+
+## Step 1: Get the engine
+
+Download the Llamafile 0.10.5 release file from the [mozilla-ai/llamafile releases](https://github.com/mozilla-ai/llamafile/releases). It downloads with no file extension. Rename it to add `.exe`, and it becomes an executable.
+
+## Step 2: Get the model
+
+Download a GGUF build of Qwen 3.5 4B from [unsloth/Qwen3.5-4B-GGUF](https://huggingface.co/unsloth/Qwen3.5-4B-GGUF). Put it in a folder named `model` next to the executable.
+
+The file you pick is a quantization choice. Quantization is the precision the weights are stored at, and it sets how big the file is and how much accuracy you keep:
+
+| Quantization | Approx. size (Qwen 3.5 4B) |
+| --- | --- |
+| 16-bit (highest accuracy) | 8.4 GB |
+| 4-bit (what I used) | about 2.3 GB |
+| 2-bit | 1.9 GB |
+| Smallest listed build | 1.5 GB |
+
+I took the 4-bit build as the sweet spot: small enough for a USB drive and a typical laptop's memory, still capable enough to be useful. If your machine has plenty of RAM, pick a bigger one.
+
+## Step 3: The launcher
+
+The batch file does one job: point Llamafile at the model and start serving. Its shape:
+
+```bat
+@echo off
+cd /d "%~dp0"
+llamafile-0.10.5.exe -m "model\<your-model-file>.gguf"
+```
+
+The `cd /d "%~dp0"` line sets the working directory to wherever the script lives, which is what lets the same folder work from any drive letter. `-m` points at the model. Swap the model path and you have a different assistant.
+
+Double-click it. It copies the model into memory, which takes a moment, then serves it.
+
+## Two ways to talk to it
+
+- **The terminal.** You chat right in the console window.
+- **The web UI.** Open `http://localhost:8080` in a browser.
+
+In my run the model is a reasoning model, and the terminal showed all of its thinking before the reply to a simple "hello". The web UI streamed a reply faster. Same model, same machine, a different experience, so try both.
+
+## Proving it's offline
+
+I disconnected the internet and kept chatting. It still answered, slower, since speed comes down to your machine's capacity. That's the point: the model, the engine and the conversation all stay on the drive and the computer you plugged it into.
+
+## Things that bit me
+
+- **Memory.** The first launch failed because I had other local models running and not enough free RAM. Closing them fixed it. A 2.3 GB model needs room to load, so close memory-hungry apps first.
+- **It's only as fast as the host machine.** A 4B model on a laptop is a convenience, not a workstation.
+
+## Why bother
+
+Two reasons. First, no subscription and no per-token API fee. Second, and more important to the work I do: you can package this together with sensitive files that must not be exposed to a third party, and work on them with an AI that never phones home. That's the same privacy-first thinking behind the document tools I build for regulated industries.
+
+If you want to take the same engine further, the [llama-server on Ubuntu guide](/blog/building-llama-server-on-ubuntu) builds `llama.cpp` from source for finer control over context size and server behavior.

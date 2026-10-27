@@ -1,0 +1,60 @@
+---
+title: "More Context Won't Stop Your Agent Grepping the Codebase"
+subtitle: "Indexing a repository into a knowledge graph so coding agents read what matters instead of whole files."
+excerpt: "Coding agents burn tokens grepping files into context. I ran Graphify on a real 387-file codebase and walked through what the knowledge graph gives the agent, what it skipped, and what I'd still verify."
+category: "Video"
+author: "Asor Ahura"
+youtubeId: "NtrsDU7Cj4U"
+tags: ["AgenticCoding", "ContextEngineering", "ClaudeCode", "Codex", "DeveloperTools"]
+---
+
+Coding agents such as Claude Code and Codex are only as good as the context around them. The catch is that context is also what makes them worse: a model gets less reliable as its window fills, and the window fills because the harness gives it as much of the environment as it can.
+
+The usual way an agent finds code is `grep`. It searches, pulls whole files into the window, and reasons over them. That works, and it is expensive in tokens. And since compute is no longer being subsidized the way it was, tokens are real money.
+
+This post accompanies the video above, where I try [Graphify](https://github.com/Graphify-Labs/graphify) on a real project.
+
+## The idea
+
+Graphify indexes a repository into a **knowledge graph**. When the agent needs something, say the code that handles a specific API error, it traverses the graph to the right source file instead of grepping across the whole tree. Less context goes in, and what goes in is more relevant.
+
+It runs fully locally.
+
+## What I ran it on
+
+The test repo is the codebase for LocaLens, my offline document-intelligence product. It's a good test: a real, multi-service project with an OCR backend, a vector retriever and more, not a toy.
+
+The setup, following the project README:
+
+1. Install Graphify with `uv` (I use both `uv` and `pip`).
+2. Run its install step to register the skill with your coding assistant. I have both Claude Code and Codex, and it registered with them.
+3. Inside the assistant, run `/graphify .` against the repo.
+4. Run Graphify's Claude-specific install command once the graph is built, so the assistant is told to consult the graph before answering code questions and to rebuild it after code changes.
+
+For mapping the codebase I used a mid-tier model on purpose, since a strong model isn't needed for it and my usage limit was nearly spent.
+
+## What it produced
+
+The result for my repo:
+
+- **3,484 nodes**
+- **215 communities**
+- **387 source files**
+
+The communities are the useful part. It split the project into sensible groups such as documents, users, an organization layer and the vector retriever, which matches how I'd describe the architecture myself.
+
+It also generated an interactive HTML graph. Click a node and the side panel shows what it connects to, including its source. For one API-error node, that source pointed straight at the OCR tasks file in the backend. That is the behavior that matters: an agent asked about that error can go directly to the file instead of searching around. The graph is mostly for the agent, not for you; I found it more useful as a map than as something to read.
+
+## What I noticed
+
+- **It skipped my `.env` file.** Sensible, though it also skipped an example env file with no secrets in it. I didn't dig into why.
+- **A missing dependency.** It wanted Whisper (speech transcription) and had to install it, which I didn't expect for a code repo.
+- **It took a while** on a codebase this size. This is a one-time build plus rebuilds, not something you do per prompt.
+
+## The numbers, and a caveat
+
+The project's own material claims this cuts the context an agent preloads from roughly 72,000 tokens to around 13,000. If that holds, the cost saving is large. But that is the tool's claim, not something I measured in the video. I showed that the graph builds and that nodes resolve to the right files. I did not benchmark token usage before and after. If it matters for your budget, measure it on your own repo.
+
+## Takeaway
+
+Give the agent a map instead of a bigger window. Bigger context doesn't stop an agent from grepping; a structure it can traverse does. I'll be exploring more of Graphify's commands, but this is a solid starting point.

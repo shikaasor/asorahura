@@ -1,0 +1,52 @@
+---
+title: "LocaLens: From Messy Documents to Structured Data, Privately"
+subtitle: "A walkthrough of the architecture behind an OCR-plus-LLM extraction pipeline that runs on your own infrastructure."
+excerpt: "How LocaLens turns zipped batches of receipts, invoices and contracts into a clean CSV: Chandra OCR for text, a local LLM for natural-language extraction, a SQLite job queue for state, and a dashboard in front."
+category: "Video"
+author: "Asor Ahura"
+youtubeId: "satglhIfpcs"
+tags: ["DocumentIntelligence", "OCR", "Ollama", "PrivacyFirst", "DataExtraction"]
+---
+
+Transaction details are still being copied by hand from receipts, invoices and contracts into Excel. Amounts, descriptions, dates: accountants and finance teams reviewing documents one at a time and retyping them. LocaLens is my answer, and the video above walks through it. Here is what's underneath.
+
+## The workflow
+
+1. Zip a batch of documents of the same class: all receipts, or all contracts, or all invoices.
+2. Upload the zip.
+3. Describe in plain language what you want, for example: *get the invoice date, the vendor name, the invoice number and the total amount.*
+4. Start the pipeline and watch a live dashboard.
+5. Download the results as a CSV.
+
+No templates and no per-document-type rules. The query is natural language.
+
+## The architecture
+
+| Layer | Choice | Role |
+| --- | --- | --- |
+| Front end | Streamlit | Upload, live job dashboard, CSV download |
+| State | SQLite + a job queue | Tracks each document's status across the run |
+| Intake | Normalizing workers | Handle PDFs, images and document files so the user doesn't have to care |
+| OCR | Chandra OCR (Datalab) | Turns each page into markdown |
+| Extraction | A local LLM served through Ollama | Reads the markdown and answers the user's query |
+
+The flow per document is simple. The OCR step returns markdown. The markdown goes to the language model together with the user's description of what to extract. The model returns the fields. The results are collected into the table.
+
+## Privacy by deployment, not by promise
+
+The reason this is built on Ollama and a self-hostable OCR model is that sensitive documents shouldn't have to leave the building. Chandra OCR can be hosted on your own hardware if you have the compute, which is cheaper than it used to be. I mention NVIDIA's Jetson kits at around $248 as one way to run the OCR model on premises without any API calls. If you'd rather not run hardware, you can host it in a private container on a cloud provider you control; I like AWS.
+
+For regulated sectors like banking, insurance, healthcare administration and legal, that distinction is the whole point. If you want to see the local-model side of the stack in detail, the [llama-server on Ubuntu guide](/blog/building-llama-server-on-ubuntu) covers running a private model without Ollama.
+
+## What the demo showed
+
+I uploaded a zip of three service quotes and asked for the invoice date, vendor name, invoice number and total amount. The dashboard showed all three as pending, then moved through calling the OCR service, sending the markdown to the model, and parsing the answer. All three finished.
+
+Two details I care about:
+
+- **Traceability.** Every row carries the source file name, so any value can be traced back to the document it came from.
+- **Honest gaps.** There was no invoice number in those documents, and the output left it empty instead of inventing one. For finance work, an empty cell you can see beats a plausible one you can't.
+
+## What it's for
+
+Anywhere a team has a pile of scanned or digital documents and a spreadsheet waiting to be filled: expense receipts, vendor invoices, contract terms. If you'd like it running for your organization, there's a demo and sign-up at [localens.asorahura.com](https://localens.asorahura.com/).
